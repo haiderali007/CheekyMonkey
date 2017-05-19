@@ -15,8 +15,8 @@
         android:padding="5dp"
         android:layout_gravity="center"
         android:gravity="center_vertical"
-        android:textColor="@color/menu_item_color"
-        android:textSize="@dimen/large"
+        android:textColor="@color/menu_item_color1"
+        android:textSize="@dimen/medium"
         android:text="Item" />
 
 
@@ -28,7 +28,7 @@
         android:layout_gravity="center_vertical"
         android:textStyle="bold"
         android:textColor="@color/low_price_color"
-        android:textSize="@dimen/large"
+        android:textSize="@dimen/medium"
         android:text="100" />
 
 
@@ -39,7 +39,7 @@
         android:layout_weight="1"
         android:layout_gravity="center_vertical"
         android:textColor="@color/high_price_color"
-        android:textSize="@dimen/large"
+        android:textSize="@dimen/medium"
         android:textStyle="bold"
         android:text="120"
         app:fontName="Roboto_Thin" />
@@ -54,7 +54,7 @@
         android:gravity="center"
         android:background="@color/next_price_color"
         android:textColor="@color/White"
-        android:textSize="@dimen/large"
+        android:textSize="@dimen/medium"
         android:text="120" />
 
 

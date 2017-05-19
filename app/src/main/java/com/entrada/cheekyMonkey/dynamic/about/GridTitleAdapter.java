@@ -77,7 +77,7 @@ public class GridTitleAdapter extends ArrayAdapter<TitleHeader> {
                 resId = R.drawable.home;
                 break;
             case 1:
-                resId = R.drawable.app_icon;
+                resId = R.drawable.bidding;
                 break;
             case 2:
                 resId = R.drawable.direction;
@@ -90,7 +90,7 @@ public class GridTitleAdapter extends ArrayAdapter<TitleHeader> {
                 break;
 
             case 5:
-                resId = R.drawable.developer;
+                resId = R.drawable.about;
                 break;
             case 6:
                 resId = R.drawable.developer;
@@ -99,7 +99,7 @@ public class GridTitleAdapter extends ArrayAdapter<TitleHeader> {
                 resId = R.drawable.facebook;
                 break;
             case 8:
-                resId = R.drawable.twitter;
+                resId = R.drawable.insta;
                 break;
             case 9:
                 resId = R.drawable.terms;

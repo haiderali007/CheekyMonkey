@@ -17,6 +17,7 @@
     <ListView
         android:id="@+id/lv_qty"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dialog_height"/>
+        android:layout_height="@dimen/dialog_height"
+        android:background="@color/Black1"/>
 
 </LinearLayout>

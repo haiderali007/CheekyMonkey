@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:padding="16sp"
+    android:padding="8sp"
     android:background="@drawable/textview_state"
     android:gravity="center_vertical">
 
@@ -25,14 +25,14 @@
         android:layout_weight="1"
         android:paddingStart="30dp"
         android:paddingEnd="30dp"
-        android:paddingLeft="30dp"
+        android:paddingLeft="20dp"
         android:paddingRight="30dp"
         android:ellipsize="marquee"
         android:gravity="center_vertical"
         android:text="@string/home_footer"
         android:textColor="@color/WhiteSmoke"
         android:textIsSelectable="false"
-        android:textSize="@dimen/extra_large"
+        android:textSize="@dimen/large"
         app:fontName="Roboto-Regular"/>
 
 

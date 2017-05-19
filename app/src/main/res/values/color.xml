@@ -20,11 +20,13 @@
     <!-- Color specially pics for home screen -->
 
     <color name="menu_item_color">#fff8f8</color>
+    <color name="menu_item_color1">#757575</color>
     <color name="high_price_color">#49b154</color>
     <color name="low_price_color">#f10b16</color>
     <color name="curr_price_color">#AC1E1C</color>
     <color name="next_price_color">#24AC30</color>
-    <color name="home_color">#ffd879</color>
+    <!--<color name="home_color">#ffd879</color>-->
+    <color name="home_color">#FFC107</color>
     <color name="order_background">#101010</color>
     <color name="my_order_background">#2C2828</color>
 
@@ -197,6 +199,7 @@
     <color name="DarkBlue">#00008B</color>
     <color name="Navy">#000080</color>
     <color name="Black">#000000</color>
+    <color name="Black1">#131313</color>
 
     <!-- For indicator -->
     <color name="default_circle_indicator_fill_color">#FFFFFFFF</color>

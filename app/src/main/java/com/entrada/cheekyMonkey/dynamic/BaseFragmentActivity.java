@@ -296,7 +296,6 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                     .commit();
             currentBackListener = takeOrderFragment;
             slide_me.closeLeftSide();
-
         }
 
         else if (position == 12)
@@ -491,6 +490,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         }else{
             listview_left.setAdapter(getLeftListAdapter());
             listview_left.setOnItemClickListener(onListItemClickListener());
+           
         }
 
         listview_right = (ListView) findViewById(R.id.lv_order_history);

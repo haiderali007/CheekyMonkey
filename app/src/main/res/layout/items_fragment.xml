@@ -28,37 +28,41 @@
             <com.entrada.cheekyMonkey.ui.CustomTextview
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.3"
                 android:paddingStart="10sp"
                 android:paddingLeft="10sp"
                 android:text="Alcohol Name"
-                android:textSize="@dimen/medium"/>
+                android:textSize="@dimen/medium"
+                android:textColor="@color/White"/>
 
 
             <com.entrada.cheekyMonkey.ui.CustomTextview
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
-                android:text="Min. Price"
-                android:gravity="end"
-                android:textSize="@dimen/medium"/>
-
-
-            <com.entrada.cheekyMonkey.ui.CustomTextview
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:text="Max. Price"
+                android:text="Low"
                 android:gravity="center"
-                android:textSize="@dimen/medium"/>
+                android:textSize="@dimen/medium"
+                android:textColor="@color/White"/>
+
+
+            <com.entrada.cheekyMonkey.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:text="High"
+                android:gravity="center"
+                android:textSize="@dimen/medium"
+                android:textColor="@color/White"/>
 
             <com.entrada.cheekyMonkey.ui.CustomTextview
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Current Price (₹)"
+                android:text="Price (₹)"
                 android:gravity="center"
-                android:textSize="@dimen/medium" />
+                android:textSize="@dimen/medium"
+                android:textColor="@color/White" />
 
             <!--            <ImageView
                             android:layout_width="40sp"

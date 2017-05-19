@@ -66,7 +66,7 @@
             <LinearLayout
                 android:id="@+id/layout_bottom"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/header2_height"
+                android:layout_height="@dimen/header3_height"
                 android:background="@color/Black">
 
 
@@ -79,8 +79,8 @@
                     android:background="@color/home_color"
                     android:gravity="center"
                     android:text="@string/order_review"
-                    android:textColor="@color/Gray"
-                    android:textStyle="bold"
+                    android:textColor="@color/White"
+                    android:textStyle="normal"
                     android:textSize="13sp" />
 
 
@@ -93,7 +93,7 @@
                     android:gravity="center"
                     android:text="@string/order_header"
                     android:textColor="@color/White"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     android:textSize="13sp" />
 
 

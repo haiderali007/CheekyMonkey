@@ -27,7 +27,7 @@
             android:gravity="center_vertical|left"
             android:text="fbfbf"
             android:textColor="@color/menu_item_color"
-            android:textSize="@dimen/extra_large" />
+            android:textSize="@dimen/large" />
 
         <ImageView
             android:id="@+id/minus_order"
