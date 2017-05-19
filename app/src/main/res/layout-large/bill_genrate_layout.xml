@@ -1,0 +1,301 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_flipMode"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/layout_bill_detail"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/addonLayoutContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"/>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutBill"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/LinerLayoutBillDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/home_color"
+                android:padding="@dimen/padding_medium">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.entrada.cheekyMonkey.ui.CustomTextview
+                        android:id="@+id/textView5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/large"
+                        android:textColor="@color/White"
+                        android:layout_gravity="center"
+                        android:text="SubTotal:"/>
+
+
+                    <com.entrada.cheekyMonkey.ui.CustomTextview
+                        android:id="@+id/textView3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/large"
+                        android:textColor="@color/White"
+                        android:layout_gravity="center"
+                        android:text="Discount: " />
+
+                    <com.entrada.cheekyMonkey.ui.CustomTextview
+                        android:id="@+id/textView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/large"
+                        android:textColor="@color/White"
+                        android:layout_gravity="center"
+                        android:text="Tax:" />
+
+                    <com.entrada.cheekyMonkey.ui.CustomTextview
+                        android:id="@+id/textView7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/large"
+                        android:textColor="@color/White"
+                        android:layout_gravity="center"
+                        android:text="Total:" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.entrada.cheekyMonkey.ui.CustomTextview
+                    android:id="@+id/textViewSubTotal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textStyle="bold"
+                    android:textColor="@color/DeepSkyBlue" />
+
+
+
+                <com.entrada.cheekyMonkey.ui.CustomTextview
+                    android:id="@+id/textViewDiscount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textStyle="bold"
+                    android:textColor="@color/DeepSkyBlue"/>
+
+
+                <com.entrada.cheekyMonkey.ui.CustomTextview
+                    android:id="@+id/textViewTax"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textStyle="bold"
+                    android:textColor="@color/DeepSkyBlue" />
+
+
+                <com.entrada.cheekyMonkey.ui.CustomTextview
+                    android:id="@+id/textViewTotal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textStyle="bold"
+                    android:textColor="@color/DeepSkyBlue" />
+
+            </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/LinerLayoutBillDetails">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@color/Black"
+                    android:orientation="horizontal">
+
+
+                    <com.entrada.cheekyMonkey.ui.CustomTextview
+                        android:id="@+id/textViewOrderNo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight=".6"
+                        android:paddingLeft="5dp"
+                        android:text="Order No"
+                        android:textSize="@dimen/medium" />
+
+                    <com.entrada.cheekyMonkey.ui.CustomTextview
+                        android:id="@+id/textViewItemName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1.2"
+                        android:paddingLeft="45dp"
+                        android:text="Item Name"
+                        android:textSize="@dimen/medium" />
+
+                    <com.entrada.cheekyMonkey.ui.CustomTextview
+                        android:id="@+id/textViewQuantity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight=".6"
+                        android:text="Quantity"
+                        android:textSize="@dimen/medium" />
+
+                    <com.entrada.cheekyMonkey.ui.CustomTextview
+                        android:id="@+id/textViewPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight=".6"
+                        android:paddingLeft="15dp"
+                        android:text="Price"
+                        android:textSize="@dimen/medium" />
+
+                </LinearLayout>
+
+                <ProgressBar
+                    android:id="@+id/progressListItem"
+                    style="@android:style/Widget.ProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true" />
+
+                <ListView
+                    android:id="@+id/listViewBillItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/linearLayout"
+                    android:layout_marginBottom="@dimen/take_order_header_height" />
+
+                <LinearLayout
+                    android:id="@+id/layout_subtotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/take_order_header_height"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal">
+
+                    <com.entrada.cheekyMonkey.ui.CustomTextview
+                        android:id="@+id/textViewTotalCount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight=".6"
+                        android:paddingLeft="5dp"
+                        app:paddingStart="5dp"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/medium" />
+
+                    <com.entrada.cheekyMonkey.ui.CustomTextview
+                        android:id="@+id/textViewItem"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1.4"
+                        android:textSize="@dimen/medium"
+                        android:textStyle="bold" />
+
+                    <com.entrada.cheekyMonkey.ui.CustomTextview
+                        android:id="@+id/textViewTotalQuantity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight=".6"
+                        android:text=""
+                        android:textStyle="bold"
+                        android:textSize="@dimen/medium" />
+
+                    <com.entrada.cheekyMonkey.ui.CustomTextview
+                        android:id="@+id/textViewTotalPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight=".6"
+                        android:text=""
+                        android:textStyle="bold"
+                        android:textSize="@dimen/medium" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_bill_No"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/take_order_header_height"
+                    android:layout_alignParentBottom="true"
+                    android:visibility="gone">
+
+                    <com.entrada.cheekyMonkey.ui.CustomTextview
+                        android:id="@+id/t_v_head_bill_no_for_b_g_a_1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="end|center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="Bill No :"
+                        android:textSize="20sp" />
+
+                    <com.entrada.cheekyMonkey.ui.CustomTextview
+                        android:id="@+id/textViewBillNo"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="left|center_vertical"
+                        android:paddingLeft="20sp"
+                        android:textColor="@color/DeepSkyBlue"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/layout_table"
+        layout="@layout/table_right_layout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+</LinearLayout>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerLayoutTable"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.entrada.cheekyMonkey.ui.MySlidingPaneLayout
+        android:id="@+id/sliding_pane_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadingEdge="none"
+        android:background="@drawable/menu">
+
+        <!-- The first child view becomes the left pane. When combined -->
+        <!-- desired width (expressed using android:layout_width) would -->
+        <!-- not fit on-screen at once, the right pane is permitted to -->
+        <!-- overlap the left. -->
+
+
+        <include
+            layout="@layout/order_right_layout_dyn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+        <LinearLayout
+            android:id="@+id/rightSideLayoutTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/rightSideBottomLayout"
+            android:layout_gravity="center_vertical"
+            android:baselineAligned="false"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:id="@+id/rl_item_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/grey_light">
+
+                <com.entrada.cheekyMonkey.ui.PagerSlidingTabStrip
+                    android:id="@+id/tabs"
+                    pstsShouldExpand="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/cat_row_height"
+                    android:background="@color/Black"
+                    app:pstsDividerColor="@color/Black"
+                    app:pstsIndicatorColor="@color/home_color"
+                    app:pstsUnderlineColor="@color/Black"
+                    app:pstsUnderlineHeight="@dimen/take_order_header_bottom_height" />
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@+id/tabs"
+                    android:background="@color/Black" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/footer_height"
+                android:background="@color/Black">
+
+
+                <com.entrada.cheekyMonkey.ui.CustomTextview
+                    android:id="@+id/tv_home"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginRight="2sp"
+                    android:layout_marginEnd="2sp"
+                    android:background="@color/home_color"
+                    android:gravity="center"
+                    android:text="@string/home_footer"
+                    android:textColor="@color/White"
+                    android:textSize="13sp" />
+
+
+                <com.entrada.cheekyMonkey.ui.CustomTextview
+                    android:id="@+id/tv_myOrders"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/order_header"
+                    android:textColor="@color/White"
+                    android:textSize="13sp" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.entrada.cheekyMonkey.ui.MySlidingPaneLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <ProgressBar
+            android:id="@+id/progress_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_search_Item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/White"
+        android:visibility="gone" />
+
+</android.support.v4.widget.DrawerLayout>

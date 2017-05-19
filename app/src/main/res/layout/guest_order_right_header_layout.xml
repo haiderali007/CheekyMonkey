@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Black"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_guest_tbl_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/take_order_tab_height"
+        android:orientation="horizontal">
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/selectGuestTable"
+            style="@style/take_order_header_style"
+            fontName="Roboto-Black"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="2sp"
+            android:layout_weight="1"
+            android:background="@color/grey_light"
+            android:gravity="center"
+            android:padding="5sp"
+            android:text="@string/select_table_string"/>
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/textViewSpcialItem"
+            style="@style/take_order_header_style"
+            fontName="Roboto-Black"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/grey_light"
+            android:gravity="center"
+            android:text="Special Item" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

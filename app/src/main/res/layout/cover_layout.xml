@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/Brown"
+    android:padding="4dp"
+    android:orientation="vertical"
+    tools:ignore="RtlHardcoded,ContentDescription">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:background="@color/grey_light"
+        android:gravity="center_vertical|center">
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/txtViewCover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:text="@string/cover_menu_string"
+            android:paddingLeft="20sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/White"
+            android:textSize="24sp"
+            tools:fontName="Roboto-Medium" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/submitButton_min_width"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/textView_Cover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:hint="Enter Cover here"
+            android:textColorHint="@color/White"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llBottomLaoutOrder"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:orientation="horizontal">
+
+        <com.entrada.cheekyMonkey.ui.CustomButton
+            android:id="@+id/txtCancelCover"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/cancel_string"
+            android:textSize="@dimen/order_font_size_dimen" />
+
+        <com.entrada.cheekyMonkey.ui.CustomButton
+            android:id="@+id/txtOkCover"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/save_string"
+            android:textSize="@dimen/order_font_size_dimen" />
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,218 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_flipMode"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/tof_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <com.entrada.cheekyMonkey.ui.SlidingUpPanelLayout
+        xmlns:customisebyTanuj="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/slidingUpPanelLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        customisebyTanuj:umanoDragView="@+id/dragView"
+        customisebyTanuj:umanoPanelHeight="30dp"
+        customisebyTanuj:umanoParalaxOffset="100dp"
+        customisebyTanuj:umanoShadowHeight="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="false"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/posLayoutContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:id="@+id/addonLayoutContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:id="@+id/layout_bill_operation"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:visibility="gone"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_item_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/grey_light"
+                android:padding="5dp">
+
+                <com.entrada.cheekyMonkey.ui.PagerSlidingTabStrip
+                    android:id="@+id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/userID_height"
+                    android:padding="5dp"
+                    android:background="@color/Black"
+                    customisebyTanuj:pstsDividerColor="@color/Black"
+                    customisebyTanuj:pstsIndicatorColor="@color/DeepSkyBlue"
+                    customisebyTanuj:pstsUnderlineColor="@color/Black"
+                    customisebyTanuj:pstsUnderlineHeight="@dimen/take_order_header_bottom_height" />
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/tabs"
+                    android:background="@color/Black" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_order_options"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/header_height"
+                android:background="@color/Black">
+
+
+                <com.entrada.cheekyMonkey.ui.CustomTextview
+                    android:id="@+id/tv_add_item"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:layout_marginRight="2sp"
+                    android:background="@color/grey_light"
+                    android:gravity="center"
+                    android:text="Add item"
+                    android:textSize="18dp"
+                    android:visibility="gone" />
+
+                <com.entrada.cheekyMonkey.ui.CustomTextview
+                    android:id="@+id/tv_show_bill"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="2sp"
+                    android:layout_weight="1"
+                    android:background="@color/grey_light"
+                    android:gravity="center"
+                    android:text="Show Bill"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
+
+                <com.entrada.cheekyMonkey.ui.CustomTextview
+                    android:id="@+id/tv_generate_bill"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:layout_marginRight="2sp"
+                    android:layout_weight="1.2"
+                    android:background="@color/grey_light"
+                    android:gravity="center"
+                    android:text="@string/genrate_string"
+                    android:textSize="18dp" />
+
+                <com.entrada.cheekyMonkey.ui.CustomTextview
+                    android:id="@+id/tv_item_discount"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1.1"
+                    android:padding="5dp"
+                    android:background="@color/grey_light"
+                    android:gravity="center"
+                    android:text="@string/discount_string"
+                    android:textSize="18dp" />
+
+                <com.entrada.cheekyMonkey.ui.CustomTextview
+                    android:id="@+id/tv_item_cover"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.8"
+                    android:layout_marginLeft="2sp"
+                    android:layout_marginRight="2sp"
+                    android:background="@color/grey_light"
+                    android:gravity="center"
+                    android:text="@string/cover_menu_string"
+                    android:textSize="18dp" />
+
+                <com.entrada.cheekyMonkey.ui.CustomTextview
+                    android:id="@+id/tv_item_steward"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginRight="2sp"
+                    android:background="@color/grey_light"
+                    android:gravity="center"
+                    android:text="@string/select_steward_menu"
+                    android:textSize="18dp" />
+
+                <com.entrada.cheekyMonkey.ui.CustomTextview
+                    android:id="@+id/tv_item_guest"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.8"
+                    android:background="@color/grey_light"
+                    android:gravity="center"
+                    android:text="@string/guest_string"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/dragView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/grey_light"
+            android:clickable="true"
+            android:focusable="false"
+            android:orientation="vertical">
+
+            <include
+                layout="@layout/order_right_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:id="@+id/ll_bottomHeader"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/grey_light"
+                android:gravity="center_vertical|center">
+
+                <ImageView
+                    android:id="@+id/follow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center"
+                    android:background="@drawable/arrow_up_24"
+                    android:contentDescription="@string/accept_string" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </com.entrada.cheekyMonkey.ui.SlidingUpPanelLayout>
+
+</LinearLayout>

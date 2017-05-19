@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Black"
+    android:orientation="vertical"
+    tools:ignore="ButtonOrder,ObsoleteLayoutParam,ButtonStyle,UselessParent,HardcodedText">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55sp"
+        android:orientation="vertical">
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/txtViewModifierer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey_light"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/bill_stl"
+            android:textSize="@dimen/large"
+            app:fontName="Roboto-Medium" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <GridView
+            android:id="@+id/gv_pendingBills"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnWidth="@dimen/grid_row_width"
+            android:gravity="center"
+            android:horizontalSpacing="@dimen/table_num_hori_space"
+            android:listSelector="@android:color/transparent"
+            android:numColumns="auto_fit"
+            android:padding="10sp"
+            android:scrollbars="none"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="@dimen/table_num_hori_space" />
+
+    </RelativeLayout>
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tabs_slider_height"
+        android:background="@color/grey_light"
+        android:layout_alignParentBottom="true">
+
+    </LinearLayout>-->
+
+</LinearLayout>

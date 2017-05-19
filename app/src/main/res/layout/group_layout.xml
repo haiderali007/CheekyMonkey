@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/groupName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:minHeight="40dp"
+        android:paddingLeft="15dip"
+        android:textIsSelectable="false"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/t_v_max_q"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/abc"
+        android:gravity="center_vertical"
+        android:minHeight="40dp"
+        android:paddingRight="10dp"
+        android:textIsSelectable="false"
+        android:textSize="20sp"></TextView>
+
+</LinearLayout>

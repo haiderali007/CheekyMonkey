@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <GridView
+        android:id="@+id/itemsGridView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="auto_fit"
+        android:visibility="gone"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:gravity="center_vertical">
+
+            <com.entrada.cheekyMonkey.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="10sp"
+                android:paddingLeft="10sp"
+                android:text="Alcohol Name"
+                android:textSize="@dimen/medium"/>
+
+
+            <com.entrada.cheekyMonkey.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:text="Min. Price"
+                android:gravity="end"
+                android:textSize="@dimen/medium"/>
+
+
+            <com.entrada.cheekyMonkey.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:text="Max. Price"
+                android:gravity="center"
+                android:textSize="@dimen/medium"/>
+
+            <com.entrada.cheekyMonkey.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Current Price (₹)"
+                android:gravity="center"
+                android:textSize="@dimen/medium" />
+
+            <!--            <ImageView
+                            android:layout_width="40sp"
+                            android:layout_height="40sp"
+                            android:src="@drawable/sale" />
+
+
+                        <in.csat.dynamicRate.ui.CustomTextview
+                            android:layout_width="50sp"
+                            android:layout_height="wrap_content"
+                            android:text="Trend"
+                            android:gravity="center"
+                            android:textColor="@color/White"
+                            android:textSize="@dimen/text_size_medium"
+                            android:visibility="invisible"/>-->
+
+        </LinearLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ListView
+                android:id="@+id/list_cat_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

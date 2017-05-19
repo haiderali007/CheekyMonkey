@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/relativelayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2sp"
+            android:background="@color/grey_light">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="@string/home_log"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:layout_marginBottom="5sp"
+            android:background="@color/Gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2sp">
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Date"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:id="@+id/tv_home_date"
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:paddingLeft="20sp"
+                android:text="POS Code"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:id="@+id/tv_pos"
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2sp">
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Bill No"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/tv_home_bill"
+                style="?android:dropDownSpinnerStyle"
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:paddingLeft="20sp"
+                android:text="Delivery Boy"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/tv_del_boy"
+                style="?android:dropDownSpinnerStyle"
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2sp">
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Order Time"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:id="@+id/tv_home_odr_time"
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:paddingLeft="20sp"
+                android:text="Start Time"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:id="@+id/tv_str_time"
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2sp">
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Delivery Time"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/tv_home_delTime"
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:inputType="time"
+                android:padding="2sp"
+                android:textColor="@color/White"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:paddingLeft="20sp"
+                android:text="Return Time"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:id="@+id/tv_ret_time"
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2sp">
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Amount"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:id="@+id/tv_amt"
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:paddingLeft="20sp"
+                android:text="Change Amt"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/tv_chng_amt"
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:inputType="number"
+                android:padding="2sp"
+                android:text="0"
+                android:textColor="@color/White"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2sp">
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Return Amount"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/tv_ret_amt"
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:textColor="@color/White"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Date"
+                android:textSize="20sp"
+                android:visibility="invisible" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Date"
+                android:textSize="20sp"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2sp">
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Guest Name "
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:id="@+id/tv_guestName"
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:paddingLeft="20sp"
+                android:text="Address"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:id="@+id/tv_guest_address"
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2sp">
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="City"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:id="@+id/tv_guest_city"
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:paddingLeft="20sp"
+                android:text="Phone"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:id="@+id/tv_guest_phone"
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:layout_marginTop="10sp"
+            android:background="@color/Gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:text="POS"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:text="Bill No "
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:text="Amt"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:text="Guest"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:text="Odr. Time"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:text="Del.Boy"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:text="Start Time"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:text="Del. Time"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:text="Ret. Time"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:text="Change Amt"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:layout_width="0dp"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:background="@color/White"
+                android:gravity="center_vertical"
+                android:padding="2sp"
+                android:text="Ret. Amt"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:background="@color/Black" />
+
+        <ListView
+            android:id="@+id/lv_log_detail"
+            android:layout_width="match_parent"
+            android:layout_height="200sp">
+
+        </ListView>
+
+        <LinearLayout
+            android:id="@+id/llBottomLaoutOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Gray"
+            android:orientation="horizontal"
+            android:padding="3sp">
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:id="@+id/tv_cancel_log"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="4sp"
+                android:layout_marginRight="4sp"
+                android:layout_weight="1"
+                android:background="@color/grey_light"
+                android:gravity="center"
+                android:padding="20dp"
+                android:text="@string/clear_string"
+                android:textColor="@color/White"
+                android:textSize="20sp" />
+
+            <in.csat.stewardpad.ui.CustomTextview
+                android:id="@+id/tv_save_log"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/grey_light"
+                android:gravity="center"
+                android:padding="20dp"
+                android:text="@string/save_string"
+                android:textColor="@color/White"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</ScrollView>

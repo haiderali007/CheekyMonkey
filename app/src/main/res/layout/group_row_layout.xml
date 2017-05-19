@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?><!-- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" --><!-- android:layout_width="match_parent" --><!-- android:layout_height="match_parent" --><!-- android:orientation="vertical" > -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:padding="16sp"
+    android:background="@drawable/textview_state"
+    android:gravity="center_vertical">
+
+
+    <ImageView
+        android:id="@+id/viewSelector"
+        android:layout_width="32sp"
+        android:layout_height="32sp"
+        android:clickable="false"
+        android:gravity="center"
+        android:contentDescription="@string/home_footer"/>
+
+
+    <com.entrada.cheekyMonkey.ui.CustomTextview
+        android:id="@+id/txtTitle"
+        android:layout_width="0dp"
+        android:layout_height="30sp"
+        android:layout_weight="1"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:ellipsize="marquee"
+        android:gravity="center_vertical"
+        android:text="@string/home_footer"
+        android:textColor="@color/WhiteSmoke"
+        android:textIsSelectable="false"
+        android:textSize="@dimen/extra_large"
+        app:fontName="Roboto-Regular"/>
+
+
+    <ImageView
+        android:id="@+id/viewIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:contentDescription="@string/home_footer"/>
+
+
+</LinearLayout>

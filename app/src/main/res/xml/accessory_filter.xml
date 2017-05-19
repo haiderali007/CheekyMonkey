@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen>
+    <resources>
+        <usb-accessory
+            manufacturer="TFPK LLC"
+            model="POS Connector"
+            version="1.0" />
+    </resources>
+</PreferenceScreen>

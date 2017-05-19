@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:descendantFocusability="blocksDescendants"
+              android:orientation="vertical"
+              android:layout_margin="2sp"
+              tools:ignore="RtlSymmetry,HardcodedText,RtlHardcoded,ContentDescription,UselessParent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:orientation="horizontal"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:paddingStart="10sp"
+        android:paddingEnd="10sp"
+        android:gravity="center_vertical">
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/itemNameTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_vertical|left"
+            android:text="fbfbf"
+            android:textColor="@color/menu_item_color"
+            android:textSize="@dimen/extra_large" />
+
+        <ImageView
+            android:id="@+id/minus_order"
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/minus_selector"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/plus_order"
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/plus_selector"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/remove_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="25sp"
+            android:paddingEnd="25sp"
+            android:layout_gravity="center_vertical"
+            android:src="@android:drawable/ic_menu_delete" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="12sp"
+        android:paddingEnd="12sp"
+        android:paddingBottom="2sp">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/layout_qty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="asdf"
+                android:src="@drawable/img35"
+                android:textColor="@color/menu_item_color"
+                android:textSize="@dimen/large"
+                android:visibility="visible"
+                android:orientation="horizontal"/>
+
+            <LinearLayout
+                android:id="@+id/layout_qty_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="asdf"
+                android:src="@drawable/img35"
+                android:textColor="@color/menu_item_color"
+                android:textSize="@dimen/large"
+                android:visibility="visible"
+                android:orientation="horizontal"/>
+
+            <com.entrada.cheekyMonkey.ui.CustomTextview
+                android:id="@+id/itemQuantityTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:src="@drawable/img35"
+                android:textColor="@color/menu_item_color"
+                android:textSize="@dimen/large"
+                android:visibility="gone"/>
+            
+        </LinearLayout>
+
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/itemAmountTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:paddingRight="20sp"
+            android:paddingEnd="20sp"
+            android:text="0 "
+            android:textColor="@color/menu_item_color"
+            android:textSize="@dimen/large" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/menu_item_color">
+
+        <TextView
+            android:id="@+id/tv_ItemRemark"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="4"
+            android:drawableLeft="@drawable/right_arrow_blue_32"
+            android:paddingLeft="5dp"
+            android:text="fgjslkjfsadjljflsdjlkf"
+            android:textColor="@color/Black"
+            android:textIsSelectable="false"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/t_v_i_meal_for_o_s_l"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.5"
+            android:paddingLeft="3dp"
+            android:textIsSelectable="false"
+            android:textSize="@dimen/take_order_font_size"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/t_v_i_cvr_for_o_s_l"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:paddingLeft="3dp"
+            android:textIsSelectable="false"
+            android:textSize="@dimen/take_order_font_size"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</LinearLayout>

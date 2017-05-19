@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="leftList_guest">
+        <item>Home</item>
+        <item>Bidding</item>
+        <item>Directions</item>
+        <item>News</item>
+        <item>Rate the App</item>
+        <item>About Us</item>
+        <item>About the Developers</item>
+        <item>Follow us on Facebook</item>
+        <item>Follow us on Instagram </item>
+        <item>Terms and Conditions</item>
+        <item>Help</item>
+        <item>Log out</item>
+
+    </string-array>
+
+    <string-array name="leftList_steward">
+        <item>Home</item>
+        <item>Order</item>
+        <item>Bill</item>
+        <item>Tables in the Restaurant</item>
+        <item>Settlement</item>
+        <item>Undo Settlement</item>
+        <item>Generate Bill</item>
+        <item>Discount</item>
+        <item>Order Under Process</item>
+        <item>Order Accepted</item>
+        <item>Order Rejected</item>
+        <item>Cover</item>
+        <item>Log out</item>
+
+    </string-array>
+
+    <string-array name="table_status_arrays">
+        <item></item>
+        <item>Active</item>
+        <item>InActive</item>
+    </string-array>
+
+</resources>

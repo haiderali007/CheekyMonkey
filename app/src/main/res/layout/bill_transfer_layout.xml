@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_view_for_order_split"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:text="@string/bill_trnsfr"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/DeepSkyBlue"
+        android:textSize="@dimen/extra_large" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/billing_tab_height"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:drawable/zoom_plate">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|center"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:text="From"
+                android:textColor="@color/WhiteSmoke"
+                android:textSize="@dimen/large" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:drawable/zoom_plate">
+
+            <TextView
+                android:layout_width="40sp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|center"
+                android:gravity="center_vertical"
+                android:paddingLeft="10sp"
+                android:text="To"
+                android:textColor="@color/WhiteSmoke"
+                android:textSize="@dimen/large" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear_layout_flip_mode_for_order_split"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:id="@+id/linear_layout_table_1_for_order_split"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_weight="1.2"
+                    android:paddingLeft="5dp"
+                    android:text="POS"
+                    android:textColor="@color/DeepSkyBlue"
+                    android:textSize="@dimen/large" />
+
+                <Spinner
+                    android:id="@+id/sp_from_pos"
+                    style="?android:attr/dropDownSpinnerStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_weight="2"
+                    android:textSize="@dimen/medium">
+
+                    <requestFocus />
+                </Spinner>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_weight="1.2"
+                    android:paddingLeft="5dp"
+                    android:text="Bill No"
+                    android:textColor="@color/DeepSkyBlue"
+                    android:textSize="@dimen/large" />
+
+                <Spinner
+                    android:id="@+id/sp_billno"
+                    style="?android:attr/dropDownSpinnerStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_weight="2"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/medium" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_weight="1.2"
+                    android:paddingLeft="5dp"
+                    android:text="Amount"
+                    android:textColor="@color/DeepSkyBlue"
+                    android:textSize="@dimen/large" />
+
+                <com.entrada.cheekyMonkey.ui.CustomTextview
+                    android:id="@+id/tv_bill_amount"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/header_height"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_weight="2"
+                    android:background="@drawable/item_add_input_type"
+                    android:gravity="center"
+                    android:inputType="textCapWords"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/medium" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_layout_table_2_for_order_split"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_weight="1"
+                    android:paddingLeft="15dp"
+                    android:text="POS"
+                    android:textColor="@color/DeepSkyBlue"
+                    android:textSize="@dimen/large" />
+
+                <Spinner
+                    android:id="@+id/sp_to_pos"
+                    style="?android:attr/dropDownSpinnerStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_weight="2"
+                    android:textSize="@dimen/medium">
+
+                    <requestFocus />
+                </Spinner>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_weight="1"
+                    android:paddingLeft="15dp"
+                    android:text="Reason"
+                    android:textColor="@color/DeepSkyBlue"
+                    android:textSize="@dimen/large" />
+
+                <EditText
+                    android:id="@+id/et_bill_trns_rsn"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/header_height"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_weight="2"
+                    android:background="@drawable/item_add_input_type"
+                    android:inputType="textCapWords"
+                    android:paddingLeft="10sp"
+                    android:paddingStart="10sp"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/medium" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/Gray" />
+
+    <RelativeLayout
+        android:id="@+id/linear_layout_bottom_for_order_split"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/billing_tab_height">
+
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/clr_trns_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_toLeftOf="@+id/send_bill_trnsfr"
+            android:layout_toStartOf="@+id/send_bill_trnsfr"
+            android:gravity="center_vertical"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
+            android:text="@string/clear_string"
+            android:textColor="@color/White"
+            android:textSize="@dimen/large" />
+
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/send_bill_trnsfr"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
+            android:text="@string/trnsfr"
+            android:textColor="@color/White"
+            android:textSize="@dimen/large" />
+
+    </RelativeLayout>
+
+</LinearLayout>

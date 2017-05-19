@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fb_cancel_background"
+    android:padding="@dimen/padding_action_bar">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/take_order_tab_height"
+        android:text="@string/alert_string"
+        android:gravity="center_vertical"
+        android:textColor="@color/title_color"
+        android:textSize="@dimen/extra_large"/>
+
+    <TextView
+        android:id="@+id/tv_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/cat_text_height"
+        android:text="@string/fb_cancel_string"
+        android:gravity="center_vertical"
+        android:textColor="@color/DarkGray"
+        android:textSize="@dimen/large"/>
+
+    <com.entrada.cheekyMonkey.ui.CustomTextview
+        style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+        android:id="@+id/btn_dismiss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ok_string"
+        android:padding="10dp"
+        android:textColor="@color/fb_cancel_color"
+        android:gravity="center"
+        android:layout_gravity="end"
+        android:textSize="14sp"/>
+
+</LinearLayout>

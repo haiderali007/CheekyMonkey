@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="50sp"
+              android:orientation="horizontal"
+              android:background="@drawable/textview_state"
+              android:padding="5dp">
+
+    <com.entrada.cheekyMonkey.ui.CustomTextview
+        android:id="@+id/tv_itemName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:padding="5dp"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        android:textColor="@color/menu_item_color"
+        android:textSize="@dimen/large"
+        android:text="Item" />
+
+
+    <com.entrada.cheekyMonkey.ui.CustomTextview
+        android:id="@+id/tv_itemLowPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:textStyle="bold"
+        android:textColor="@color/low_price_color"
+        android:textSize="@dimen/large"
+        android:text="100" />
+
+
+    <com.entrada.cheekyMonkey.ui.CustomTextview
+        android:id="@+id/tv_itemHighPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:textColor="@color/high_price_color"
+        android:textSize="@dimen/large"
+        android:textStyle="bold"
+        android:text="120"
+        app:fontName="Roboto_Thin" />
+
+
+    <com.entrada.cheekyMonkey.ui.CustomTextview
+        android:id="@+id/tv_itemPrice"
+        android:layout_width="0dp"
+        android:layout_height="20sp"
+        android:layout_weight="0.70"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:background="@color/next_price_color"
+        android:textColor="@color/White"
+        android:textSize="@dimen/large"
+        android:text="120" />
+
+
+    <ImageView
+        android:id="@+id/img_trend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5sp"
+        android:layout_marginRight="5sp"
+        android:layout_marginStart="5sp"
+        android:layout_marginEnd="5sp"
+        android:layout_gravity="center"
+        android:background="@drawable/arrow_green"/>
+</LinearLayout>

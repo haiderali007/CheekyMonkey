@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Cheeky Monkey</string>
+    <string name="version_string">v1.0</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- This server client id used for google login when your app is in Production stage -->
+    <string name="server_client_id">555927586239-tkili90lm6jqk5plqpdvcb63f3nhv5e3.apps.googleusercontent.com</string>
+
+    <string name="facebook_app_id">434553970233032</string>
+    <string name="update_status">Update Status</string>
+    <string name="post_image">Post Image</string>
+
+    // if your App ID is 1234567, you should use fb1234567
+    <string name="fb_login_protocol_scheme">fb434553970233032</string>
+    <string name="alert_string">Alert</string>
+    <string name="fb_string">FACEBook</string>
+    <string name="fb_cancel_string">Facebook Login was cancelled. Please try to login again.</string>
+    <string name="ggl_cancel_string">Google Login was cancelled. Please try to login again.</string>
+
+
+
+
+    <string name="signed_in_fmt">Signed in as: %s</string>
+    <string name="sign_out_string">Sign out</string>
+    <string name="signOutFromApp">Are you sure you want to sign out?</string>
+
+    <string name="sign_in_string">Sign in</string>
+    <string name="sign_up_string">Sign up</string>
+    <string name="back_string">Back</string>
+    <string name="accept_tnc_string">By clicking sign up, you agree to our Terms of Use and Privacy Policy</string>
+
+    <string name="proceed">Proceed</string>
+    <string name="skip">Skip</string>
+    <string name="add_mixer">ADD MIXER</string>
+    <string name="sign_in_msg">You need to sign in to place an Order. Do you want to proceed ?</string>
+    <string name="bar_msg">Drink safe. Drive Safe. Words from Cheeky Monkey</string>
+
+    <string name="never_mind_string">Never Mind</string>
+    <string name="remind_later_string">Remind me later</string>
+    <string name="remember_string">Remember</string>
+    <string name="create_act_string">Create An Account</string>
+    <string name="exist_act_string">With Existing Account</string>
+    <string name="msg_scl_media">We do not post to your social media without your permission</string>
+    <string name="net_failure_string">No Internet&#8230;</string>
+    <string name="retry_string">Retry</string>
+    <string name="odr_quickly_string">Order Quickly Prices @ Cheeky Monkey change based on Demand and Supply</string>
+    <string name="no_order">You have no active orders.</string>
+
+    <!-- Deafault Task -->
+    <!-- Error Message -->
+    <string name="error_dialog_error1">Unable to complete process at this time. Please check you have a data connection
+        and try again later.
+    </string>
+    <string name="error_dialog_error">Guest not found </string>
+    <string name="error_net_failure">ERROR_NETWORK_FAILURE</string>
+    <string name="error_dialog_no_results">No results found. Try changing your criteria.</string>
+    <string name="error_dialog_server_error">A problem occurred retrieving results. Please try again later.</string>
+    <string name="error_dialog_error_unknown">An unknown error has occurred. Please try again.</string>
+    <!-- Network Error message -->
+    <string name="error_dialog_search_error">Unable to complete search at this time. Please check you have a data
+        connection and try again later
+    </string>
+    <string name="error_dialog_search_no_results">No results found. Try changing your search criteria.</string>
+    <string name="error_dialog_search_server_error">A problem occurred retrieving results. Please try again later.
+    </string>
+    <string name="error_dialog_search_error_unknown">An unknown error has occurred. Please try searching again.</string>
+
+
+
+    <!-- Exit Dialog -->
+    <string name="exitFromApp">Are you sure to exit?</string>
+    <string name="yes_string">YES</string>
+    <string name="no_string">NO</string>
+    <string name="ok_string">OK</string>
+    <string name="Search_Guest_string">Search Guest </string>
+    <string name="cancel_string">Cancel</string>
+    <string name="create_guest">Create Guest</string>
+    <string name="order_cancel">Order Cancel</string>
+    <string name="save_string">Save</string>
+    <string name="guest_string">Guest</string>
+    <string name="table_string">Table</string>
+    <string name="del_boy">Delivery Boy</string>
+    <string name="order_table_string">Running Order</string>
+
+    <string name="search">Search</string>
+    <string name="qty_string">Quantity -</string>
+    <string name="subUnit_string">Sub Quantity </string>
+    <string name="subqty_string"> Enter Sub Qty. here </string>
+    <string name="home_order_review">ORDER REVIEW</string>
+
+    <!-- Modifier Popup -->
+    <string name="modifier_popup_string">Select Modifier for</string>
+    <string name="addon_popup_string">Select Addons for</string>
+
+    <!-- Take Order String -->
+    <string name="select_room_string">Room </string>
+    <string name="select_table_string">Table</string>
+    <string name="selected_table_string">Table : %1$s</string>
+    <string name="selected_odr_string">Order : %1$s</string>
+    <string name="select_order_string">Order</string>
+    <string name="login_string">Login</string>
+    <string name="register_string">Register</string>
+    <string name="submit_string">Submit</string>
+    <string name="confirm_string">Confirm</string>
+    <string name="continue_string">Continue</string>
+    <string name="userID_hint_string">User ID</string>
+    <string name="password_hint_string">Password</string>
+    <string name="server_ip_hint_string">Server IP</string>
+    <string name="clear_string">Clear</string>
+    <string name="close_string">Close</string>
+
+    <string name="select_room_string1">Room : %1$s</string>
+    <string name="welcome_messages">Hello, %1$s! You have %2$d new messages.</string>
+
+    <!-- Guest Notificaton UI -->
+    <string name="item_string">Soda</string>
+    <string name="add_item">Add item</string>
+    <string name="show_bill">Show Bill</string>
+    <string name="accept_string">Accept</string>
+    <string name="reject_string">Reject</string>
+    <string name="genrate_string">Generate Bill</string>
+    <string name="genrate_bill">Gen. Bill</string>
+    <string name="Save_string">Save</string>
+    <string name="discount_string">Discount</string>
+    <string name="total_string">Total</string>
+    <string name="select_order_detil">Order Detail</string>
+    <string name="select_order_split_string">Order Split</string>
+    <string name="SelectOption_string">Selected Option</string>
+    <string name="in_string">IN</string>
+    <string name="out_string">OUT</string>
+    <string name="home_del">Home Delivery</string>
+    <string name="home_log">Home Delivery Log</string>
+    <string name="pending_bills">Pending Bills</string>
+    <string name="bill_stl">Bill Settlement</string>
+    <string name="bill_stlmnt">Bill Settlement - Credit Card</string>
+    <string name="bill_cancel">Bill Cancel</string>
+    <string name="cancel_bill">Cancel Bill</string>
+    <string name="cancel_order">Cancel Order</string>
+    <string name="bill_modi">Bill Modify</string>
+    <string name="update_bill">Update Bill</string>
+    <string name="bill_trnsfr">Bill Transfer</string>
+    <string name="bill_amt">Bill Amount : </string>
+    <string name="trnsfr">Transfer</string>
+    <string name="undo_stl">Undo Settlement </string>
+    <string name="direct_stl">Direct Settlement </string>
+
+
+    <!-- Guest Register Popup -->
+    <string name="please_update_ur_detail">Please Update Your Detail&#8230;</string>
+    <string name="enter_your_phone_number">Enter your Phone Number....</string>
+    <string name="mobile_string">Mobile</string>
+    <string name="enter_your_email_id">Enter your Email-ID....</string>
+    <string name="enter_your_name">Enter your Name..</string>
+    <string name="email_string">Email</string>
+    <string name="email_mob_string">Email/Mobile #</string>
+    <string name="forgot_string">Forgot Password ?</string>
+    <string name="dob_confirm_string">We would like to confirm your date of birth</string>
+    <string name="dob_string">Date Of Birth</string>
+    <string name="age_confirm">Are you above 21 years of age?</string>
+
+    <string name="orders_string">Orders</string>
+    <string name="hold_order">Hold Order</string>
+    <string name="table_order"> Table Order</string>
+    <string name="change_to_comp">Change To Compl.</string>
+
+    <string name="create_emp">Create Employee</string>
+    <string name="fst_name_string">FirstName</string>
+    <string name="last_name_string">LastName</string>
+
+    <string name="guest_new">Guest :</string>
+    <string name="ordr_amt">Order Amt:</string>
+    <string name="order_amt">Total Amt (without tax):</string>
+
+    <!-- BaseFragmentActivity -->
+    <string name="syncData">SyncData</string>
+    <string name="dataSync_string">Data Synchronization</string>
+    <string name="update_string">Update</string>
+    <string name="Cancel_string">Cancel</string>
+
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+
+
+    <string name="GPSAlertDialogTitle">Location Services Disabled</string>
+    <string name="GPSAlertDialogMessage">You need to enable Location Services to place an order.</string>
+
+
+    <string name="remote_service_started">Remote Service started</string>
+    <string name="remote_service_stopped">Remote Service stopped</string>
+    <string name="local_service_label">Service</string>
+    <string name="local_service_started">Local Service started</string>
+    <string name="local_service_stopped">Local Service stopped</string>
+    <string name="local_service_connected">Connected</string>
+    <string name="local_service_disconnected">Disconnected</string>
+
+
+    <!-- Forms [Validator package] -->
+    <string name="not_in_range">Minimum 6 characters required.</string>
+    <string name="value_is_not_valid_email_address">Value is not valid email address</string>
+    <string name="field_could_not_be_empty">Field can not be empty</string>
+
+    <!-- CustomProgressBar -->
+    <string name="loading_string">Loading...</string>
+
+
+    <!-- options -->
+    <string name="action_bar_search">Search</string>
+    <string name="order_type2">Order Type</string>
+    <string name="steward">Select Steward</string>
+    <string name="order_remark_string">Order Remark</string>
+    <string name="order_review_string">Order Review</string>
+    <string name="item_remark_string">Item Remark</string>
+    <string name="select_steward_menu">Steward</string>
+    <string name="cover_menu_string">Cover</string>
+
+
+    <string name="search_menu_item_string">Search</string>
+    <string name="wlcm_gst_string">Welcome, Guest</string>
+
+
+
+    <string name="lock_drawer">Lock Drawer</string>
+    <string name="home_footer">HOME</string>
+    <string name="order_review">Order Review</string>
+    <string name="order_header">MY ORDERS</string>
+    <string name="ttl_amt">Total Amount + ₹ Taxes Extra</string>
+    <string name="amt">0</string>
+    <string name="taxes">*Taxes applicable</string>
+    <string name="rupees">%1$s %2$s</string>
+    <string name="zero_rupee">\u20B9 0</string>
+    <string name="slct_tbl_string">Select Table \t</string>
+
+    <string name="On_Off">ON/OFF</string>
+    <string name="status_string">STATUS</string>
+    <string name="sts_string">STATUS : %1$s</string>
+    <string name="odr_string">Order No. %1$s</string>
+    <string name="tbl_string">Table No. %1$s</string>
+    <string name="date_string">Date : %1$s</string>
+
+    <string name="select_quantity">Select Quantity</string>
+    <string name="quantity_string">Select Quantity to order</string>
+    <string name="rupees_new">₹ %1$s</string>
+    <string name="qty_with_price">%1$s x ₹%2$s/-</string>
+    <string name="total_amount">Total : ₹ %1$s</string>
+    <string name="total_qty">x %1$s</string>
+    <string name="total_item_qty">%1$s qty(s)</string>
+
+
+    <string name="confirm_order_title">Confirm order ?</string>
+    <string name="confirm_order_msg">Are you sure to place this order ?</string>
+    <string name="odr_cnfrm_title">Congratulations !</string>
+    <string name="odr_cnfrm_msg">Your order has been  placed successfully. \n
+		Our waiting staff will reconfirm \n the order shortly.</string>
+    <string name="thanks_string">Thank You </string>
+
+
+    <string name="process_noti">Hi %1$s, your order %2$s is under process.</string>
+    <string name="accepted_noti">Hi %1$s, your order %2$s is confirmed.</string>
+    <string name="rejected_noti">Hi %1$s, your order %2$s is  rejected.</string>
+
+    <string name="process_string">Under Process</string>
+    <string name="approved">Approved</string>
+    <string name="rejected">Rejected</string>
+    <string name="delivery_string">Deliver</string>
+
+    <string name="prep_string">Start Preparing</string>
+    <string name="serve_string">Ready to Serve</string>
+    <string name="ready_string">Ready</string>
+
+
+    <string name="notification_string">Notifications</string>
+    <string name="news_string">No News Available</string>
+    <string name="noti_string">No Active Notifications</string>
+    <string name="my_orders_header">Showing order placed in last 24 hours</string>
+    <string name="my_orders_string">My Orders</string>
+    <string name="not_in_location">Sorry, your order can\'t be placed as you are not in the company premise.</string>
+    <string name="order_restriction">Sorry! you are not allowed to place order.</string>
+    <string name="hit_later">Hit us back later!</string>
+    <string name="drinks_roll">Drinks start Rolling</string>
+
+    <string name="no_perm_string">Permission denied</string>
+    <string name="msg_string">Message</string>
+    <string name="conn_failed">Sorry, we were unable to connect with Cheeky Monkey Server</string>
+
+
+
+    <string name="terms_conditions">"Cheeky Monkey App End User License Agreement
+This End User License Agreement (“Agreement”) is between you and Cheeky Monkey and governs use of this app made available through the Google play Store. By installing the Cheeky Monkey App, you agree to be bound by this Agreement and understand that there is no tolerance for objectionable content. If you do not agree with the terms and conditions of this Agreement, you are not entitled to use the Cheeky Monkey App.
+
+ In order to ensure Cheeky Monkey provides the best experience possible for everyone, we strongly enforce a no tolerance policy for objectionable content. If you see inappropriate content, please use the "Report as offensive" feature found under each post.
+
+ 1. Parties This Agreement is between you and Cheeky Monkey only. Not withstanding the foregoing, you acknowledge that Google and its subsidiaries are third party beneficiaries of this Agreement and Google has the right to enforce this Agreement against you. Cheeky Monkey, not Google, is solely responsible for the Cheeky Monkey App and its content.
+
+ 2. Privacy Cheeky Monkey may collect and use information about your usage of the Cheeky Monkey App, including certain types of information from and about your device. Cheeky Monkey may use this information, as long as it is in a form that does not personally identify you, to measure the use and performance of the Cheeky Monkey App.
+
+ 3. Limited License Cheeky Monkey grants you a limited, non-exclusive, non-transferable, revocable license to use the Cheeky Monkey App for your personal, non-commercial purposes. You may only use theBARter App on Google devices that you own or control and as permitted by the App Store Terms of Service.
+
+ 4. Age Restrictions By using the Cheeky Monkey App, you represent and warrant that (a) you are 25 years of age or older and you agree to be bound by this Agreement; (b) if you are under 25 years of age, you have obtained verifiable consent from a parent or legal guardian; and © your use of the Cheeky Monkey App does not violate any applicable law or regulation. Your access to the Cheeky Monkey App may be terminated without warning if Cheeky Monkey believes, in its sole discretion, that you are under the age of 25 years and have not obtained verifiable consent from a parent or legal guardian. If you are a parent or legal guardian and you provide your consent to your child's use of the Cheeky Monkey App, you agree to be bound by this Agreement in respect to your child's use of the Cheeky Monkey App.
+
+ 5. Objectionable Content Policy Content may not be submitted to Cheeky Monkey, who will moderate all content and ultimately decide whether or not to post a submission to the extent such content includes, is in conjunction with, or alongside any, Objectionable Content. Objectionable Content includes, but is not limited to: (i) sexually explicit materials; (ii) obscene, defamatory, libelous, slanderous, violent and/or unlawful content or profanity; (iii) content that infringes upon the rights of any third party, including copyright, trademark, privacy, publicity or other personal or proprietary right, or that is deceptive or fraudulent; (iv) content that promotes the use or sale of illegal or regulated substances, tobacco products, ammunition and/or firearms; and (v) gambling, including without limitation, any online casino, sports books, bingo or poker.
+
+ 6. Warranty Cheeky Monkey disclaims all warranties about the Cheeky Monkey App to the fullest extent permitted by law. To the extent any warranty exists under law that cannot be disclaimed, Cheeky Monkey, not Google, shall be solely responsible for such warranty.
+
+ 7. Maintenance and Support Cheeky Monkey does provide minimal maintenance or support for it but not to the extent that any maintenance or support is required by applicable law, Cheeky Monkey, not Google, shall be obligated to furnish any such maintenance or support.
+
+ 8. Product Claims Cheeky Monkey, not Google, is responsible for addressing any claims by you relating to the Cheeky Monkey App or use of it, including, but not limited to: (i) any product liability claim; (ii) any claim that the Cheeky Monkey App fails to conform to any applicable legal or regulatory requirement; and (iii) any claim arising under consumer protection or similar legislation. Nothing in this Agreement shall be deemed an admission that you may have such claims.
+
+ 9. Third Party Intellectual Property Claims Cheeky Monkey shall not be obligated to indemnify or defend you with respect to any third party claim arising out or relating to the Cheeky Monkey App. To the extent Cheeky Monkey is required to provide indemnification by applicable law, Cheeky Monkey, not Google, shall be solely responsible for the investigation, defense, settlement and discharge of any claim that the Cheeky Monkey App or your use of it infringes any third party intellectual property right.
+ Agree Decline"
+    </string>
+
+    <string name="about_us">Crazy Craig’s Cheeky Money Bar is Branson’s bar with the most fun, best drink specials and nightlife in the entertainment mecca. With events happening every night of the week and happy hour Monday through Friday for 7 HOURS (11 – 6pm), why would you want to go somewhere else?
+
+        Crazy Craig’s is a family ‘n’ friends affair, in a way, with Craig Martinosky Sr. and his son Craig Martinosky owning Cheeky Monkey and little brother Jesse behind the bar alongside Craig. You’ll also find Elly &amp; Chuck tending bar with Cassie and Jasmine serving your drinks &amp; food wherever you happen to be seated. Mrs. Martinosky is a grandmaster, virtuoso of all-things bar related and all-things not. The “Craig’s” have created a unique nightspot in Branson. We like options so we hope you do too.
+
+        There are 22 signature drinks to choose from and we have a pretty sweet beer selection too. We have a big dance floor! Hungry? Check out our food menu while you enjoy the outdoors on our large wooden deck out front.  For all you Table Rock Lake junkies, park your boat at State Park Marina and we’re less than 5 miles away. You’ll be here in no time if you take this route. We have tons of games including darts, pool and electronic games to help pass the time. You can also sit back, relax and listen to whomever is the entertainment that night. We usually have a live band playing or DJ spinning every night. Or bring some friends to watch the game, grab some beers and order something off our menu. Or how about themed parties? Want to throw your birthday party or celebrate something with just your friends? Send us an email and lets start planning!</string>
+    <string name="abt_dev">we are a team of 8 employees, as of now.</string>
+
+</resources>

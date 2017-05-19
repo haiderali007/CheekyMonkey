@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:background="@color/Black"
+    android:orientation="vertical"
+    tools:ignore="ButtonOrder,ObsoleteLayoutParam,ButtonStyle,UselessParent,HardcodedText">
+
+    <SearchView
+        android:id="@+id/search_guest"
+        android:layout_width="match_parent"
+        android:layout_marginTop="2dp"
+        android:iconifiedByDefault="false"
+        android:layout_height="@dimen/header_height"
+        android:queryHint="search guest"
+        android:background="@android:color/transparent"
+        android:visibility="gone"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/search_guest"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <ProgressBar
+            android:id="@+id/progressBarGuest"
+            style="@android:style/Widget.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+
+        <GridView
+            android:id="@+id/grdViewGuestList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:columnWidth="@dimen/billing_tab_height"
+            android:gravity="center"
+            android:paddingTop="7dp"
+            android:horizontalSpacing="@dimen/table_hori_space"
+            android:verticalSpacing="@dimen/table_num_hori_space"
+            android:listSelector="@android:color/transparent"
+            android:numColumns="3"
+            android:scrollbars="none"
+            android:stretchMode="columnWidth" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/Brown"
+    android:padding="3sp"
+    android:orientation="vertical"
+    tools:ignore="RtlHardcoded,ContentDescription">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/txt_Login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/grey_light"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="@string/login_string"
+            android:textColor="@color/White"
+            android:textSize="24sp" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_backgrndLF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/login_layout_top_margin"
+        android:layout_marginLeft="@dimen/login_layout_inner_padding"
+        android:layout_marginRight="@dimen/login_layout_inner_padding"
+        android:layout_marginTop="@dimen/login_layout_top_margin"
+        android:background="@drawable/login_back_popup"
+        android:orientation="vertical"
+        android:padding="7dp">
+
+        <com.entrada.cheekyMonkey.ui.CustomEditView
+            android:id="@+id/et_UserId"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/billing_tab_height"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/username"
+            android:hint="@string/userID_hint_string"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:textColor="@color/White"
+            android:textColorHint="@color/LightGrey"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="2"
+                android:background="@color/grey_light" />
+        </LinearLayout>
+
+        <com.entrada.cheekyMonkey.ui.CustomEditView
+            android:id="@+id/et_Password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/billing_tab_height"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/password"
+            android:hint="@string/password_hint_string"
+            android:singleLine="true"
+            android:textColor="@color/White"
+            android:textColorHint="@color/LightGrey"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="2"
+                android:background="@color/grey_light" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:orientation="horizontal">
+            <!--
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="2dp"
+                                android:layout_weight="2"
+                                android:background="@color/White" />-->
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llBottomLaoutOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/txtCancelLogin"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="2sp"
+            android:layout_marginRight="2sp"
+            android:layout_weight="1"
+            android:background="@color/grey_light"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/cancel_string"
+            android:textColor="@color/White"
+            android:textSize="20sp" />
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/txtSaveLogin"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/grey_light"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/save_string"
+            android:textColor="@color/White"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Black"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linerLayoutTableView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tabs_slider_height"
+        android:orientation="horizontal">
+
+        <com.entrada.cheekyMonkey.ui.CustomButton
+            android:id="@+id/selectTable"
+            style="@style/take_order_header_style"
+            android:textSize="@dimen/item_qty_font_size"
+            fontName="Roboto-Black"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:padding="5sp"
+            android:textColor="@color/White"
+            android:background="@drawable/header"
+            android:gravity="center"
+            android:text="@string/select_table_string"
+            android:visibility="visible" />
+
+        <com.entrada.cheekyMonkey.ui.CustomButton
+            android:id="@+id/selectRoom"
+            style="@style/take_order_header_style"
+            fontName="Roboto-Black"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2sp"
+            android:layout_marginRight="2sp"
+            android:layout_weight="1"
+            android:background="@color/grey_light"
+            android:gravity="center"
+            android:text="@string/select_room_string"
+            android:visibility="gone" />
+
+        <com.entrada.cheekyMonkey.ui.CustomButton
+            android:id="@+id/newOrder"
+            style="@style/take_order_header_style"
+            fontName="Roboto-Black"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/header"
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:padding="5sp"
+            android:text="@string/select_order_string" />
+
+        <ImageView
+            android:id="@+id/imgGuestSearch1"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="2sp"
+            android:layout_marginRight="2sp"
+            android:background="@color/grey_light"
+            android:visibility="gone"
+            android:src="@android:drawable/ic_menu_info_details" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linerLayoutHomeDelevry"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:visibility="gone">
+
+        <com.entrada.cheekyMonkey.ui.CustomButton
+            android:id="@+id/selectGuest"
+            fontName="Roboto-Black"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="@dimen/order_font_size_dimen"
+            android:text="@string/guest_string" />
+
+        <View
+            android:layout_width="@dimen/take_order_view_width"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/White"/>
+
+        <com.entrada.cheekyMonkey.ui.CustomButton
+
+            android:id="@+id/selectDelBoy"
+            fontName="Roboto-Black"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/del_boy"
+            android:textSize="@dimen/order_font_size_dimen"
+            android:visibility="gone" />
+
+
+        <ImageView
+            android:id="@+id/imgGuestSearch2"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:contentDescription="Options"
+            android:src="@android:drawable/ic_menu_info_details" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_guest"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+
+            fontName="Roboto-Black"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingEnd="15sp"
+            android:paddingRight="15sp"
+            android:textSize="@dimen/order_font_size_dimen"
+            android:gravity="center_vertical|end"
+            android:text="@string/guest_string" />
+
+        <View
+            android:layout_width="@dimen/take_order_view_width"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/White"/>
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/tv_guest_name"
+            fontName="Roboto-Black"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:textSize="@dimen/order_font_size_dimen"
+            android:textColor="@color/DeepSkyBlue"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

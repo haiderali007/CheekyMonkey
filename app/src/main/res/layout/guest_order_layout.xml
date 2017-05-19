@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/header_height"
+    card_view:cardCornerRadius="6dp"
+    card_view:cardElevation="6dp"
+    card_view:contentPadding="7dp"
+    card_view:cardBackgroundColor="@color/White">
+
+
+    <LinearLayout
+        android:id="@+id/llRowSelector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/guesthder_selector"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/padding_medium"
+        android:paddingBottom="@dimen/padding_medium">
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/txtTableNoNo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/grey_dark"
+            android:textSize="@dimen/small" />
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/txtOrderNo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/grey_dark"
+            android:textSize="@dimen/small" />
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/txtItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/grey_dark"
+            android:textSize="@dimen/small" />
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/txtQty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/grey_dark"
+            android:textSize="@dimen/small" />
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

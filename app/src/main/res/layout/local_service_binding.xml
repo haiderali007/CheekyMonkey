@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+    android:background="@color/White">
+
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="5sp">
+
+
+
+      <com.entrada.cheekyMonkey.ui.CustomTextview
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:textSize="22sp"
+          android:gravity="center"
+          android:text="Status"
+          android:textColor="@color/Black"
+          android:minHeight="60sp"/>
+
+
+      <com.entrada.cheekyMonkey.ui.CustomTextview
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:textSize="22sp"
+          android:gravity="center"
+          android:background="@drawable/edit_text_background_new"
+          android:textColor="@color/DeepSkyBlue"
+          android:minHeight="60sp"/>
+
+  </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20sp">
+
+
+        <Button
+            android:id="@+id/bind"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Bind"
+            android:textSize="18sp"
+            android:layout_marginRight="20sp"
+            android:background="@color/Green"/>
+
+
+        <Button
+            android:id="@+id/unbind"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:text="UnBind"
+            android:background="@color/Red"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

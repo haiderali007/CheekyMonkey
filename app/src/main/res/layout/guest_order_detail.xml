@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText,UselessLeaf,UselessParent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/header"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/grid_background">
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/txtTableNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/drawer_shadow"
+            android:drawableEnd="@drawable/drawer_shadow"
+            android:gravity="center"
+            android:text="Table"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/small" />
+
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/txtOrderNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Order"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/small" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/Gray"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.entrada.cheekyMonkey.ui.ProgressBarCircularIndeterminate
+            android:id="@+id/pbDetail"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/Teal"
+            android:visibility="gone"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+
+        <ListView
+            android:id="@+id/lstVDetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/llNotifyBottom"
+            android:layout_alignParentTop="true"/>
+
+        <LinearLayout
+            android:id="@+id/llNotifyBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/header"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:background="@color/grid_background"
+            android:orientation="horizontal">
+
+            <com.entrada.cheekyMonkey.ui.CustomTextview
+                android:id="@+id/txtRejectOrder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:drawableRight="@drawable/drawer_shadow"
+                android:drawableEnd="@drawable/drawer_shadow"
+                android:gravity="center"
+                android:text="@string/reject_string"
+                android:textColor="@color/Black"
+                android:textSize="@dimen/small" />
+
+
+            <com.entrada.cheekyMonkey.ui.CustomTextview
+                android:id="@+id/txtAcceptOrder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="@string/accept_string"
+                android:textColor="@color/Black"
+                android:textSize="@dimen/small" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/Brown"
+    android:orientation="vertical"
+    android:padding="4dp"
+    tools:ignore="RtlHardcoded,ContentDescription">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey_light"
+        android:gravity="center">
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/txtViewSteward"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/header_height"
+            android:text="@string/steward"
+            android:paddingLeft="5sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/White"
+            android:textSize="22sp"
+            tools:fontName="Roboto-Medium" />
+
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_steward"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/submitButton_min_width"
+        android:choiceMode="singleChoice" />
+
+    <LinearLayout
+        android:id="@+id/llBottomLaoutOrder"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:orientation="horizontal">
+
+        <com.entrada.cheekyMonkey.ui.CustomButton
+            android:id="@+id/txtCancelSelectSteward"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/cancel_string"
+            android:textSize="@dimen/order_font_size_dimen" />
+
+        <com.entrada.cheekyMonkey.ui.CustomButton
+            android:id="@+id/txtSaveSelectSteward"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/save_string"
+            android:textSize="@dimen/order_font_size_dimen" />
+    </LinearLayout>
+
+
+</LinearLayout>

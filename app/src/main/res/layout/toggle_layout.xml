@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="40sp"
+            android:textSize="@dimen/extra_medium"
+            android:textColor="@color/White"
+            android:text="@string/lock_drawer"
+            android:gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton"
+            android:layout_width="45sp"
+            android:layout_height="30sp"
+            android:background="@drawable/toggle_selector"
+            android:checked="false"
+            android:text=""
+            android:textOff=""
+            android:textOn=""
+            android:gravity="center"
+            android:layout_marginRight="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

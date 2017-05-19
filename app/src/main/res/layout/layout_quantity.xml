@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_selectTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/quantity_string"
+        android:gravity="center"
+        android:padding="10dp"
+        android:background="@color/Black"
+        android:textSize="@dimen/item_qty_font_size"/>
+
+    <ListView
+        android:id="@+id/lv_qty"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_height"/>
+
+</LinearLayout>

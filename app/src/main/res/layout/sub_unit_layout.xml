@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="240dp"
+    android:background="@color/grey_light"
+    android:padding="10dp">
+
+    <com.entrada.cheekyMonkey.ui.CustomTextview
+        android:id="@+id/txtViewCover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:text="@string/subUnit_string"
+        android:textSize="26sp"
+        android:textColor="@color/White"
+        android:textStyle="bold"
+        app:fontName="Roboto-Medium"/>
+
+
+
+    <RelativeLayout
+        android:id="@+id/LayoutOrderRemark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/llBottomLaoutOrder"
+        android:layout_below="@+id/txtViewCover"
+        android:background="@color/Brown">
+
+
+        <EditText
+            android:id="@+id/textView_subQty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLength="7"
+            android:layout_marginTop="40dp"
+            android:hint="@string/subqty_string"
+            android:textColorHint="@color/White"
+            android:inputType="numberDecimal"
+            android:textSize="20sp" />
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llBottomLaoutOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/grey_light"
+        android:orientation="horizontal">
+
+        <com.entrada.cheekyMonkey.ui.CustomButton
+            android:id="@+id/txtCancelSubUnit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/cancel_string"
+            android:textSize="20sp" />
+
+        <com.entrada.cheekyMonkey.ui.CustomButton
+            android:id="@+id/txtOkSubUnit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/ok_string"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

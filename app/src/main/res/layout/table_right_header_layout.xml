@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_medium"
+    android:background="@color/home_color"
+    android:orientation="horizontal">
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/selectTableBillGene"
+            style="@style/take_order_header_style"
+            fontName="Roboto-Black"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="2sp"
+            android:text="@string/select_table_string" />
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/selectRoomBill"
+            style="@style/take_order_header_style"
+            fontName="Roboto-Black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_room_string"
+            android:visibility="gone" />
+
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/tableNoDetails"
+            style="@style/take_order_header_style"
+            fontName="Roboto-Black"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".3"
+            android:paddingLeft="2sp"
+            android:gravity="center"
+            android:textColor="@color/DeepSkyBlue" />
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/textViewBillRemark"
+            style="@style/take_order_header_style"
+            fontName="Roboto-Black"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".6"
+            android:gravity="center"
+            android:text="Bill Remark"
+            android:visibility="gone" />
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/textViewGuest"
+            style="@style/take_order_header_style"
+            fontName="Roboto-Black"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Guest" />
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/textViewGuestName"
+            style="@style/take_order_header_style"
+            fontName="Roboto-Black"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".6"
+            android:gravity="center"
+            android:textColor="@color/DeepSkyBlue" />
+
+
+</LinearLayout>

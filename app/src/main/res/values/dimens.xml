@@ -1,0 +1,191 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16sp</dimen>
+    <dimen name="activity_vertical_margin">16sp</dimen>
+    <dimen name="navigation_drawer_width">240sp</dimen>
+
+    <!--*************************************************************************************-->
+
+    <dimen name="activity_margin">8sp</dimen>
+
+    <dimen name="logo_height">150sp</dimen>
+
+    <!-- Category Height -->
+    <dimen name="cat_row_height">140sp</dimen>
+    <dimen name="cat_img_width">90sp</dimen>
+    <dimen name="cat_img_height">90sp</dimen>
+    <dimen name="cat_text_height">30sp</dimen>
+
+
+    <dimen name="tabPadding">2sp</dimen>
+    <dimen name="footer_height">35sp</dimen>
+    <dimen name="header_padding">10sp</dimen>
+
+
+    <!-- data Activity -->
+    <dimen name="group_min_width">30dp</dimen>
+    <dimen name="group_font_size">12sp</dimen>
+    <dimen name="order_font_size_dimen">12sp</dimen>
+    <dimen name="t_v_font_dimen">10sp</dimen>
+
+
+    <!-- Title Header Adapter -->
+    <dimen name="title_row_height">100sp</dimen>
+
+    <dimen name="title_text_size">16sp</dimen>
+    <!--**************************************************************************************-->
+
+    <!-- Take Order Layout -->
+    <dimen name="tabs_slider_height">60dip</dimen>
+    <dimen name="take_order_header_height">60dip</dimen>
+    <dimen name="take_order_header_bottom_height">2dip</dimen>
+    <dimen name="take_order_view_width">2sp</dimen>
+    <dimen name="pos_text_size">20sp</dimen>
+    <dimen name="take_order_tab_height">40sp</dimen>
+    <dimen name="take_order_height">60sp</dimen>
+
+    <!-- Google button height -->
+    <dimen name="ggl_btn_height">50sp</dimen>
+
+    <!--Billing Header Layout -->
+    <dimen name="billing_tab_height">40sp</dimen>
+
+    <dimen name="header">30sp</dimen>
+    <dimen name="header_height">40dp</dimen>
+    <dimen name="header2_height">50sp</dimen>
+    <dimen name="grid_row_width">60sp</dimen>
+
+
+    <!-- Order Item -->
+    <dimen name="item_row_height">50sp</dimen>
+    <dimen name="pos_name_button_width">250sp</dimen>
+    <dimen name="pos_name_button_height">60sp</dimen>
+    <dimen name="pos_name_button_font_size">20sp</dimen>
+
+    <dimen name="t_v_table_size">17sp</dimen>
+    <dimen name="t_v_table_w">90sp</dimen>
+    <dimen name="t_v_table_h">90sp</dimen>
+    <dimen name="t_v_table_column">100sp</dimen>
+
+    <!-- TakeOrder Grid -->
+    <dimen name="table_hori_space">5sp</dimen>
+    <dimen name="table_num_hori_space">7sp</dimen>
+    <dimen name="take_order_font_size">12sp</dimen>
+    <dimen name="item_qty_font_size">14sp</dimen>
+    <dimen name="item_qty_height">30sp</dimen>
+    <dimen name="dialog_height">200sp</dimen>
+
+    <dimen name="small">10sp</dimen>
+    <dimen name="medium">11sp</dimen>
+    <dimen name="extra_medium">12sp</dimen>
+    <dimen name="large">14sp</dimen>
+    <dimen name="extra_large">16sp</dimen>
+    <dimen name="extra_extra_large">18sp</dimen>
+
+    <!-- Table Number -->
+    <dimen name="table_num_back_radius">4sp</dimen>
+    <dimen name="table_num_width">56sp</dimen>
+    <dimen name="table_num_height">56sp</dimen>
+    <dimen name="room_num_width">100sp</dimen>
+    <dimen name="room_num_height">80sp</dimen>
+
+    <!-- view Package -->
+    <integer name="default_circle_indicator_orientation">0</integer>
+    <bool name="default_circle_indicator_centered">true</bool>
+    <dimen name="default_circle_indicator_radius">3sp</dimen>
+    <bool name="default_circle_indicator_snap">false</bool>
+    <dimen name="default_circle_indicator_stroke_width">1sp</dimen>
+    <dimen name="default_line_indicator_line_width">12sp</dimen>
+    <dimen name="default_line_indicator_gap_width">4sp</dimen>
+    <dimen name="default_line_indicator_stroke_width">1sp</dimen>
+    <bool name="default_line_indicator_centered">true</bool>
+    <dimen name="default_title_indicator_clip_padding">4sp</dimen>
+    <dimen name="default_title_indicator_footer_line_height">2sp</dimen>
+    <integer name="default_title_indicator_footer_indicator_style">2</integer>
+    <dimen name="default_title_indicator_footer_indicator_height">4sp</dimen>
+    <dimen name="default_title_indicator_footer_indicator_underline_padding">20sp</dimen>
+    <dimen name="default_title_indicator_footer_padding">7sp</dimen>
+    <integer name="default_title_indicator_line_position">0</integer>
+    <bool name="default_title_indicator_selected_bold">true</bool>
+    <dimen name="default_title_indicator_text_size">15sp</dimen>
+    <dimen name="default_title_indicator_title_padding">5sp</dimen>
+    <dimen name="default_title_indicator_top_padding">7sp</dimen>
+    <bool name="default_underline_indicator_fades">true</bool>
+    <integer name="default_underline_indicator_fade_delay">300</integer>
+    <integer name="default_underline_indicator_fade_length">400</integer>
+
+    <!-- Login Screen -->
+    <dimen name="loginBottom_height">22sp</dimen>
+    <dimen name="userID_height">60sp</dimen>
+    <dimen name="submitButton_min_width">120sp</dimen>
+    <dimen name="submitButton_min_height">50sp</dimen>
+    <dimen name="login_layout_top_margin">20sp</dimen>
+    <dimen name="login_layout_left_margin">80sp</dimen>
+    <dimen name="login_layout_inner_padding">20sp</dimen>
+    <dimen name="txt_size_login">20sp</dimen>
+    <dimen name="circle_padding_bottom_login">10sp</dimen>
+    <dimen name="img_width">100sp</dimen>
+    <dimen name="img_height">160sp</dimen>
+    <dimen name="item_txt_height">80sp</dimen>
+
+    <!-- Splash Screen -->
+    <dimen name="splashscreen_textview_font_size">70sp</dimen>
+
+    <!-- success_circle -->
+    <dimen name="common_circle_width">3sp</dimen>
+    <dimen name="success_circle_width">50sp</dimen>
+
+    <!-- General Info Settings -->
+    <dimen name="general_info_header_height">50sp</dimen>
+    <dimen name="padding_general_info_header">5sp</dimen>
+    <dimen name="generalInfoDataTxt_padding">10sp</dimen>
+
+    <!-- ColorPicker -->
+    <dimen name="ambilwarna_hsvHeight">240sp</dimen>
+    <dimen name="ambilwarna_hsvWidth">240sp</dimen>
+    <dimen name="ambilwarna_hueWidth">30sp</dimen>
+    <dimen name="color_picker_padding">8sp</dimen>
+    <dimen name="color_picker_upper_space">15sp</dimen>
+
+    <!-- DataSync -->
+    <dimen name="datasync_height">45sp</dimen>
+
+    <!-- Action Bar -->
+    <dimen name="padding_action_bar">20sp</dimen>
+
+
+    <!-- Guest Order Right Fragment -->
+    <dimen name="guest_bottom_height">60sp</dimen>
+
+    <dimen name="Order_num_width">180sp</dimen>
+    <dimen name="Order_num_height">60sp</dimen>
+
+    <!--Welcome sliding page  -->
+    <dimen name="welcome_images_size">360.0dip</dimen>
+    <dimen name="welcome_images_margin_top">0.0dip</dimen>
+    <dimen name="welcome_heading_margin_bottom">12.0dip</dimen>
+    <dimen name="welcome_text_margin">48.0dip</dimen>
+    <dimen name="welcome_heading">24.0sp</dimen>
+    <dimen name="welcome_text_margin_bottom">12.0dip</dimen>
+    <dimen name="welcome_content_min_height">96.0dip</dimen>
+    <dimen name="welcome_content">16.0sp</dimen>
+    <dimen name="text_margin">16sp</dimen>
+
+    <dimen name="padding">5sp</dimen>
+    <dimen name="padding_small">5sp</dimen>
+    <dimen name="padding_medium">10sp</dimen>
+    <dimen name="padding_large">15sp</dimen>
+
+    <dimen name="shadow_width">400sp</dimen>
+    <dimen name="slidingmenu_offset">16sp</dimen>
+
+
+    <dimen name="fb_margin_override_top">13dp</dimen>
+    <dimen name="fb_margin_override_bottom">13dp</dimen>
+    <!--The next value changes the margin between the FB icon and the left border:-->
+    <dimen name="fb_margin_override_lr">10dp</dimen>
+    <!--The next value changes the margin between the FB icon and the login text:-->
+    <dimen name="fb_margin_override_textpadding">17dp</dimen>
+
+</resources>

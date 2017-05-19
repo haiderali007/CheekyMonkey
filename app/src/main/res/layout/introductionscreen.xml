@@ -1,0 +1,150 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+
+
+    <RelativeLayout
+        android:id="@+id/layout_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/Black"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="150sp"
+            android:layout_height="150sp"
+            android:layout_gravity="center"
+            android:scaleType="center"
+            android:src="@drawable/app_icon"
+            android:contentDescription="@string/app_name"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/relativeLayout2"
+            android:background="@drawable/oval_banner"
+            android:layout_below="@+id/imageView2"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical"
+            android:layout_margin="20dp">
+
+            <ProgressBar
+                android:id="@+id/progress_loading"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_margin="5sp"
+                android:gravity="center"/>
+
+
+            <com.entrada.cheekyMonkey.ui.CustomTextview
+                android:id="@+id/txtAppTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/drinks_roll"
+                android:textSize="@dimen/small"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:id="@+id/introductionScreenFrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/White"
+            android:textSize="28sp"
+            android:layout_marginBottom="120sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
+
+
+        <RelativeLayout
+            android:id="@+id/layout_retry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Black"
+            android:visibility="visible"
+            android:layout_gravity="center_horizontal|bottom">
+
+
+            <TextView
+                android:id="@+id/tv_retry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="30sp"
+                android:paddingRight="30sp"
+                android:paddingStart="30sp"
+                android:paddingEnd="30sp"
+                android:enabled="false"
+                android:background="@drawable/theme_button"
+                android:text="@string/retry_string"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginTop="52dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
+
+            <ProgressBar
+                android:id="@+id/progress_failure"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:visibility="visible"
+                android:layout_gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="21dp"
+                android:layout_marginEnd="21dp"/>
+
+        </RelativeLayout>
+
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/tv_loader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView3"
+            android:layout_gravity="center"
+            android:layout_marginTop="21dp"
+            android:padding="5sp"
+            android:paddingEnd="20sp"
+            android:paddingStart="20sp"
+            android:text="@string/net_failure_string"
+            android:textColor="@color/WhiteSmoke"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="150sp"
+            android:layout_height="150sp"
+            android:layout_gravity="center"
+            android:background="@drawable/app_icon_black"
+            android:contentDescription="@string/app_name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/White"
+            android:layout_above="@+id/tv_retry"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="31dp" />
+
+    </FrameLayout>
+
+
+
+
+</LinearLayout>

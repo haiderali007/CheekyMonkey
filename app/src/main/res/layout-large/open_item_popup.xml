@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="horizontal" >
+
+    <EditText
+        android:id="@+id/e_t_n_for_o_i_p"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_weight="2"
+        android:ems="10"
+        android:gravity="center_vertical"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/e_t_q_for_o_i_p"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_weight="1"
+        android:ems="3"
+        android:gravity="center_vertical"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/e_t_p_for_o_i_p"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:gravity="center_vertical"
+        android:inputType="numberDecimal" />
+
+</LinearLayout>

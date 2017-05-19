@@ -1,0 +1,56 @@
+
+
+
+/***********************POS*************************************/
+{"ECABS_PullOutletPosResult":[{"Code":"REST","Footer":" ",
+"Header":"              MOTI MAHAL DELUX\u000d\u000a  ","Name":"RESTAURANT",
+"Pos_type":"R"},{"Code":"HOME","Footer":" ","Header":
+"MOTI MAHAL DELUX\u000d\u000a ","Name":"HOME DELIVERY","Pos_type":"H"},
+{"Code":"TAKE","Footer":" ","Header":" ","Name":"TAKE AWAY","Pos_type":"T"}]}
+
+
+/////********************Data sync*********************//////
+/*******************Group Items ************************/
+[{"Grp_Code":"GRP_0001","Grp_Color":"#FFFFFF","Grp_Name":"FOOD"}
+
+/***************Category Items*************************/ 
+[{"Cat_Code":"01","Cat_Color":"#FF8080",
+"Cat_Group1":"GRP_0001","Cat_Name":"TANDRI STARTER N VEG"}]
+
+/**************Menu Item********************************/
+[{"menu_Code":"001","menu_color":"#FF8080","menu_Name":"Tandoori Chiken Tikka",
+"menu_group":"GRP_0001","menu_category":"01","menu_VEG_NONVEG":"","menu_price":"",
+"Menu_Combo_Flag":"N","Menu_Addon_Flag":"N","Menu_Modifier_Flag":"N",
+"Menu_Open_Item_Flag":"0","Menu_Sub_Item_Flag":"N","menu_CALORIES":"",
+menu_tax":"",menu_zSQty":"N"}]
+
+
+
+/*************************Data Sync 2***************************/
+{"sync2Result":{"GetAddon":[],"GetModif":[],"Listcombo":[],"Lstsubitm":[]}}
+
+/*********************Addons Items******************************/
+{"GetAddon":[{"Addon_Code":"AD01","Addon_Color":"-2147483633",
+"Addon_Item_Code":"001","Addon_Name":"addon1","Addon_Rate":"20.0000"}]
+
+/*******************Modifier Items*******************************/
+"GetModif":[{"Modifier_Code":"MD01","Modifier_Color":"-2147483633",
+"Modifier_Item_Code":"002","Modifier_Name":"moddier01"}]
+
+/*****************Combo Items*************************************/
+":[{"Combo_Cat_Code":"","Combo_Cat_Name":"","Combo_Code":"003","Combo_Flag":"F",
+"Combo_Item_Code":"059","Combo_Item_Name":"Mix Vegitable","Combo_Max_Qty":"","Qty":"1"},
+{"Combo_Cat_Code":"","Combo_Cat_Name":"","Combo_Code":"003","Combo_Flag":"F",
+"Combo_Item_Code":"060","Combo_Item_Name":"Vegitable Jalferezi","Combo_Max_Qty":"","Qty":"1"},
+{"Combo_Cat_Code":"","Combo_Cat_Name":"","Combo_Code":"003","Combo_Flag":"F",
+"Combo_Item_Code":"061","Combo_Item_Name":"Navraattna Korma","Combo_Max_Qty":"","Qty":"1"}
+
+/***************** Data Sync3 *******************************/
+{"sync3Result":{"DIscDW":[{"Code":"10","DAY":"1","POS":"HOME"},
+{"Code":"10","DAY":"2","POS":"HOME"},"}],
+
+"DIscITM":[{"BQTY":"0","Code":"Disc.","FQTY":"0","FREEITEM":"008",
+"ITEMCODE":"008","Item_Flag":"I","PER":"0","POS":"REST"}
+
+
+

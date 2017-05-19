@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/t_v_spinner_for_o_s"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/img_width"
+    android:layout_gravity="center_vertical"
+    android:background="@drawable/table_number_background"
+    android:ellipsize="marquee"
+    android:gravity="center"
+    android:text=""
+    android:textColor="@color/dark_brown_color"
+    android:textIsSelectable="false"
+    android:textSize="@dimen/medium" />

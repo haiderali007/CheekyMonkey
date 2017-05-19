@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_HeaderRow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/grey_light"
+    android:baselineAligned="false"
+    android:descendantFocusability="blocksDescendants"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    tools:ignore="HardcodedText,UselessParent,InefficientWeight,UseCompoundDrawables,ContentDescription">
+
+    <TextView
+        android:id="@+id/textViewInfoListTitile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="20"
+        android:text="@+id/label"
+        android:textColor="@color/White"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/imgExpandCollapse"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:src="@drawable/arrow_up_selector" />
+
+</LinearLayout>

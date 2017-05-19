@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_light">
+
+    <TextView
+        android:id="@+id/ctv_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/take_order_tab_height"
+        android:background="@color/Black"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textStyle="bold"
+        android:text="@string/odr_cnfrm_title"
+        android:gravity="center"
+        android:textColor="@color/title_color"
+        android:textSize="@dimen/title_text_size" />
+
+    <TextView
+        android:id="@+id/tv_ord_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OB000024"
+        android:gravity="center|bottom"
+        android:padding="10dp"
+        android:textColor="@color/home_color"
+        android:textSize="@dimen/extra_large"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/tv_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/odr_cnfrm_msg"
+        android:padding="10dp"
+        android:gravity="center"
+        android:textColor="@color/LightGrey"
+        android:textSize="@dimen/large"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/thanks_string"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/White"
+        android:background="@color/Black"
+        android:textSize="@dimen/extra_large" />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/tv_ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ok"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:background="@drawable/button_state"
+            android:textColor="@drawable/button_text_color"
+            android:textSize="@dimen/extra_large"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

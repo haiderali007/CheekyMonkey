@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Black"
+    android:orientation="vertical"
+    tools:ignore="ButtonOrder,ObsoleteLayoutParam,ButtonStyle,UselessParent,HardcodedText">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/billing_tab_height"
+        android:background="@color/grey_light">
+
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/txtViewBillEdit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/bill_cancel"
+            android:textSize="@dimen/large"
+            app:fontName="Roboto-Medium" />
+
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/tview_BillNo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textColor="@color/DeepSkyBlue"
+            android:textSize="@dimen/large" />
+
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/tv_cancel_type"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/layout_bill_cancel_options"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/White"
+            android:gravity="center"
+            android:padding="2sp"
+            android:text="@string/cancel_string"
+            android:textColor="@color/Black"
+            android:textSize="20sp"
+            android:typeface="sans"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/LinerLayoutBillDetails"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:layout_marginTop="2sp"
+        android:background="@color/grey_light">
+
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="S.Total:"
+            android:textSize="@dimen/small" />
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/tview_Subtotal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:paddingLeft="2sp"
+            android:textColor="@color/DeepSkyBlue"
+            android:textSize="@dimen/small" />
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Disc:"
+            android:textSize="@dimen/small" />
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/tview_discount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight=".9"
+            android:paddingLeft="2sp"
+            android:textColor="@color/DeepSkyBlue"
+            android:textSize="@dimen/small" />
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Tax:"
+            android:textSize="@dimen/small" />
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/tview_Tax"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight=".9"
+            android:paddingLeft="2sp"
+            android:textColor="@color/DeepSkyBlue"
+            android:textSize="@dimen/small" />
+
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Total:"
+            android:textSize="@dimen/small" />
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/tview_Total"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:paddingLeft="2sp"
+            android:paddingStart="2sp"
+            android:textColor="@color/DeepSkyBlue"
+            android:textSize="@dimen/small" />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <GridView
+            android:id="@+id/gv_bill_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnWidth="@dimen/grid_row_width"
+            android:gravity="center"
+            android:horizontalSpacing="@dimen/table_num_hori_space"
+            android:listSelector="@android:color/transparent"
+            android:numColumns="auto_fit"
+            android:padding="@dimen/table_num_hori_space"
+            android:scrollbars="none"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="@dimen/table_num_hori_space" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bill_cancel_options"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_row_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/Black"
+        android:visibility="gone">
+
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/tv_comp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1.1"
+            android:background="@color/grey_light"
+            android:gravity="center"
+            android:text="Complimentary"
+            android:textSize="20sp" />
+
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/tv_full_discount"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="2sp"
+            android:layout_marginRight="2sp"
+            android:layout_weight="1"
+            android:background="@color/grey_light"
+            android:gravity="center"
+            android:text="Full Discount"
+            android:textSize="20sp" />
+
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/tv_bill_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="0.7"
+            android:background="@color/grey_light"
+            android:gravity="center"
+            android:text="@string/cancel_string"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

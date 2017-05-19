@@ -1,0 +1,221 @@
+<!-- A DrawerLayout is intended to be used as the top-level content view using match_parent for both width and height to consume the full space available. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="ContentDescription">
+
+
+    <com.entrada.cheekyMonkey.ui.SlidingUpPanelLayout
+        xmlns:customisebyRahul="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/slidingUpPanelLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/take_order_tab_height"
+        android:gravity="bottom"
+        android:background="@color/home_color"
+        customisebyRahul:umanoPanelHeight="0dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+           <RelativeLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content">
+
+               <ImageButton
+                   style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+                   android:id="@+id/left_button"
+                   android:layout_width="20sp"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:layout_alignParentStart="true"
+                   android:src="@drawable/ic_drawer"
+                   android:foregroundGravity="left"
+                   android:orientation="horizontal"/>
+
+               <com.entrada.cheekyMonkey.ui.CustomTextview
+                   style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:text="@string/app_name"
+                   android:textStyle="bold"
+                   android:textSize="@dimen/title_text_size"
+                   android:paddingStart="10sp"
+                   android:paddingEnd="10sp"
+                   android:paddingLeft="10sp"
+                   android:paddingRight="10sp"
+                   android:gravity="center_vertical"
+                   android:textColor="@color/Gray"
+                   android:layout_alignParentTop="true"
+                   android:layout_toRightOf="@+id/left_button"
+                   android:layout_toEndOf="@+id/left_button"
+                   android:id="@+id/view"
+                   customisebyRahul:fontName="Roboto"/>
+
+           </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/layout_search"
+                android:layout_width="50sp"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/layout_noti"
+                android:layout_toStartOf="@+id/layout_noti">
+
+                <ImageButton
+                    style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+                    android:id="@+id/img_srch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@android:drawable/ic_menu_search"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="@string/action_bar_search" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+                android:layout_width="50sp"
+                android:layout_height="match_parent"
+                android:id="@+id/layout_noti"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/relativeLayout3"
+                android:layout_toStartOf="@+id/relativeLayout3"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="5sp"
+                android:layout_marginEnd="5sp"
+                android:contentDescription="@string/notification_string">
+
+
+                <ImageView
+                    android:id="@+id/img_notify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/notification"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true" />
+
+
+                <com.entrada.cheekyMonkey.ui.CustomTextview
+                    android:id="@+id/tv_guest_notify"
+                    android:layout_width="25sp"
+                    android:layout_height="25sp"
+                    android:background="@drawable/reprint_color_background"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/Gray"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="45sp"
+                android:layout_height="match_parent"
+                android:id="@+id/relativeLayout3"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:visibility="gone">
+
+
+                <ImageView
+                    android:id="@+id/right_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/right"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+                android:id="@+id/image_back"
+                android:layout_width="40sp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:src="@drawable/arrow_left"
+                android:visibility="gone"/>
+
+            <SearchView
+                android:id="@+id/edit_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@color/Process"
+                android:layout_toRightOf="@id/image_back"
+                android:layout_toEndOf="@+id/image_back" />
+
+
+        </RelativeLayout>
+
+    </com.entrada.cheekyMonkey.ui.SlidingUpPanelLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/layout_retry"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/Black">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/tv_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30sp"
+            android:paddingRight="30sp"
+            android:paddingStart="30sp"
+            android:paddingEnd="30sp"
+            android:background="@drawable/button_state"
+            android:text="@string/retry_string"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="52dp"
+            android:layout_below="@+id/progressBar"
+            android:layout_centerHorizontal="true" />
+
+
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grey_light" />
+
+</LinearLayout>

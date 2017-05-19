@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/WhiteSmoke">
+
+    <com.entrada.cheekyMonkey.ui.CustomTextview
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:layout_marginTop="20sp"
+        android:gravity="center"
+        android:text="Current Location"
+        android:textColor="@color/DeepSkyBlue"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp">
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Lattitude :"
+            android:paddingStart="20sp"
+            android:paddingLeft="20sp"
+            android:textColor="@color/Black"
+            android:textSize="25sp"/>
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/tv_longitude"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="20sp"
+            android:paddingEnd="20sp"
+            android:paddingLeft="20sp"
+            android:paddingRight="20sp"
+            android:textColor="@color/Black"
+            android:textSize="25sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp">
+
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="20sp"
+            android:paddingLeft="20sp"
+            android:text="Longitude :"
+            android:textColor="@color/Black"
+            android:textSize="25sp"/>
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/tv_lattitude"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="20sp"
+            android:paddingEnd="20sp"
+            android:paddingLeft="20sp"
+            android:paddingRight="20sp"
+            android:textColor="@color/Black"
+            android:textSize="25sp"/>
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp">
+
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="20sp"
+            android:paddingLeft="20sp"
+            android:text="Address :"
+            android:textColor="@color/Black"
+            android:textSize="25sp"/>
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/tv_accuracy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="20sp"
+            android:paddingEnd="20sp"
+            android:paddingLeft="20sp"
+            android:paddingRight="20sp"
+            android:textColor="@color/Black"
+            android:textSize="25sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp">
+
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="20sp"
+            android:paddingLeft="20sp"
+            android:text="City :"
+            android:textColor="@color/Black"
+            android:textSize="25sp"/>
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/tv_city"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="20sp"
+            android:paddingEnd="20sp"
+            android:paddingLeft="20sp"
+            android:paddingRight="20sp"
+            android:textColor="@color/Black"
+            android:textSize="25sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp">
+
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="20sp"
+            android:paddingLeft="20sp"
+            android:text="Pin Code :"
+            android:textColor="@color/Black"
+            android:textSize="25sp"/>
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/tv_pincode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="20sp"
+            android:paddingEnd="20sp"
+            android:paddingLeft="20sp"
+            android:paddingRight="20sp"
+            android:textColor="@color/Black"
+            android:textSize="25sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp">
+
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="20sp"
+            android:paddingLeft="20sp"
+            android:text="Country :"
+            android:textColor="@color/Black"
+            android:textSize="25sp"/>
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/tv_country"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="20sp"
+            android:paddingEnd="20sp"
+            android:paddingLeft="20sp"
+            android:paddingRight="20sp"
+            android:textColor="@color/Black"
+            android:textSize="25sp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
