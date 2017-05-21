@@ -21,6 +21,7 @@
 
     <color name="menu_item_color">#fff8f8</color>
     <color name="menu_item_color1">#757575</color>
+    <color name="menu_item_color2">#bebcbc</color>
     <color name="high_price_color">#49b154</color>
     <color name="low_price_color">#f10b16</color>
     <color name="curr_price_color">#AC1E1C</color>

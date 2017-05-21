@@ -103,15 +103,15 @@
 
 
     <style name="FacebookLoginButton">
-        <item name="android:background">@drawable/facebook_signin_btn1</item>
+        <item name="android:background">@drawable/facebook_signin</item>
         <item name="android:layout_marginTop">10dp</item>
-        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
         <item name="android:layout_gravity">center_horizontal</item>
     </style>
 
     <style name="GoogleLoginButton">
         <item name="android:textSize">@dimen/medium</item>
-        <item name="android:background">@drawable/google_signin_btn1</item>
+        <item name="android:background">@drawable/google_signin</item>
         <item name="android:layout_marginTop">0dp</item>
         <item name="android:layout_marginBottom">10dp</item>
         <item name="android:layout_gravity">center_horizontal</item>

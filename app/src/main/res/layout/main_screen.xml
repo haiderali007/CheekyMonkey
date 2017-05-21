@@ -190,15 +190,12 @@
                 <com.facebook.login.widget.LoginButton
                     android:id="@+id/login_button"
                     style="@style/FacebookLoginButton"
+                    android:text=""
                     fb:login_text=""
                     fb:logout_text=""
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10sp"
-                    android:layout_marginEnd="10sp"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"
-/>
+                    />
 
                 <ProgressBar
                     android:id="@+id/progress_fb"
@@ -221,10 +218,7 @@
                     style="@style/GoogleLoginButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10sp"
-                    android:layout_marginEnd="10sp"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"/>
+/>
 
                 <ProgressBar
                     android:id="@+id/progress_ggl"
@@ -246,6 +240,8 @@
             android:minHeight="@dimen/take_order_tab_height"
             android:text="@string/sign_up_string"
             android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_gravity="center"
             android:paddingStart="10sp"
             android:paddingLeft="10sp"

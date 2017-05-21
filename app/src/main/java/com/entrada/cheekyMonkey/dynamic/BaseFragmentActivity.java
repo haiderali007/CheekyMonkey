@@ -839,36 +839,22 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                         break;
 
 
+
+
                     case 6:
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                layout_Left.setVisibility(View.GONE);
-                                FragmentManager fragmentManager = getSupportFragmentManager();
-                                AboutDeveloperFragment devFragment = new AboutDeveloperFragment();
-                                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                                transaction.replace(R.id.container, devFragment).commit();
-                                currentBackListener = devFragment;
-                                slide_me.closeLeftSide();
-                            }
-                        }, 200);
-                        break;
-
-
-                    case 7:
                         Uri uri2 = Uri.parse("https://www.facebook.com/cheekymonkeypkl/");
                         Intent intent = new Intent(Intent.ACTION_VIEW, uri2);
                         startActivity(intent);
                         break;
 
 
-                    case 8:
+                    case 7:
                         Uri uri1 = Uri.parse("https://www.instagram.com/cheekymonkeychd/");
                         Intent intent1 = new Intent(Intent.ACTION_VIEW, uri1);
                         startActivity(intent1);
                         break;
 
-                    case 9:
+                    case 8:
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -885,7 +871,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                         break;
 
 
-                    case 10:
+                    case 9:
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -900,6 +886,24 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                             }
                         }, 200);
                         break;
+
+
+
+                    case 10:
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                layout_Left.setVisibility(View.GONE);
+                                FragmentManager fragmentManager = getSupportFragmentManager();
+                                AboutDeveloperFragment devFragment = new AboutDeveloperFragment();
+                                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                                transaction.replace(R.id.container, devFragment).commit();
+                                currentBackListener = devFragment;
+                                slide_me.closeLeftSide();
+                            }
+                        }, 200);
+                        break;
+
 
                     case 11:
                         UserInfo.showLogoutDialog(context);

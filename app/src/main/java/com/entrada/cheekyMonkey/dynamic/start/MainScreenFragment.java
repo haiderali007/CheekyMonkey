@@ -442,6 +442,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
 
 
         loginButton = (LoginButton) view.findViewById(R.id.login_button);
+        loginButton.setText("");
         loginButton.setReadPermissions(Arrays.asList(
                 "public_profile", "email", "user_birthday", "user_friends",
                 "user_photos", "user_hometown", "user_location"));
