@@ -48,6 +48,7 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.entrada.cheekyMonkey.Help_Layout;
 import com.entrada.cheekyMonkey.IntroductionScreen;
 import com.entrada.cheekyMonkey.POSApplication;
 import com.entrada.cheekyMonkey.R;
@@ -885,6 +886,19 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
 
                     case 10:
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                layout_Left.setVisibility(View.GONE);
+                                FragmentManager fragmentManager = getSupportFragmentManager();
+                                Help_Layout help_layout = new Help_Layout();
+                                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                                transaction.replace(R.id.container, help_layout).commit();
+                                currentBackListener = help_layout;
+                                slide_me.closeLeftSide();
+                            }
+                        }, 200);
                         break;
 
                     case 11:

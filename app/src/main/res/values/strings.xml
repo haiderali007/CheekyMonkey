@@ -20,8 +20,6 @@
     <string name="ggl_cancel_string">Google Login was cancelled. Please try to login again.</string>
 
 
-
-
     <string name="signed_in_fmt">Signed in as: %s</string>
     <string name="sign_out_string">Sign out</string>
     <string name="signOutFromApp">Are you sure you want to sign out?</string>
@@ -66,7 +64,6 @@
     <string name="error_dialog_search_server_error">A problem occurred retrieving results. Please try again later.
     </string>
     <string name="error_dialog_search_error_unknown">An unknown error has occurred. Please try searching again.</string>
-
 
 
     <!-- Exit Dialog -->
@@ -221,7 +218,6 @@
     <string name="wlcm_gst_string">Welcome, Guest</string>
 
 
-
     <string name="lock_drawer">Lock Drawer</string>
     <string name="home_footer">HOME</string>
     <string name="order_review">Order Review</string>
@@ -286,7 +282,6 @@
     <string name="conn_failed">Sorry, we were unable to connect with Cheeky Monkey Server</string>
 
 
-
     <string name="terms_conditions">"Cheeky Monkey App End User License Agreement
 This End User License Agreement (“Agreement”) is between you and Cheeky Monkey and governs use of this app made available through the Google play Store. By installing the Cheeky Monkey App, you agree to be bound by this Agreement and understand that there is no tolerance for objectionable content. If you do not agree with the terms and conditions of this Agreement, you are not entitled to use the Cheeky Monkey App.
 
@@ -319,5 +314,22 @@ This End User License Agreement (“Agreement”) is between you and Cheeky Monk
 Our Flagship Barter App is the one we are really proud of. This one of a kind App allows you to trade your leftover Bottle or purchased Whiskey/Beer Bottle at the Click of the mouse. It also works on Service exchange Model which means that once ordered, customer can consume leftover drink at any of the bars that are part of our App. So, once you have had too much, this app comes to your rescue.\n\n
 Our Team is a group of highly qualified engineers which likes to Pub hop, so to say. We strive for out of the box solutions that are not only deliverable but scalable &amp; our young, energetic team is always up to the task for it.
 </string>
+    <string name="help">
+        <b>What has Cheeky Monkey for Me?</b>\n
+Cheeky Monkey helps you create your own price for a drink based on the collective rating of the customers who have rated the drink. Real time demand gives a chance for each drink to have its own pricing. This gives customer total control.\n\n
+<b>How does it work for me?</b>\n
+It works on the principle of supply and demand. Our Bar Stock Exchange software computes the latest prices through a comprehensive algorithm which instantly updates the prices on the app for the next set of customer to order their drink.\n\n
+This level playing field keeps both the customers &amp; the Bar owners on their toes. Not just the owners but the customers compete with each other to rate the best drink.\n\n
+<b>Do I ever pay a lower price?</b>\n
+Customer truly becomes the king on this platform. Similar to Stock Market their ratings can collectively ensure that market crashes to its lowest. Once that happens they are updated on their phones as well as through a siren in the bar. In this scenario, they should be ready to order their favorite drink and get the benefit of Lower prices. Keep an Eye on the falling prices and reap rich rewards.\n\n
+<b>How is Bar Exchange better than Happy Hours?</b>\n
+The market opens at 6 PM everyday &amp; customers can order their drink at the Bar or can download the App and order Online. Drinks Menus are displayed on LCDs placed strategically in all sections of the Bar.\n\n
+<b>How do I get the winner feeling?</b>\n
+Prices start really low at Cheeky Monkey &amp; as the day progresses they begin to dip or pick up based on customer’s ratings. Customers can enjoy the lowest prices at a cost price of the drink. If you show up early and make reservations, you have a greater chance of grabbing your favorite vodka or Beer at amazingly low prices.
+
+    </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
