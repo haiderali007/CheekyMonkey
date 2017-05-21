@@ -312,11 +312,12 @@ This End User License Agreement (“Agreement”) is between you and Cheeky Monk
  Agree Decline"
     </string>
 
-    <string name="about_us">Crazy Craig’s Cheeky Money Bar is Branson’s bar with the most fun, best drink specials and nightlife in the entertainment mecca. With events happening every night of the week and happy hour Monday through Friday for 7 HOURS (11 – 6pm), why would you want to go somewhere else?
-
-        Crazy Craig’s is a family ‘n’ friends affair, in a way, with Craig Martinosky Sr. and his son Craig Martinosky owning Cheeky Monkey and little brother Jesse behind the bar alongside Craig. You’ll also find Elly &amp; Chuck tending bar with Cassie and Jasmine serving your drinks &amp; food wherever you happen to be seated. Mrs. Martinosky is a grandmaster, virtuoso of all-things bar related and all-things not. The “Craig’s” have created a unique nightspot in Branson. We like options so we hope you do too.
-
-        There are 22 signature drinks to choose from and we have a pretty sweet beer selection too. We have a big dance floor! Hungry? Check out our food menu while you enjoy the outdoors on our large wooden deck out front.  For all you Table Rock Lake junkies, park your boat at State Park Marina and we’re less than 5 miles away. You’ll be here in no time if you take this route. We have tons of games including darts, pool and electronic games to help pass the time. You can also sit back, relax and listen to whomever is the entertainment that night. We usually have a live band playing or DJ spinning every night. Or bring some friends to watch the game, grab some beers and order something off our menu. Or how about themed parties? Want to throw your birthday party or celebrate something with just your friends? Send us an email and lets start planning!</string>
-    <string name="abt_dev">we are a team of 8 employees, as of now.</string>
+    <string name="about_us">
+        Cheeky is a unique concept bar that works on the lines of Stock Exchange. Prices fluctuate to offer drinks based on customer’s demand. Just like stock Market where share prices fall and rise based on company’s performance, drinks too can hold high prices or can come crashing down based on customer’s ratings. Customers can order their drink through app, however through a dynamic market like environment it allows them to get best prices at a given time.
+    </string>
+    <string name="abt_dev">This unique Stock Bar exchange has been developed and designed by Entrada Soft, a leading software development firm based out of Noida. This Mobile Application’s USP is its design and architecture which allows it easy access to Waiting Staff &amp; customers alike. Furthermore, App also gives access to Projector screen displays &amp; a backend system that showcases bar menu &amp; drink prices.\n\n
+Our Flagship Barter App is the one we are really proud of. This one of a kind App allows you to trade your leftover Bottle or purchased Whiskey/Beer Bottle at the Click of the mouse. It also works on Service exchange Model which means that once ordered, customer can consume leftover drink at any of the bars that are part of our App. So, once you have had too much, this app comes to your rescue.\n\n
+Our Team is a group of highly qualified engineers which likes to Pub hop, so to say. We strive for out of the box solutions that are not only deliverable but scalable &amp; our young, energetic team is always up to the task for it.
+</string>
 
 </resources>

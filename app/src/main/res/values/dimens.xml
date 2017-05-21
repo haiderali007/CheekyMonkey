@@ -42,6 +42,7 @@
     <dimen name="take_order_header_bottom_height">2dip</dimen>
     <dimen name="take_order_view_width">2sp</dimen>
     <dimen name="pos_text_size">20sp</dimen>
+    <dimen name="pos_text_size1">16sp</dimen>
     <dimen name="take_order_tab_height">40sp</dimen>
     <dimen name="take_order_height">60sp</dimen>
 
@@ -56,6 +57,7 @@
     <dimen name="header2_height">50sp</dimen>
     <dimen name="header3_height">40sp</dimen>
     <dimen name="grid_row_width">60sp</dimen>
+    <dimen name="grid_row_width1">100sp</dimen>
 
 
     <!-- Order Item -->
@@ -82,6 +84,7 @@
     <dimen name="extra_medium">12sp</dimen>
     <dimen name="large">14sp</dimen>
     <dimen name="extra_large">16sp</dimen>
+    <dimen name="extra_large1">14sp</dimen>
     <dimen name="extra_extra_large">18sp</dimen>
 
     <!-- Table Number -->
@@ -90,6 +93,7 @@
     <dimen name="table_num_height">56sp</dimen>
     <dimen name="room_num_width">100sp</dimen>
     <dimen name="room_num_height">80sp</dimen>
+    <dimen name="room_num_height1">60sp</dimen>
 
     <!-- view Package -->
     <integer name="default_circle_indicator_orientation">0</integer>

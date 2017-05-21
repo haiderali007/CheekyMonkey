@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:facebook="http://schemas.android.com/apk/res-auto"
+    xmlns:fb="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,6 +25,13 @@
         android:layout_height="match_parent"
         android:padding="@dimen/activity_horizontal_margin"
         android:orientation="vertical">
+        <ImageView
+            android:layout_width="@dimen/room_num_height1"
+            android:layout_height="@dimen/room_num_height1"
+            android:src="@drawable/cheeky_logo"
+            android:visibility="visible"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="left"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,20 +42,15 @@
             android:orientation="vertical">
 
 
-            <ImageView
-                android:layout_width="@dimen/room_num_height"
-                android:layout_height="@dimen/room_num_height"
-                android:src="@drawable/cheeky_logo"
-                android:visibility="visible"/>
 
             <EditText
                 android:id="@+id/et_email_no"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email_mob_string"
-                android:textColorHint="@color/WhiteSmoke"
+                android:textColorHint="@color/menu_item_color1"
                 android:textColor="@color/White"
-                android:textSize="@dimen/pos_text_size"
+                android:textSize="@dimen/pos_text_size1"
                 android:inputType="textPersonName"/>
 
             <EditText
@@ -55,11 +58,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password_hint_string"
-                android:textColorHint="@color/WhiteSmoke"
+                android:textColorHint="@color/menu_item_color1"
                 android:inputType="textPassword"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/White"
-                android:textSize="@dimen/pos_text_size" />
+                android:textSize="@dimen/pos_text_size1" />
 
             <ImageView
                 android:id="@+id/img_signin"
@@ -98,7 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:textSize="@dimen/extra_large"
+                    android:textSize="@dimen/extra_large1"
                     android:textColor="@color/LightGrey"
                     android:checked="true"
                     android:clickable="true"
@@ -114,7 +117,7 @@
                     android:paddingEnd="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:textSize="@dimen/extra_large"/>
+                    android:textSize="@dimen/extra_large1"/>
 
 
                 <TextView
@@ -122,9 +125,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/forgot_string"
-                    android:gravity="center"
+                    android:gravity="right"
                     android:textColor="@color/White"
-                    android:textSize="@dimen/extra_large"/>
+                    android:textSize="@dimen/extra_large1"/>
 
             </LinearLayout>
 
@@ -135,13 +138,20 @@
 
                 <Button
                     android:id="@+id/buttton_signin"
-                    android:layout_width="@dimen/logo_height"
-                    android:layout_height="@dimen/header2_height"
-                    android:background="@drawable/button_yellow_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/take_order_tab_height"
                     android:text="@string/sign_in_string"
-                    android:textColor="#010139"
+                    android:gravity="center"
+                    android:paddingStart="10sp"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
                     android:layout_centerHorizontal="true"
-                    android:textSize="@dimen/extra_large" />
+                    android:paddingEnd="10sp"
+                    android:textSize="@dimen/extra_large"
+                    android:clickable="true"
+                    android:background="@drawable/button_state"/>
+
 
                 <ProgressBar
                     android:id="@+id/progress_signin"
@@ -170,9 +180,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center">
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <!--fb:login_text=""
                     fb:logout_text=""-->
@@ -180,14 +190,15 @@
                 <com.facebook.login.widget.LoginButton
                     android:id="@+id/login_button"
                     style="@style/FacebookLoginButton"
-                    android:layout_width="@dimen/grid_row_width"
-                    android:layout_height="@dimen/grid_row_width"
-                    facebook:login_text=""
-                    facebook:logout_text=""
+                    fb:login_text=""
+                    fb:logout_text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="10sp"
                     android:layout_marginEnd="10sp"
                     android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp" />
+                    android:layout_marginRight="10sp"
+/>
 
                 <ProgressBar
                     android:id="@+id/progress_fb"
@@ -197,21 +208,19 @@
                     android:layout_marginTop="20dp"
                     android:layout_gravity="top"/>
 
-
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center">
 
                 <Button
                     android:id="@+id/sign_in_button"
                     style="@style/GoogleLoginButton"
-                    android:layout_width="@dimen/grid_row_width"
-                    android:layout_height="@dimen/grid_row_width"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="10sp"
                     android:layout_marginEnd="10sp"
                     android:layout_marginLeft="10sp"
@@ -232,14 +241,21 @@
 
         <Button
             android:id="@+id/button_signup"
-            android:layout_width="@dimen/logo_height"
-            android:layout_height="@dimen/header2_height"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/take_order_tab_height"
             android:text="@string/sign_up_string"
-            android:textSize="@dimen/extra_large"
-            android:textColor="#010139"
-            android:background="@drawable/button_yellow_state"
+            android:gravity="center"
             android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/header_padding"/>
+            android:paddingStart="10sp"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/header_padding"
+            android:paddingEnd="10sp"
+            android:textSize="@dimen/extra_large"
+            android:clickable="true"
+            android:background="@drawable/button_state"/>
 
     </LinearLayout>
 

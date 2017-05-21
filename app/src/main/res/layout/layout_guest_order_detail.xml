@@ -20,8 +20,8 @@
         android:layout_height="wrap_content"
         android:text="Order No. OB000001"
         android:gravity="center_vertical|end"
-        android:padding="15dp"
-        android:textSize="@dimen/extra_large"
+        android:padding="12dp"
+        android:textSize="@dimen/medium"
         android:textColor="#FFFFFF"/>
 
     <LinearLayout
