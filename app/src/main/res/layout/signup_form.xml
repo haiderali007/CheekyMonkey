@@ -103,7 +103,7 @@
                 android:paddingRight="@dimen/circle_padding_bottom_login"
                 android:paddingEnd="@dimen/circle_padding_bottom_login"
                 android:textColorHint="@color/Gray"
-                android:inputType="phone"
+                android:inputType="number"
                 android:textColor="@color/White"
                 android:textSize="18sp" />
 
