@@ -20,6 +20,7 @@ public class Adapter_Add_Mix extends ArrayAdapter<String> {
     private String stringSymbol[];
     private String stringPrice[];
 
+
     public Adapter_Add_Mix(Context context, String[] stringItem, String[] rupee_symbol, String[] stringPrice) {
         super(context, R.layout.addon_row_layout_new, stringItem);
         this.context = context;
