@@ -14,7 +14,7 @@
         android:text="Bill Split"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/DeepSkyBlue"
-        android:textSize="22sp" />
+        android:textSize="20sp" />
 
 
     <LinearLayout
@@ -38,7 +38,7 @@
                 android:text="POS"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/DeepSkyBlue"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <Spinner
                 android:id="@+id/sp_split_pos"
@@ -57,7 +57,7 @@
                 android:text="Bill No"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/DeepSkyBlue"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <Spinner
                 android:id="@+id/sp_split_billno"
@@ -77,7 +77,7 @@
                 android:text="Table"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/DeepSkyBlue"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <com.entrada.cheekyMonkey.ui.CustomTextview
                 android:id="@+id/tv_split_billtbl"
@@ -88,7 +88,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="10sp"
                 android:textColor="@color/Black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -262,7 +262,7 @@
             android:paddingRight="10sp"
             android:text="@string/bill_amt"
             android:textColor="@color/DeepSkyBlue"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/tv_bill_amt"
@@ -274,7 +274,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="10sp"
             android:textColor="@color/White"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/clr_bill_split"
@@ -290,7 +290,7 @@
             android:paddingRight="10sp"
             android:text="@string/clear_string"
             android:textColor="@color/White"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/save_bill_split"
@@ -305,7 +305,7 @@
             android:paddingRight="10sp"
             android:text="@string/save_string"
             android:textColor="@color/White"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
 
     </RelativeLayout>
