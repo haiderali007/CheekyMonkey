@@ -726,7 +726,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
+//for hide search view
                 img_srch.setVisibility(position == 3 || position == 5 || position == 8
                         || position == 9 || position == 10 ? View.GONE : View.VISIBLE);
 

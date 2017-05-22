@@ -82,6 +82,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
     Context context;
     FrameLayout frameLayout;
     LinearLayout layout_main;
+    Button customFB;
     LoginButton loginButton;
     CallbackManager callbackManager;
     String guest_name = "", guest_id = "",  email = "", birthday = "", gender = "M";
@@ -440,7 +441,6 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
     // login using FBLoginButton
     public void onFBLogin(View view){
 
-
         loginButton = (LoginButton) view.findViewById(R.id.login_button);
         loginButton.setText("");
         loginButton.setReadPermissions(Arrays.asList(
@@ -486,6 +486,15 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
                 // App code
                 Log.v("LoginActivity", exception.getMessage());
                 showCancelDialog(exception.getMessage());
+            }
+        });
+
+        customFB = (Button) view.findViewById(R.id.fb);
+        customFB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                loginButton.performClick();
             }
         });
     }

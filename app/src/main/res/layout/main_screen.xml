@@ -25,6 +25,7 @@
         android:layout_height="match_parent"
         android:padding="@dimen/activity_horizontal_margin"
         android:orientation="vertical">
+
         <ImageView
             android:layout_width="@dimen/room_num_height1"
             android:layout_height="@dimen/room_num_height1"
@@ -187,15 +188,37 @@
                 <!--fb:login_text=""
                     fb:logout_text=""-->
 
-                <com.facebook.login.widget.LoginButton
+                <FrameLayout
+                    android:id="@+id/FrameLayout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <com.facebook.login.widget.LoginButton
+                        android:id="@+id/login_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/fb"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#416BC1"
+                        android:onClick="onClick"
+                        android:text="FaceBook"
+                        android:textColor="#ffffff"
+                        android:textStyle="bold" />
+
+                </FrameLayout>
+
+              <!--  <com.facebook.login.widget.LoginButton
                     android:id="@+id/login_button"
                     style="@style/FacebookLoginButton"
                     android:text=""
                     fb:login_text=""
                     fb:logout_text=""
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
+                    android:layout_height="wrap_content" />-->
 
                 <ProgressBar
                     android:id="@+id/progress_fb"
