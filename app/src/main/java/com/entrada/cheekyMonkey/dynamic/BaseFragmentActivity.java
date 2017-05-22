@@ -257,7 +257,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
 
     public void showOrderSplit() {
-        layout_Left.setVisibility(View.GONE);
+        layout_Left.setVisibility(View.VISIBLE);
         FragmentManager fmOther = getSupportFragmentManager();
         FragmentTransaction transaction = fmOther.beginTransaction();
 
@@ -293,7 +293,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().
                     replace(R.id.container, takeOrderFragment)
-                    .setCustomAnimations(FragmentTransaction.TRANSIT_ENTER_MASK,FragmentTransaction.TRANSIT_EXIT_MASK)
+                    //.setCustomAnimations(FragmentTransaction.TRANSIT_ENTER_MASK,FragmentTransaction.TRANSIT_EXIT_MASK)
                     .commit();
             currentBackListener = takeOrderFragment;
             slide_me.closeLeftSide();
@@ -727,6 +727,9 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
+                img_srch.setVisibility(position == 3 || position == 5 || position == 8
+                        || position == 9 || position == 10 ? View.GONE : View.VISIBLE);
+
                 switch (position){
 
                     case 0:
@@ -738,7 +741,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    layout_Left.setVisibility(View.GONE);
+                                    layout_Left.setVisibility(View.VISIBLE);
                                     takeOrderFragment.showHome();
                                     FragmentManager fragmentManager = getSupportFragmentManager();
                                     fragmentManager.beginTransaction().replace(R.id.container, takeOrderFragment).commit();
@@ -795,7 +798,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                layout_Left.setVisibility(View.GONE);
+                                layout_Left.setVisibility(View.VISIBLE);
                                 FragmentManager fragmentManager = getSupportFragmentManager();
                                 NewsFragment newsFragment = new NewsFragment();
                                 FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -827,7 +830,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                layout_Left.setVisibility(View.GONE);
+                                layout_Left.setVisibility(View.VISIBLE);
                                 FragmentManager fragmentManager = getSupportFragmentManager();
                                 AboutUsFragment aboutUsFragment = new AboutUsFragment();
                                 FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -859,7 +862,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                layout_Left.setVisibility(View.GONE);
+                                layout_Left.setVisibility(View.VISIBLE);
                                 FragmentManager fragmentManager = getSupportFragmentManager();
                                 DocsFragment docsFragment = new DocsFragment();
                                 FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -876,7 +879,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                layout_Left.setVisibility(View.GONE);
+                                layout_Left.setVisibility(View.VISIBLE);
                                 FragmentManager fragmentManager = getSupportFragmentManager();
                                 Help_Layout help_layout = new Help_Layout();
                                 FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -893,7 +896,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                layout_Left.setVisibility(View.GONE);
+                                layout_Left.setVisibility(View.VISIBLE);
                                 FragmentManager fragmentManager = getSupportFragmentManager();
                                 AboutDeveloperFragment devFragment = new AboutDeveloperFragment();
                                 FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -1212,6 +1215,8 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
     @Override
     public void onBackPressed() {
+
+        img_srch.setVisibility(View.VISIBLE);
 
         if (layout_Left.getVisibility() == View.GONE)
             layout_Left.setVisibility(View.VISIBLE);

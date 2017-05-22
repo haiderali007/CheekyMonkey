@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "555927586239",
-    "project_id": "cheeky-monkey-166420"
+    "project_number": "546049894416",
+    "project_id": "firebase-cheeky-monkey"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:555927586239:android:a6fa3b92b5d255f9",
+        "mobilesdk_app_id": "1:546049894416:android:a6fa3b92b5d255f9",
         "android_client_info": {
           "package_name": "com.entrada.cheekyMonkey"
         }
       },
       "oauth_client": [
         {
-          "client_id": "555927586239-tkili90lm6jqk5plqpdvcb63f3nhv5e3.apps.googleusercontent.com",
-          "client_type": 3
-        },
-        {
-          "client_id": "555927586239-6mg3ps11imr76hafvkn7h6esnqlk37il.apps.googleusercontent.com",
+          "client_id": "546049894416-7gs5foe0ovcstbshkbsamo8q7ap4dngu.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.entrada.cheekyMonkey",
-            "certificate_hash": "a274d94c047629915d9b7512b4c0a071354eba6e"
+            "certificate_hash": "98ab4e1cef07e0dd171355f6d0f0a9923ead25c7"
           }
+        },
+        {
+          "client_id": "546049894416-davic41lkah8i90d2jur3p52ksbh5ptm.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB4CiQWeuJB156VI2F2jjG4dewMaROBsyQ"
+          "current_key": "AIzaSyBbPsyib5L2C2EXXHBBXgEHFTNW2JMNdIQ"
         }
       ],
       "services": {

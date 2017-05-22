@@ -340,9 +340,9 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
 
         try {
 
-/*            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestEmail()
-                    .build();*/
+                    .build();
 
 /*            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestScopes(new Scope(Scopes.EMAIL))
@@ -350,9 +350,9 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
                     .requestEmail()
                     .build();*/
 
-            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+         /*   GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestIdToken(this.getResources().getString(R.string.server_client_id))
-                    .requestEmail().build();
+                    .requestEmail().build();*/
 
             mGoogleApiClient = new GoogleApiClient.Builder(context)
                         .enableAutoManage(getActivity(), this)
@@ -633,7 +633,6 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
         progress_ggl.setVisibility(View.GONE);
 
         if (result.isSuccess()) {
-            Toast.makeText(context,"logged in", Toast.LENGTH_SHORT).show();
             GoogleSignInAccount acct = result.getSignInAccount();
             signUpUsingGooglePlus(acct);
 
