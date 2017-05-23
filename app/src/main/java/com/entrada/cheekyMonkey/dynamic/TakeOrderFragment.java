@@ -1115,6 +1115,7 @@ public class TakeOrderFragment extends Fragment implements
         AsyncTaskTools.execute(commomTask);
     }
 
+
     @Override
     public void taskStarting() {
 
