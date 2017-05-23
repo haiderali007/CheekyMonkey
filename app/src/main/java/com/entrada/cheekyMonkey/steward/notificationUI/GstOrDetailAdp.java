@@ -9,6 +9,7 @@ import com.entrada.cheekyMonkey.R;
 import com.entrada.cheekyMonkey.adapter.POSListAdapter;
 import com.entrada.cheekyMonkey.entity.GuestOrderItem;
 import com.entrada.cheekyMonkey.entity.GusetOrderDetail;
+import com.entrada.cheekyMonkey.entity.UserInfo;
 import com.entrada.cheekyMonkey.ui.CustomTextview;
 
 import java.util.Locale;
@@ -20,6 +21,7 @@ public class GstOrDetailAdp<T> extends POSListAdapter<T> {
 
     public GstOrDetailAdp(Context context) {
         super(context);
+
     }
 
     public GuestOrderItem getItem() {
@@ -49,7 +51,7 @@ public class GstOrDetailAdp<T> extends POSListAdapter<T> {
         Object object = getItem(position);
         if (object instanceof GusetOrderDetail) {
             GusetOrderDetail item = (GusetOrderDetail) object;
-            holder.txtName.setText(item.ItemName);
+            holder.txtName.setText(item.ItemName.isEmpty() ? UserInfo.getMixerName(item.ItemCode) : item.ItemName);
             holder.txtQty.setText(String.format(Locale.US, "%.1f", Float.parseFloat(item.ItemQty)));
 
             float amt = Float.parseFloat(item.ItemQty) * Float.parseFloat(item.ItemPrice);

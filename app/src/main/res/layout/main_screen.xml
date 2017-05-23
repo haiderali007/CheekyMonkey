@@ -205,9 +205,12 @@
                         android:layout_height="wrap_content"
                         android:background="#416BC1"
                         android:onClick="onClick"
-                        android:text="FaceBook"
+                        android:text="Login with FaceBook"
                         android:textColor="#ffffff"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textAllCaps="false"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"/>
 
                 </FrameLayout>
 

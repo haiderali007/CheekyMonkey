@@ -8,7 +8,7 @@
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/selectTableBillGene"
-            style="@style/take_order_header_style"
+            style="@style/take_order_header_style1"
             fontName="Roboto-Black"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -28,7 +28,7 @@
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/tableNoDetails"
-            style="@style/take_order_header_style"
+            style="@style/take_order_header_style1"
             fontName="Roboto-Black"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -50,7 +50,7 @@
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/textViewGuest"
-            style="@style/take_order_header_style"
+            style="@style/take_order_header_style1"
             fontName="Roboto-Black"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -59,7 +59,7 @@
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/textViewGuestName"
-            style="@style/take_order_header_style"
+            style="@style/take_order_header_style1"
             fontName="Roboto-Black"
             android:layout_width="0dp"
             android:layout_height="match_parent"

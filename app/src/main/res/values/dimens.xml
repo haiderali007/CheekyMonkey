@@ -123,6 +123,7 @@
     <!-- Login Screen -->
     <dimen name="loginBottom_height">22sp</dimen>
     <dimen name="userID_height">60sp</dimen>
+    <dimen name="userID_height1">50sp</dimen>
     <dimen name="submitButton_min_width">120sp</dimen>
     <dimen name="submitButton_min_height">50sp</dimen>
     <dimen name="login_layout_top_margin">20sp</dimen>

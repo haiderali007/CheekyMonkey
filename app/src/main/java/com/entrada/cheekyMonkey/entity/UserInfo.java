@@ -29,6 +29,7 @@ import com.entrada.cheekyMonkey.ui.CustomTextview;
  */
 public class UserInfo {
 
+
     public static String USER_ID = "";
     public static String editText = "";
     public static String guest_id = "";
@@ -525,4 +526,59 @@ public class UserInfo {
         if (! ((Activity)context).isFinishing())
             dialog.show();
     }
+
+    public static String getMixerName(String mixerCode){
+
+        String mixer = "";
+
+        switch (mixerCode){
+
+            case "A01":
+                mixer = "SODA";
+                break;
+
+            case "A02":
+                mixer = "Packed Water";
+                break;
+
+            case "A03":
+                mixer = "Red Bull";
+                break;
+
+            case "A04":
+                mixer = "Aerated Drinks";
+                break;
+
+            case "A05":
+                mixer = "Diet Coke";
+                break;
+
+            case "A06":
+                mixer = "Refer to ice";
+                break;
+
+            case "A07":
+                mixer = "Tonic Water";
+                break;
+
+            case "A08":
+                mixer = "Coke Can";
+                break;
+
+            case "A09":
+                mixer = "Juice";
+                break;
+
+            case "A10":
+                mixer = "Hot Water";
+                break;
+
+            case "A11":
+                mixer = "Chicken Tikka";
+                break;
+        }
+
+        return mixer;
+    }
+
 }

@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.entrada.cheekyMonkey.R;
 import com.entrada.cheekyMonkey.appInterface.IAsyncTaskRunner;
@@ -130,13 +131,15 @@ public class NotificationFragment extends Fragment implements
             txtRejectOrder.setVisibility(View.VISIBLE);
 
         }else  if (orderStatus.equals(TYPE_ACCEPTED)){
+            txtAcceptOrder.setText(R.string.accept_string1);
             txtAcceptOrder.setVisibility(View.VISIBLE);
-            txtAcceptOrder.setText(R.string.delivery_string);
-            txtRejectOrder.setVisibility(employeeType.equals(EMPLOYEE_TYPE1)? View.VISIBLE : View.GONE);
+            txtRejectOrder.setVisibility(View.GONE);
+//            txtRejectOrder.setVisibility(employeeType.equals(EMPLOYEE_TYPE1)? View.VISIBLE : View.GONE);
 
         }else  if (orderStatus.equals(TYPE_REJECTED)){
             txtAcceptOrder.setVisibility(View.GONE);
-            txtRejectOrder.setVisibility(View.GONE);
+            txtRejectOrder.setVisibility(View.VISIBLE);
+            txtRejectOrder.setText(R.string.reject_string);
         }
         
         txtOrderNumber = (CustomTextview) view
@@ -391,16 +394,17 @@ public class NotificationFragment extends Fragment implements
 
     @SuppressWarnings("unchecked")
     public void onAcceptMethod() {
+            String parameter = UtilToCreateJSON.createTOAcceptOrder(context, detailAdp,
+                    orderStatus.equals(TYPE_UNDER_PROCESS) ? ORDER_ACCEPTED : ORDER_DELIVERED);
+            GuestCommonTask<String, ResultMessage> commonTask = new GuestCommonTask<String, ResultMessage>(
+                    context, NotificationFragment.this,
+                    orderStatus.equals(TYPE_UNDER_PROCESS) ? BaseNetwork.KEY_ECABS_PushOrderGuest :
+                            BaseNetwork.KEY_ECABS_PushOrderGuestStatus, parameter, pbDetail);
+            AsyncTaskTools.execute(commonTask);
 
-        String parameter = UtilToCreateJSON.createTOAcceptOrder(context, detailAdp,
-                orderStatus.equals(TYPE_UNDER_PROCESS) ? ORDER_ACCEPTED : ORDER_DELIVERED);
-        GuestCommonTask<String, ResultMessage> commonTask = new GuestCommonTask<String, ResultMessage>(
-                context, NotificationFragment.this,
-                orderStatus.equals(TYPE_UNDER_PROCESS) ? BaseNetwork.KEY_ECABS_PushOrderGuest :
-                        BaseNetwork.KEY_ECABS_PushOrderGuestStatus, parameter, pbDetail);
-        AsyncTaskTools.execute(commonTask);
+            clearData();
 
-        clearData();
+            
     }
 
     @SuppressWarnings("unchecked")

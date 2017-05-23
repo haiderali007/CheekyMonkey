@@ -166,6 +166,7 @@ public class StaticConstants {
     public static final String JSON_TAG_GOP_QTY = "Qty";
     public static final String JSON_TAG_GOP_PRICE = "Rat";
     public static final String JSON_TAG_GOP_REMARK = "Remark";
+    public static final String JSON_TAG_GOP_ADDON = "strAddon";
     public static final String JSON_TAG_GOP_TOEKN = "token";
     public static final String JSON_TAG_GOP_COVER = "cvr";
     public static final String JSON_TAG_GOP_ORDER_REMARK = "odrem";
@@ -203,6 +204,7 @@ public class StaticConstants {
     public static final String JSON_TAG_GUEST_GUEST_NAME = "Guest_Name";
     public static final String JSON_TAG_GUEST_ITEM_RATE = "Rate";
     public static final String JSON_TAG_GUEST_ITEM_TOTAL = "Total";
+    public static final String JSON_TAG_GST_ORDER_ADDON= "Addon";
 
 
     /**

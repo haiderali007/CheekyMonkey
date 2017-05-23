@@ -156,6 +156,8 @@ public class GuestCommonTask<Params, Result> extends
                                 .getString(StaticConstants.JSON_TAG_GUEST_GUEST);
                         item.Order_sts = jsonValue
                                 .getString(StaticConstants.JSON_TAG_GUEST_ORDER_STATUS);
+                        item.AddOn = jsonValue
+                                .getString(StaticConstants.JSON_TAG_GST_ORDER_ADDON);
                         publishProgress(item);
 
                     }

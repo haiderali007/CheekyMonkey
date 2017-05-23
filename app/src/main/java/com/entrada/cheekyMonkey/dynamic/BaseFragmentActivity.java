@@ -106,21 +106,21 @@ import java.util.concurrent.TimeUnit;
  * Created by Rahul on 16/05/2016.
  */
 public class BaseFragmentActivity extends FragmentActivity implements View.OnClickListener,
-        AdapterView.OnItemClickListener, ICallBackFinish,ICallResponse,ConnectionCallbacks,
-        OnConnectionFailedListener, LocationListener  {
+        AdapterView.OnItemClickListener, ICallBackFinish, ICallResponse, ConnectionCallbacks,
+        OnConnectionFailedListener, LocationListener {
 
 
     Context context;
     private SimpleSideDrawer slide_me;
     LinearLayout layout_Left;
     ListView listview_left, listview_right;
-    ImageView left_button, right_button,img_user_pic, img_camera, img_lock, img_unlock, img_refresh;
+    ImageView left_button, right_button, img_user_pic, img_camera, img_lock, img_unlock, img_refresh;
     ImageButton image_back, img_srch;
     SearchView edit_search;
     RelativeLayout layout_noti;
     LinearLayout layout_gst_ord_detail;
     ListView lv_gstorders;
-    TextView  tv_ord_status, tv_ord_no , tv_table_no, tv_odr_date, tv_ttl_amt ;
+    TextView tv_ord_status, tv_ord_no, tv_table_no, tv_odr_date, tv_ttl_amt;
 
     CustomTextview txtGuestNotify, tv_no_order;
     public OnBackPressInterface currentBackListener;
@@ -167,7 +167,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     public boolean UserPermission(String menu_id) {
 
         String userID = PrefHelper.getStoredString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.TEMP_USER_ID);
-        userID = userID.isEmpty() ? UserInfo.USER_ID : userID ;
+        userID = userID.isEmpty() ? UserInfo.USER_ID : userID;
         PrefHelper.storeString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.TEMP_USER_ID, "");
 
         SQLiteDatabase mdb = POSDatabase.getInstanceLogin(context).getWritableDatabase();
@@ -267,16 +267,16 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         currentBackListener = orderSplitFragment;
     }
 
-    public void showHome(){
+    public void showHome() {
 
-        if (NetworkUtil.getConnectivityStatus(this) != 0 && errorMsg.isEmpty()){
+        if (NetworkUtil.getConnectivityStatus(this) != 0 && errorMsg.isEmpty()) {
 
             FragmentManager fmOther = getSupportFragmentManager();
             FragmentTransaction transaction = fmOther.beginTransaction();
             takeOrderFragment = new TakeOrderFragment();
             transaction.replace(R.id.container, takeOrderFragment);
             transaction.commit();
-            currentBackListener = takeOrderFragment ;
+            currentBackListener = takeOrderFragment;
             layout_retry.setVisibility(View.GONE);
 
             showPendingNotificationOnStart();   // Set unread notifications so far.
@@ -286,9 +286,9 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     }
 
 
-    private void onLeftListItemClick(int position){
+    private void onLeftListItemClick(int position) {
 
-        if (position == 0){
+        if (position == 0) {
             takeOrderFragment.showHome();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().
@@ -297,12 +297,10 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                     .commit();
             currentBackListener = takeOrderFragment;
             slide_me.closeLeftSide();
-        }
-
-        else if (position == 12)
+        } else if (position == 12)
             UserInfo.showLogoutDialog(context);
 
-        else{
+        else {
 
             if (stewardOrderFragment == null) {
                 FragmentManager fmOther = getSupportFragmentManager();
@@ -310,11 +308,11 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                 stewardOrderFragment = StewardOrderFragment.newInstance(position);
                 transaction.replace(R.id.container, stewardOrderFragment);
                 transaction.commit();
-            }else {
+            } else {
                 stewardOrderFragment.onLeftListItemClick(position);
             }
 
-            currentBackListener = stewardOrderFragment ;
+            currentBackListener = stewardOrderFragment;
             layout_retry.setVisibility(View.GONE);
             slide_me.closeLeftSide();
         }
@@ -359,7 +357,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                         listDataHeader.get(groupPosition) + " Expanded",
                         Toast.LENGTH_SHORT).show();*/
 
-                if (groupPosition == 1 || groupPosition == 2){
+                if (groupPosition == 1 || groupPosition == 2) {
 
                     if (lastExpandedPosition != -1 && groupPosition != lastExpandedPosition)
                         expListView.collapseGroup(lastExpandedPosition);
@@ -388,6 +386,14 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
+
+//for cancel and extendable list
+
+                img_srch.setVisibility(groupPosition == 1 || childPosition == 0 || childPosition == 1 || childPosition == 2 ? View.GONE : View.VISIBLE);
+                img_srch.setVisibility(groupPosition == 2 || childPosition == 0 || childPosition == 1 || childPosition == 2 || childPosition == 3 ? View.GONE : View.VISIBLE);
+
+//                layout_noti.setVisibility(position == 0 || position == 1 || position == 2  ? View.GONE : View.VISIBLE);
+
                 // TODO Auto-generated method stub
                 /*Toast.makeText(
                         getApplicationContext(),
@@ -411,7 +417,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         listDataChild = new HashMap<>();
 
         // Adding child data
-        String []listHeader = getResources().getStringArray(R.array.leftList_steward);
+        String[] listHeader = getResources().getStringArray(R.array.leftList_steward);
         listDataHeader = (Arrays.asList(listHeader));
 
         // Adding child data
@@ -423,7 +429,8 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
         List<String> bill = new ArrayList<>();
         bill.add("Cancel");
-        bill.add("Modify");;
+        bill.add("Modify");
+        ;
         bill.add("Split");
         bill.add("Transfer");
 
@@ -454,7 +461,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
     }
 
-    public void showUnreadNotifications(){
+    public void showUnreadNotifications() {
 
         txtGuestNotify.setText("0");
         txtGuestNotify.setVisibility(View.GONE);
@@ -473,7 +480,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         }, 200);*/
     }
 
-    public void setupSimpleSlidingPane(){
+    public void setupSimpleSlidingPane() {
 
         slide_me = new SimpleSideDrawer(this);
         slide_me.setAnimationDurationLeft(100);
@@ -483,26 +490,26 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         layout_Left = (LinearLayout) findViewById(R.id.ll_left_layout);
         listview_left = (ListView) findViewById(R.id.listView_left);
 
-        if (PrefHelper.getStoredBoolean(context,PrefHelper.PREF_FILE_NAME,PrefHelper.STEWARD_LOGIN)){
+        if (PrefHelper.getStoredBoolean(context, PrefHelper.PREF_FILE_NAME, PrefHelper.STEWARD_LOGIN)) {
             //new LeftListOperator(context, listview_left);
             /*listview_left.setAdapter(getLeftListAdapterSteward());
             listview_left.setOnItemClickListener(this);*/
             initExpandableListData();
-        }else{
+        } else {
             listview_left.setAdapter(getLeftListAdapter());
             listview_left.setOnItemClickListener(onListItemClickListener());
-           
+
         }
 
         listview_right = (ListView) findViewById(R.id.lv_order_history);
         setRightListItem();
 
-        UserInfo.guest_name = PrefHelper.getStoredString(getApplicationContext(),PrefHelper.PREF_FILE_NAME,PrefHelper.GUEST_NAME);
-        UserInfo.guest_id = PrefHelper.getStoredString(getApplicationContext(),PrefHelper.PREF_FILE_NAME,PrefHelper.GUEST_ID);
+        UserInfo.guest_name = PrefHelper.getStoredString(getApplicationContext(), PrefHelper.PREF_FILE_NAME, PrefHelper.GUEST_NAME);
+        UserInfo.guest_id = PrefHelper.getStoredString(getApplicationContext(), PrefHelper.PREF_FILE_NAME, PrefHelper.GUEST_ID);
 
         TextView tvGuest = (TextView) findViewById(R.id.tv_guest);
         tvGuest.setOnClickListener(this);
-        if (! UserInfo.guest_name.isEmpty())
+        if (!UserInfo.guest_name.isEmpty())
             tvGuest.setText(UserInfo.guest_name);
 
 
@@ -516,17 +523,17 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         img_unlock =  (ImageView) findViewById(R.id.img_unlock);
         img_unlock.setOnClickListener(this);*/
 
-        layout_noti =  (RelativeLayout) findViewById(R.id.layout_noti);
+        layout_noti = (RelativeLayout) findViewById(R.id.layout_noti);
         layout_noti.setOnClickListener(this);
         txtGuestNotify = (CustomTextview) findViewById(R.id.tv_guest_notify);
 
     }
 
 
-    public void setupActionBar(){
+    public void setupActionBar() {
 
         slidingUpPanelLayout = (SlidingUpPanelLayout) findViewById(R.id.slidingUpPanelLayout);
-        image_back = (ImageButton)findViewById(R.id.image_back);
+        image_back = (ImageButton) findViewById(R.id.image_back);
         image_back.setOnClickListener(this);
 
         img_srch = (ImageButton) findViewById(R.id.img_srch);
@@ -542,13 +549,13 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         magImage.setLayoutParams(new LinearLayout.LayoutParams(0, 0));
         /* *****************************************************************************/
 
-        SearchItemListener searchListener = new SearchItemListener(context,takeOrderFragment,edit_search,img_srch);
+        SearchItemListener searchListener = new SearchItemListener(context, takeOrderFragment, edit_search, img_srch);
         edit_search.setOnCloseListener(searchListener);
         edit_search.setOnQueryTextListener(searchListener);
         edit_search.clearFocus();
     }
 
-    public void setRightListItem(){
+    public void setRightListItem() {
 
         tv_no_order = (CustomTextview) findViewById(R.id.tv_no_order);
         ImageButton img_back = (ImageButton) findViewById(R.id.image_back_right);
@@ -560,7 +567,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
             }
         });
 
-        layout_gst_ord_detail = (LinearLayout)findViewById(R.id.layout_gst_ord_detail);
+        layout_gst_ord_detail = (LinearLayout) findViewById(R.id.layout_gst_ord_detail);
         lv_gstorders = (ListView) findViewById(R.id.lv_gstorders);
         tv_ord_status = (TextView) findViewById(R.id.tv_odr_staus);
         tv_ord_no = (TextView) findViewById(R.id.tv_ord_no);
@@ -577,8 +584,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     }
 
 
-
-    public GridTitleAdapter getLeftListAdapter(){
+    public GridTitleAdapter getLeftListAdapter() {
 
         String[] stringOfArrayHeader = getResources().getStringArray(R.array.leftList_guest);
         ArrayList<TitleHeader> arrayListHeaders = new ArrayList<>(stringOfArrayHeader.length);
@@ -586,11 +592,11 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         for (String title : stringOfArrayHeader)
             arrayListHeaders.add(new TitleHeader(false, title));
 
-        return  new GridTitleAdapter(this, R.layout.group_row_layout, arrayListHeaders);
+        return new GridTitleAdapter(this, R.layout.group_row_layout, arrayListHeaders);
     }
 
 
-    public GridTitleAdapterSteward getLeftListAdapterSteward(){
+    public GridTitleAdapterSteward getLeftListAdapterSteward() {
 
         String[] stringOfArrayHeader = context.getResources().getStringArray(R.array.leftList_steward);
         ArrayList<TitleHeader> arrayListHeaders = new ArrayList<>(stringOfArrayHeader.length);
@@ -598,10 +604,10 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         for (String title : stringOfArrayHeader)
             arrayListHeaders.add(new TitleHeader(false, title));
 
-        return  new GridTitleAdapterSteward(context, R.layout.group_row_layout, arrayListHeaders);
+        return new GridTitleAdapterSteward(context, R.layout.group_row_layout, arrayListHeaders);
     }
 
-    public GuestOrdersAdapter getRightListAdapter(){
+    public GuestOrdersAdapter getRightListAdapter() {
 
         String prvsOdr = "";
         ArrayList<GuestOrders> ordersList = new ArrayList<>();
@@ -610,9 +616,9 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         mdb.beginTransaction();
         try {
 
-            Cursor cursor = mdb.rawQuery("Select * from " + DBConstants.KEY_GUEST_ORDERS_TABLE + " order by order_no desc" , null);
+            Cursor cursor = mdb.rawQuery("Select * from " + DBConstants.KEY_GUEST_ORDERS_TABLE + " order by order_no desc", null);
 
-            if (cursor.moveToFirst()){
+            if (cursor.moveToFirst()) {
 
                 do {
                     GuestOrders guestOrders = new GuestOrders();
@@ -625,18 +631,18 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                     guestOrders.setOrder_status(cursor.getString(9));
                     guestOrders.setOrder_date(cursor.getString(10));
 
-                    if (! prvsOdr.equals(cursor.getString(1)))
+                    if (!prvsOdr.equals(cursor.getString(1)))
                         ordersList.add(guestOrders);
                     prvsOdr = cursor.getString(1);
 
 
-                }while (cursor.moveToNext());
+                } while (cursor.moveToNext());
 
                 cursor.close();
             }
             cursor.close();
             mdb.setTransactionSuccessful();
-            return  new GuestOrdersAdapter(context,R.layout.guest_orders_list_layout, ordersList);
+            return new GuestOrdersAdapter(context, R.layout.guest_orders_list_layout, ordersList);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -647,7 +653,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         return null;
     }
 
-    public GuestOrderItemsAdapter getRightListItemsAdapter(String odrNo){
+    public GuestOrderItemsAdapter getRightListItemsAdapter(String odrNo) {
 
         ArrayList<GuestOrders> ordersList = new ArrayList<>();
 
@@ -656,15 +662,15 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         try {
 
             Cursor cursor = mdb.rawQuery("Select * from " + DBConstants.KEY_GUEST_ORDERS_TABLE +
-                    " where " + DBConstants.KEY_ORDER_NUMBER + " = '"+odrNo+"'" , null);
+                    " where " + DBConstants.KEY_ORDER_NUMBER + " = '" + odrNo + "'", null);
 
-            if (cursor.moveToFirst()){
+            if (cursor.moveToFirst()) {
 
-                tv_ord_no.setText(getString(R.string.odr_string,cursor.getString(1)));
-                tv_table_no.setText(getString(R.string.tbl_string,cursor.getString(2)));
+                tv_ord_no.setText(getString(R.string.odr_string, cursor.getString(1)));
+                tv_table_no.setText(getString(R.string.tbl_string, cursor.getString(2)));
 
                 if (cursor.getString(10).length() >= 10)
-                    tv_odr_date.setText(getString(R.string.date_string,cursor.getString(10).substring(0, 10)));
+                    tv_odr_date.setText(getString(R.string.date_string, cursor.getString(10).substring(0, 10)));
 
                 tv_ttl_amt.setText(cursor.getString(8));
                 String odrStatus = cursor.getString(9);
@@ -675,17 +681,17 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                     tv_ord_status.setText(getString(R.string.sts_string, "REJECTED"));
                     tv_ord_status.setBackgroundColor(0xFFFF3000);
 
-                }else if (odrStatus.equals(NotificationFragment.ORDER_ACCEPTED) ||
+                } else if (odrStatus.equals(NotificationFragment.ORDER_ACCEPTED) ||
                         odrStatus.equals(NotificationFragment.ORDER_PREPARATION_STARTED) ||
                         odrStatus.equals(NotificationFragment.ORDER_READY_TO_SERVE)) {
                     tv_ord_status.setText(getString(R.string.sts_string, "APPROVED"));
                     tv_ord_status.setBackgroundColor(0xFF00D938);
 
-                }else if (odrStatus.equals(NotificationFragment.ORDER_UNDER_PROCESS)){
+                } else if (odrStatus.equals(NotificationFragment.ORDER_UNDER_PROCESS)) {
                     tv_ord_status.setText(getString(R.string.sts_string, "WAITING FOR APPROVAL"));
                     tv_ord_status.setBackgroundColor(0xFFFFB400);
 
-                }else  if (odrStatus.equals(NotificationFragment.ORDER_DELIVERED)){
+                } else if (odrStatus.equals(NotificationFragment.ORDER_DELIVERED)) {
                     tv_ord_status.setText(getString(R.string.sts_string, "DELIVERED"));
                     tv_ord_status.setBackgroundColor(0xFF00FFFF);
                 }
@@ -703,13 +709,13 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
                     ordersList.add(guestOrders);
 
-                }while (cursor.moveToNext());
+                } while (cursor.moveToNext());
 
                 cursor.close();
             }
             cursor.close();
             mdb.setTransactionSuccessful();
-            return  new GuestOrderItemsAdapter(context,R.layout.items_row_layout, ordersList);
+            return new GuestOrderItemsAdapter(context, R.layout.items_row_layout, ordersList);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -720,7 +726,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         return null;
     }
 
-    public AdapterView.OnItemClickListener onListItemClickListener(){
+    public AdapterView.OnItemClickListener onListItemClickListener() {
 
         return new AdapterView.OnItemClickListener() {
             @Override
@@ -729,8 +735,9 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 //for hide search view
                 img_srch.setVisibility(position == 3 || position == 5 || position == 8
                         || position == 9 || position == 10 ? View.GONE : View.VISIBLE);
+                layout_noti.setVisibility(position == 3 || position == 5 || position == 8 || position == 9 || position == 10 ? View.GONE : View.VISIBLE);
 
-                switch (position){
+                switch (position) {
 
                     case 0:
                         takeOrderFragment.showHome();
@@ -745,7 +752,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                                     takeOrderFragment.showHome();
                                     FragmentManager fragmentManager = getSupportFragmentManager();
                                     fragmentManager.beginTransaction().replace(R.id.container, takeOrderFragment).commit();
-                                    currentBackListener = takeOrderFragment ;
+                                    currentBackListener = takeOrderFragment;
                                     slide_me.closeLeftSide();
                                 }
                             }, 200);
@@ -790,7 +797,9 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                                     Uri.parse("geo:0,0?q=37.423156,-122.084917 (" + name + ")"));
                             startActivity(intent5);*/
 
-                        }catch (ActivityNotFoundException e){e.printStackTrace();}
+                        } catch (ActivityNotFoundException e) {
+                            e.printStackTrace();
+                        }
 
                         break;
 
@@ -842,8 +851,6 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                         break;
 
 
-
-
                     case 6:
                         Uri uri2 = Uri.parse("https://www.facebook.com/cheekymonkeypkl/");
                         Intent intent = new Intent(Intent.ACTION_VIEW, uri2);
@@ -891,7 +898,6 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                         break;
 
 
-
                     case 10:
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -920,17 +926,17 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        if (parent.getId() == R.id.lv_order_history){
+        if (parent.getId() == R.id.lv_order_history) {
             layout_gst_ord_detail.setVisibility(View.VISIBLE);
             GuestOrders guestOrders = (GuestOrders) listview_right.getItemAtPosition(position);
             GuestOrderItemsAdapter itemsAdapter = getRightListItemsAdapter(guestOrders.getOrderNo());
             lv_gstorders.setAdapter(itemsAdapter);
 
-        }else
+        } else
             onLeftListItemClick(position);
     }
 
-    public boolean collapseToolbar(){
+    public boolean collapseToolbar() {
 
        /* if (!searchView.isIconified()){
             searchView.onActionViewCollapsed();
@@ -944,7 +950,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.left_button:
                 slide_me.toggleLeftDrawer();
@@ -998,9 +1004,9 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
             case R.id.layout_noti:
 
-                if (PrefHelper.getStoredBoolean(context,PrefHelper.PREF_FILE_NAME,PrefHelper.STEWARD_LOGIN)){
+                if (PrefHelper.getStoredBoolean(context, PrefHelper.PREF_FILE_NAME, PrefHelper.STEWARD_LOGIN)) {
                     showNotificationFor(NotificationFragment.TYPE_UNDER_PROCESS);
-                }else{
+                } else {
                     showHomeItemList();
                     showUnreadNotifications();
                 }
@@ -1013,7 +1019,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         }
     }
 
-    public void myOrders(){
+    public void myOrders() {
         listview_right.setAdapter(getRightListAdapter());
         listview_right.setOnItemClickListener(this);
         slide_me.toggleRightDrawer();
@@ -1021,7 +1027,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     }
 
 
-    public void showHomeItemList(){
+    public void showHomeItemList() {
 
         slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
         slidingUpPanelLayout.clearFocus();
@@ -1065,13 +1071,13 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     /* ********************************** Google Location API ********************************* */
 
 
-    public void initLocationAPI(){
+    public void initLocationAPI() {
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 // The next two lines tell the new client that “this” current class will handle connection stuff
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
-                        //fourth line adds the LocationServices API endpoint from GooglePlayServices
+                //fourth line adds the LocationServices API endpoint from GooglePlayServices
                 .addApi(LocationServices.API)
                 .build();
 
@@ -1090,7 +1096,8 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         //Disconnect from API onPause()
         if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-            mGoogleApiClient.disconnect();}
+            mGoogleApiClient.disconnect();
+        }
     }
 
     @Override
@@ -1101,29 +1108,28 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
             mGoogleApiClient.connect();
     }
 
-    public void updateUserStatus(String status){
+    public void updateUserStatus(String status) {
 
-        if (! UserInfo.guest_id.isEmpty()){
+        if (!UserInfo.guest_id.isEmpty()) {
 
             UserInfo.appIsRunning = true;
             String parameter = UtilToCreateJSON.createGuestStatus(UserInfo.guest_id, status);   // status A means User is Active
             String serverIP = POSApplication.getSingleton().getmDataModel().getUserInfo().getServerIP();
-            ActivateUserIDTask activateUserIDTask = new ActivateUserIDTask(context,parameter,serverIP);
+            ActivateUserIDTask activateUserIDTask = new ActivateUserIDTask(context, parameter, serverIP);
             activateUserIDTask.execute();
-        }else
+        } else
             UserInfo.appIsRunning = false;
     }
 
 
     /**
      * If connected get lat and long
-     *
      */
     @Override
     public void onConnected(Bundle bundle) {
 
 
-        if ( Build.VERSION.SDK_INT >= 23 &&
+        if (Build.VERSION.SDK_INT >= 23 &&
                 ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) !=
                         PackageManager.PERMISSION_GRANTED &&
                 ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION) !=
@@ -1132,7 +1138,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
             ActivityCompat.requestPermissions((Activity) context, new String[]{com.entrada.cheekyMonkey.Manifest.permission.
                     ACCESS_FINE_LOCATION, com.entrada.cheekyMonkey.Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_ACCESS_LOCATION);
 
-        } else{
+        } else {
 
             Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
@@ -1144,7 +1150,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                 currentLatitude = location.getLatitude();
                 currentLongitude = location.getLongitude();
 
-                if (takeOrderFragment != null){
+                if (takeOrderFragment != null) {
                     takeOrderFragment.latitude = currentLatitude;
                     takeOrderFragment.longitude = currentLongitude;
                 }
@@ -1158,7 +1164,8 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
 
     @Override
-    public void onConnectionSuspended(int i) {}
+    public void onConnectionSuspended(int i) {
+    }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
@@ -1192,7 +1199,6 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     /**
      * If locationChanges change lat and long
      *
-     *
      * @param location
      */
     @Override
@@ -1200,7 +1206,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         currentLatitude = location.getLatitude();
         currentLongitude = location.getLongitude();
 
-        if (takeOrderFragment != null){
+        if (takeOrderFragment != null) {
             takeOrderFragment.latitude = currentLatitude;
             takeOrderFragment.longitude = currentLongitude;
         }
@@ -1227,21 +1233,19 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         else if (image_back.getVisibility() == View.VISIBLE)
             showHomeItemList();
 
-        else if (! slide_me.isClosed()) {
+        else if (!slide_me.isClosed()) {
 
-            LinearLayout layoutLeft = (LinearLayout)slide_me.getLeftBehindView().getParent();
+            LinearLayout layoutLeft = (LinearLayout) slide_me.getLeftBehindView().getParent();
             if (layoutLeft.getVisibility() == View.VISIBLE)
                 slide_me.closeLeftSide();
-            else{
+            else {
                 slide_me.closeRightSide();
                 edit_search.clearFocus();
             }
-        }
-
-        else if (!(currentBackListener instanceof TakeOrderFragment))
+        } else if (!(currentBackListener instanceof TakeOrderFragment))
             removeFragmentFromStack();
 
-        else if (! currentBackListener.onBackPress()){
+        else if (!currentBackListener.onBackPress()) {
             ExitDialog exitDialog = new ExitDialog(this, this);
             exitDialog.show();
         }
@@ -1271,7 +1275,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
         try {
 
-            if (statusScheduler != null && ! statusScheduler.isShutdown())
+            if (statusScheduler != null && !statusScheduler.isShutdown())
                 statusScheduler.shutdownNow();
 
             if (receiver != null) {
@@ -1279,7 +1283,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                 receiver = null;
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -1287,8 +1291,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     }
 
 
-
-    public void controlNetStatus(){
+    public void controlNetStatus() {
 
         IntentFilter filter = new IntentFilter();
         filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
@@ -1308,7 +1311,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
     }
 
-    public void showOutletDirection(){
+    public void showOutletDirection() {
 
         // To start from source location to destination location
 
@@ -1322,40 +1325,34 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         String uri1 = String.format(Locale.ENGLISH, "http://maps.google.com/maps?daddr=%f,%f (%s)", 12f, 2f, "Where the party is at");
         Intent intent1 = new Intent(Intent.ACTION_VIEW, Uri.parse(uri1));
         intent1.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-        try
-        {
+        try {
             startActivity(intent);
-        }
-        catch(ActivityNotFoundException ex)
-        {
-            try
-            {
+        } catch (ActivityNotFoundException ex) {
+            try {
                 Intent unrestrictedIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                 startActivity(unrestrictedIntent);
-            }
-            catch(ActivityNotFoundException innerEx)
-            {
+            } catch (ActivityNotFoundException innerEx) {
                 Toast.makeText(this, "Please install a maps application", Toast.LENGTH_LONG).show();
             }
         }
     }
 
 
-    public final int REQUEST_WRITE_EXTERNAL_STORAGE=1;
+    public final int REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     public final int REQUEST_ACCESS_LOCATION = 101;
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,@NonNull String permissions[], @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
 
-        switch (requestCode){
+        switch (requestCode) {
 
             case REQUEST_WRITE_EXTERNAL_STORAGE:
 
                 if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(context,"success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "success", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    Toast.makeText(context,"failure", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "failure", Toast.LENGTH_SHORT).show();
                     super.onRequestPermissionsResult(requestCode, permissions, grantResults);
                 }
                 break;
@@ -1363,10 +1360,10 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
             case REQUEST_ACCESS_LOCATION:
                 if (grantResults.length == 2 && grantResults[0] == PackageManager.PERMISSION_GRANTED
                         && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(context,"success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "success", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    Toast.makeText(context,"failure", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "failure", Toast.LENGTH_SHORT).show();
                     super.onRequestPermissionsResult(requestCode, permissions, grantResults);
                 }
                 break;
@@ -1374,7 +1371,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     }
 
 
-    public void logOut(boolean closeDrawer){
+    public void logOut(boolean closeDrawer) {
 
         if (closeDrawer)
             slide_me.toggleLeftDrawer();
@@ -1401,27 +1398,27 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                 PrefHelper.STEWARD_LOGIN, false);
 
 
-        Intent intent = new Intent(BaseFragmentActivity.this,IntroductionScreen.class);
+        Intent intent = new Intent(BaseFragmentActivity.this, IntroductionScreen.class);
         startActivity(intent);
         finish();
     }
 
-    public void refreshPendingOrders(int orders){
+    public void refreshPendingOrders(int orders) {
 
-        if (orders > 0){
+        if (orders > 0) {
             txtGuestNotify.setText(String.valueOf(orders));
             txtGuestNotify.setVisibility(View.VISIBLE);
 
-        }else {
+        } else {
             txtGuestNotify.setText(String.valueOf(orders));
             txtGuestNotify.setVisibility(View.GONE);
         }
     }
 
-    public void showPendingNotificationOnStart(){
+    public void showPendingNotificationOnStart() {
 
-        int orders = PrefHelper.getStoredInt(context,PrefHelper.PREF_FILE_NAME,"pendingOrders");
-        if (orders > 0){
+        int orders = PrefHelper.getStoredInt(context, PrefHelper.PREF_FILE_NAME, "pendingOrders");
+        if (orders > 0) {
             txtGuestNotify.setText(String.valueOf(orders));
             txtGuestNotify.setVisibility(View.VISIBLE);
         }
@@ -1430,7 +1427,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     public void sendNotification(String text) {
 
         setPendingNotification();
-        NotificationManager mNM = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        NotificationManager mNM = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         // In this sample, we'll use the same text for the ticker and the expanded notification
         //CharSequence text = getText(R.string.STATUS_STRING);
 
@@ -1454,8 +1451,8 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                     .setContentText(text)  // the contents of the entry
                     .setContentIntent(contentIntent)  // The intent to send when the entry is clicked
                     .setSound(soundURI)
-                            //.setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
-                            //.setSound(Uri.parse("uri://sadfasdfasdf.mp3"))
+                    //.setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+                    //.setSound(Uri.parse("uri://sadfasdfasdf.mp3"))
                     .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})
                     .setLights(Color.RED, 3000, 3000)
                     .build();
@@ -1464,7 +1461,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
             // We use a string id because it is a unique number.  We use it later to cancel.
             mNM.notify(R.string.remote_service_started, notification);
 
-        }else {
+        } else {
             Notification notification = new NotificationCompat.Builder(context)
                     .setSmallIcon(R.drawable.app_icon)  // the status icon
                     .setTicker(text)  // the status text
@@ -1473,8 +1470,8 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                     .setContentText(text)  // the contents of the entry
                     .setContentIntent(contentIntent)  // The intent to send when the entry is clicked
                     .setSound(soundURI)
-                            //.setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
-                            //.setSound(Uri.parse("uri://sadfasdfasdf.mp3"))
+                    //.setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+                    //.setSound(Uri.parse("uri://sadfasdfasdf.mp3"))
                     .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})
                     .setLights(Color.RED, 3000, 3000)
                     .build();
@@ -1512,7 +1509,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
     /* ************** Complete flow to Get Items Current Price **********************/
 
-    public void scheduleExecutors(){
+    public void scheduleExecutors() {
 
         statusScheduler = Executors.newSingleThreadScheduledExecutor();
         statusScheduler.scheduleWithFixedDelay(new Runnable() {
@@ -1530,7 +1527,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     }
 
 
-    public void refreshItemPrice(){
+    public void refreshItemPrice() {
 
         String parameter = UtilToCreateJSON.createToken();
         String serverIP = POSApplication.getSingleton().getmDataModel().getUserInfo().getServerIP();
@@ -1542,7 +1539,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     @Override
     public void getResponseFromServer(String response) {
 
-        layout_retry.setVisibility(response.equals("success1")? View.GONE : View.VISIBLE);
+        layout_retry.setVisibility(response.equals("success1") ? View.GONE : View.VISIBLE);
         errorMsg = response.equals("success1") ? "" : response;
     }
 

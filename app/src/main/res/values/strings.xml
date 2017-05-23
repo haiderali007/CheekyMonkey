@@ -116,6 +116,7 @@
     <string name="add_item">Add item</string>
     <string name="show_bill">Show Bill</string>
     <string name="accept_string">Accept</string>
+    <string name="accept_string1">Accept</string>
     <string name="reject_string">Reject</string>
     <string name="genrate_string">Generate Bill</string>
     <string name="genrate_bill">Gen. Bill</string>

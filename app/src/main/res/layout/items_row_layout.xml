@@ -15,9 +15,9 @@
         android:layout_weight="2"
         android:gravity="center_vertical"
         android:text="item"
-        android:minHeight="@dimen/userID_height"
+        android:minHeight="@dimen/userID_height1"
         android:minWidth="@dimen/userID_height"
-        android:textColor="@color/White"
+        android:textColor="@color/menu_item_color1"
         android:textSize="@dimen/large"
         app:fontName="Roboto_Thin" />
 
@@ -28,9 +28,9 @@
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:text="qty"
-        android:minHeight="@dimen/userID_height"
+        android:minHeight="@dimen/userID_height1"
         android:minWidth="@dimen/userID_height"
-        android:textColor="@color/White"
+        android:textColor="@color/menu_item_color1"
         android:textSize="@dimen/large"
         app:fontName="Roboto_Thin" />
 
@@ -42,9 +42,9 @@
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:text="price"
-        android:minHeight="@dimen/userID_height"
+        android:minHeight="@dimen/userID_height1"
         android:minWidth="@dimen/userID_height"
-        android:textColor="@color/White"
+        android:textColor="@color/menu_item_color1"
         android:textSize="@dimen/large"
         app:fontName="Roboto_Thin" />
 

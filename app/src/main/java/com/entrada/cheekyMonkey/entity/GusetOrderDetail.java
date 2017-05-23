@@ -10,4 +10,5 @@ public class GusetOrderDetail {
     public String ItemPrice;
     public String TotalAmt;
     public String Order_sts;
+    public String AddOn;
 }

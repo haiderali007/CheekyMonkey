@@ -728,10 +728,13 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
 
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 ContentValues cv = new ContentValues();
+                String itemName = jsonObject.getString("Item");
+                itemName = itemName.isEmpty() ? UserInfo.getMixerName(jsonObject.getString("Code")) : itemName;
+
                 cv.put(DBConstants.KEY_ORDER_NUMBER, jsonObject.getString("OrderNo"));
                 cv.put(DBConstants.KEY_TABLE_NUMBER,  jsonObject.getString("Table"));
                 cv.put(DBConstants.KEY_ITEM_CODE, jsonObject.getString("Code"));
-                cv.put(DBConstants.KEY_ITEM_NAME,  jsonObject.getString("Item"));
+                cv.put(DBConstants.KEY_ITEM_NAME,  itemName);
                 cv.put(DBConstants.KEY_ITEM_PRICE, jsonObject.getString("Rate"));
                 cv.put(DBConstants.KEY_ITEM_QTY,  jsonObject.getString("Qty"));
                 cv.put(DBConstants.KEY_ORDER_TAX, jsonObject.getString("Tax"));
