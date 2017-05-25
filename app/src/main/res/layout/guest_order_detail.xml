@@ -94,6 +94,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:drawableRight="@drawable/drawer_shadow"
+                android:drawableEnd="@drawable/drawer_shadow"
                 android:gravity="center"
                 android:text="@string/accept_string"
                 android:textColor="@color/Black"

@@ -29,10 +29,10 @@
         <ImageView
             android:layout_width="@dimen/room_num_height1"
             android:layout_height="@dimen/room_num_height1"
-            android:src="@drawable/cheeky_logo"
+            android:src="@drawable/cheeky_logo1"
             android:visibility="visible"
             android:layout_marginTop="20dp"
-            android:layout_gravity="left"/>
+            android:layout_gravity="center"/>
 
         <LinearLayout
             android:layout_width="match_parent"

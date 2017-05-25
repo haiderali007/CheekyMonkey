@@ -254,14 +254,15 @@ public class ItemsFragment extends Fragment implements
         builder.setView(view);
 
         final AlertDialog dialog = builder.create();
+
         dialog.setCancelable(false);
-/*        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                //do whatever you want the back key to do
-                dialog.dismiss();
-            }
-        });*/
+//        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+//            @Override
+//            public void onCancel(DialogInterface dialog) {
+//                //do whatever you want the back key to do
+//                dialog.dismiss();
+//            }
+//        });
 
         dialog.setOnKeyListener(new Dialog.OnKeyListener() {
 

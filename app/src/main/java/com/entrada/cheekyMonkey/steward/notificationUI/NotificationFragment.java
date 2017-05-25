@@ -23,6 +23,7 @@ import com.entrada.cheekyMonkey.appInterface.OnBackPressInterface;
 import com.entrada.cheekyMonkey.dynamic.BaseFragmentActivity;
 import com.entrada.cheekyMonkey.entity.GuestOrderItem;
 import com.entrada.cheekyMonkey.entity.GusetOrderDetail;
+import com.entrada.cheekyMonkey.entity.UserInfo;
 import com.entrada.cheekyMonkey.network.BaseNetwork;
 import com.entrada.cheekyMonkey.staticData.ResultMessage;
 import com.entrada.cheekyMonkey.task.GuestCommonTask;
@@ -130,11 +131,15 @@ public class NotificationFragment extends Fragment implements
             txtAcceptOrder.setVisibility(View.VISIBLE);
             txtRejectOrder.setVisibility(View.VISIBLE);
 
-        }else  if (orderStatus.equals(TYPE_ACCEPTED)){
-            txtAcceptOrder.setText(R.string.accept_string1);
-            txtAcceptOrder.setVisibility(View.VISIBLE);
+        }
+        //for order accept
+        else  if (orderStatus.equals(TYPE_ACCEPTED)){
             txtRejectOrder.setVisibility(View.GONE);
+            txtAcceptOrder.setVisibility(View.VISIBLE);
+            txtAcceptOrder.setText(R.string.accept_string);
 //            txtRejectOrder.setVisibility(employeeType.equals(EMPLOYEE_TYPE1)? View.VISIBLE : View.GONE);
+
+
 
         }else  if (orderStatus.equals(TYPE_REJECTED)){
             txtAcceptOrder.setVisibility(View.GONE);

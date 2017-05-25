@@ -53,6 +53,7 @@ public class UserInfo {
     public String PERMISSION = "";
     //public static String ServerIP = "192.168.43.93/tb";
     public static String ServerIP = "entradasoft.ga";
+//    public static String ServerIP = "192.168.2.102/tb";
     //public static String ServerIP = "iamrohit-001-site1.ftempurl.com";
 
     public String Theme_Background_Color = "#ff010101";
@@ -63,9 +64,9 @@ public class UserInfo {
     public String Theme_Navigation_Font_Color = "#FFFFFF";
     public String LANG = StaticConstants.LANG_BY_DEFAULT;
     public POSItem posItem = new POSItem();
-    public static String deviceInfo= "";
-    public static String order_status= "";
-    public static boolean lock  ;
+    public static String deviceInfo = "";
+    public static String order_status = "";
+    public static boolean lock;
     public static String PREV_NET_Status = "";
     public static boolean alertIsBeingShown = false;
     public static String error_message = "";
@@ -94,7 +95,7 @@ public class UserInfo {
         return date;
     }
 
-    public static String getCurrentDate(){
+    public static String getCurrentDate() {
 
         Calendar c = Calendar.getInstance();
         System.out.println("Current time =&gt; " + c.getTime());
@@ -104,14 +105,14 @@ public class UserInfo {
     }
 
 
-    public static String changeDateToServerFormat(String dateToFormat){
+    public static String changeDateToServerFormat(String dateToFormat) {
 
         try {
 
-            Date date = new SimpleDateFormat("dd/MM/yyyy",Locale.US).parse(dateToFormat);
-            return  new SimpleDateFormat("yyyy/MM/dd",Locale.US).format(date);
+            Date date = new SimpleDateFormat("dd/MM/yyyy", Locale.US).parse(dateToFormat);
+            return new SimpleDateFormat("yyyy/MM/dd", Locale.US).format(date);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -325,7 +326,7 @@ public class UserInfo {
     //  show dialog section
 
 
-    public static void showAccessDeniedDialog(Context context, String message){
+    public static void showAccessDeniedDialog(Context context, String message) {
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
 
@@ -344,11 +345,11 @@ public class UserInfo {
             }
         });
 
-        if (! ((Activity)context).isFinishing())
+        if (!((Activity) context).isFinishing())
             alertDialog.show();
     }
 
-    public static void showNetFailureDialog(Context context){
+    public static void showNetFailureDialog(Context context) {
 
         if (alertIsBeingShown)
             return;
@@ -393,11 +394,11 @@ public class UserInfo {
             }
         });
 
-        if (! ((Activity)context).isFinishing())
+        if (!((Activity) context).isFinishing())
             dialog.show();
     }
 
-    public static void showLogoutDialog(final Context context){
+    public static void showLogoutDialog(final Context context) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -421,14 +422,14 @@ public class UserInfo {
             public void onClick(View v) {
                 dialog.dismiss();
 
-                if (context instanceof BaseFragmentActivity){
-                    BaseFragmentActivity baseFragmentActivity = (BaseFragmentActivity)context;
+                if (context instanceof BaseFragmentActivity) {
+                    BaseFragmentActivity baseFragmentActivity = (BaseFragmentActivity) context;
                     baseFragmentActivity.logOut(true);
-                }else if (context instanceof AdminActivity){
+                } else if (context instanceof AdminActivity) {
                     AdminActivity adminActivity = (AdminActivity) context;
                     adminActivity.logOut(true);
-                }else if (context instanceof KitchenActivity){
-                    KitchenActivity kitchenActivity = (KitchenActivity)context;
+                } else if (context instanceof KitchenActivity) {
+                    KitchenActivity kitchenActivity = (KitchenActivity) context;
                     kitchenActivity.logOut(true);
                 }
 
@@ -459,11 +460,11 @@ public class UserInfo {
             }
         });
 
-        if (! ((Activity)context).isFinishing())
+        if (!((Activity) context).isFinishing())
             dialog.show();
     }
 
-    public static void showLoginDialog(final Context context){
+    public static void showLoginDialog(final Context context) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -473,7 +474,6 @@ public class UserInfo {
         TextView ctv_message = (TextView) view.findViewById(R.id.tv_msg);
         CustomTextview yes = (CustomTextview) view.findViewById(R.id.tv_yes);
         CustomTextview no = (CustomTextview) view.findViewById(R.id.tv_cancel);
-
         ctv_title.setText(context.getText(R.string.alert_string));
         ctv_message.setText(context.getString(R.string.sign_in_msg));
 
@@ -486,14 +486,14 @@ public class UserInfo {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                if (context instanceof BaseFragmentActivity){
-                    BaseFragmentActivity baseFragmentActivity = (BaseFragmentActivity)context;
+                if (context instanceof BaseFragmentActivity) {
+                    BaseFragmentActivity baseFragmentActivity = (BaseFragmentActivity) context;
                     baseFragmentActivity.logOut(true);
-                }else if (context instanceof AdminActivity){
+                } else if (context instanceof AdminActivity) {
                     AdminActivity adminActivity = (AdminActivity) context;
                     adminActivity.logOut(true);
-                }else if (context instanceof KitchenActivity){
-                    KitchenActivity kitchenActivity = (KitchenActivity)context;
+                } else if (context instanceof KitchenActivity) {
+                    KitchenActivity kitchenActivity = (KitchenActivity) context;
                     kitchenActivity.logOut(true);
                 }
             }
@@ -523,15 +523,15 @@ public class UserInfo {
             }
         });
 
-        if (! ((Activity)context).isFinishing())
+        if (!((Activity) context).isFinishing())
             dialog.show();
     }
 
-    public static String getMixerName(String mixerCode){
+    public static String getMixerName(String mixerCode) {
 
         String mixer = "";
 
-        switch (mixerCode){
+        switch (mixerCode) {
 
             case "A01":
                 mixer = "SODA";

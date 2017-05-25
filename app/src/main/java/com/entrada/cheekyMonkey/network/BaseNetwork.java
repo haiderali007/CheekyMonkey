@@ -161,7 +161,7 @@ public class BaseNetwork {
 
         try {
 
-            if (TextUtils.isEmpty(hostName)) {
+            if (  TextUtils.isEmpty(hostName)) {
                 urlString = new URL(defaultUrlMethod(serverIP) + keyword);
                 Logger.i(Logger.LOGGER_TAG,
                         Logger.LOGGER_OP + urlString.toString());

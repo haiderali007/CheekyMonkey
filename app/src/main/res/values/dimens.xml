@@ -93,7 +93,7 @@
     <dimen name="table_num_height">56sp</dimen>
     <dimen name="room_num_width">100sp</dimen>
     <dimen name="room_num_height">80sp</dimen>
-    <dimen name="room_num_height1">60sp</dimen>
+    <dimen name="room_num_height1">120sp</dimen>
 
     <!-- view Package -->
     <integer name="default_circle_indicator_orientation">0</integer>

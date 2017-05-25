@@ -388,9 +388,8 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                                         int groupPosition, int childPosition, long id) {
 
 //for cancel and extendable list
-
-                img_srch.setVisibility(groupPosition == 1 || childPosition == 0 || childPosition == 1 || childPosition == 2 ? View.GONE : View.VISIBLE);
-                img_srch.setVisibility(groupPosition == 2 || childPosition == 0 || childPosition == 1 || childPosition == 2 || childPosition == 3 ? View.GONE : View.VISIBLE);
+                img_srch.setVisibility(groupPosition == 1 && childPosition == 0 || childPosition == 1 || childPosition == 2 ? View.GONE : View.VISIBLE);
+                img_srch.setVisibility(groupPosition == 2 && childPosition == 0 || childPosition == 1 || childPosition == 2 || childPosition == 3 ? View.GONE : View.VISIBLE);
 
 //                layout_noti.setVisibility(position == 0 || position == 1 || position == 2  ? View.GONE : View.VISIBLE);
 
@@ -735,7 +734,8 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 //for hide search view
                 img_srch.setVisibility(position == 3 || position == 5 || position == 8
                         || position == 9 || position == 10 ? View.GONE : View.VISIBLE);
-                layout_noti.setVisibility(position == 3 || position == 5 || position == 8 || position == 9 || position == 10 ? View.GONE : View.VISIBLE);
+                layout_noti.setVisibility(position == 3 || position == 5 || position == 8
+                        || position == 9 || position == 10 ? View.GONE : View.VISIBLE);
 
                 switch (position) {
 
