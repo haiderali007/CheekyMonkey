@@ -43,7 +43,7 @@
 
                 <com.entrada.cheekyMonkey.ui.CustomTextview
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:drawableRight="@drawable/drawer_shadow"
@@ -53,7 +53,7 @@
 
                 <com.entrada.cheekyMonkey.ui.CustomTextview
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:drawableRight="@drawable/drawer_shadow"
@@ -64,7 +64,7 @@
 
                 <com.entrada.cheekyMonkey.ui.CustomTextview
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:drawableRight="@drawable/drawer_shadow"
@@ -75,7 +75,7 @@
 
                 <com.entrada.cheekyMonkey.ui.CustomTextview
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Qty"
@@ -116,8 +116,9 @@
 
                 <com.entrada.cheekyMonkey.ui.CustomTextview
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textColor="@color/Black"
+                    android:gravity="center"
                     android:paddingStart="5sp"
                     android:paddingEnd="5sp"
                     android:textSize="@dimen/small"
@@ -136,8 +137,9 @@
 
                 <com.entrada.cheekyMonkey.ui.CustomTextview
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textColor="@color/Black"
+                    android:gravity="center"
                     android:paddingStart="5sp"
                     android:paddingEnd="5sp"
                     android:textSize="@dimen/small"
@@ -155,9 +157,10 @@
 
                 <com.entrada.cheekyMonkey.ui.CustomTextview
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textColor="@color/Black"
                     android:paddingStart="5sp"
+                    android:gravity="center"
                     android:paddingEnd="5sp"
                     android:textSize="@dimen/small"
                     android:text="@string/status_string"/>

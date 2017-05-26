@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.entrada.cheekyMonkey.R;
 import com.entrada.cheekyMonkey.appInterface.IAsyncTaskRunner;
@@ -45,7 +46,7 @@ public class KitchenBarFragment extends Fragment implements
     ProgressBarCircularIndeterminate pbDetail;
     LinearLayout llNotifyBottom;
     CustomTextview txtTableNo, txtOrderNumber, txtPreparingOrder, txtReadyOrder,
-            tv_guest_name, tv_order_amt,tv_order_sts;
+            tv_guest_name, tv_order_amt, tv_order_sts;
     String selectedTable = "";
     private Context context;
     LinearLayout layout_flipMode;
@@ -64,6 +65,7 @@ public class KitchenBarFragment extends Fragment implements
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     public void onAttach(Context activity) {
         super.onAttach(activity);
@@ -83,7 +85,7 @@ public class KitchenBarFragment extends Fragment implements
 
         layout_flipMode = (LinearLayout) view.findViewById(R.id.ll_flip_mode);
         upper_layout = (FrameLayout) view.findViewById(R.id.nfUpperBaseFrame);
-        lower_layout= (RelativeLayout) view.findViewById(R.id.nfDetailFrame);
+        lower_layout = (RelativeLayout) view.findViewById(R.id.nfDetailFrame);
         flipIfPortrait();
 
         txtPreparingOrder = (CustomTextview) view.findViewById(R.id.txtRejectOrder);
@@ -102,7 +104,7 @@ public class KitchenBarFragment extends Fragment implements
                 .findViewById(R.id.tv_guest_name);
         tv_order_amt = (CustomTextview) view
                 .findViewById(R.id.tv_order_amt);
-        tv_order_sts  = (CustomTextview) view
+        tv_order_sts = (CustomTextview) view
                 .findViewById(R.id.tv_order_sts);
 
         listViewGuestOrdr = (ListView) view
@@ -126,9 +128,8 @@ public class KitchenBarFragment extends Fragment implements
         FetchGuestOrder();
     }
 
-    
-    
-    public void flipIfPortrait(){
+
+    public void flipIfPortrait() {
 
         int orientation = getResources().getConfiguration().orientation;
 
@@ -192,7 +193,6 @@ public class KitchenBarFragment extends Fragment implements
     }
 
 
-    
     private OnItemClickListener onItemClickListener() {
         return new OnItemClickListener() {
 
@@ -230,7 +230,7 @@ public class KitchenBarFragment extends Fragment implements
                     context, this, BaseNetwork.KEY_ECABS_DispalyGuestOrder, paramter, pb);
             AsyncTaskTools.execute(commomTask);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -243,7 +243,7 @@ public class KitchenBarFragment extends Fragment implements
         detailAdp.notifyDataSetChanged();
         detailAdp.setItem(item);
 
-        txtTableNo.setText(getString(R.string.selected_table_string, selectedTable=  item.TABLE));
+        txtTableNo.setText(getString(R.string.selected_table_string, selectedTable = item.TABLE));
         txtTableNo.setTag(item.TABLE);
 
         txtOrderNumber.setText(getString(R.string.selected_odr_string, item.ORDER_NUM));
@@ -279,7 +279,7 @@ public class KitchenBarFragment extends Fragment implements
                     .equalsIgnoreCase(BaseNetwork.KEY_ECABS_PushOrderGuest)) {
 
                 FetchGuestOrder();
-            }else if (message.TYPE
+            } else if (message.TYPE
                     .equalsIgnoreCase(BaseNetwork.KEY_ECABS_PushOrderGuestStatus)) {
 
                 FetchGuestOrder();
@@ -289,7 +289,7 @@ public class KitchenBarFragment extends Fragment implements
             }
 
             if (context instanceof BaseFragmentActivity)
-            ((BaseFragmentActivity)context).refreshPendingOrders(adapter.getCount());
+                ((BaseFragmentActivity) context).refreshPendingOrders(adapter.getCount());
         }
 
     }
@@ -303,25 +303,27 @@ public class KitchenBarFragment extends Fragment implements
                 adapter.addDataSetItem((GuestOrderItem) progress);
 
             } else if (progress instanceof GusetOrderDetail) {
-                GusetOrderDetail  orderDetail = (GusetOrderDetail) progress;
+                GusetOrderDetail orderDetail = (GusetOrderDetail) progress;
                 detailAdp.addDataSetItem(orderDetail);
 
                 float amt = Float.parseFloat(orderDetail.TotalAmt);
-                tv_order_amt.setText(String.format(Locale.US, "%.2f",amt));
+                tv_order_amt.setText(String.format(Locale.US, "%.2f", amt));
                 tv_order_amt.setTag(String.valueOf(amt));
 
                 tv_order_sts.setText(getStatus(orderDetail.Order_sts));
                 tv_order_sts.setTag(getStatus(orderDetail.Order_sts));
 
                 if (!orderDetail.Order_sts.equals("B"))
-                    txtPreparingOrder.setVisibility(View.GONE);
-                if (orderDetail.Order_sts.equals("R")){
-                    txtReadyOrder.setText(R.string.ready_string);
+                    txtPreparingOrder.setVisibility(View.VISIBLE);
+                if (orderDetail.Order_sts.equals("R")) {
+                    txtReadyOrder.setText(R.string.serve_string);
                     txtReadyOrder.setEnabled(false);
                 }
             }
 
-        }catch (Exception e){e.printStackTrace();}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -340,6 +342,7 @@ public class KitchenBarFragment extends Fragment implements
 
         switch (id.getId()) {
             case R.id.txtRejectOrder:
+
                 onStartPreparingMethod();
                 break;
             case R.id.txtAcceptOrder:
@@ -355,8 +358,12 @@ public class KitchenBarFragment extends Fragment implements
     @SuppressWarnings("unchecked")
     public void onStartPreparingMethod() {
 
-        if (txtOrderNumber.getTag() != null){
+        if (txtOrderNumber.getTag() == null) {
+            Toast.makeText(context, "Select an order", Toast.LENGTH_SHORT).show();
+        }
 
+//        if (txtOrderNumber.getTag() != null){
+        else {
             String parameter = UtilToCreateJSON.onReject(context,
                     txtOrderNumber.getTag().toString(), selectedTable,
                     NotificationFragment.ORDER_PREPARATION_STARTED);
@@ -371,44 +378,48 @@ public class KitchenBarFragment extends Fragment implements
 
     @SuppressWarnings("unchecked")
     public void onReadyToServeMethod() {
+        if (txtOrderNumber.getTag() == null) {
+            Toast.makeText(context, "Select an order", Toast.LENGTH_SHORT).show();
+        } else {
+            String parameter = UtilToCreateJSON.onReject(context,
+                    txtOrderNumber.getTag().toString(), selectedTable,
+                    NotificationFragment.ORDER_READY_TO_SERVE);
+            GuestCommonTask<String, ResultMessage> commonTask = new GuestCommonTask<String, ResultMessage>(
+                    context, KitchenBarFragment.this,
+                    BaseNetwork.KEY_ECABS_PushOrderGuestStatus, parameter, pbDetail);
+            AsyncTaskTools.execute(commonTask);
 
-        String parameter = UtilToCreateJSON.onReject(context,
-                txtOrderNumber.getTag().toString(), selectedTable,
-                NotificationFragment.ORDER_READY_TO_SERVE);
-        GuestCommonTask<String, ResultMessage> commonTask = new GuestCommonTask<String, ResultMessage>(
-                context, KitchenBarFragment.this,
-                BaseNetwork.KEY_ECABS_PushOrderGuestStatus, parameter, pbDetail);
-        AsyncTaskTools.execute(commonTask);
+            clearData();
+        }
 
-        clearData();
     }
 
-    public String getStatus(String status){
+    public String getStatus(String status) {
 
-        switch (status){
+        switch (status) {
 
-            case "A" :
+            case "A":
                 status = "waiting for approval";
                 break;
-            case "B" :
+            case "B":
                 status = "accepted";
                 break;
-            case "P" :
+            case "P":
                 status = "under preparation";
                 break;
-            case "R" :
+            case "R":
                 status = "ready to serve";
                 break;
-            case "C" :
+            case "C":
                 status = "order cancelled (By Guest)";
                 break;
-            case "D" :
+            case "D":
                 status = "order cancelled (By Waiter)";
                 break;
-            case "E" :
+            case "E":
                 status = "order cancelled (By Admin)";
                 break;
-            case "F" :
+            case "F":
                 status = "delivered";
                 break;
         }
@@ -416,7 +427,7 @@ public class KitchenBarFragment extends Fragment implements
         return status;
     }
 
-    public void clearData(){
+    public void clearData() {
 
         txtTableNo.setText(R.string.table_string);
         txtOrderNumber.setText(R.string.select_order_string);

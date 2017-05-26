@@ -88,6 +88,8 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
     String guest_name = "", guest_id = "",  email = "", birthday = "", gender = "M";
     ProgressBar progress_ggl, progress_fb;
 
+
+
     GoogleApiClient mGoogleApiClient;
     private static final int RC_SIGN_IN = 9001;
     OnBackPressInterface currentBackListener;
@@ -111,6 +113,8 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
 
         frameLayout = (FrameLayout) view.findViewById(R.id.container);
         layout_main = (LinearLayout) view.findViewById(R.id.layout_main);
+
+
         customSignIn(view);
 
         /*LinearLayout layoutSignIn = (LinearLayout)view.findViewById(R.id.layout_signin);

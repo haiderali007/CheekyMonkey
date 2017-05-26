@@ -3,6 +3,7 @@ package com.entrada.cheekyMonkey.dynamic;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,6 +82,7 @@ public class GuestOrdersAdapter extends ArrayAdapter<GuestOrders> {
             viewHolder.tv_amount = (CustomTextview) convertView.findViewById(R.id.tv_amt);
             viewHolder.tv_orderStatus = (CustomTextview) convertView.findViewById(R.id.tv_orderStatus);
             viewHolder.tv_tbl = (CustomTextview) convertView.findViewById(R.id.tv_order_tbl);
+           // viewHolder.tv_date = (CustomTextview) convertView.findViewById(R.id.textView6);
 
             convertView.setTag(viewHolder);
 
@@ -91,10 +93,11 @@ public class GuestOrdersAdapter extends ArrayAdapter<GuestOrders> {
 
         viewHolder.tv_order_no.setText(orders.getOrderNo());
         viewHolder.tv_items.setText(orders.getItem() + "....");
-
+        Log.i ("******************//","8888888888888888888888 "+orders.getOrder_date());
         String amount = context.getResources().getString(R.string.rupees, "₹", orders.getAmount());
         viewHolder.tv_amount.setText(amount);
         viewHolder.tv_tbl.setText(orders.getTableNo());
+//        viewHolder.tv_date.setText(orders.getOrder_date());
         if (Build.VERSION.SDK_INT >= 16) {
             viewHolder.img_odrstatus.setBackground(null);
         }
@@ -126,7 +129,7 @@ public class GuestOrdersAdapter extends ArrayAdapter<GuestOrders> {
     public class ItemsViewHolder {
 
         public LinearLayout layoutStatus;
-        public CustomTextview tv_order_no, tv_items, tv_amount, tv_orderStatus, tv_tbl;
+        public CustomTextview tv_order_no, tv_items, tv_amount, tv_orderStatus, tv_tbl,tv_date;
         public ImageView img_odrstatus;
     }
 

@@ -15,7 +15,7 @@
     <LinearLayout
         android:id="@+id/llRowSelector"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/guesthder_selector"
         android:orientation="horizontal"
         android:paddingTop="@dimen/padding_medium"

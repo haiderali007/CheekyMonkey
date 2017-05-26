@@ -76,7 +76,7 @@
 
                 <com.entrada.cheekyMonkey.ui.CustomTextview
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Qty"
@@ -85,11 +85,11 @@
             </LinearLayout>
 
             <View
+                android:id="@+id/linearLayout14"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/Gray"
                 android:layout_below="@+id/linearLayout13"
-                android:id="@+id/linearLayout14"/>
+                android:background="@color/Gray" />
 
             <ListView
                 android:id="@+id/listViewGuestOrdr"
@@ -116,9 +116,10 @@
 
                 <com.entrada.cheekyMonkey.ui.CustomTextview
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:paddingEnd="5sp"
                     android:paddingStart="5sp"
+                    android:gravity="center"
                     android:text="@string/guest_new"
                     android:textColor="@color/Black"
                     android:textSize="12sp" />
@@ -136,9 +137,10 @@
 
                 <com.entrada.cheekyMonkey.ui.CustomTextview
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:paddingEnd="5sp"
                     android:paddingStart="5sp"
+                    android:gravity="center"
                     android:text="@string/ordr_amt"
                     android:textColor="@color/Black"
                     android:textSize="12sp" />
@@ -155,9 +157,10 @@
 
                 <com.entrada.cheekyMonkey.ui.CustomTextview
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:paddingEnd="5sp"
                     android:paddingStart="5sp"
+                    android:gravity="center"
                     android:text="@string/status_string"
                     android:textColor="@color/Black"
                     android:textSize="@dimen/small" />
