@@ -389,6 +389,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonParam.put(JSON_TAG_GOP_QTY, jarray_StrQty);
             jsonParam.put(JSON_TAG_GOP_PRICE, jarray_price);
             jsonParam.put(JSON_TAG_GOP_REMARK, jarray_ItemRemark);
+            jsonParam.put(JSON_TAG_GOP_ADDON, jarray_strAddon);
             jsonParam.put(JSON_TAG_GOP_TOEKN, token);
             jsonParam.put(JSON_TAG_GOP_COVER, cover);
             jsonParam.put(JSON_TAG_GOP_ORDER_REMARK, orderRemark);
@@ -1619,7 +1620,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
                     jarray_code.put(list_obj.ItemCode);
                     jarray_StrQty.put(list_obj.ItemQty);
                     jarray_ItemRemark.put("");
-                    jarray_strAddon.put("");
+                    jarray_strAddon.put(list_obj.AddOn);
                     jarray_strHappy.put("");
                     jarry_disc.put("");
                     jarray_cover.put("");
@@ -1675,6 +1676,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonParam.put(JSON_TAG_GST_ITEMCODE, jarray_code);
             jsonParam.put(JSON_TAG_GST_QTY, jarray_StrQty);
             jsonParam.put(JSON_TAG_GST_ITEM_REMARK, jarray_ItemRemark);
+            jsonParam.put(JSON_TAG_GOP_ADDON, jarray_strAddon);
             jsonParam.put(JSON_TAG_GST_TOKEN, token);
             jsonParam.put(JSON_TAG_GST_COVER, "");
             jsonParam.put(JSON_TAG_GST_ODREM, "");

@@ -507,7 +507,11 @@ public class BillGenerateFragment extends Fragment implements OnBackPressInterfa
                 new OrderDetailsFetchTask(context, adapterOrderTable, parameter, serverIP,
                         progressListItem, textViewTotalQuantity, textViewTotalPrice, textViewGuestName).execute();
             }
-        }
+        }/*else {
+
+            if (posType.equalsIgnoreCase(StaticConstants.KEY_TAG_POS_TYPE_R))
+                getTables();
+        }*/
     }
 
     @Override

@@ -399,13 +399,14 @@ public class NotificationFragment extends Fragment implements
 
     @SuppressWarnings("unchecked")
     public void onAcceptMethod() {
-            String parameter = UtilToCreateJSON.createTOAcceptOrder(context, detailAdp,
-                    orderStatus.equals(TYPE_UNDER_PROCESS) ? ORDER_ACCEPTED : ORDER_DELIVERED);
-            GuestCommonTask<String, ResultMessage> commonTask = new GuestCommonTask<String, ResultMessage>(
-                    context, NotificationFragment.this,
-                    orderStatus.equals(TYPE_UNDER_PROCESS) ? BaseNetwork.KEY_ECABS_PushOrderGuest :
-                            BaseNetwork.KEY_ECABS_PushOrderGuestStatus, parameter, pbDetail);
-            AsyncTaskTools.execute(commonTask);
+
+        String parameter = UtilToCreateJSON.createTOAcceptOrder(context, detailAdp,
+                orderStatus.equals(TYPE_UNDER_PROCESS) ? "K" : ORDER_DELIVERED);
+        GuestCommonTask<String, ResultMessage> commonTask = new GuestCommonTask<String, ResultMessage>(
+                context, NotificationFragment.this,
+                orderStatus.equals(TYPE_UNDER_PROCESS) ? BaseNetwork.KEY_ECABS_PushOrderGuest :
+                        BaseNetwork.KEY_ECABS_PushOrderGuestStatus, parameter, pbDetail);
+        AsyncTaskTools.execute(commonTask);
 
             clearData();
 

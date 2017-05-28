@@ -1142,7 +1142,7 @@ public class TakeOrderFragment extends Fragment implements
                 String orderNum = message.RESPONSE;
                 showHome();
 
-                saveOrderStatus(orderNum, "K");
+                saveOrderStatus(orderNum, "A");
                 ((BaseFragmentActivity)context).sendNotification(getString(R.string.process_noti, UserInfo.guest_name, orderNum));
 
                 ((BaseFragmentActivity)context).myOrders();
@@ -1251,7 +1251,7 @@ public class TakeOrderFragment extends Fragment implements
 
         if (getActivity() != null && isAdded()){
 
-            if (status.equals("B") || status.equals("C")){
+            if (status.equals("B") || status.equals("C") || status.equals("D") || status.equals("E")){
 
                 if (status.equals("B"))
                     ((BaseFragmentActivity)context).sendNotification(getString(R.string.accepted_noti, UserInfo.guest_name, orderNum));

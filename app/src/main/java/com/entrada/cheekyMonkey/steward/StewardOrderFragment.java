@@ -757,9 +757,13 @@ public class StewardOrderFragment extends Fragment implements
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                //setQuantity(menuItem, position);
+                setQuantity(menuItem, position+1);
                 dialog.dismiss();
                 addMixer();
+
+               /* //setQuantity(menuItem, position);
+                dialog.dismiss();
+                addMixer();*/
             }
         });
     }
@@ -774,10 +778,17 @@ public class StewardOrderFragment extends Fragment implements
         transaction.commit();
     }
 
-    public void setQuantity(MenuItem menuItem, int quantity) {
+   /* public void setQuantity(MenuItem menuItem, int quantity) {
         menuItem.setQuantity(quantity+1);
         menuItem.setMenuAmount(menuItem.getMenu_price() * (quantity + 1));
         onclickEvent(menuItem);    // on MenuItem click
+    }*/
+
+    public void setQuantity(MenuItem menuItem, int quantity) {
+        menuItem.setQuantity(quantity);
+        menuItem.setMenuAmount(menuItem.getMenu_price() * (quantity));
+        //onclickEvent(menuItem);    // on MenuItem click
+        showMultiQty(menuItem);
 
     }
 
@@ -2198,18 +2209,66 @@ public class StewardOrderFragment extends Fragment implements
 
     public void showMultiQty(MenuItem menuItem) {
 
+        /*if (! UserInfo.lock)
+            showOrderItemList();*/
+
         String menuCode = menuItem.getMenu_code();
 
         if (listViewOrderItem.getVisibility() != View.VISIBLE)
             showDefault();
 
-        if (codeList.contains(menuCode) && codeList.size() == takeOrderAdapter.getCount())
-            takeOrderAdapter.addQty(codeList.indexOf(menuCode));
+        if (codeList.contains(menuCode)) {
+            //takeOrderAdapter.addQty(codeList.indexOf(menuCode));
+            //takeOrderAdapter.addMultiQty(menuItem, codeList.indexOf(menuCode));
 
-        else {
+            ArrayList<OrderItem> itemArrayList = takeOrderAdapter.dataSet;
+            for (int i=0; i< itemArrayList.size(); i++){
+                OrderItem orderItem = itemArrayList.get(i);
+                if (orderItem.getO_code().equals(menuItem.getMenu_code())){
+                    takeOrderAdapter.updateQty(i, menuItem.getQuantity());
+                    //showMixer();
+                    //getAddOn(menuItem.getMenu_code(), menuItem.getMenu_name(), menuItem.getMenu_group_code());
+                    //addView(addonPopup.addView(), StaticConstants.ADDON_POPUP_TAG);
+                    break;
+                }
+
+            }
+
+            takeOrderAdapter.updateQty(codeList.indexOf(menuCode), menuItem.getQuantity());
+
+        } else {
             onclickEvent(menuItem);
             codeList.add(menuItem.getMenu_code());
         }
+
+    }
+
+    AddonPopup addonPopup;
+
+    public AddonPopup getAddOn(String menu_code, String menu_name, String menu_group_code){
+
+        if (addonPopup == null){
+
+            return addonPopup = new AddonPopup(context, menu_code, menu_name,
+                    menu_group_code, new AddonPopup.IcallBackAddon() {
+
+                @Override
+                public void removeView(String Tag) {
+                    StewardOrderFragment.this.removeView(Tag);
+                }
+
+                @Override
+                public void addItem(ArrayList<OrderItem> arrayList,
+                                    String Tag) {
+
+                    //takeOrderAdapter.addDataSetList(arrayList);
+                    takeOrderAdapter.updateDataSetList(arrayList);
+                    StewardOrderFragment.this.removeView(Tag);
+                }
+            }, takeOrderAdapter, discountLayout);
+        }
+
+        return addonPopup;
     }
 
     @Override

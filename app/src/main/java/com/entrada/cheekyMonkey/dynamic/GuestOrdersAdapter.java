@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 
 import com.entrada.cheekyMonkey.R;
+import com.entrada.cheekyMonkey.steward.notificationUI.NotificationFragment;
 import com.entrada.cheekyMonkey.ui.CustomTextview;
 
 /**
@@ -93,7 +94,7 @@ public class GuestOrdersAdapter extends ArrayAdapter<GuestOrders> {
 
         viewHolder.tv_order_no.setText(orders.getOrderNo());
         viewHolder.tv_items.setText(orders.getItem() + "....");
-        Log.i ("******************//","8888888888888888888888 "+orders.getOrder_date());
+
         String amount = context.getResources().getString(R.string.rupees, "₹", orders.getAmount());
         viewHolder.tv_amount.setText(amount);
         viewHolder.tv_tbl.setText(orders.getTableNo());
@@ -102,19 +103,35 @@ public class GuestOrdersAdapter extends ArrayAdapter<GuestOrders> {
             viewHolder.img_odrstatus.setBackground(null);
         }
 
-        if (orders.getOrder_status().equals("B")){
+        String odrStatus = orders.getOrder_status();
+
+        if (odrStatus.equals(NotificationFragment.ORDER_ACCEPTED) ||
+                odrStatus.equals(NotificationFragment.ORDER_PREPARATION_STARTED) ||
+                odrStatus.equals(NotificationFragment.ORDER_READY_TO_SERVE)) {
+
             viewHolder.layoutStatus.setBackgroundResource(R.drawable.approved_border);
             viewHolder.tv_orderStatus.setText(R.string.approved);
             viewHolder.tv_orderStatus.setTextColor(Color.parseColor("#00D938"));
             viewHolder.img_odrstatus.setImageResource(R.drawable.approve);
 
-        } else  if (orders.getOrder_status().equals("C")){
+        } else  if (odrStatus.equals(NotificationFragment.ORDER_REJECTED_BY_GUEST) ||
+                odrStatus.equals(NotificationFragment.ORDER_REJECTED_BY_STEWARD) ||
+                odrStatus.equals(NotificationFragment.ORDER_REJECTED_BY_ADMIN)){
+
             viewHolder.layoutStatus.setBackgroundResource(R.drawable.rejected_border);
             viewHolder.tv_orderStatus.setText(R.string.rejected);
             viewHolder.tv_orderStatus.setTextColor(Color.parseColor("#FF3000"));
             viewHolder.img_odrstatus.setImageResource(R.drawable.rejected);
 
-        }else {
+        }else if (odrStatus.equals(NotificationFragment.ORDER_DELIVERED)){
+
+            viewHolder.layoutStatus.setBackgroundResource(R.drawable.approved_border);
+            viewHolder.tv_orderStatus.setText(R.string.approved);
+            viewHolder.tv_orderStatus.setTextColor(Color.parseColor("#00D938"));
+            viewHolder.img_odrstatus.setImageResource(R.drawable.approve);
+
+        }else if (odrStatus.equals(NotificationFragment.ORDER_UNDER_PROCESS)){
+
             viewHolder.layoutStatus.setBackgroundResource(R.drawable.process_border);
             viewHolder.tv_orderStatus.setText(R.string.process_string);
             viewHolder.tv_orderStatus.setTextColor(Color.parseColor("#FFB400"));

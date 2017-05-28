@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:facebook="http://schemas.android.com/apk/res-auto"
-    xmlns:fb="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -31,7 +30,7 @@
             android:layout_height="@dimen/room_num_height1"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:src="@drawable/cheeky_logo1"
+            android:src="@drawable/app_icon"
             android:visibility="visible" />
 
         <LinearLayout
@@ -186,15 +185,14 @@
             android:gravity="center"
             android:orientation="vertical">
 
-
-            <LinearLayout
+            <!--            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <!--fb:login_text=""
-                    fb:logout_text=""-->
+                &lt;!&ndash;fb:login_text=""
+                    fb:logout_text=""&ndash;&gt;
 
                 <FrameLayout
                     android:id="@+id/FrameLayout1"
@@ -222,14 +220,14 @@
 
                 </FrameLayout>
 
-                <!--  <com.facebook.login.widget.LoginButton
+                &lt;!&ndash;  <com.facebook.login.widget.LoginButton
                       android:id="@+id/login_button"
                       style="@style/FacebookLoginButton"
                       android:text=""
                       fb:login_text=""
                       fb:logout_text=""
                       android:layout_width="match_parent"
-                      android:layout_height="wrap_content" />-->
+                      android:layout_height="wrap_content" />&ndash;&gt;
 
                 <ProgressBar
                     android:id="@+id/progress_fb"
@@ -262,15 +260,65 @@
                     android:visibility="gone" />
 
 
+            </LinearLayout>-->
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <!--fb:login_text=""
+                    fb:logout_text=""-->
+
+                <com.facebook.login.widget.LoginButton
+                    android:id="@+id/login_button"
+                    style="@style/FacebookLoginButton"
+                    android:layout_width="@dimen/grid_row_width"
+                    android:layout_height="@dimen/grid_row_width"
+                    facebook:login_text=""
+                    facebook:logout_text=""
+                    android:layout_marginStart="10sp"
+                    android:layout_marginEnd="10sp"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp" />
+
+                <ProgressBar
+                    android:id="@+id/progress_fb"
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:visibility="gone"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="top"/>
+
+                <Button
+                    android:id="@+id/sign_in_button"
+                    style="@style/GoogleLoginButton"
+                    android:layout_width="@dimen/grid_row_width"
+                    android:layout_height="@dimen/grid_row_width"
+                    android:layout_marginStart="10sp"
+                    android:layout_marginEnd="10sp"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp"/>
+
+                <ProgressBar
+                    android:id="@+id/progress_ggl"
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="top"
+                    android:visibility="gone"/>
+
             </LinearLayout>
 
-        </LinearLayout>
+
+
+            </LinearLayout>
 
         <Button
             android:id="@+id/button_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/header_padding"
             android:layout_marginLeft="10dp"
@@ -286,7 +334,7 @@
             android:text="@string/sign_up_string"
             android:textSize="@dimen/extra_large" />
 
-    </LinearLayout>
 
+    </LinearLayout>
 
 </LinearLayout>

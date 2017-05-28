@@ -272,17 +272,35 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
         if (NetworkUtil.getConnectivityStatus(this) != 0 && errorMsg.isEmpty()) {
 
-            FragmentManager fmOther = getSupportFragmentManager();
-            FragmentTransaction transaction = fmOther.beginTransaction();
-            takeOrderFragment = new TakeOrderFragment();
-            transaction.replace(R.id.container, takeOrderFragment);
-            transaction.commit();
-            currentBackListener = takeOrderFragment;
-            layout_retry.setVisibility(View.GONE);
+            if (PrefHelper.getStoredBoolean(context, PrefHelper.PREF_FILE_NAME, PrefHelper.STEWARD_LOGIN)) {
 
-            showPendingNotificationOnStart();   // Set unread notifications so far.
-            setupActionBar();
-            updateUserStatus("A");  // To send Price change notification only to Active Users, User status is maintained.
+                FragmentManager fmOther = getSupportFragmentManager();
+                FragmentTransaction transaction = fmOther.beginTransaction();
+                if (stewardOrderFragment == null)
+                    stewardOrderFragment = StewardOrderFragment.newInstance(0);
+                transaction.replace(R.id.container, stewardOrderFragment);
+                transaction.commit();
+                currentBackListener = takeOrderFragment;
+                layout_retry.setVisibility(View.GONE);
+
+                showPendingNotificationOnStart();   // Set unread notifications so far.
+                setupActionBar();
+                updateUserStatus("A");  // To send Price change notification only to Active Users, User status is maintained.
+
+            }else {
+
+                FragmentManager fmOther = getSupportFragmentManager();
+                FragmentTransaction transaction = fmOther.beginTransaction();
+                takeOrderFragment = new TakeOrderFragment();
+                transaction.replace(R.id.container, takeOrderFragment);
+                transaction.commit();
+                currentBackListener = takeOrderFragment;
+                layout_retry.setVisibility(View.GONE);
+
+                showPendingNotificationOnStart();   // Set unread notifications so far.
+                setupActionBar();
+                updateUserStatus("A");  // To send Price change notification only to Active Users, User status is maintained.
+            }
         }
     }
 
@@ -290,15 +308,21 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     private void onLeftListItemClick(int position) {
 
         if (position == 0) {
-            takeOrderFragment.showHome();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().
-                    replace(R.id.container, takeOrderFragment)
-                    //.setCustomAnimations(FragmentTransaction.TRANSIT_ENTER_MASK,FragmentTransaction.TRANSIT_EXIT_MASK)
-                    .commit();
-            currentBackListener = takeOrderFragment;
+
+            if (! PrefHelper.getStoredBoolean(context, PrefHelper.PREF_FILE_NAME, PrefHelper.STEWARD_LOGIN)) {
+                takeOrderFragment.showHome();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().
+                        replace(R.id.container, takeOrderFragment)
+                        //.setCustomAnimations(FragmentTransaction.TRANSIT_ENTER_MASK,FragmentTransaction.TRANSIT_EXIT_MASK)
+                        .commit();
+                currentBackListener = takeOrderFragment;
+            }
+
             slide_me.closeLeftSide();
-        } else if (position == 12)
+        }
+
+        else if (position == 12)
             UserInfo.showLogoutDialog(context);
 
         else {
@@ -430,7 +454,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         List<String> bill = new ArrayList<>();
         bill.add("Cancel");
         bill.add("Modify");
-        ;
+        
         bill.add("Split");
         bill.add("Transfer");
 
@@ -621,18 +645,24 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
             if (cursor.moveToFirst()) {
 
                 do {
-                    GuestOrders guestOrders = new GuestOrders();
-                    guestOrders.setOrderNo(cursor.getString(1));
-                    guestOrders.setTableNo(cursor.getString(2));
-                    guestOrders.setItem(cursor.getString(4));
-                    guestOrders.setPrice(cursor.getString(5));
-                    guestOrders.setQty(cursor.getString(6));
-                    guestOrders.setAmount(cursor.getString(8));
-                    guestOrders.setOrder_status(cursor.getString(9));
-                    guestOrders.setOrder_date(cursor.getString(10));
-
-                    if (!prvsOdr.equals(cursor.getString(1)))
+                    if (! prvsOdr.equals(cursor.getString(1))){
+                        GuestOrders guestOrders = new GuestOrders();
+                        guestOrders.setOrderNo(cursor.getString(1));
+                        guestOrders.setTableNo(cursor.getString(2));
+                        guestOrders.setItem(cursor.getString(4));
+                        guestOrders.setPrice(cursor.getString(5));
+                        guestOrders.setQty(cursor.getString(6));
+                        guestOrders.setAmount(cursor.getString(8));
+                        guestOrders.setOrder_status(cursor.getString(9));
+                        guestOrders.setOrder_date(cursor.getString(10));
                         ordersList.add(guestOrders);
+
+                    }else {
+                        GuestOrders guestOrders = ordersList.get(ordersList.size()-1);
+                        float amount = Float.parseFloat(guestOrders.getAmount()) + cursor.getFloat(8);
+                        guestOrders.setAmount(String.valueOf(amount));
+                    }
+
                     prvsOdr = cursor.getString(1);
 
 
@@ -661,6 +691,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         mdb.beginTransaction();
         try {
 
+            float amount = 0;
             Cursor cursor = mdb.rawQuery("Select * from " + DBConstants.KEY_GUEST_ORDERS_TABLE +
                     " where " + DBConstants.KEY_ORDER_NUMBER + " = '" + odrNo + "'", null);
 
@@ -703,6 +734,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                     guestOrders.setItem(cursor.getString(4));
                     guestOrders.setPrice(cursor.getString(5));
                     guestOrders.setQty(cursor.getString(6));
+                    amount += cursor.getFloat(8);
                     guestOrders.setAmount(cursor.getString(8));
                     guestOrders.setOrder_status(cursor.getString(9));
                     guestOrders.setOrder_date(cursor.getString(10));
@@ -713,6 +745,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
                 cursor.close();
             }
+            tv_ttl_amt.setText(String.format(Locale.US, "%.2f", amount));
             cursor.close();
             mdb.setTransactionSuccessful();
             return new GuestOrderItemsAdapter(context, R.layout.items_row_layout, ordersList);
@@ -749,7 +782,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    layout_Left.setVisibility(View.VISIBLE);
+                                    layout_Left.setVisibility(View.INVISIBLE);
                                     takeOrderFragment.showHome();
                                     FragmentManager fragmentManager = getSupportFragmentManager();
                                     fragmentManager.beginTransaction().replace(R.id.container, takeOrderFragment).commit();
@@ -808,7 +841,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                layout_Left.setVisibility(View.VISIBLE);
+                                layout_Left.setVisibility(View.INVISIBLE);
                                 FragmentManager fragmentManager = getSupportFragmentManager();
                                 NewsFragment newsFragment = new NewsFragment();
                                 FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -840,7 +873,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                layout_Left.setVisibility(View.VISIBLE);
+                                layout_Left.setVisibility(View.INVISIBLE);
                                 FragmentManager fragmentManager = getSupportFragmentManager();
                                 AboutUsFragment aboutUsFragment = new AboutUsFragment();
                                 FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -870,7 +903,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                layout_Left.setVisibility(View.VISIBLE);
+                                layout_Left.setVisibility(View.INVISIBLE);
                                 FragmentManager fragmentManager = getSupportFragmentManager();
                                 DocsFragment docsFragment = new DocsFragment();
                                 FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -887,7 +920,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                layout_Left.setVisibility(View.VISIBLE);
+                                layout_Left.setVisibility(View.INVISIBLE);
                                 FragmentManager fragmentManager = getSupportFragmentManager();
                                 Help_Layout help_layout = new Help_Layout();
                                 FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -903,7 +936,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                layout_Left.setVisibility(View.VISIBLE);
+                                layout_Left.setVisibility(View.INVISIBLE);
                                 FragmentManager fragmentManager = getSupportFragmentManager();
                                 AboutDeveloperFragment devFragment = new AboutDeveloperFragment();
                                 FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -1225,7 +1258,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
         img_srch.setVisibility(View.VISIBLE);
 
-        if (layout_Left.getVisibility() == View.GONE)
+        if (layout_Left.getVisibility() != View.VISIBLE)
             layout_Left.setVisibility(View.VISIBLE);
 
         if (layout_gst_ord_detail.getVisibility() == View.VISIBLE)
@@ -1243,8 +1276,8 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                 slide_me.closeRightSide();
                 edit_search.clearFocus();
             }
-        } else if (!(currentBackListener instanceof TakeOrderFragment))
-            removeFragmentFromStack();
+        } /*else if (!(currentBackListener instanceof TakeOrderFragment))
+            removeFragmentFromStack();*/
 
         else if (!currentBackListener.onBackPress()) {
             ExitDialog exitDialog = new ExitDialog(this, this);

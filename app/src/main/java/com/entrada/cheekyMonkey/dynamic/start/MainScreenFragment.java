@@ -136,7 +136,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
 
     public void customSignIn(View view){
 
-        boolean check = PrefHelper.getStoredBoolean(context,PrefHelper.PREF_FILE_NAME, PrefHelper.REMEMBER_ME);
+        boolean check = PrefHelper.getStoredBoolean(context,PrefHelper.PREF_FILE_NAME, PrefHelper.REMEMBER_ME,true);
         String email = PrefHelper.getStoredString(context,PrefHelper.PREF_FILE_NAME, PrefHelper.LOGIN_EMAIL_ID);
         String pass = PrefHelper.getStoredString(context,PrefHelper.PREF_FILE_NAME, PrefHelper.LOGIN_PASSWORD);
 
@@ -190,7 +190,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
 
                 forgotPassword = true;
                 String parameter = UtilToCreateJSON.createGstSigninParameter(
-                        editTextEmail.getText().toString(), editTextPassword.getText().toString());
+                        editTextEmail.getText().toString(), "");
                 String serverIP = POSApplication.getSingleton().getmDataModel().getUserInfo().getServerIP();
 
                 GuestSigninTask guestSigninTask = new GuestSigninTask(context, parameter, serverIP,progress_signin, this);
@@ -355,7 +355,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
                     .requestEmail()
                     .build();*/
 
-         /*   GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+           /* GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestIdToken(this.getResources().getString(R.string.server_client_id))
                     .requestEmail().build();*/
 
@@ -493,14 +493,14 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
             }
         });
 
-        customFB = (Button) view.findViewById(R.id.fb);
+       /* customFB = (Button) view.findViewById(R.id.fb);
         customFB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 loginButton.performClick();
             }
-        });
+        });*/
     }
 
     @Override

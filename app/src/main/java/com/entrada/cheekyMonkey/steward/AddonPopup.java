@@ -177,6 +177,14 @@ public class AddonPopup implements View.OnClickListener, OnItemClickListener {
                 else
                     backAddon.removeView(StaticConstants.ADDON_POPUP_TAG);
 
+
+                // Refresh Total Amount
+                if (context instanceof BaseFragmentActivity){
+                    TakeOrderFragment takeOrderFragment = ((BaseFragmentActivity)context).takeOrderFragment;
+                    if(takeOrderFragment != null && takeOrderFragment.isAdded())
+                        takeOrderFragment.showTotalAmount();
+                }
+
                 break;
 
             case R.id.txt_skip:
