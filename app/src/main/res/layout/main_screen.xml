@@ -30,7 +30,7 @@
             android:layout_height="@dimen/room_num_height1"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:src="@drawable/app_icon"
+            android:src="@drawable/app_icon1"
             android:visibility="visible" />
 
         <LinearLayout
