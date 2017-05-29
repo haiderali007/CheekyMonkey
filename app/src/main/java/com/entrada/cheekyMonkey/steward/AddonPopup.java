@@ -137,8 +137,10 @@ public class AddonPopup implements View.OnClickListener, OnItemClickListener {
 
                 if (context instanceof BaseFragmentActivity){
                     TakeOrderFragment takeOrderFragment = ((BaseFragmentActivity)context).takeOrderFragment;
-                    if(takeOrderFragment != null)
+                    if(takeOrderFragment != null && takeOrderFragment.isAdded())
                         takeOrderFragment.showHomeScreen();
+                    else
+                        backAddon.removeView(StaticConstants.ADDON_POPUP_TAG);
                 }
                 break;
 

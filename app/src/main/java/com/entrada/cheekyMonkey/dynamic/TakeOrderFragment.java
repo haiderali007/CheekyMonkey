@@ -470,8 +470,10 @@ public class TakeOrderFragment extends Fragment implements
                     if (UserInfo.guest_id.isEmpty() || UserInfo.guest_name.isEmpty()){
                         showHome();
                         UserInfo.showLoginDialog(context);
-                    } else if (selectTable.getText().equals(getString(R.string.slct_tbl_string)))
+                    } else if (selectTable.getText().equals(getString(R.string.slct_tbl_string))) {
                         getAllTables();
+                    }
+                    //**//
                     else if (!takeOrderAdapter.isEmpty())
                         submitStewardOrder();
                     else
@@ -537,6 +539,7 @@ public class TakeOrderFragment extends Fragment implements
                 (77.06  <= longitude && longitude <= 77.07)){
 
             if (!takeOrderAdapter.isEmpty())
+
                 showConfirmOrderDialog();
             //  placeGuestOrderMethod(UserInfo.guest_id, UserInfo.guest_name);
 
@@ -802,6 +805,10 @@ public class TakeOrderFragment extends Fragment implements
                 tableItem = tableItemList.get(position);
                 selectTable.setText(getString(R.string.selected_table_string, tableItem.getCode()));
                 txtOrderSubmit.setEnabled(takeOrderAdapter.getCount() > 0);
+                txtOrderSubmit.setBackgroundColor(Color.YELLOW);
+                txtOrderSubmit.setTextColor(Color.BLUE);
+
+                //**//
                 dialog.dismiss();
             }
         });

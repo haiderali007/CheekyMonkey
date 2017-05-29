@@ -4,16 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_vertical"
-    android:paddingStart="@dimen/tabPadding"
-    android:paddingEnd="@dimen/tabPadding"
-    android:paddingLeft="@dimen/tabPadding"
-    android:paddingRight="@dimen/tabPadding">
+>
 
 
   <LinearLayout
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:background="@drawable/gray_shade"
+      android:background="@drawable/black_glass"
       android:orientation="vertical"
       android:gravity="center">
 

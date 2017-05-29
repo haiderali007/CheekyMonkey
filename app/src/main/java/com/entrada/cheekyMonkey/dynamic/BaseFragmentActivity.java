@@ -280,7 +280,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                     stewardOrderFragment = StewardOrderFragment.newInstance(0);
                 transaction.replace(R.id.container, stewardOrderFragment);
                 transaction.commit();
-                currentBackListener = takeOrderFragment;
+                currentBackListener = stewardOrderFragment;
                 layout_retry.setVisibility(View.GONE);
 
                 showPendingNotificationOnStart();   // Set unread notifications so far.
@@ -1279,7 +1279,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         } /*else if (!(currentBackListener instanceof TakeOrderFragment))
             removeFragmentFromStack();*/
 
-        else if (!currentBackListener.onBackPress()) {
+        else if (currentBackListener != null && !currentBackListener.onBackPress()) {
             ExitDialog exitDialog = new ExitDialog(this, this);
             exitDialog.show();
         }
