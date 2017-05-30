@@ -91,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Price"
+            android:text="Price (Rs.)"
             android:textColor="#FFFFFF"
             android:textSize="@dimen/medium"
             android:textStyle="bold" />
@@ -108,32 +108,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/home_color"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:padding="10dp"
+            android:gravity="left"
+            android:paddingTop="15dp"
+            android:paddingLeft="10dp"
             android:text="TOTAL"
             android:textColor="#FFFFFF"
-            android:textSize="@dimen/extra_large"
+            android:textSize="@dimen/extra_large1"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="0.5"
             android:orientation="vertical"
-            android:layout_weight="0.5">
+            android:layout_gravity="left">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="right|end"
-                android:paddingTop="10dp"
+                android:gravity="center"
                 android:paddingBottom="5dp"
+                android:paddingTop="10dp"
                 android:text="₹ 42600"
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/extra_large"
@@ -143,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/home_color"
-                android:gravity="left"
+                android:gravity="right"
                 android:paddingBottom="5dp"
                 android:paddingRight="10dp"
                 android:text="*Taxes Applicable"

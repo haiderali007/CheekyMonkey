@@ -185,7 +185,7 @@
                         android:layout_gravity="center"
                         android:layout_weight=".6"
                         android:paddingLeft="15dp"
-                        android:text="Price"
+                        android:text="Price (Rs.)"
                         android:textSize="@dimen/medium" />
 
                 </LinearLayout>

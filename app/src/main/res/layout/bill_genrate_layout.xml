@@ -156,7 +156,7 @@
                         android:gravity="center_vertical"
                         android:layout_weight=".7"
                         android:paddingLeft="15dp"
-                        android:text="Price"
+                        android:text="Price (Rs.)"
                         android:textSize="@dimen/order_font_size_dimen"
                         android:textColor="@color/DarkRed"
                         android:textStyle="bold"/>

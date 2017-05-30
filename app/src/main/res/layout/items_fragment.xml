@@ -59,7 +59,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Price (₹)"
+                android:text="Price (Rs.)"
                 android:gravity="center"
                 android:textSize="@dimen/medium"
                 android:textColor="@color/White" />

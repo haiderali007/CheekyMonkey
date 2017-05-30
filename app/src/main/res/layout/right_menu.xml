@@ -102,7 +102,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Price"
+                android:text="Price (Rs.)"
                 android:textStyle="bold"
                 android:textSize="@dimen/extra_large"
                 android:textColor="#FFFFFF"/>

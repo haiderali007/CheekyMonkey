@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center_vertical"
-        android:text="price"
+        android:text="price (Rs.)"
         android:minHeight="@dimen/userID_height1"
         android:minWidth="@dimen/userID_height"
         android:textColor="@color/menu_item_color1"

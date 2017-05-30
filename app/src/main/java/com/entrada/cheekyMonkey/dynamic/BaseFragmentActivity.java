@@ -34,6 +34,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -745,7 +746,11 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
                 cursor.close();
             }
-            tv_ttl_amt.setText(String.format(Locale.US, "%.2f", amount));
+            tv_ttl_amt.setText(String.format(Locale.US, "₹ %.2f", amount)+"\n*Taxes Applicable");
+            tv_ttl_amt.setTextSize(14);
+            tv_ttl_amt.setGravity(Gravity.RIGHT);
+//**//
+
             cursor.close();
             mdb.setTransactionSuccessful();
             return new GuestOrderItemsAdapter(context, R.layout.items_row_layout, ordersList);
@@ -815,7 +820,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                                     Uri.parse("http://maps.google.com/maps?daddr=20.5666,45.345"));
                             startActivity(intent3);*/
 
-                            String address = "S.C.O. 395 Sector 8,Panchkula, India";
+                            String address = "SCO 395 Sector 8, Panchkula, India";
                             Uri uri = Uri.parse("https://www.google.com/maps/place/" + address);
                             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                             startActivity(intent);
