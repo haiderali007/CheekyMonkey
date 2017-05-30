@@ -851,8 +851,10 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                                 NewsFragment newsFragment = new NewsFragment();
                                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                                 transaction.replace(R.id.container, newsFragment).commit();
-                                currentBackListener = newsFragment;
+                                currentBackListener = newsFragment;;
                                 slide_me.closeLeftSide();
+                                layout_Left.setVisibility(View.VISIBLE);
+
                             }
                         }, 200);
                         break;
@@ -885,6 +887,8 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                                 transaction.replace(R.id.container, aboutUsFragment).commit();
                                 currentBackListener = aboutUsFragment;
                                 slide_me.closeLeftSide();
+                                layout_Left.setVisibility(View.VISIBLE);
+
                             }
                         }, 200);
                         break;
@@ -915,6 +919,8 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                                 transaction.replace(R.id.container, docsFragment).commit();
                                 currentBackListener = docsFragment;
                                 slide_me.closeLeftSide();
+                                layout_Left.setVisibility(View.VISIBLE);
+
                             }
                         }, 200);
                         break;
@@ -932,6 +938,8 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                                 transaction.replace(R.id.container, help_layout).commit();
                                 currentBackListener = help_layout;
                                 slide_me.closeLeftSide();
+                                layout_Left.setVisibility(View.VISIBLE);
+
                             }
                         }, 200);
                         break;
@@ -948,6 +956,8 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                                 transaction.replace(R.id.container, devFragment).commit();
                                 currentBackListener = devFragment;
                                 slide_me.closeLeftSide();
+                                layout_Left.setVisibility(View.VISIBLE);
+
                             }
                         }, 200);
                         break;
@@ -1070,8 +1080,9 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
         slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
         slidingUpPanelLayout.clearFocus();
-        takeOrderFragment.adapter_menu_search.clear();
-        takeOrderFragment.listViewSearchItem.setVisibility(View.GONE);
+//**search back crash problem//
+//        takeOrderFragment.adapter_menu_search.clear();
+//        takeOrderFragment.listViewSearchItem.setVisibility(View.GONE);
         image_back.setVisibility(View.GONE);
         edit_search.setQuery("", false);
         edit_search.clearFocus();
@@ -1261,7 +1272,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     @Override
     public void onBackPressed() {
 
-        img_srch.setVisibility(View.VISIBLE);
+//        img_srch.setVisibility(View.VISIBLE);
 
         if (layout_Left.getVisibility() != View.VISIBLE)
             layout_Left.setVisibility(View.VISIBLE);
