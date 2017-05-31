@@ -626,6 +626,7 @@ public class StewardOrderFragment extends Fragment implements
                 break;
             case 8:
                 ((BaseFragmentActivity) context).showNotificationFor(NotificationFragment.TYPE_UNDER_PROCESS);
+
                 break;
             case 9:
                 ((BaseFragmentActivity) context).showNotificationFor(NotificationFragment.TYPE_ACCEPTED);

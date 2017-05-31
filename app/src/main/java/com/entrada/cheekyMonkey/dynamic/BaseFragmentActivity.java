@@ -481,6 +481,8 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                 transaction.replace(R.id.container, fragment, StaticConstants.NOTIFICATION_TAG);
                 transaction.commit();
                 currentBackListener = fragment;
+
+                img_srch.setVisibility(View.GONE);
             }
         }, 400);
 

@@ -137,6 +137,8 @@ public class GuestOrdersAdapter extends ArrayAdapter<GuestOrders> {
             viewHolder.tv_orderStatus.setTextColor(Color.parseColor("#FFB400"));
             viewHolder.img_odrstatus.setImageResource(R.drawable.process);
 
+                        //**//
+
         }
 
 

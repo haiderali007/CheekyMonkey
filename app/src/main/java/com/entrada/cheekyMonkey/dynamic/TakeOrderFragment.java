@@ -1270,7 +1270,6 @@ public class TakeOrderFragment extends Fragment implements
                 statusScheduler.shutdownNow();
 
                 if (orderList.size() > 0) {
-
                     if (statusScheduler.isShutdown())
                         scheduleExecutors(orderList.get(0));
                 }

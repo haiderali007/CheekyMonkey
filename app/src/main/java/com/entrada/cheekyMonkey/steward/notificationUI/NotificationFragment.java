@@ -400,23 +400,32 @@ public class NotificationFragment extends Fragment implements
     @SuppressWarnings("unchecked")
     public void onAcceptMethod() {
 
-        String parameter = UtilToCreateJSON.createTOAcceptOrder(context, detailAdp,
-                orderStatus.equals(TYPE_UNDER_PROCESS) ? "K" : ORDER_DELIVERED);
-        GuestCommonTask<String, ResultMessage> commonTask = new GuestCommonTask<String, ResultMessage>(
-                context, NotificationFragment.this,
-                orderStatus.equals(TYPE_UNDER_PROCESS) ? BaseNetwork.KEY_ECABS_PushOrderGuest :
-                        BaseNetwork.KEY_ECABS_PushOrderGuestStatus, parameter, pbDetail);
-        AsyncTaskTools.execute(commonTask);
+        if(txtOrderNumber.getTag() ==null)
+        {
+            Toast.makeText(context, "Select an Order", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            String parameter = UtilToCreateJSON.createTOAcceptOrder(context, detailAdp,
+                    orderStatus.equals(TYPE_UNDER_PROCESS) ? "K" : ORDER_DELIVERED);
+            GuestCommonTask<String, ResultMessage> commonTask = new GuestCommonTask<String, ResultMessage>(
+                    context, NotificationFragment.this,
+                    orderStatus.equals(TYPE_UNDER_PROCESS) ? BaseNetwork.KEY_ECABS_PushOrderGuest :
+                            BaseNetwork.KEY_ECABS_PushOrderGuestStatus, parameter, pbDetail);
+            AsyncTaskTools.execute(commonTask);
 
             clearData();
 
-            
+        }
     }
 
     @SuppressWarnings("unchecked")
     public void onRejectMethod() {
 
-        if (txtOrderNumber.getTag() != null){
+        if(txtOrderNumber.getTag() ==null)
+        {
+            Toast.makeText(context, "Select an Order", Toast.LENGTH_SHORT).show();
+        }
+        else if(txtOrderNumber.getTag() != null){
 
             String parameter = UtilToCreateJSON.onReject(context, txtOrderNumber
                     .getTag().toString(), selectedTable,
