@@ -603,6 +603,7 @@ public class StewardOrderFragment extends Fragment implements
 
     public void onLeftListItemClick(int position){
 
+        showDefault();
 
         switch (position){
 
@@ -2626,17 +2627,20 @@ public class StewardOrderFragment extends Fragment implements
 
     public void showDefault() {
 
-        frameLayout_container.removeAllViews();
-        frameLayout_container.setVisibility(View.GONE);
-        selectGuestCompanyList.setVisibility(View.GONE);
-        listViewOrderItem.setVisibility(View.VISIBLE);
-        ll_bottomOrder.setVisibility(View.VISIBLE);
-        txtOrderClear.setText(getResources().getString(R.string.clear_string));
-        txtOrderSubmit.setText(getResources().getString(R.string.submit_string));
-        txtOrderSubmit.setVisibility(View.VISIBLE);
-        txtOrderClear.setVisibility(View.VISIBLE);
-        if (form_8) textHoldOrder.setVisibility(View.VISIBLE);
-        flag = "";
+        if (isAdded()){
+
+            frameLayout_container.removeAllViews();
+            frameLayout_container.setVisibility(View.GONE);
+            selectGuestCompanyList.setVisibility(View.GONE);
+            listViewOrderItem.setVisibility(View.VISIBLE);
+            ll_bottomOrder.setVisibility(View.VISIBLE);
+            txtOrderClear.setText(getResources().getString(R.string.clear_string));
+            txtOrderSubmit.setText(getResources().getString(R.string.submit_string));
+            txtOrderSubmit.setVisibility(View.VISIBLE);
+            txtOrderClear.setVisibility(View.VISIBLE);
+            if (form_8) textHoldOrder.setVisibility(View.VISIBLE);
+            flag = "";
+        }
     }
 
     public void getItem(String grpCode){

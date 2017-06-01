@@ -25,7 +25,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -61,7 +60,6 @@ import com.entrada.cheekyMonkey.db.POSDatabase;
 import com.entrada.cheekyMonkey.dynamic.Network_Info.ActivateUserIDTask;
 import com.entrada.cheekyMonkey.dynamic.Network_Info.NetworkChangeReceiver;
 import com.entrada.cheekyMonkey.dynamic.Network_Info.NetworkUtil;
-import com.entrada.cheekyMonkey.dynamic.RemoteService.LocalServiceActivities;
 import com.entrada.cheekyMonkey.dynamic.about.AboutDeveloperFragment;
 import com.entrada.cheekyMonkey.dynamic.about.AboutUsFragment;
 import com.entrada.cheekyMonkey.dynamic.about.DocsFragment;
@@ -116,7 +114,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     private SimpleSideDrawer slide_me;
     LinearLayout layout_Left;
     ListView listview_left, listview_right;
-    ImageView left_button, right_button, img_user_pic, img_camera, img_lock, img_unlock, img_refresh;
+    ImageView home_icon_button, right_button, img_user_pic, img_camera, img_lock, img_unlock, img_refresh;
     ImageButton image_back, img_srch;
     SearchView edit_search;
     RelativeLayout layout_noti;
@@ -275,29 +273,14 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
             if (PrefHelper.getStoredBoolean(context, PrefHelper.PREF_FILE_NAME, PrefHelper.STEWARD_LOGIN)) {
 
-                FragmentManager fmOther = getSupportFragmentManager();
-                FragmentTransaction transaction = fmOther.beginTransaction();
-                if (stewardOrderFragment == null)
-                    stewardOrderFragment = StewardOrderFragment.newInstance(0);
-                transaction.replace(R.id.container, stewardOrderFragment);
-                transaction.commit();
-                currentBackListener = stewardOrderFragment;
-                layout_retry.setVisibility(View.GONE);
-
+                showStewardHome(0);
                 showPendingNotificationOnStart();   // Set unread notifications so far.
                 setupActionBar();
                 updateUserStatus("A");  // To send Price change notification only to Active Users, User status is maintained.
 
             }else {
 
-                FragmentManager fmOther = getSupportFragmentManager();
-                FragmentTransaction transaction = fmOther.beginTransaction();
-                takeOrderFragment = new TakeOrderFragment();
-                transaction.replace(R.id.container, takeOrderFragment);
-                transaction.commit();
-                currentBackListener = takeOrderFragment;
-                layout_retry.setVisibility(View.GONE);
-
+                showGuestHome();
                 showPendingNotificationOnStart();   // Set unread notifications so far.
                 setupActionBar();
                 updateUserStatus("A");  // To send Price change notification only to Active Users, User status is maintained.
@@ -305,12 +288,42 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         }
     }
 
+    public void showStewardHome(int position){
+
+        FragmentManager fmOther = getSupportFragmentManager();
+        FragmentTransaction transaction = fmOther.beginTransaction();
+        //if (stewardOrderFragment == null)
+        if(position==8 || position==9 ||position==10)
+        {
+            layout_Left.setVisibility(View.INVISIBLE);
+        }
+        stewardOrderFragment = StewardOrderFragment.newInstance(position);
+        transaction.replace(R.id.container, stewardOrderFragment);
+        transaction.commit();
+        currentBackListener = stewardOrderFragment;
+        layout_retry.setVisibility(View.GONE);
+    }
+
+    public void showGuestHome(){
+
+        FragmentManager fmOther = getSupportFragmentManager();
+        FragmentTransaction transaction = fmOther.beginTransaction();
+        takeOrderFragment = new TakeOrderFragment();
+        transaction.replace(R.id.container, takeOrderFragment);
+        transaction.commit();
+        currentBackListener = takeOrderFragment;
+        layout_retry.setVisibility(View.GONE);
+    }
 
     private void onLeftListItemClick(int position) {
 
         if (position == 0) {
 
-            if (! PrefHelper.getStoredBoolean(context, PrefHelper.PREF_FILE_NAME, PrefHelper.STEWARD_LOGIN)) {
+            if (PrefHelper.getStoredBoolean(context, PrefHelper.PREF_FILE_NAME, PrefHelper.STEWARD_LOGIN))
+                showStewardHome(0);
+
+            else{
+
                 takeOrderFragment.showHome();
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction().
@@ -328,18 +341,16 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
         else {
 
-            if (stewardOrderFragment == null) {
-                FragmentManager fmOther = getSupportFragmentManager();
-                FragmentTransaction transaction = fmOther.beginTransaction();
-                stewardOrderFragment = StewardOrderFragment.newInstance(position);
-                transaction.replace(R.id.container, stewardOrderFragment);
-                transaction.commit();
+            /*if (stewardOrderFragment == null) {
+                showStewardHome(position);
             } else {
                 stewardOrderFragment.onLeftListItemClick(position);
             }
 
             currentBackListener = stewardOrderFragment;
-            layout_retry.setVisibility(View.GONE);
+            layout_retry.setVisibility(View.GONE);*/
+
+            showStewardHome(position);
             slide_me.closeLeftSide();
         }
     }
@@ -369,6 +380,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
             public boolean onGroupClick(ExpandableListView parent, View v,
                                         int groupPosition, long id) {
 
+                img_srch.setVisibility(groupPosition == 0 ? View.VISIBLE : View.GONE);
                 return false;
             }
         });
@@ -414,8 +426,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                                         int groupPosition, int childPosition, long id) {
 
 //for cancel and extendable list
-                img_srch.setVisibility(groupPosition == 1 && childPosition == 0 || childPosition == 1 || childPosition == 2 ? View.GONE : View.VISIBLE);
-                img_srch.setVisibility(groupPosition == 2 && childPosition == 0 || childPosition == 1 || childPosition == 2 || childPosition == 3 ? View.GONE : View.VISIBLE);
+
 
 //                layout_noti.setVisibility(position == 0 || position == 1 || position == 2  ? View.GONE : View.VISIBLE);
 
@@ -540,9 +551,9 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
             tvGuest.setText(UserInfo.guest_name);
 
 
-        left_button = (ImageView) findViewById(R.id.left_button);
+        home_icon_button = (ImageView) findViewById(R.id.left_button);
         right_button = (ImageView) findViewById(R.id.right_button);
-        left_button.setOnClickListener(this);
+        home_icon_button.setOnClickListener(this);
         right_button.setOnClickListener(this);
 
 /*      img_lock = (ImageView) findViewById(R.id.img_lock);
@@ -1004,6 +1015,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         switch (v.getId()) {
 
             case R.id.left_button:
+                layout_Left.setVisibility(View.VISIBLE);
                 slide_me.toggleLeftDrawer();
                 break;
 
@@ -1113,7 +1125,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                 transaction.replace(R.id.container, billGenerateFragment);
                 transaction.commit();
                 currentBackListener = billGenerateFragment;
-
+                layout_Left.setVisibility(View.INVISIBLE);
             }
         }, 200);
 

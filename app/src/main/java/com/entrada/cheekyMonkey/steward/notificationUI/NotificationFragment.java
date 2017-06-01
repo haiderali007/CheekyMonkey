@@ -137,6 +137,7 @@ public class NotificationFragment extends Fragment implements
             txtRejectOrder.setVisibility(View.GONE);
             txtAcceptOrder.setVisibility(View.VISIBLE);
             txtAcceptOrder.setText(R.string.accept_string);
+
 //            txtRejectOrder.setVisibility(employeeType.equals(EMPLOYEE_TYPE1)? View.VISIBLE : View.GONE);
 
 

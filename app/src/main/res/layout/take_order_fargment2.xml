@@ -132,7 +132,7 @@
                     android:layout_height="@dimen/cat_row_height"
                     android:background="@color/Black"
                     app:pstsDividerColor="@color/Black"
-                    app:pstsIndicatorColor="@color/home_color"
+                    app:pstsIndicatorColor="@color/fb_cancel_color"
                     app:pstsUnderlineColor="@color/Black"
                     app:pstsUnderlineHeight="@dimen/take_order_header_bottom_height" />
 
