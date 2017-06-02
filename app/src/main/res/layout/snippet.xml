@@ -16,7 +16,6 @@
         android:clickable="true"
         android:focusable="true"
         android:padding="10dp"
-        android:textAllCaps="true"
         android:textSize="@dimen/large"
         android:textStyle="bold"
         app:fontName="Roboto-Black"/>

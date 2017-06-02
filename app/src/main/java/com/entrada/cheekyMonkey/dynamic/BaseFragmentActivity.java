@@ -265,6 +265,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         transaction.replace(R.id.container, orderSplitFragment);
         transaction.commit();
         currentBackListener = orderSplitFragment;
+        layout_Left.setVisibility(View.INVISIBLE);
     }
 
     public void showHome() {
