@@ -28,7 +28,7 @@ public class SendSmtpMail {
     public static void sendMessage(String recipient, String subject, String body){
 
         final String username = "rgrahulgupta001@gmail.com";
-        final String password = "";
+        final String password = ",123anisha.1";
         //final String recipient = "rgrahulgupta001@gmail.com";
 
         Properties props = new Properties();

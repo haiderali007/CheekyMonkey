@@ -1792,6 +1792,7 @@ public class StewardOrderFragment extends Fragment implements
 
             case R.id.tv_order_cancel:
                 tv_odr_cancel_type.setText(tv_order_cancel.getText().toString());
+
                 break;
 
             case R.id.tv_chngeToComp:

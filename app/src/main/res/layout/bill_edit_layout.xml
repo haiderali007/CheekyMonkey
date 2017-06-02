@@ -50,7 +50,7 @@
             android:padding="2sp"
             android:text="@string/cancel_string"
             android:textColor="@color/Black"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:typeface="sans"
             android:visibility="gone" />
 
@@ -179,10 +179,12 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1.1"
-            android:background="@color/grey_light"
+            android:background="@drawable/border_unpressed"
             android:gravity="center"
             android:text="Complimentary"
-            android:textSize="20sp" />
+            android:textSize="18sp"
+
+            />
 
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
@@ -193,10 +195,10 @@
             android:layout_marginLeft="2sp"
             android:layout_marginRight="2sp"
             android:layout_weight="1"
-            android:background="@color/grey_light"
+            android:background="@drawable/border_unpressed"
             android:gravity="center"
             android:text="Full Discount"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
@@ -205,10 +207,10 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="0.7"
-            android:background="@color/grey_light"
+            android:background="@drawable/border_unpressed"
             android:gravity="center"
             android:text="@string/cancel_string"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 

@@ -37,7 +37,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="start"
-            android:padding="2dp"
             android:text="Table No. 10"
             android:textColor="#FFFFFF"
             android:textSize="@dimen/medium" />
@@ -48,7 +47,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            android:padding="2dp"
             android:text="21 Auguest, 2016"
             android:textColor="#FFFFFF"
             android:textSize="@dimen/medium" />

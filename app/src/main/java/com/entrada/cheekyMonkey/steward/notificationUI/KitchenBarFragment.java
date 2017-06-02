@@ -2,7 +2,9 @@ package com.entrada.cheekyMonkey.steward.notificationUI;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -364,6 +366,7 @@ public class KitchenBarFragment extends Fragment implements
 
 //        if (txtOrderNumber.getTag() != null){
         else {
+
             String parameter = UtilToCreateJSON.onReject(context,
                     txtOrderNumber.getTag().toString(), selectedTable,
                     NotificationFragment.ORDER_PREPARATION_STARTED);

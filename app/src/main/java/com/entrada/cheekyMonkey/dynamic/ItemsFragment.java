@@ -108,6 +108,7 @@ public class ItemsFragment extends Fragment implements
                     int index = hashMap.get(position - 1);
                     //itemsListView.smoothScrollToPositionFromTop(position + index, 2);
                     itemsListView.setSelection(position+index);
+                    /////****////
                 }
 
             }

@@ -294,7 +294,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         FragmentManager fmOther = getSupportFragmentManager();
         FragmentTransaction transaction = fmOther.beginTransaction();
         //if (stewardOrderFragment == null)
-        if(position==8 || position==9 ||position==10)
+        if(position==18 || position==8 || position==9 ||position==10)
         {
             layout_Left.setVisibility(View.INVISIBLE);
         }

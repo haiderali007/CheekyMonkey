@@ -121,13 +121,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageView3"
             android:layout_gravity="center"
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="60dp"
             android:padding="5sp"
             android:paddingEnd="20sp"
             android:paddingStart="20sp"
             android:text="@string/net_failure_string"
             android:textColor="@color/WhiteSmoke"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:visibility="visible"/>
 
         <ImageView
             android:id="@+id/imageView3"

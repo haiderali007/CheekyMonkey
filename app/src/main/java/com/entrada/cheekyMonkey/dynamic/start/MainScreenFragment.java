@@ -360,9 +360,9 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
                     .requestEmail().build();*/
 
             mGoogleApiClient = new GoogleApiClient.Builder(context)
-                        .enableAutoManage(getActivity(), this)
-                        .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                        .build();
+                    .enableAutoManage(getActivity(), this)
+                    .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                    .build();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -808,13 +808,15 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
 
     public void requestLoginFromServer(){
 
-        layout_main.setVisibility(View.GONE);
-        frameLayout.setVisibility(View.VISIBLE);
-        frameLayout.removeAllViews();
-        FragmentManager fmOther1 = getChildFragmentManager();
-        FragmentTransaction transaction = fmOther1.beginTransaction();
-        SyncFragment syncFragment = new SyncFragment();
-        transaction.replace(R.id.container, syncFragment).commit();
+        if (!getActivity().isFinishing()){
+            layout_main.setVisibility(View.GONE);
+            frameLayout.setVisibility(View.VISIBLE);
+            frameLayout.removeAllViews();
+            FragmentManager fmOther1 = getChildFragmentManager();
+            FragmentTransaction transaction = fmOther1.beginTransaction();
+            SyncFragment syncFragment = new SyncFragment();
+            transaction.replace(R.id.container, syncFragment).commitAllowingStateLoss();
+        }
 
     }
 
