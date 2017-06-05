@@ -10,16 +10,16 @@
         android:id="@+id/tof_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <RadioGroup
         android:id="@+id/rg_veg_nonveg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_medium"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
         android:background="@color/colorSecondary"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_medium"
         android:visibility="gone">
 
         <RadioButton
@@ -27,22 +27,22 @@
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="ALL Items"
-            android:checked="true"/>
+            android:checked="true"
+            android:text="ALL Items" />
 
         <RadioButton
             android:id="@+id/rb_veg_item"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="VEG Items"/>
+            android:text="VEG Items" />
 
         <RadioButton
             android:id="@+id/rb_nonveg_item"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="NON-VEG Items"/>
+            android:text="NON-VEG Items" />
 
     </RadioGroup>
 
@@ -56,30 +56,30 @@
         android:id="@+id/layout_flip_mode"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/layout_create_order"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_margin="1dp"
             android:layout_weight="1.2"
-            android:orientation="vertical"
-            android:layout_margin="1dp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/posLayoutContainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/addonLayoutContainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/layout_bill_operation"
@@ -87,7 +87,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <RelativeLayout
                 android:id="@+id/rl_item_list"
@@ -96,34 +96,34 @@
                 android:layout_weight="1">
 
 
-              <!--  <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/header_height"
-                    android:scrollbars="none">
+                <!--  <HorizontalScrollView
+                      android:layout_width="match_parent"
+                      android:layout_height="@dimen/header_height"
+                      android:scrollbars="none">
 
-                    <LinearLayout
-                        android:id="@+id/linear_layout_show_group"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal" />
+                      <LinearLayout
+                          android:id="@+id/linear_layout_show_group"
+                          android:layout_width="wrap_content"
+                          android:layout_height="match_parent"
+                          android:orientation="horizontal" />
 
-                </HorizontalScrollView>-->
+                  </HorizontalScrollView>-->
 
-               <!-- <com.entrada.bar.ui.PagerSlidingTabStrip
-                    android:id="@+id/tabs"
-                    pstsShouldExpand="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/cat_row_height"
-                    android:paddingBottom="2dp"
-                    android:background="@color/Black"
-                    app:pstsTabPaddingLeftRight="10sp"
-                    app:pstsTabTextSize="@dimen/text_size_small"
-                    app:pstsDividerColor="@color/Black"
-                    app:pstsIndicatorColor="@color/White"
-                    app:pstsUnderlineColor="@color/White"
-                    app:pstsUnderlineHeight="@dimen/take_order_header_bottom_height"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />-->
+                <!-- <com.entrada.bar.ui.PagerSlidingTabStrip
+                     android:id="@+id/tabs"
+                     pstsShouldExpand="true"
+                     android:layout_width="match_parent"
+                     android:layout_height="@dimen/cat_row_height"
+                     android:paddingBottom="2dp"
+                     android:background="@color/Black"
+                     app:pstsTabPaddingLeftRight="10sp"
+                     app:pstsTabTextSize="@dimen/text_size_small"
+                     app:pstsDividerColor="@color/Black"
+                     app:pstsIndicatorColor="@color/White"
+                     app:pstsUnderlineColor="@color/White"
+                     app:pstsUnderlineHeight="@dimen/take_order_header_bottom_height"
+                     android:layout_alignParentLeft="true"
+                     android:layout_alignParentStart="true" />-->
 
                 <com.entrada.cheekyMonkey.ui.PagerSlidingTabStrip
                     android:id="@+id/tabs"
@@ -141,8 +141,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:background="@color/Black"
-                    android:layout_below="@+id/tabs" />
+                    android:layout_below="@+id/tabs"
+                    android:background="@color/Black" />
 
 
             </RelativeLayout>
@@ -150,7 +150,8 @@
             <LinearLayout
                 android:id="@+id/ll_order_options"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/billing_tab_height">
+                android:layout_height="@dimen/billing_tab_height"
+                android:visibility="gone">
 
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
@@ -186,7 +187,7 @@
                     android:textSize="@dimen/small" />
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
-                    
+
                     android:id="@+id/tv_item_discount"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -197,7 +198,7 @@
                     android:textSize="@dimen/small" />
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
-                    
+
                     android:id="@+id/tv_item_cover"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -208,7 +209,7 @@
                     android:textSize="@dimen/small" />
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
-                    
+
                     android:id="@+id/tv_item_steward"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -217,10 +218,10 @@
                     android:gravity="center"
                     android:text="@string/select_steward_menu"
                     android:textSize="@dimen/small"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
-                    
+
                     android:id="@+id/tv_item_guest"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -240,10 +241,10 @@
             layout="@layout/order_right_layout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:visibility="gone" />
 
     </LinearLayout>
-
 
 
 </LinearLayout>

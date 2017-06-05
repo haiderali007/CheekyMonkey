@@ -148,26 +148,25 @@ public class StewardOrderFragment extends Fragment implements
         IcallBackOrderCancel, OnMenuItemClick.ICallMenuPopup, ICallOrder, ICallBackSendOrderHomeDResponse,
         ICallBackTestGenerateResponse, ICallDiscList, ICallCompanyDiscount, ICallBackRoom,
         ICallHome, ICallBillDetail, ICallPaidAmount, ICallSettleResponse, ICallBillModiResponse,
-        ICallBackPOS,ICallRateResponse, ICallSendNotification {
+        ICallBackPOS, ICallRateResponse, ICallSendNotification {
 
     private static Handler mHandler = null;
     private static String TAG = "PlainTextActivity";
     public Context context;
     ArrayList<Items> menu_search_list;
     public ItemsAdapter adapter_menu_search;
-    public LinearLayout layout_flipMode,layout_menu, layout_order, layoutGroup, ll_bottomHeader,
+    public LinearLayout layout_flipMode, layout_menu, layout_order, layoutGroup, ll_bottomHeader,
             ll_bottomOrder, ll_settle_option;
     private FrameLayout frameLayout_container, frameLayout_discount, mainContainer, frameLayout_Cancel;
 
     public CustomTextview textviewForBIllno, textviewForDiscount, textviewForSubtotal, textviewForTax,
             textviewForTotal, textViewTAmt, textViewChange, textViewStlMode, textviewTop,
-            textViewGuestName, tv_OrderNo, tv_Discount, tv_Subtotal, tv_Tax, tv_Total;
+            textViewGuestName, tv_OrderNo, tv_Discount, tv_Subtotal, tv_Tax, tv_Total, textView_back;
 
-    public CustomButton txtOrderClear, txtOrderSubmit, textHoldOrder,txtOrderCancel, txtorderOk, txtCash, txtCredit,
-            selectTable, selectRoom, selectGuest, selectDelBoy, newOrder,tv_order_cancel, tv_change_to_comp,
+    public CustomButton txtOrderClear, txtOrderSubmit, textHoldOrder, txtOrderCancel, txtorderOk, txtCash, txtCredit,
+            selectTable, selectRoom, selectGuest, selectDelBoy, newOrder, tv_order_cancel, tv_change_to_comp,
             tv_generate, tv_discount, tv_cover, tv_steward, tv_guest, tv_add_item, tv_show_bill, tv_odr_cancel_type,
             textView_cash, textView_credit;
-
 
 
     public ArrayList<Items> TITLES = new ArrayList<>();
@@ -201,7 +200,7 @@ public class StewardOrderFragment extends Fragment implements
     String[] currencyArray = {"? 1", "? 2", "? 5", "? 10", "? 20", "? 50", "? 100", "? 500", "? 1000", "? 2000"};
 
     ScheduledExecutorService statusScheduler;
-    ArrayList<String> orderList ;
+    ArrayList<String> orderList;
 
     POSItem posItem;
     UserInfo userInfo;
@@ -229,7 +228,7 @@ public class StewardOrderFragment extends Fragment implements
 
     boolean odr_modi_rsn_mandat = false, print_order = false, odr_rem_mandat = false, rsn_bill_modi = false,
             gen_stw_bill = false, rem_as_gst = false, grp_wise_billing = false, hide_bill_remark = false,
-            del_bill_edit = false, mod_bill_edit = false, disc_reason = false ;
+            del_bill_edit = false, mod_bill_edit = false, disc_reason = false;
 
 
     public static StewardOrderFragment newInstance(int position) {
@@ -243,10 +242,9 @@ public class StewardOrderFragment extends Fragment implements
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        if (view == null){
+        if (view == null) {
             view = inflater.inflate(R.layout.take_order_fargment2, container, false);
             userInfo = POSApplication.getSingleton().getmDataModel().getUserInfo();
             init(view);
@@ -274,7 +272,7 @@ public class StewardOrderFragment extends Fragment implements
 
         //layoutGroup = (LinearLayout) v.findViewById(R.id.linear_layout_show_group);
         layout_flipMode = (LinearLayout) v.findViewById(R.id.layout_flip_mode);
-        layout_menu= (LinearLayout) v.findViewById(R.id.layout_create_order);
+        layout_menu = (LinearLayout) v.findViewById(R.id.layout_create_order);
         layout_order = (LinearLayout) v.findViewById(R.id.layout_order);
 
         setCurrencyView(v);
@@ -323,9 +321,9 @@ public class StewardOrderFragment extends Fragment implements
 
         tv_generate = (CustomButton) v.findViewById(R.id.tv_generate_bill);
         tv_discount = (CustomButton) v.findViewById(R.id.tv_item_discount);
-        tv_cover  = (CustomButton) v.findViewById(R.id.tv_item_cover);
-        tv_steward  = (CustomButton) v.findViewById(R.id.tv_item_steward);
-        tv_guest  = (CustomButton) v.findViewById(R.id.tv_item_guest);
+        tv_cover = (CustomButton) v.findViewById(R.id.tv_item_cover);
+        tv_steward = (CustomButton) v.findViewById(R.id.tv_item_steward);
+        tv_guest = (CustomButton) v.findViewById(R.id.tv_item_guest);
 
         tv_add_item = (CustomButton) v.findViewById(R.id.tv_add_item);
         tv_show_bill = (CustomButton) v.findViewById(R.id.tv_show_bill);
@@ -342,7 +340,7 @@ public class StewardOrderFragment extends Fragment implements
         tv_order_cancel.setOnClickListener(this);
         tv_change_to_comp.setOnClickListener(this);
 
-        userID =  PrefHelper.getStoredString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.USER_ID);
+        userID = PrefHelper.getStoredString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.USER_ID);
         steward = PrefHelper.getStoredString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.USER_ID);
 
         discountLayout = new DiscountLayout(context, this);
@@ -396,8 +394,8 @@ public class StewardOrderFragment extends Fragment implements
 
 
         ll_settle_option = (LinearLayout) v.findViewById(R.id.layout_stl_options);
-        textView_cash =  (CustomButton) v.findViewById(R.id.textview_cash);
-        textView_credit =  (CustomButton) v.findViewById(R.id.textview_credit);
+        textView_cash = (CustomButton) v.findViewById(R.id.textview_cash);
+        textView_credit = (CustomButton) v.findViewById(R.id.textview_credit);
         textView_cash.setOnClickListener(this);
         textView_credit.setOnClickListener(this);
 
@@ -432,6 +430,8 @@ public class StewardOrderFragment extends Fragment implements
 
         adapter.notifyDataSetChanged();
 
+        textView_back = (CustomTextview) v.findViewById(R.id.tv_back);
+        textView_back.setOnClickListener(this);
         selectTable = (CustomButton) v.findViewById(R.id.selectTable);
         selectTable.setOnClickListener(this);
         newOrder = (CustomButton) v.findViewById(R.id.newOrder);
@@ -469,8 +469,8 @@ public class StewardOrderFragment extends Fragment implements
         imgGuestSearch2.setOnClickListener(this);
 
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy",Locale.US);
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss",Locale.US);
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.US);
         formattedDate = df.format(c.getTime());
         time = sdf.format(c.getTime());
 
@@ -601,11 +601,14 @@ public class StewardOrderFragment extends Fragment implements
 */
 
 
-    public void onLeftListItemClick(int position){
+    public void onLeftListItemClick(int position) {
 
+        if (position > 12) {
+            layout_order.setVisibility(View.VISIBLE);
+        }
         showDefault();
 
-        switch (position){
+        switch (position) {
 
             case 3:
                 getAllTables();
@@ -620,7 +623,7 @@ public class StewardOrderFragment extends Fragment implements
                 break;
             case 6:
                 if (!UserPermission("BG"))
-                    ((BaseFragmentActivity) context).onCreateBillGenerate("","");
+                    ((BaseFragmentActivity) context).onCreateBillGenerate("", "");
                 break;
             case 7:
                 showDiscount();
@@ -643,17 +646,17 @@ public class StewardOrderFragment extends Fragment implements
 
             case 15:
                 if (!UserPermission("OC"))
-                showRunningTables("C");
+                    showRunningTables("C");
                 break;
 
             case 16:
                 if (!UserPermission("OM"))
-                showRunningTables("M");
+                    showRunningTables("M");
                 break;
 
             case 17:
                 if (!UserPermission("OT"))
-                ((BaseFragmentActivity) context).showOrderSplit();
+                    ((BaseFragmentActivity) context).showOrderSplit();
                 break;
 
             case 18:
@@ -663,7 +666,7 @@ public class StewardOrderFragment extends Fragment implements
                         if (!UserPermission("BC"))
                             getBillEditPopup("C");
                     }
-                },500);
+                }, 500);
 
                 break;
 
@@ -674,7 +677,7 @@ public class StewardOrderFragment extends Fragment implements
                         if (!UserPermission("BM"))
                             getBillEditPopup("M");
                     }
-                },500);
+                }, 500);
                 break;
 
             case 20:
@@ -684,7 +687,7 @@ public class StewardOrderFragment extends Fragment implements
                         if (!UserPermission("BT"))
                             getBillSplitPopup();
                     }
-                },500);
+                }, 500);
                 break;
 
             case 21:
@@ -694,14 +697,14 @@ public class StewardOrderFragment extends Fragment implements
                         if (!UserPermission("TT"))
                             getBillTransferPopup();
                     }
-                },500);
+                }, 500);
 
                 break;
         }
     }
 
 
-    public void showQtyPopup(final MenuItem menuItem){
+    public void showQtyPopup(final MenuItem menuItem) {
 
         String[] qty = new String[99];
 
@@ -759,7 +762,7 @@ public class StewardOrderFragment extends Fragment implements
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                setQuantity(menuItem, position+1);
+                setQuantity(menuItem, position + 1);
                 dialog.dismiss();
                 addMixer();
 
@@ -770,7 +773,7 @@ public class StewardOrderFragment extends Fragment implements
         });
     }
 
-    public void addMixer(){
+    public void addMixer() {
 
         frameLayout_container.setVisibility(View.VISIBLE);
         Add_Mixer_Fragment addMixerFragment = new Add_Mixer_Fragment();
@@ -798,7 +801,7 @@ public class StewardOrderFragment extends Fragment implements
     public void onPause() {
         super.onPause();
 
-        if (statusScheduler != null && ! statusScheduler.isShutdown())
+        if (statusScheduler != null && !statusScheduler.isShutdown())
             statusScheduler.shutdownNow();
     }
 
@@ -806,7 +809,7 @@ public class StewardOrderFragment extends Fragment implements
     public void onResume() {
         super.onResume();
 
-        if (orderList.size() > 0){
+        if (orderList.size() > 0) {
             if (statusScheduler != null && statusScheduler.isShutdown())
                 scheduleExecutors(orderList.get(0));
         }
@@ -832,7 +835,7 @@ public class StewardOrderFragment extends Fragment implements
 
                 do {
 
-                    if (! previous_cat.equals(c.getString(c.getColumnIndex("cat_code")))) {
+                    if (!previous_cat.equals(c.getString(c.getColumnIndex("cat_code")))) {
 
                         CategoryItem categoryItem = new CategoryItem();
                         categoryItem.setCategory_Code(c.getString(c.getColumnIndex("cat_code")));
@@ -854,9 +857,9 @@ public class StewardOrderFragment extends Fragment implements
                         mTITLES.add(new Items(new GroupItems(), categoryItem, menuItemList));
                         previous_cat = c.getString(c.getColumnIndex("cat_code"));
 
-                    }else {
+                    } else {
 
-                        ArrayList<MenuItem> menuItemList = mTITLES.get(mTITLES.size()-1).getMenuItemList();
+                        ArrayList<MenuItem> menuItemList = mTITLES.get(mTITLES.size() - 1).getMenuItemList();
                         MenuItem menuItem = new MenuItem();
                         menuItem.setMenu_code(c.getString(c.getColumnIndex("item_code")));
                         menuItem.setMenu_name(c.getString(c.getColumnIndex("item_desc")));
@@ -867,18 +870,18 @@ public class StewardOrderFragment extends Fragment implements
                         menuItemList.add(menuItem);
                     }
 
-                }while (c.moveToNext());
+                } while (c.moveToNext());
 
             }
             c.close();
             mdb.setTransactionSuccessful();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             mdb.endTransaction();
         }
 
-        if (! mTITLES.isEmpty()) {
+        if (!mTITLES.isEmpty()) {
 
             TITLES.clear();
             TITLES.addAll(mTITLES);
@@ -891,7 +894,7 @@ public class StewardOrderFragment extends Fragment implements
         updateStatusPendingOrders();
     }
 
-    public void updateStatusPendingOrders(){
+    public void updateStatusPendingOrders() {
 
         orderList = new ArrayList<>();
 
@@ -900,22 +903,22 @@ public class StewardOrderFragment extends Fragment implements
 
         try {
             Cursor cursor = mdb.rawQuery("Select * from " + DBConstants.KEY_GUEST_ORDERS_TABLE +
-                    " where " + DBConstants.KEY_GUEST_ORDER_STATUS  +  "= 'K' ", null);
+                    " where " + DBConstants.KEY_GUEST_ORDER_STATUS + "= 'K' ", null);
 
-            if (cursor.moveToFirst() ){
+            if (cursor.moveToFirst()) {
 
                 do {
                     orderList.add(cursor.getString(1));
-                }while (cursor.moveToNext());
+                } while (cursor.moveToNext());
 
             }
 
             cursor.close();
             mdb.setTransactionSuccessful();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {mdb.endTransaction();
+        } finally {
+            mdb.endTransaction();
         }
 
         if (!orderList.isEmpty())
@@ -925,7 +928,7 @@ public class StewardOrderFragment extends Fragment implements
 
     /*************** Complete flow to control Active Notification **********************/
 
-    public void scheduleExecutors(final String orderNum){
+    public void scheduleExecutors(final String orderNum) {
 
         statusScheduler = Executors.newSingleThreadScheduledExecutor();
         statusScheduler.scheduleWithFixedDelay(new Runnable() {
@@ -951,23 +954,23 @@ public class StewardOrderFragment extends Fragment implements
     @Override
     public void sendNotification(String orderNum, String status) {
 
-        if (status.equals("failure")){
+        if (status.equals("failure")) {
             statusScheduler.shutdownNow();
-            Toast.makeText(context,"Connection failed",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Connection failed", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (! orderList.contains(orderNum) || status.isEmpty())
+        if (!orderList.contains(orderNum) || status.isEmpty())
             return;
 
-        if (getActivity() != null && isAdded()){
+        if (getActivity() != null && isAdded()) {
 
-            if (status.equals("B") || status.equals("C")){
+            if (status.equals("B") || status.equals("C")) {
 
                 if (status.equals("B"))
-                    ((BaseFragmentActivity)context).sendNotification(getString(R.string.accepted_noti, UserInfo.guest_name, orderNum));
+                    ((BaseFragmentActivity) context).sendNotification(getString(R.string.accepted_noti, UserInfo.guest_name, orderNum));
                 else
-                    ((BaseFragmentActivity)context).sendNotification(getString(R.string.rejected_noti, UserInfo.guest_name, orderNum));
+                    ((BaseFragmentActivity) context).sendNotification(getString(R.string.rejected_noti, UserInfo.guest_name, orderNum));
 
                 orderList.remove(orderList.indexOf(orderNum));
                 updateOrderStatus(orderNum, status);
@@ -982,14 +985,14 @@ public class StewardOrderFragment extends Fragment implements
         }
     }
 
-    public void saveOrderStatus(String orderNum, String status){
+    public void saveOrderStatus(String orderNum, String status) {
 
         SQLiteDatabase mdb = POSDatabase.getInstanceLogin(context).getWritableDatabase();
         mdb.beginTransaction();
         try {
 
-            ArrayList<OrderItem> orderItems =  takeOrderAdapter.getDataSet();
-            for (int i =0; i<takeOrderAdapter.getCount();i++){
+            ArrayList<OrderItem> orderItems = takeOrderAdapter.getDataSet();
+            for (int i = 0; i < takeOrderAdapter.getCount(); i++) {
 
                 ContentValues cv = new ContentValues();
                 cv.put(DBConstants.KEY_ORDER_NUMBER, orderNum);
@@ -1007,14 +1010,17 @@ public class StewardOrderFragment extends Fragment implements
 
             mdb.setTransactionSuccessful();
 
-        } catch (Exception ex) {ex.printStackTrace();}
-        finally {mdb.endTransaction();}
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            mdb.endTransaction();
+        }
 
         //clearData();
 
     }
 
-    public void updateOrderStatus(String orderNum, String status){
+    public void updateOrderStatus(String orderNum, String status) {
 
         SQLiteDatabase mdb = POSDatabase.getInstanceLogin(context).getWritableDatabase();
         mdb.beginTransaction();
@@ -1027,8 +1033,11 @@ public class StewardOrderFragment extends Fragment implements
             mdb.update(DBConstants.KEY_GUEST_ORDERS_TABLE, cv, DBConstants.KEY_GUEST_ORDER_NUMBER + "= '" + orderNum + "' ", null);
             mdb.setTransactionSuccessful();
 
-        } catch (Exception ex) {ex.printStackTrace();}
-        finally {mdb.endTransaction();}
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            mdb.endTransaction();
+        }
     }
 
     /* ******************************************************************* */
@@ -1037,7 +1046,7 @@ public class StewardOrderFragment extends Fragment implements
         PackageManager manager = context.getPackageManager();
         PackageInfo info = null;
         try {
-            info = manager.getPackageInfo (context.getPackageName(), 0);
+            info = manager.getPackageInfo(context.getPackageName(), 0);
         } catch (PackageManager.NameNotFoundException e2) {
         }
         String model = Build.MODEL;
@@ -1047,17 +1056,17 @@ public class StewardOrderFragment extends Fragment implements
         // Make file name - file must be saved to external storage or it wont be readable by
         // the email app.
 
-        File appDirectory = new File( Environment.getExternalStorageDirectory() + "/StewardPad" );
-        File logDirectory = new File( appDirectory + "/log" );
-        File logFile = new File( logDirectory, "logcat.txt" );
+        File appDirectory = new File(Environment.getExternalStorageDirectory() + "/StewardPad");
+        File logDirectory = new File(appDirectory + "/log");
+        File logFile = new File(logDirectory, "logcat.txt");
 
         // create app folder
-        if ( !appDirectory.exists() ) {
+        if (!appDirectory.exists()) {
             appDirectory.mkdir();
         }
 
         // create log folder
-        if ( !logDirectory.exists() ) {
+        if (!logDirectory.exists()) {
             logDirectory.mkdir();
         }
         /*String path = Environment.getExternalStorageDirectory() + "/" + "MyApp/";
@@ -1070,8 +1079,7 @@ public class StewardOrderFragment extends Fragment implements
         InputStreamReader reader = null;
         FileWriter writer = null;
 
-        try
-        {
+        try {
             // For Android 4.0 and earlier, you will get all app's log output, so filter it to
             // mostly limit it to your app's output.  In later versions, the filtering isn't needed.
             String cmd = (Build.VERSION.SDK_INT <= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) ?
@@ -1080,28 +1088,25 @@ public class StewardOrderFragment extends Fragment implements
 
             // get input stream
             Process process = Runtime.getRuntime().exec(cmd);
-            reader = new InputStreamReader (process.getInputStream());
+            reader = new InputStreamReader(process.getInputStream());
 
             // write output stream
             writer = new FileWriter(logFile);
-            writer.write ("Android version: " +  Build.VERSION.SDK_INT + "\n");
-            writer.write ("Device: " + model + "\n");
-            writer.write ("App version: " + (info == null ? "(null)" : info.versionCode) + "\n");
+            writer.write("Android version: " + Build.VERSION.SDK_INT + "\n");
+            writer.write("Device: " + model + "\n");
+            writer.write("App version: " + (info == null ? "(null)" : info.versionCode) + "\n");
 
             char[] buffer = new char[10000];
-            do
-            {
-                int n = reader.read (buffer, 0, buffer.length);
+            do {
+                int n = reader.read(buffer, 0, buffer.length);
                 if (n == -1)
                     break;
-                writer.write (buffer, 0, n);
+                writer.write(buffer, 0, n);
             } while (true);
 
             reader.close();
             writer.close();
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             if (writer != null)
                 try {
                     writer.close();
@@ -1121,11 +1126,11 @@ public class StewardOrderFragment extends Fragment implements
     }
 
     // Setting Currency View
-    public void setCurrencyView(View v){
+    public void setCurrencyView(View v) {
 
         if (currencyHasCreated()) {
 
-            layout_Settle= (LinearLayout) v.findViewById(R.id.layout_settle);
+            layout_Settle = (LinearLayout) v.findViewById(R.id.layout_settle);
             layout_bill_settle = (LinearLayout) v.findViewById(R.id.layout_settle_up);
             gridViewCurrency = (GridView) v.findViewById(R.id.gridview_show_currency);
 
@@ -1144,7 +1149,7 @@ public class StewardOrderFragment extends Fragment implements
 
     public boolean currencyHasCreated() {
 
-        if (currencyList.isEmpty()){
+        if (currencyList.isEmpty()) {
 
             SQLiteDatabase mdb = POSDatabase.getInstanceLogin(context).getWritableDatabase();
             mdb.beginTransaction();
@@ -1152,8 +1157,8 @@ public class StewardOrderFragment extends Fragment implements
             try {
 
                 Cursor cursor = mdb.query(DBConstants.KEY_CURRENCY_TABLE, new String[]{
-                                DBConstants.KEY_CURRENCY_SR,DBConstants.KEY_CURRENCY_LABEL,
-                                DBConstants.KEY_CURRENCY_VALUE,DBConstants.KEY_CURRENCY_FLAG,
+                                DBConstants.KEY_CURRENCY_SR, DBConstants.KEY_CURRENCY_LABEL,
+                                DBConstants.KEY_CURRENCY_VALUE, DBConstants.KEY_CURRENCY_FLAG,
                                 DBConstants.KEY_CURRENCY_PIC}, null, null,
                         null, null, null);
 
@@ -1163,7 +1168,7 @@ public class StewardOrderFragment extends Fragment implements
 
                         currencyList.add(("? " + cursor.getString(2)));
 
-                    }while (cursor.moveToNext());
+                    } while (cursor.moveToNext());
 
                 }
 
@@ -1177,14 +1182,14 @@ public class StewardOrderFragment extends Fragment implements
             }
         }
 
-        return ! currencyList.isEmpty();
+        return !currencyList.isEmpty();
     }
 
-    public void showCurrencyInPortraitView(boolean flag){
+    public void showCurrencyInPortraitView(boolean flag) {
 
-        if (! currencyList.isEmpty()){
+        if (!currencyList.isEmpty()) {
 
-            if (flag){
+            if (flag) {
 
                 // Setting Currency Orientation for Portrait View
                 layout_Settle.setOrientation(LinearLayout.HORIZONTAL);
@@ -1197,7 +1202,7 @@ public class StewardOrderFragment extends Fragment implements
                 gridViewCurrency.setLayoutParams(curr);
                 gridViewCurrency.setNumColumns(2);
 
-            }else {
+            } else {
 
                 // Setting Currency Orientation  for LandScape View
                 layout_Settle.setOrientation(LinearLayout.VERTICAL);
@@ -1215,7 +1220,7 @@ public class StewardOrderFragment extends Fragment implements
 
 
     // Handle layout configuration for Vertical view in device.
-    public void flipForPortrait(){
+    public void flipForPortrait() {
 
         int orientation = getResources().getConfiguration().orientation;
 
@@ -1282,9 +1287,9 @@ public class StewardOrderFragment extends Fragment implements
     }
 
 
-    public void showItemByFilter(){
+    public void showItemByFilter() {
 
-        if (listViewSearchItem.getVisibility() == View.GONE){
+        if (listViewSearchItem.getVisibility() == View.GONE) {
             listViewSearchItem.setVisibility(View.VISIBLE);
             radioGroupVegNonveg.setVisibility(View.VISIBLE);
             showFilteredMenuItems("A");
@@ -1420,9 +1425,9 @@ public class StewardOrderFragment extends Fragment implements
     }
 
 
-    public boolean showSlidingPanel(){
+    public boolean showSlidingPanel() {
 
-        if (slidingUpPanelLayout != null){
+        if (slidingUpPanelLayout != null) {
 
             if (slidingUpPanelLayout.getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED)
                 slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
@@ -1430,7 +1435,7 @@ public class StewardOrderFragment extends Fragment implements
                 slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
         }
 
-        return slidingUpPanelLayout != null ;
+        return slidingUpPanelLayout != null;
     }
 
     public void showDiscountList() {
@@ -1457,6 +1462,17 @@ public class StewardOrderFragment extends Fragment implements
     }
 
 
+    public void showOrderReview() {
+        layout_menu.setVisibility(View.GONE);
+        layout_order.setVisibility(View.VISIBLE);
+    }
+
+    public void hideOrderReview() {
+
+        layout_menu.setVisibility(View.VISIBLE);
+        layout_order.setVisibility(View.GONE);
+    }
+
     @Override
     public boolean getPosVisibility() {
 
@@ -1471,6 +1487,10 @@ public class StewardOrderFragment extends Fragment implements
         takeOrderAdapter.setOrderDetail(detail);
 
         switch (v.getId()) {
+
+            case R.id.tv_back:
+                hideOrderReview();
+                break;
 
             case R.id.ll_bottomHeader:
                 showSlidingPanel();
@@ -1571,7 +1591,7 @@ public class StewardOrderFragment extends Fragment implements
 
                 } else if (txtOrderSubmit.getText().toString().equals(getResources().getString(R.string.update_bill))) {
 
-                    if (permission("BM", "Select Bill No First")){
+                    if (permission("BM", "Select Bill No First")) {
 
 /*                        if (rsn_bill_modi)
                             Util.show_Bill_edit_popup(context, this, true, "");
@@ -1593,8 +1613,7 @@ public class StewardOrderFragment extends Fragment implements
                     frameLayout_container.addView(guestDiscountLayout.getGuestDiscountLayout());
                     ll_bottomOrder.setVisibility(View.GONE);
 
-                }*/
-                else if ((posType.equalsIgnoreCase(StaticConstants.KEY_TAG_POS_TYPE_H) ||
+                }*/ else if ((posType.equalsIgnoreCase(StaticConstants.KEY_TAG_POS_TYPE_H) ||
                         posType.equalsIgnoreCase(StaticConstants.KEY_TAG_POS_TYPE_T))) {
 
                     submitHomeOrder("Y");   // Y- Yes, Generate Bill Immediately
@@ -1609,18 +1628,18 @@ public class StewardOrderFragment extends Fragment implements
 
                     else if (!takeOrderAdapter.isEmpty()) {
 
-                        if (orderRemark.isEmpty() && odr_rem_mandat){
+                        if (orderRemark.isEmpty() && odr_rem_mandat) {
 
-                            OrderRemarkPopup orderRemarkPopup = new OrderRemarkPopup(context,this);
+                            OrderRemarkPopup orderRemarkPopup = new OrderRemarkPopup(context, this);
                             orderRemarkPopup.show();
 
-                        }else if (mandatoryPopup())
+                        } else if (mandatoryPopup())
                             submitOrder();
                     }
 
                 } else if (txtOrderSubmit.getText().toString().equals(getResources().getString(R.string.update_string))) {
 
-                    if (permission("OM", "Select Order First")){
+                    if (permission("OM", "Select Order First")) {
 
                         /*if (odr_modi_rsn_mandat)
                             Util.show_new_order_remark_popup(context, this, true);
@@ -1669,8 +1688,8 @@ public class StewardOrderFragment extends Fragment implements
 
                 } else if (layout_bill_operation.getVisibility() == View.VISIBLE) {
 
-                    if (billEditLayout != null)         billEditLayout.clearDetail();
-                    else if (holdOrdersLayout != null)  holdOrdersLayout.clearDetail();
+                    if (billEditLayout != null) billEditLayout.clearDetail();
+                    else if (holdOrdersLayout != null) holdOrdersLayout.clearDetail();
 
                     cashPaid = 0;
                     creditPaid = 0;
@@ -1694,7 +1713,7 @@ public class StewardOrderFragment extends Fragment implements
                     selectGuest.setText(getResources().getString(R.string.guest_string));
                     selectDelBoy.setText(getResources().getString(R.string.del_boy));
 
-                } else if (takeOrderAdapter.isEmpty()){
+                } else if (takeOrderAdapter.isEmpty()) {
 
                     String activeView = txtOrderSubmit.getText().toString();
 
@@ -1707,7 +1726,7 @@ public class StewardOrderFragment extends Fragment implements
                     }
 
                     if (activeView.equals(getResources().getString(R.string.update_string)) ||
-                            activeView.equals(getResources().getString(R.string.Cancel_string))){
+                            activeView.equals(getResources().getString(R.string.Cancel_string))) {
 
                         selectTable.setText(getResources().getString(R.string.table_string));
                         selectGuest.setText(getResources().getString(R.string.guest_string));
@@ -1715,10 +1734,14 @@ public class StewardOrderFragment extends Fragment implements
                     }
 
 
-                    if (layoutGuestName.getVisibility() == View.VISIBLE){
+                    if (layoutGuestName.getVisibility() == View.VISIBLE) {
                         layoutGuestName.setVisibility(View.GONE);
                         textViewGuestName.setText("");
                     }
+
+
+                    layout_order.setVisibility(View.GONE);
+                    showDefault();
 
                 } else if (addonLayoutContainer.getTag() == null && posLayoutContainer.getTag() == null) {
 
@@ -1727,6 +1750,8 @@ public class StewardOrderFragment extends Fragment implements
                     takeOrderAdapter.clearDataSet();
                     takeOrderAdapter.notifyDataSetChanged();
                     layoutShowBillDetail.setVisibility(View.GONE);
+                    layout_order.setVisibility(View.GONE);
+                    showDefault();
                 }
 
                 //SendSmtpMail.sendMessage("rgrahulgupta001@gmail.com", "Hello");
@@ -1765,7 +1790,7 @@ public class StewardOrderFragment extends Fragment implements
 
             case R.id.tv_generate_bill:
                 if (!UserPermission("BG"))
-                    ((BaseFragmentActivity) context).onCreateBillGenerate("","");
+                    ((BaseFragmentActivity) context).onCreateBillGenerate("", "");
                 break;
 
             case R.id.tv_item_discount:
@@ -1792,7 +1817,6 @@ public class StewardOrderFragment extends Fragment implements
 
             case R.id.tv_order_cancel:
                 tv_odr_cancel_type.setText(tv_order_cancel.getText().toString());
-
                 break;
 
             case R.id.tv_chngeToComp:
@@ -1806,9 +1830,9 @@ public class StewardOrderFragment extends Fragment implements
         }
     }
 
-    public void showDiscount(){
+    public void showDiscount() {
 
-        if (!UserPermission("DI")){
+        if (!UserPermission("DI")) {
 
             if (showSlidingPanel())
                 showDiscountList();
@@ -1864,7 +1888,6 @@ public class StewardOrderFragment extends Fragment implements
     }
 
 
-
     @Override
     public void getCashAmount(String cash, String payMode) {
 
@@ -1875,9 +1898,9 @@ public class StewardOrderFragment extends Fragment implements
         textViewTAmt.setText(String.format("%.2f", tendered));
         textViewChange.setText(String.format("%.2f", change));
 
-        if ( ! cash.equals("0.0")){
+        if (!cash.equals("0.0")) {
 
-            if (payMode.equals("CURR")){
+            if (payMode.equals("CURR")) {
                 cashPaid = cashPaid + Float.parseFloat(cash);
                 textViewStlMode.setText("CASH : " + cashPaid + " ");
 
@@ -1981,13 +2004,13 @@ public class StewardOrderFragment extends Fragment implements
 
     public void submitHomeOrder(String flag) {
 
-        this.flag = flag ;
+        this.flag = flag;
 
         if (!takeOrderAdapter.isEmpty()) {
 
             try {
 
-                if (! flag.equals("G") && selectGuest.getText().toString().equals("Guest") && gst_mandate)
+                if (!flag.equals("G") && selectGuest.getText().toString().equals("Guest") && gst_mandate)
                     getAllGuest();
 
                 else {
@@ -2043,7 +2066,7 @@ public class StewardOrderFragment extends Fragment implements
         }
     }
 
-    public void getAttributes(){
+    public void getAttributes() {
 
         SQLiteDatabase mdb = POSDatabase.getInstanceLogin(context).getWritableDatabase();
         mdb.beginTransaction();
@@ -2056,7 +2079,7 @@ public class StewardOrderFragment extends Fragment implements
                             DBConstants.KEY_NO_REASON_BILL_MODIFICATION, DBConstants.KEY_NO_GENERATE_STW_BILL,
                             DBConstants.KEY_ACTIVATE_REMARK_AS_GUEST, DBConstants.KEY_GROUP_WISE_BILLING,
                             DBConstants.KEY_HIDE_BILL_REMARK, DBConstants.KEY_NO_DELETE_BTN_BILL_EDIT,
-                            DBConstants.KEY_NO_MODIFY_BTN_BILL_EDIT,DBConstants.KEY_DISCOUNT_REASON_MANDATORY},
+                            DBConstants.KEY_NO_MODIFY_BTN_BILL_EDIT, DBConstants.KEY_DISCOUNT_REASON_MANDATORY},
                     null, null, null, null, null);
 
             if (cursor.moveToFirst()) {
@@ -2064,11 +2087,11 @@ public class StewardOrderFragment extends Fragment implements
                 odr_modi_rsn_mandat = cursor.getString(0).equals("y");
                 print_order = cursor.getString(1).equals("y");
                 odr_rem_mandat = cursor.getString(2).equals("y");
-                rsn_bill_modi= cursor.getString(3).equals("y");
-                gen_stw_bill= cursor.getString(4).equals("y");
-                rem_as_gst= cursor.getString(5).equals("y");
+                rsn_bill_modi = cursor.getString(3).equals("y");
+                gen_stw_bill = cursor.getString(4).equals("y");
+                rem_as_gst = cursor.getString(5).equals("y");
                 grp_wise_billing = cursor.getString(6).equals("y");
-                hide_bill_remark= cursor.getString(7).equals("y");
+                hide_bill_remark = cursor.getString(7).equals("y");
                 del_bill_edit = cursor.getString(8).equals("y");
                 mod_bill_edit = cursor.getString(9).equals("y");
                 disc_reason = cursor.getString(10).equals("y");
@@ -2165,12 +2188,16 @@ public class StewardOrderFragment extends Fragment implements
             frameLayout_container.setVisibility(View.GONE);
             return true;
 
-        }*/ else if (listViewSearchItem.getVisibility() == View.VISIBLE){
+        }*/ else if (listViewSearchItem.getVisibility() == View.VISIBLE) {
             listViewSearchItem.setVisibility(View.GONE);
             radioGroupVegNonveg.setVisibility(View.GONE);
             return true;
 
-        } else if (! takeOrderAdapter.isEmpty() || tv_show_bill.getVisibility() == View.VISIBLE) {
+        }else if (layout_menu.getVisibility() != View.VISIBLE){
+            hideOrderReview();
+            return true;
+
+        }else if (!takeOrderAdapter.isEmpty() || tv_show_bill.getVisibility() == View.VISIBLE) {
 
             codeList.clear();
             discountLayout.clearDiscList();
@@ -2225,9 +2252,9 @@ public class StewardOrderFragment extends Fragment implements
             //takeOrderAdapter.addMultiQty(menuItem, codeList.indexOf(menuCode));
 
             ArrayList<OrderItem> itemArrayList = takeOrderAdapter.dataSet;
-            for (int i=0; i< itemArrayList.size(); i++){
+            for (int i = 0; i < itemArrayList.size(); i++) {
                 OrderItem orderItem = itemArrayList.get(i);
-                if (orderItem.getO_code().equals(menuItem.getMenu_code())){
+                if (orderItem.getO_code().equals(menuItem.getMenu_code())) {
                     takeOrderAdapter.updateQty(i, menuItem.getQuantity());
                     //showMixer();
                     //getAddOn(menuItem.getMenu_code(), menuItem.getMenu_name(), menuItem.getMenu_group_code());
@@ -2248,9 +2275,9 @@ public class StewardOrderFragment extends Fragment implements
 
     AddonPopup addonPopup;
 
-    public AddonPopup getAddOn(String menu_code, String menu_name, String menu_group_code){
+    public AddonPopup getAddOn(String menu_code, String menu_name, String menu_group_code) {
 
-        if (addonPopup == null){
+        if (addonPopup == null) {
 
             return addonPopup = new AddonPopup(context, menu_code, menu_name,
                     menu_group_code, new AddonPopup.IcallBackAddon() {
@@ -2302,7 +2329,7 @@ public class StewardOrderFragment extends Fragment implements
                 orderNumber, takeOrderAdapter);
         String serverIP = POSApplication.getSingleton().getmDataModel()
                 .getUserInfo().getServerIP();
-        new FetchOrderTask(context, takeOrderAdapter, discountLayout,codeList, parameter, serverIP)
+        new FetchOrderTask(context, takeOrderAdapter, discountLayout, codeList, parameter, serverIP)
                 .execute();
     }
 
@@ -2321,7 +2348,7 @@ public class StewardOrderFragment extends Fragment implements
                 orderNumber, takeOrderAdapter);
         String serverIP = POSApplication.getSingleton().getmDataModel()
                 .getUserInfo().getServerIP();
-        new FetchOrderTask(context, takeOrderAdapter, discountLayout,codeList, parameter, serverIP)
+        new FetchOrderTask(context, takeOrderAdapter, discountLayout, codeList, parameter, serverIP)
                 .execute();
     }
 
@@ -2495,8 +2522,7 @@ public class StewardOrderFragment extends Fragment implements
                 txtOrderSubmit.setVisibility(View.VISIBLE);
                 textHoldOrder.setVisibility(View.GONE);
 
-                if (flag.equals("N"))
-                {
+                if (flag.equals("N")) {
                     layoutShowHoldOrderDetail.setVisibility(View.VISIBLE);
                     tv_OrderNo.setText(textviewForBIllno.getText().toString());
                     tv_Discount.setText(textviewForDiscount.getText().toString());
@@ -2505,14 +2531,14 @@ public class StewardOrderFragment extends Fragment implements
                     tv_Total.setText(textviewForTotal.getText().toString());
                     txtOrderSubmit.setVisibility(View.GONE);
 
-                } else{
+                } else {
 
                     layoutShowBillDetail.setVisibility(View.VISIBLE);
                     textviewTop.setText("Bill No :");
                     textViewTAmt.setText("0");
                     textViewStlMode.setText("");
 
-                    if(flag.equals("G"))
+                    if (flag.equals("G"))
                         holdOrdersLayout.clearDetail();
                 }
 
@@ -2586,7 +2612,7 @@ public class StewardOrderFragment extends Fragment implements
 
             else if (posType.equalsIgnoreCase(StaticConstants.KEY_TAG_POS_TYPE_R))
                 isSuccess = UtilToCreateJSON.parseTakeOrderResponse(
-                        context, tableItem.getName(),tableItem.getCode(), response, this);
+                        context, tableItem.getName(), tableItem.getCode(), response, this);
 
 
             if (isSuccess) {
@@ -2608,7 +2634,7 @@ public class StewardOrderFragment extends Fragment implements
                 coverPopup = false;
                 stewardPopup = false;
 
-                if (layoutGuestName.getVisibility() == View.VISIBLE){
+                if (layoutGuestName.getVisibility() == View.VISIBLE) {
                     layoutGuestName.setVisibility(View.GONE);
                     textViewGuestName.setText("");
                 }
@@ -2628,7 +2654,7 @@ public class StewardOrderFragment extends Fragment implements
 
     public void showDefault() {
 
-        if (isAdded()){
+        if (isAdded()) {
 
             frameLayout_container.removeAllViews();
             frameLayout_container.setVisibility(View.GONE);
@@ -2644,7 +2670,7 @@ public class StewardOrderFragment extends Fragment implements
         }
     }
 
-    public void getItem(String grpCode){
+    public void getItem(String grpCode) {
 
         // tabs.removeAllViews();
         TITLES.clear();
@@ -2715,9 +2741,9 @@ public class StewardOrderFragment extends Fragment implements
         getItem(items.getGroupItems().group_Code);
     }
 
-    public void setFloorTable(Bundle bundle){
+    public void setFloorTable(Bundle bundle) {
 
-        if (bundle != null){
+        if (bundle != null) {
 
             tableItem = new TableItem();
             tableItem.setName(bundle.getString("name"));
@@ -2729,11 +2755,12 @@ public class StewardOrderFragment extends Fragment implements
             selectTable.setText(getResources().getString(R.string.table_string) + " :" + tableItem.getName());
         }
     }
+
     @Override
     public void TableItem(TableItem tableItem) {
 
         this.tableItem = tableItem;
-        cover =  tableItem.cvr;
+        cover = tableItem.cvr;
         steward = tableItem.stwrd;
         OrderDetail detail = takeOrderAdapter.getOrderDetail();
         detail.setTableItem(tableItem);
@@ -2802,7 +2829,7 @@ public class StewardOrderFragment extends Fragment implements
                     guest_code = homeItem.getGuestId();
                     showDefault();
 
-                    if (posItem.posType.equals(StaticConstants.KEY_TAG_POS_TYPE_R)){
+                    if (posItem.posType.equals(StaticConstants.KEY_TAG_POS_TYPE_R)) {
                         layoutGuestName.setVisibility(View.VISIBLE);
                         textViewGuestName.setText(homeItem.getGuestName());
                     }
@@ -2977,7 +3004,7 @@ public class StewardOrderFragment extends Fragment implements
         if (frameLayout_container.getVisibility() == View.VISIBLE)
             showDefault();
 
-        else if (takeOrderAdapter != null && ! takeOrderAdapter.getOrderDetail().getPosItem().posCode.isEmpty()) {
+        else if (takeOrderAdapter != null && !takeOrderAdapter.getOrderDetail().getPosItem().posCode.isEmpty()) {
 
             String parameter = UtilToCreateJSON.createTableJSON(context);
             String serverIP = POSApplication.getSingleton().getmDataModel().getUserInfo().getServerIP();
@@ -3013,12 +3040,11 @@ public class StewardOrderFragment extends Fragment implements
         if (layoutShowBillDetail.getVisibility() == View.GONE &&
                 layout_bill_operation.getVisibility() == View.GONE) {
 
-            if (frameLayout_container.getVisibility() == View.VISIBLE){
+            if (frameLayout_container.getVisibility() == View.VISIBLE) {
 
                 showDefault();
                 showGuestHeader();
-            }
-            else
+            } else
                 showAllGuest();
         }
     }
@@ -3036,11 +3062,11 @@ public class StewardOrderFragment extends Fragment implements
         showGuestHeader();
     }
 
-    public void showGuestHeader(){
+    public void showGuestHeader() {
 
         if (layoutGuestName.getVisibility() == View.VISIBLE)
             layoutGuestName.setVisibility(View.GONE);
-        else if (! textViewGuestName.getText().toString().isEmpty())
+        else if (!textViewGuestName.getText().toString().isEmpty())
             layoutGuestName.setVisibility(View.VISIBLE);
     }
 
@@ -3359,10 +3385,10 @@ public class StewardOrderFragment extends Fragment implements
     @Override
     public void onClickHoldOrderNo(HomeItem homeItem, int index) {
 
-        if (layoutShowBillDetail.getVisibility() == View.GONE){
+        if (layoutShowBillDetail.getVisibility() == View.GONE) {
 
             this.homeItem = homeItem;
-            holdOrderIndex = index ;
+            holdOrderIndex = index;
             tableItem = new TableItem();
             tableItem.setCode(homeItem.TABLE);
 
@@ -3394,7 +3420,7 @@ public class StewardOrderFragment extends Fragment implements
                 else if (flag.equals("L"))
                     billEditLayout.refreshDetail();
 
-                else if(flag.equals("Y"))
+                else if (flag.equals("Y"))
                     showDefault();
 
                 cashPaid = 0;
@@ -3420,10 +3446,10 @@ public class StewardOrderFragment extends Fragment implements
             String result = jsonObject.getString("BillCancelResult");
             if (result.equals("Success")) {
 
-                String cancelType =  billEditLayout.cancelFlag.equals("C") ?
+                String cancelType = billEditLayout.cancelFlag.equals("C") ?
                         "Bill cancelled" :
                         billEditLayout.cancelFlag.equals("CO") ?
-                                "Bill changed to complimentary" : "Full discount applied to Bill" ;
+                                "Bill changed to complimentary" : "Full discount applied to Bill";
 
                 takeOrderAdapter.clearDataSet();
                 getBillEditPopup("C");
@@ -3502,9 +3528,8 @@ public class StewardOrderFragment extends Fragment implements
 
     public boolean UserPermission(String menu_id) {
 
-        return ((BaseFragmentActivity)context).UserPermission(menu_id);
+        return ((BaseFragmentActivity) context).UserPermission(menu_id);
     }
-
 
 
     public String show_Group_items_horizontally() {
@@ -3538,7 +3563,7 @@ public class StewardOrderFragment extends Fragment implements
                             TypedValue.COMPLEX_UNIT_PX, getResources()
                                     .getDimension(R.dimen.group_font_size));
                     show_group_without_imButton.setTextColor(Color.BLACK);
-                    show_group_without_imButton.setPadding(5,0,5,0);
+                    show_group_without_imButton.setPadding(5, 0, 5, 0);
 
                     show_group_without_imButton
                             .setLayoutParams(new ViewGroup.LayoutParams(
@@ -3566,9 +3591,9 @@ public class StewardOrderFragment extends Fragment implements
             cursor.close();
             mdb.setTransactionSuccessful();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             mdb.endTransaction();
         }
         return frst_grp_code;
@@ -3613,7 +3638,7 @@ public class StewardOrderFragment extends Fragment implements
                     popup_mandatory("yn");
                 else if (steward.isEmpty())
                     popup_mandatory("ny");
-                else{
+                else {
                     coverPopup = true;
                     stewardPopup = true;
                 }
@@ -3636,13 +3661,12 @@ public class StewardOrderFragment extends Fragment implements
                     stewardPopup = true;
                 }
 
-            }else  if(c.getString(1).equals("n") && c.getString(2).equals("y")){
-                Toast.makeText(context,"Activate Cover on Order", Toast.LENGTH_SHORT).show();
+            } else if (c.getString(1).equals("n") && c.getString(2).equals("y")) {
+                Toast.makeText(context, "Activate Cover on Order", Toast.LENGTH_SHORT).show();
 
-            } else  if(c.getString(3).equals("n") && c.getString(4).equals("y")){
-                Toast.makeText(context,"Activate Steward on Order", Toast.LENGTH_SHORT).show();
-            }
-            else {
+            } else if (c.getString(3).equals("n") && c.getString(4).equals("y")) {
+                Toast.makeText(context, "Activate Steward on Order", Toast.LENGTH_SHORT).show();
+            } else {
                 coverPopup = true;
                 stewardPopup = true;
             }
@@ -3654,7 +3678,7 @@ public class StewardOrderFragment extends Fragment implements
         mdb.endTransaction();
         c.close();
 
-        return coverPopup && stewardPopup ;
+        return coverPopup && stewardPopup;
     }
 
     public void popup_mandatory(final String value) {

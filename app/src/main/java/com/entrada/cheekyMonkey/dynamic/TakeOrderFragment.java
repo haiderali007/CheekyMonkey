@@ -2,6 +2,7 @@ package com.entrada.cheekyMonkey.dynamic;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.job.JobInfo;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,6 +18,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -97,15 +99,15 @@ import static com.entrada.cheekyMonkey.steward.bill.BillGenerateFragment.frameLa
  */
 public class TakeOrderFragment extends Fragment implements
         IAsyncTaskRunner, View.OnClickListener,
-        OnMenuItemClick.ICallMenuPopup,ICallOrder, ICallSendNotification,
-        ICallTable,ICallDiscList,ICallBackSendOrderResponse, OnBackPressInterface {
+        OnMenuItemClick.ICallMenuPopup, ICallOrder, ICallSendNotification,
+        ICallTable, ICallDiscList, ICallBackSendOrderResponse, OnBackPressInterface {
 
     public Context context;
     public ArrayList<Items> TITLES = new ArrayList<>();
     public TakeOrderAdapter takeOrderAdapter;
     public TableNumberLayout tableNumberLayout;
     public ListView listViewOrderItem, listViewSearchItem;
-    public FrameLayout frameLayout_container ;
+    public FrameLayout frameLayout_container;
     public LinearLayout layoutBanner;
     public ArrayList<String> codeList = new ArrayList<>();
     TableItem tableItem;
@@ -117,22 +119,22 @@ public class TakeOrderFragment extends Fragment implements
     public MyPagerAdapter adapter;
     MySlidingPaneLayout sliding_pane_layout;
 
-    public String orderRemark = "",  steward = "", order_type = "", cover = "";
+    public String orderRemark = "", steward = "", order_type = "", cover = "";
     CustomTextview selectTable, txtOrderSubmit, tv_no_order, tv_total_amt, tv_home, tv_myOrders;
     LinearLayout layoutHeader;
 
-    ArrayList<String> orderList ;
-    ScheduledExecutorService  statusScheduler;
+    ArrayList<String> orderList;
+    ScheduledExecutorService statusScheduler;
 
     public ItemsAdapter adapter_menu_search;
-    double latitude= 0, longitude= 0, min_latitude= 0,max_latitude= 0, min_longitude= 0, max_longitude =0;
+    double latitude = 0, longitude = 0, min_latitude = 0, max_latitude = 0, min_longitude = 0, max_longitude = 0;
     View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        if (view == null){
+        if (view == null) {
             view = inflater.inflate(R.layout.dyn_take_order_fragment, container, false);
             init(view);
 
@@ -200,10 +202,10 @@ public class TakeOrderFragment extends Fragment implements
         frameLayout_container = (FrameLayout) v.findViewById(R.id.frameLayout_container);
         tableNumberLayout = new TableNumberLayout(context, frameLayout_container.getWidth(), this);
 
-         min_latitude =  PrefHelper.getStoredDouble(context, PrefHelper.PREF_FILE_NAME, PrefHelper.MIN_LATITUDE);
-         max_latitude =  PrefHelper.getStoredDouble(context, PrefHelper.PREF_FILE_NAME, PrefHelper.MAX_LATITUDE);
-         min_longitude = PrefHelper.getStoredDouble(context, PrefHelper.PREF_FILE_NAME, PrefHelper.MIN_LONGITUDE);
-         max_longitude = PrefHelper.getStoredDouble(context, PrefHelper.PREF_FILE_NAME, PrefHelper.MAX_LONGITUDE);
+        min_latitude = PrefHelper.getStoredDouble(context, PrefHelper.PREF_FILE_NAME, PrefHelper.MIN_LATITUDE);
+        max_latitude = PrefHelper.getStoredDouble(context, PrefHelper.PREF_FILE_NAME, PrefHelper.MAX_LATITUDE);
+        min_longitude = PrefHelper.getStoredDouble(context, PrefHelper.PREF_FILE_NAME, PrefHelper.MIN_LONGITUDE);
+        max_longitude = PrefHelper.getStoredDouble(context, PrefHelper.PREF_FILE_NAME, PrefHelper.MAX_LONGITUDE);
 
         ImageButton img_back = (ImageButton) v.findViewById(R.id.image_back);
         img_back.setOnClickListener(new View.OnClickListener() {
@@ -232,7 +234,7 @@ public class TakeOrderFragment extends Fragment implements
                 Items items = (Items) parent.getItemAtPosition(position);
                 //onclickEvent(items.getMenuItem());
                 showQtyPopup(items.getMenuItem());
-                ((BaseFragmentActivity)context).showHomeItemList();
+                ((BaseFragmentActivity) context).showHomeItemList();
 
             }
         });
@@ -258,7 +260,7 @@ public class TakeOrderFragment extends Fragment implements
 
     }
 
-    public void showQtyPopup(final MenuItem menuItem){
+    public void showQtyPopup(final MenuItem menuItem) {
 
         String[] qty = new String[15];
 
@@ -316,14 +318,14 @@ public class TakeOrderFragment extends Fragment implements
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                setQuantity(menuItem, position+1);
+                setQuantity(menuItem, position + 1);
                 dialog.dismiss();
                 //addMixer();
             }
         });
     }
 
-    public void addMixer(){
+    public void addMixer() {
 
         frameLayout_container.setVisibility(View.VISIBLE);
         Add_Mixer_Fragment addMixerFragment = new Add_Mixer_Fragment();
@@ -342,7 +344,7 @@ public class TakeOrderFragment extends Fragment implements
 
     }
 
-    public void updateStatusPendingOrders(){
+    public void updateStatusPendingOrders() {
 
         orderList = new ArrayList<>();
 
@@ -351,22 +353,22 @@ public class TakeOrderFragment extends Fragment implements
 
         try {
             Cursor cursor = mdb.rawQuery("Select * from " + DBConstants.KEY_GUEST_ORDERS_TABLE +
-                    " where " + DBConstants.KEY_GUEST_ORDER_STATUS  +  "= 'K' ", null);
+                    " where " + DBConstants.KEY_GUEST_ORDER_STATUS + "= 'K' ", null);
 
-            if (cursor.moveToFirst() ){
+            if (cursor.moveToFirst()) {
 
                 do {
                     orderList.add(cursor.getString(1));
-                }while (cursor.moveToNext());
+                } while (cursor.moveToNext());
 
             }
 
             cursor.close();
             mdb.setTransactionSuccessful();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {mdb.endTransaction();
+        } finally {
+            mdb.endTransaction();
         }
 
         if (!orderList.isEmpty())
@@ -386,13 +388,13 @@ public class TakeOrderFragment extends Fragment implements
         updateScrolling();
         showTotalAmount();
 
-        if (! UserInfo.lock)
+        if (!UserInfo.lock)
             showOrderItemList();
     }
 
     public void showMultiQty(MenuItem menuItem) {
 
-        if (! UserInfo.lock)
+        if (!UserInfo.lock)
             showOrderItemList();
 
         String menuCode = menuItem.getMenu_code();
@@ -405,9 +407,9 @@ public class TakeOrderFragment extends Fragment implements
             //takeOrderAdapter.addMultiQty(menuItem, codeList.indexOf(menuCode));
 
             ArrayList<OrderItem> itemArrayList = takeOrderAdapter.dataSet;
-            for (int i=0; i< itemArrayList.size(); i++){
+            for (int i = 0; i < itemArrayList.size(); i++) {
                 OrderItem orderItem = itemArrayList.get(i);
-                if (orderItem.getO_code().equals(menuItem.getMenu_code())){
+                if (orderItem.getO_code().equals(menuItem.getMenu_code())) {
                     takeOrderAdapter.updateQty(i, menuItem.getQuantity());
                     showMixer();
                     break;
@@ -430,7 +432,7 @@ public class TakeOrderFragment extends Fragment implements
     }
 
 
-    public void showTotalAmount(){
+    public void showTotalAmount() {
 
         float totalAmt = 0;
         for (OrderItem orderItem : takeOrderAdapter.getDataSet())
@@ -438,14 +440,34 @@ public class TakeOrderFragment extends Fragment implements
 
         String amount = getString(R.string.rupees, "₹", String.valueOf(totalAmt));
         tv_total_amt.setText(amount);
-        txtOrderSubmit.setEnabled(! selectTable.getText().equals(
-                getString(R.string.slct_tbl_string)) && takeOrderAdapter.getCount() > 0);
+        boolean result1 = takeOrderAdapter.getCount() > 0;
+
+        if (result1) {
+            selectTable.setEnabled(true);
+        } else {
+            selectTable.setEnabled(false);
+            txtOrderSubmit.setBackgroundResource(R.drawable.button_state);
+            txtOrderSubmit.setTextColor(Color.WHITE);
+        }
+        boolean result = !selectTable.getText().equals(getString(R.string.slct_tbl_string)) && takeOrderAdapter.getCount() > 0;
+
+        txtOrderSubmit.setEnabled(result);
+
+        if (result) {
+            txtOrderSubmit.setBackgroundResource(R.drawable.button_state1);
+            txtOrderSubmit.setTextColor(Color.BLUE);
+        } else {
+            txtOrderSubmit.setBackgroundResource(R.drawable.button_state);
+            txtOrderSubmit.setTextColor(Color.WHITE);
+        }
+
+
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.context=context;
+        this.context = context;
     }
 
     @Override
@@ -465,9 +487,9 @@ public class TakeOrderFragment extends Fragment implements
 
             case R.id.txtOrderSubmit:
 
-                if (PrefHelper.getStoredBoolean(context,PrefHelper.PREF_FILE_NAME,PrefHelper.STEWARD_LOGIN)) {
+                if (PrefHelper.getStoredBoolean(context, PrefHelper.PREF_FILE_NAME, PrefHelper.STEWARD_LOGIN)) {
 
-                    if (UserInfo.guest_id.isEmpty() || UserInfo.guest_name.isEmpty()){
+                    if (UserInfo.guest_id.isEmpty() || UserInfo.guest_name.isEmpty()) {
                         showHome();
                         UserInfo.showLoginDialog(context);
                     } else if (selectTable.getText().equals(getString(R.string.slct_tbl_string))) {
@@ -479,7 +501,7 @@ public class TakeOrderFragment extends Fragment implements
                     else
                         Toast.makeText(context, "Add any item", Toast.LENGTH_SHORT).show();
 
-                } else{
+                } else {
                     //UserInfo.showAccessDeniedDialog(context, getString(R.string.order_restriction));
                     //submitOrder();
                     submitOrderWithoutValidation();
@@ -496,36 +518,36 @@ public class TakeOrderFragment extends Fragment implements
 
             case R.id.tv_myOrders:
                 //showOrderItemList();
-                ((BaseFragmentActivity)context).myOrders();
+                ((BaseFragmentActivity) context).myOrders();
                 break;
         }
     }
 
 
-    public void showHomeScreen(){
+    public void showHomeScreen() {
 
         sliding_pane_layout.closePane();
         layoutHeader.setVisibility(View.VISIBLE);
         frameLayout_container.setVisibility(View.GONE);
     }
 
-    public void showCartOrder(){
+    public void showCartOrder() {
 
         sliding_pane_layout.openPane();
         layoutHeader.setVisibility(View.VISIBLE);
         frameLayout_container.setVisibility(View.GONE);
     }
 
-    public void showMixer(){
+    public void showMixer() {
 
         sliding_pane_layout.openPane();
         layoutHeader.setVisibility(View.GONE);
         frameLayout_container.setVisibility(View.VISIBLE);
     }
 
-    public void submitOrder(){
+    public void submitOrder() {
 
-        if (UserInfo.guest_id.isEmpty() || UserInfo.guest_name.isEmpty()){
+        if (UserInfo.guest_id.isEmpty() || UserInfo.guest_name.isEmpty()) {
             showHome();
             UserInfo.showLoginDialog(context);
 
@@ -536,20 +558,20 @@ public class TakeOrderFragment extends Fragment implements
             getAllTables();
 
         else if ((28.45 <= latitude && latitude <= 28.46) &&
-                (77.06  <= longitude && longitude <= 77.07)){
+                (77.06 <= longitude && longitude <= 77.07)) {
 
             if (!takeOrderAdapter.isEmpty())
 
                 showConfirmOrderDialog();
             //  placeGuestOrderMethod(UserInfo.guest_id, UserInfo.guest_name);
 
-        }else
-            UserInfo.showAccessDeniedDialog(context,getString(R.string.not_in_location));
+        } else
+            UserInfo.showAccessDeniedDialog(context, getString(R.string.not_in_location));
     }
 
-    public void submitOrderWithoutValidation(){
+    public void submitOrderWithoutValidation() {
 
-        if (UserInfo.guest_id.isEmpty() || UserInfo.guest_name.isEmpty()){
+        if (UserInfo.guest_id.isEmpty() || UserInfo.guest_name.isEmpty()) {
             showHome();
             UserInfo.showLoginDialog(context);
 
@@ -561,7 +583,7 @@ public class TakeOrderFragment extends Fragment implements
         //  placeGuestOrderMethod(UserInfo.guest_id, UserInfo.guest_name);
     }
 
-    public void showConfirmOrderDialog(){
+    public void showConfirmOrderDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -615,7 +637,6 @@ public class TakeOrderFragment extends Fragment implements
     }
 
 
-
     public void submitStewardOrder() {
 
         try {
@@ -645,7 +666,7 @@ public class TakeOrderFragment extends Fragment implements
 
             if (posType.equalsIgnoreCase(StaticConstants.KEY_TAG_POS_TYPE_R))
                 isSuccess = UtilToCreateJSON.parseTakeOrderResponse(
-                        context, tableItem.getName(),tableItem.getCode(), response, this);
+                        context, tableItem.getName(), tableItem.getCode(), response, this);
 
             if (isSuccess) {
 
@@ -667,7 +688,7 @@ public class TakeOrderFragment extends Fragment implements
     @Override
     public boolean onBackPress() {
 
-        if (sliding_pane_layout.isOpen()){
+        if (sliding_pane_layout.isOpen()) {
             sliding_pane_layout.closePane();
             return true;
         }
@@ -735,9 +756,9 @@ public class TakeOrderFragment extends Fragment implements
         }
     }*/
 
-    public void showDiscount(){
+    public void showDiscount() {
 
-        if (!UserPermission("DI")){
+        if (!UserPermission("DI")) {
 
             if (discountLayout.listViewShowDiscount != null &&
                     discountLayout.listViewShowDiscount.getVisibility() == View.VISIBLE) {
@@ -759,7 +780,7 @@ public class TakeOrderFragment extends Fragment implements
     }
 
 
-    public void getAllTables(){
+    public void getAllTables() {
 
         final ArrayList<TableItem> tableItemList = getTableItemList();
         final ArrayList<String> tableList = new ArrayList<>();
@@ -772,7 +793,8 @@ public class TakeOrderFragment extends Fragment implements
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.layout_quantity, null);
 
-        TextView tv_title = (TextView)view.findViewById(R.id.tv_selectTitle);
+
+        TextView tv_title = (TextView) view.findViewById(R.id.tv_selectTitle);
         tv_title.setText(getString(R.string.select_table_string));
         ListView listViewTable = (ListView) view.findViewById(R.id.lv_qty);
         ArrayAdapter<String> adapter_qty = new ArrayAdapter<>(context, R.layout.list_qty_layout, tableList);
@@ -804,17 +826,17 @@ public class TakeOrderFragment extends Fragment implements
 
                 tableItem = tableItemList.get(position);
                 selectTable.setText(getString(R.string.selected_table_string, tableItem.getCode()));
-                txtOrderSubmit.setEnabled(takeOrderAdapter.getCount() > 0);
-                txtOrderSubmit.setBackgroundColor(Color.YELLOW);
-                txtOrderSubmit.setTextColor(Color.BLUE);
 
+                txtOrderSubmit.setEnabled(takeOrderAdapter.getCount() > 0);
+                txtOrderSubmit.setBackgroundResource(R.drawable.button_state1);
+                txtOrderSubmit.setTextColor(Color.BLUE);
                 //**//
                 dialog.dismiss();
             }
         });
     }
 
-    public ArrayList<TableItem> getTableItemList(){
+    public ArrayList<TableItem> getTableItemList() {
 
         ArrayList<TableItem> tableList = new ArrayList<>();
         SQLiteDatabase mdb = POSDatabase.getInstanceLogin(context).getWritableDatabase();
@@ -832,14 +854,14 @@ public class TakeOrderFragment extends Fragment implements
                     obj_list.code = c.getString(c.getColumnIndex(DBConstants.KEY_OUTLET_TABLE_CODE));
                     obj_list.name = c.getString(c.getColumnIndex(DBConstants.KEY_OUTLET_TABLE_NUM));
                     tableList.add(obj_list);
-                }while (c.moveToNext());
+                } while (c.moveToNext());
             }
             c.close();
 
             mdb.setTransactionSuccessful();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             mdb.endTransaction();
         }
         return tableList;
@@ -847,7 +869,7 @@ public class TakeOrderFragment extends Fragment implements
 
     public boolean UserPermission(String menu_id) {
 
-        return ((BaseFragmentActivity)context).UserPermission(menu_id);
+        return ((BaseFragmentActivity) context).UserPermission(menu_id);
     }
 
 
@@ -880,25 +902,25 @@ public class TakeOrderFragment extends Fragment implements
     }
 
 
-    public void showHome(){
+    public void showHome() {
 
         tv_home.setBackgroundResource(R.color.home_color);
         tv_myOrders.setBackgroundResource(R.color.grey_light);
         sliding_pane_layout.closePane();
     }
 
-    public void showOrderItemList(){
+    public void showOrderItemList() {
 
-        if (! sliding_pane_layout.isOpen()){
+        if (!sliding_pane_layout.isOpen()) {
 
             tv_home.setBackgroundResource(R.color.grey_light);
             tv_myOrders.setBackgroundResource(R.color.home_color);
             sliding_pane_layout.openPane();
-            tv_no_order.setVisibility(takeOrderAdapter.getCount()==0 ? View.VISIBLE : View.GONE);
+            tv_no_order.setVisibility(takeOrderAdapter.getCount() == 0 ? View.VISIBLE : View.GONE);
         }
     }
 
-    public void clearData(){
+    public void clearData() {
 
         //selectTable.setText(getResources().getString(R.string.select_table_string));
         takeOrderAdapter.clearDataSet();
@@ -942,7 +964,7 @@ public class TakeOrderFragment extends Fragment implements
         @Override
         public CharSequence getPageTitle(int position) {
 
-            if (getCount() == position+1)
+            if (getCount() == position + 1)
                 layoutBanner.setVisibility(View.GONE);
 
             CategoryItem categoryItem = TITLES.get(position).getCategoryItem();
@@ -1013,7 +1035,7 @@ public class TakeOrderFragment extends Fragment implements
     public void onPause() {
         super.onPause();
 
-        if (statusScheduler != null && ! statusScheduler.isShutdown())
+        if (statusScheduler != null && !statusScheduler.isShutdown())
             statusScheduler.shutdownNow();
     }
 
@@ -1021,7 +1043,7 @@ public class TakeOrderFragment extends Fragment implements
     public void onResume() {
         super.onResume();
 
-        if (orderList.size() > 0){
+        if (orderList.size() > 0) {
             if (statusScheduler != null && statusScheduler.isShutdown())
                 scheduleExecutors(orderList.get(0));
         }
@@ -1047,7 +1069,7 @@ public class TakeOrderFragment extends Fragment implements
 
                 do {
 
-                    if (! previous_cat.equals(c.getString(c.getColumnIndex("cat_code")))) {
+                    if (!previous_cat.equals(c.getString(c.getColumnIndex("cat_code")))) {
 
                         CategoryItem categoryItem = new CategoryItem();
                         categoryItem.setCategory_Code(c.getString(c.getColumnIndex("cat_code")));
@@ -1069,9 +1091,9 @@ public class TakeOrderFragment extends Fragment implements
                         mTITLES.add(new Items(new GroupItems(), categoryItem, menuItemList));
                         previous_cat = c.getString(c.getColumnIndex("cat_code"));
 
-                    }else {
+                    } else {
 
-                        ArrayList<com.entrada.cheekyMonkey.entity.MenuItem> menuItemList = mTITLES.get(mTITLES.size()-1).getMenuItemList();
+                        ArrayList<com.entrada.cheekyMonkey.entity.MenuItem> menuItemList = mTITLES.get(mTITLES.size() - 1).getMenuItemList();
                         com.entrada.cheekyMonkey.entity.MenuItem menuItem = new com.entrada.cheekyMonkey.entity.MenuItem();
                         menuItem.setMenu_code(c.getString(c.getColumnIndex("item_code")));
                         menuItem.setMenu_name(c.getString(c.getColumnIndex("item_desc")));
@@ -1082,18 +1104,18 @@ public class TakeOrderFragment extends Fragment implements
                         menuItemList.add(menuItem);
                     }
 
-                }while (c.moveToNext());
+                } while (c.moveToNext());
 
             }
             c.close();
             mdb.setTransactionSuccessful();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             mdb.endTransaction();
         }
 
-        if (! mTITLES.isEmpty()) {
+        if (!mTITLES.isEmpty()) {
 
             TITLES.clear();
             TITLES.addAll(mTITLES);
@@ -1150,18 +1172,17 @@ public class TakeOrderFragment extends Fragment implements
                 showHome();
 
                 saveOrderStatus(orderNum, "A");
-                ((BaseFragmentActivity)context).sendNotification(getString(R.string.process_noti, UserInfo.guest_name, orderNum));
+                ((BaseFragmentActivity) context).sendNotification(getString(R.string.process_noti, UserInfo.guest_name, orderNum));
 
-                ((BaseFragmentActivity)context).myOrders();
+                ((BaseFragmentActivity) context).myOrders();
                 showOrderConfirmedMsg(orderNum);
                 //Toast.makeText(context, orderNum, Toast.LENGTH_LONG).show();
                 //clearData();
 
-                if (orderList.isEmpty()){       // indicating no service is running.
+                if (orderList.isEmpty()) {       // indicating no service is running.
                     orderList.add(orderNum);
                     scheduleExecutors(orderNum);
-                }
-                else
+                } else
                     orderList.add(orderNum);  //queue this order number, which will get handled by ScheduledExecutor at last.
             }
         }
@@ -1178,7 +1199,7 @@ public class TakeOrderFragment extends Fragment implements
     }
 
 
-    public void showOrderConfirmedMsg(String orderNo){
+    public void showOrderConfirmedMsg(String orderNo) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -1219,9 +1240,8 @@ public class TakeOrderFragment extends Fragment implements
     }
 
 
-
     /*************** Complete flow to control Active Notification **********************/
-    public void scheduleExecutors(final String orderNum){
+    public void scheduleExecutors(final String orderNum) {
 
         statusScheduler = Executors.newSingleThreadScheduledExecutor();
         statusScheduler.scheduleWithFixedDelay(new Runnable() {
@@ -1247,23 +1267,23 @@ public class TakeOrderFragment extends Fragment implements
     @Override
     public void sendNotification(String orderNum, String status) {
 
-        if (status.equals("failure")){
+        if (status.equals("failure")) {
             statusScheduler.shutdownNow();
-            Toast.makeText(context,"Connection failed",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Connection failed", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (! orderList.contains(orderNum) || status.isEmpty())
+        if (!orderList.contains(orderNum) || status.isEmpty())
             return;
 
-        if (getActivity() != null && isAdded()){
+        if (getActivity() != null && isAdded()) {
 
-            if (status.equals("B") || status.equals("C") || status.equals("D") || status.equals("E")){
+            if (status.equals("B") || status.equals("C") || status.equals("D") || status.equals("E")) {
 
                 if (status.equals("B"))
-                    ((BaseFragmentActivity)context).sendNotification(getString(R.string.accepted_noti, UserInfo.guest_name, orderNum));
+                    ((BaseFragmentActivity) context).sendNotification(getString(R.string.accepted_noti, UserInfo.guest_name, orderNum));
                 else
-                    ((BaseFragmentActivity)context).sendNotification(getString(R.string.rejected_noti, UserInfo.guest_name, orderNum));
+                    ((BaseFragmentActivity) context).sendNotification(getString(R.string.rejected_noti, UserInfo.guest_name, orderNum));
 
                 orderList.remove(orderList.indexOf(orderNum));
                 updateOrderStatus(orderNum, status);
@@ -1277,14 +1297,14 @@ public class TakeOrderFragment extends Fragment implements
         }
     }
 
-    public void saveOrderStatus(String orderNum, String status){
+    public void saveOrderStatus(String orderNum, String status) {
 
         SQLiteDatabase mdb = POSDatabase.getInstanceLogin(context).getWritableDatabase();
         mdb.beginTransaction();
         try {
 
-            ArrayList<OrderItem> orderItems =  takeOrderAdapter.getDataSet();
-            for (int i =0; i<takeOrderAdapter.getCount();i++){
+            ArrayList<OrderItem> orderItems = takeOrderAdapter.getDataSet();
+            for (int i = 0; i < takeOrderAdapter.getCount(); i++) {
 
                 ContentValues cv = new ContentValues();
                 cv.put(DBConstants.KEY_ORDER_NUMBER, orderNum);
@@ -1302,14 +1322,17 @@ public class TakeOrderFragment extends Fragment implements
 
             mdb.setTransactionSuccessful();
 
-        } catch (Exception ex) {ex.printStackTrace();}
-        finally {mdb.endTransaction();}
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            mdb.endTransaction();
+        }
 
         clearData();
 
     }
 
-    public void updateOrderStatus(String orderNum, String status){
+    public void updateOrderStatus(String orderNum, String status) {
 
         SQLiteDatabase mdb = POSDatabase.getInstanceLogin(context).getWritableDatabase();
         mdb.beginTransaction();
@@ -1319,41 +1342,44 @@ public class TakeOrderFragment extends Fragment implements
             cv.put(DBConstants.KEY_GUEST_ORDER_NUMBER, orderNum);
             cv.put(DBConstants.KEY_GUEST_ORDER_STATUS, status);
 
-            mdb.update(DBConstants.KEY_GUEST_ORDERS_TABLE, cv, DBConstants.KEY_GUEST_ORDER_NUMBER + "= '"+orderNum+"' ", null);
+            mdb.update(DBConstants.KEY_GUEST_ORDERS_TABLE, cv, DBConstants.KEY_GUEST_ORDER_NUMBER + "= '" + orderNum + "' ", null);
             mdb.setTransactionSuccessful();
 
-        } catch (Exception ex) {ex.printStackTrace();}
-        finally {mdb.endTransaction();}
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            mdb.endTransaction();
+        }
     }
 
     /* ******************************************************************* */
 
 
     /* *** Handling Guest Location in terms of latitude & longitude ****** */
-    class GeoPoint{
+    class GeoPoint {
 
         int lattitue = 0;
         int longitutde = 0;
 
-        GeoPoint(int lati, int longi){
+        GeoPoint(int lati, int longi) {
 
             lattitue = lati;
             longitutde = longi;
         }
     }
 
-    public GeoPoint getLocationFromAddress(String strAddress){
+    public GeoPoint getLocationFromAddress(String strAddress) {
 
         Geocoder coder = new Geocoder(context);
         List<Address> address;
-        GeoPoint p1 ;
+        GeoPoint p1;
 
         try {
-            address = coder.getFromLocationName(strAddress,5);
-            if (address==null) {
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
                 return null;
             }
-            Address location=address.get(0);
+            Address location = address.get(0);
             location.getLatitude();
             location.getLongitude();
 
@@ -1361,13 +1387,14 @@ public class TakeOrderFragment extends Fragment implements
                     (int) (location.getLongitude() * 1E6));
 
             return p1;
-        }catch (Exception e){
-            e.printStackTrace();}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return null;
     }
 
-    public void getLocationOfCurrentAddress(){
+    public void getLocationOfCurrentAddress() {
 
         // check if GPS enabled
         GPSTracker gpsTracker = new GPSTracker(context);
@@ -1392,7 +1419,7 @@ public class TakeOrderFragment extends Fragment implements
         LocationManager lm = (LocationManager)
                 context.getSystemService(Context.LOCATION_SERVICE);
         String provider = lm.getBestProvider(new Criteria(), true);
-        return (! provider.isEmpty() &&
+        return (!provider.isEmpty() &&
                 !LocationManager.PASSIVE_PROVIDER.equals(provider));
     }
 
@@ -1400,7 +1427,7 @@ public class TakeOrderFragment extends Fragment implements
         int locationMode = 0;
         String locationProviders;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             try {
                 locationMode = Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.LOCATION_MODE);
 
@@ -1410,7 +1437,7 @@ public class TakeOrderFragment extends Fragment implements
 
             return locationMode != Settings.Secure.LOCATION_MODE_OFF;
 
-        }else{
+        } else {
             locationProviders = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
             return !TextUtils.isEmpty(locationProviders);
         }
@@ -1439,14 +1466,14 @@ public class TakeOrderFragment extends Fragment implements
     }
 
 
-    public void scheduleTimer(){
+    public void scheduleTimer() {
 
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
                 //process();
                 adapter.notifyDataSetChanged();
-                Logger.w("Timer scheduled >>>>>>>>>>>","Yeppy !...");
+                Logger.w("Timer scheduled >>>>>>>>>>>", "Yeppy !...");
             }
         };
 

@@ -23,6 +23,7 @@ import com.entrada.cheekyMonkey.db.DBConstants;
 import com.entrada.cheekyMonkey.db.POSDatabase;
 import com.entrada.cheekyMonkey.dynamic.BaseFragmentActivity;
 import com.entrada.cheekyMonkey.dynamic.TakeOrderFragment;
+import com.entrada.cheekyMonkey.staticData.PrefHelper;
 import com.entrada.cheekyMonkey.staticData.StaticConstants;
 import com.entrada.cheekyMonkey.steward.discount.DiscountLayout;
 import com.entrada.cheekyMonkey.steward.other.POSAdapter;
@@ -99,7 +100,7 @@ public class AddonPopup implements View.OnClickListener, OnItemClickListener {
 
     private Cursor getAllRecordsAddonParticular(String adonnItemCode, SQLiteDatabase mdb) {
 
-        String queryAddon = "SELECT * FROM " + DBConstants.KEY_ADDONS_TABLE ;
+        String queryAddon = "SELECT * FROM " + DBConstants.KEY_ADDONS_TABLE;
 
         return mdb.rawQuery(queryAddon, null);
     }
@@ -135,9 +136,9 @@ public class AddonPopup implements View.OnClickListener, OnItemClickListener {
 
             case R.id.tv_back:
 
-                if (context instanceof BaseFragmentActivity){
-                    TakeOrderFragment takeOrderFragment = ((BaseFragmentActivity)context).takeOrderFragment;
-                    if(takeOrderFragment != null && takeOrderFragment.isAdded())
+                if (context instanceof BaseFragmentActivity) {
+                    TakeOrderFragment takeOrderFragment = ((BaseFragmentActivity) context).takeOrderFragment;
+                    if (takeOrderFragment != null && takeOrderFragment.isAdded())
                         takeOrderFragment.showHomeScreen();
                     else
                         backAddon.removeView(StaticConstants.ADDON_POPUP_TAG);
@@ -160,7 +161,7 @@ public class AddonPopup implements View.OnClickListener, OnItemClickListener {
                         obj_order.o_name = item.addonName;
                         obj_order.o_quantity = item.addonQty;
                         obj_order.o_price = item.addonPrice;
-                        obj_order.o_amount = item.addonPrice *item.addonQty;
+                        obj_order.o_amount = item.addonPrice * item.addonQty;
                         obj_order.o_itm_rmrk = "";
                         obj_order.o_addon_code = code;
                         obj_order.o_mod = "";
@@ -181,16 +182,26 @@ public class AddonPopup implements View.OnClickListener, OnItemClickListener {
 
 
                 // Refresh Total Amount
-                if (context instanceof BaseFragmentActivity){
-                    TakeOrderFragment takeOrderFragment = ((BaseFragmentActivity)context).takeOrderFragment;
-                    if(takeOrderFragment != null && takeOrderFragment.isAdded())
+                if (context instanceof BaseFragmentActivity) {
+                    TakeOrderFragment takeOrderFragment = ((BaseFragmentActivity) context).takeOrderFragment;
+                    if (takeOrderFragment != null && takeOrderFragment.isAdded())
                         takeOrderFragment.showTotalAmount();
+                    else {
+                        StewardOrderFragment stewardOrderFragment = ((BaseFragmentActivity) context).stewardOrderFragment;
+                        if (stewardOrderFragment != null && stewardOrderFragment.isAdded())
+                            stewardOrderFragment.showOrderReview();
+                    }
                 }
 
                 break;
 
             case R.id.txt_skip:
-                backAddon.removeView(StaticConstants.ADDON_POPUP_TAG);
+                if (PrefHelper.getStoredBoolean(context, PrefHelper.PREF_FILE_NAME, PrefHelper.STEWARD_LOGIN)) {
+                    StewardOrderFragment stewardOrderFragment = ((BaseFragmentActivity) context).stewardOrderFragment;
+                    if (stewardOrderFragment != null && stewardOrderFragment.isAdded())
+                        stewardOrderFragment.showOrderReview();
+                } else
+                    backAddon.removeView(StaticConstants.ADDON_POPUP_TAG);
                 break;
         }
 
@@ -249,7 +260,6 @@ public class AddonPopup implements View.OnClickListener, OnItemClickListener {
                 holder = (AddonViewHolder) convertView.getTag();
 
 
-
             final AddonItems item = (AddonItems) dataSet.get(position);
             holder.txtaddonName.setText(item.addonName);
             holder.txtAddonPriceView.setText(String.valueOf(Util.numberFormat(item.addonPrice)));
@@ -263,10 +273,10 @@ public class AddonPopup implements View.OnClickListener, OnItemClickListener {
                     holder.txtAddonQtyView.setVisibility(View.INVISIBLE);
                     holder.txtAddonQtyView.setText(context.getString(R.string.total_qty, "0"));
 
-                    int i=0;
-                    for (OrderItem orderItem : takeOrderAdapter.getDataSet()){
+                    int i = 0;
+                    for (OrderItem orderItem : takeOrderAdapter.getDataSet()) {
 
-                        if (orderItem.o_code.equals(item.addonID)){
+                        if (orderItem.o_code.equals(item.addonID)) {
                             takeOrderAdapter.removeDataSetItem(i);
                             break;
                         }
@@ -289,7 +299,7 @@ public class AddonPopup implements View.OnClickListener, OnItemClickListener {
 
                     if (dialogIsHidden) {
                         dialogIsHidden = false;
-                        showQtyPopup(holder,item);
+                        showQtyPopup(holder, item);
                     }
                 }
             });
@@ -297,7 +307,7 @@ public class AddonPopup implements View.OnClickListener, OnItemClickListener {
             return convertView;
         }
 
-        private void showQtyPopup(final AddonViewHolder holder, final AddonItems items){
+        private void showQtyPopup(final AddonViewHolder holder, final AddonItems items) {
 
             String[] qty = new String[15];
 
@@ -309,7 +319,7 @@ public class AddonPopup implements View.OnClickListener, OnItemClickListener {
             LayoutInflater inflater = LayoutInflater.from(context);
             View view = inflater.inflate(R.layout.layout_quantity, null);
 
-            TextView textViewTitle = (TextView)view.findViewById(R.id.tv_selectTitle);
+            TextView textViewTitle = (TextView) view.findViewById(R.id.tv_selectTitle);
             textViewTitle.setText(R.string.select_quantity);
 
             ListView listview_qty = (ListView) view.findViewById(R.id.lv_qty);

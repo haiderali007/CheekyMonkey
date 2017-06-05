@@ -14,6 +14,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.telephony.PhoneNumberUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -77,7 +79,7 @@ import java.util.Arrays;
  */
 public class MainScreenFragment extends Fragment implements View.OnClickListener,
         OnBackPressInterface, ICallBackGuestProfileResponse,
-        GoogleApiClient.OnConnectionFailedListener{
+        GoogleApiClient.OnConnectionFailedListener {
 
     Context context;
     FrameLayout frameLayout;
@@ -85,9 +87,10 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
     Button customFB;
     LoginButton loginButton;
     CallbackManager callbackManager;
-    String guest_name = "", guest_id = "",  email = "", birthday = "", gender = "M";
+    String guest_name = "", guest_id = "", email = "", birthday = "", gender = "M";
     ProgressBar progress_ggl, progress_fb;
 
+    TextView tvShowPassword, tvHidePassword;
 
 
     GoogleApiClient mGoogleApiClient;
@@ -100,13 +103,39 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.main_screen,container,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.main_screen, container, false);
 
         //Register both button and add click listener
         Button signInButton = (Button) view.findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(this);
         //signInButton.setColorScheme(Button.COLOR_AUTO);
 
+
+        tvShowPassword = (TextView) view.findViewById(R.id.tv_showpassword);
+        tvHidePassword = (TextView) view.findViewById(R.id.tv_hidepassword);
+        tvHidePassword.setOnClickListener(this);
+        tvHidePassword.setOnClickListener(this);
+        tvHidePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editTextPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                tvShowPassword.setVisibility(View.VISIBLE);
+                tvHidePassword.setVisibility(View.INVISIBLE);
+
+
+            }
+        });
+        tvShowPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editTextPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+
+
+                tvShowPassword.setVisibility(View.INVISIBLE);
+                tvHidePassword.setVisibility(View.VISIBLE);
+
+            }
+        });
 
         progress_ggl = (ProgressBar) view.findViewById(R.id.progress_ggl);
         progress_fb = (ProgressBar) view.findViewById(R.id.progress_fb);
@@ -132,24 +161,24 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
 
     ProgressBar progress_signin;
     FormData form;
-    ArrayList<String> arrayListEmail ;
+    ArrayList<String> arrayListEmail;
 
-    public void customSignIn(View view){
+    public void customSignIn(View view) {
 
-        boolean check = PrefHelper.getStoredBoolean(context,PrefHelper.PREF_FILE_NAME, PrefHelper.REMEMBER_ME,true);
-        String email = PrefHelper.getStoredString(context,PrefHelper.PREF_FILE_NAME, PrefHelper.LOGIN_EMAIL_ID);
-        String pass = PrefHelper.getStoredString(context,PrefHelper.PREF_FILE_NAME, PrefHelper.LOGIN_PASSWORD);
+        boolean check = PrefHelper.getStoredBoolean(context, PrefHelper.PREF_FILE_NAME, PrefHelper.REMEMBER_ME, true);
+        String email = PrefHelper.getStoredString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.LOGIN_EMAIL_ID);
+        String pass = PrefHelper.getStoredString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.LOGIN_PASSWORD);
 
-        editTextEmail = (EditText)view.findViewById(R.id.et_email_no);
-        editTextPassword = (EditText)view.findViewById(R.id.editTextPass);
+        editTextEmail = (EditText) view.findViewById(R.id.et_email_no);
+        editTextPassword = (EditText) view.findViewById(R.id.editTextPass);
         progress_signin = (ProgressBar) view.findViewById(R.id.progress_signin);
         ImageView imgSignIn = (ImageView) view.findViewById(R.id.img_signin);
         TextView imgForgotPass = (TextView) view.findViewById(R.id.tv_forgot_pass);
         Button btnSignIn = (Button) view.findViewById(R.id.buttton_signin);
-        Button btnSignUp = (Button)view.findViewById(R.id.button_signup);
+        Button btnSignUp = (Button) view.findViewById(R.id.button_signup);
 
-        editTextEmail.setText(check ?  email : "" );
-        editTextPassword.setText(check ?  pass : "" );
+        editTextEmail.setText(check ? email : "");
+        editTextPassword.setText(check ? pass : "");
         imgForgotPass.setOnClickListener(this);
         btnSignUp.setOnClickListener(this);
         btnSignIn.setOnClickListener(this);
@@ -164,7 +193,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
 
                 ctv_remeber.toggle();
 
-                PrefHelper.storeBoolean(context,PrefHelper.PREF_FILE_NAME, PrefHelper.REMEMBER_ME,
+                PrefHelper.storeBoolean(context, PrefHelper.PREF_FILE_NAME, PrefHelper.REMEMBER_ME,
                         ctv_remeber.isChecked());
             }
         });
@@ -193,13 +222,13 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
                         editTextEmail.getText().toString(), "");
                 String serverIP = POSApplication.getSingleton().getmDataModel().getUserInfo().getServerIP();
 
-                GuestSigninTask guestSigninTask = new GuestSigninTask(context, parameter, serverIP,progress_signin, this);
+                GuestSigninTask guestSigninTask = new GuestSigninTask(context, parameter, serverIP, progress_signin, this);
                 guestSigninTask.execute();
-                PrefHelper.storeString(context,PrefHelper.PREF_FILE_NAME, PrefHelper.LOGIN_EMAIL_ID,
+                PrefHelper.storeString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.LOGIN_EMAIL_ID,
                         editTextEmail.getText().toString());
-                PrefHelper.storeString(context,PrefHelper.PREF_FILE_NAME, PrefHelper.LOGIN_PASSWORD,
+                PrefHelper.storeString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.LOGIN_PASSWORD,
                         editTextPassword.getText().toString());
-            }else
+            } else
                 editTextEmail.setError("Please enter vail email");
 
         } catch (Exception e) {
@@ -207,7 +236,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    public boolean isValidNumberOrEmail(){
+    public boolean isValidNumberOrEmail() {
 
         String email = editTextEmail.getText().toString();
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() ||
@@ -224,11 +253,11 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
                         editTextEmail.getText().toString(), editTextPassword.getText().toString());
                 String serverIP = POSApplication.getSingleton().getmDataModel().getUserInfo().getServerIP();
 
-                GuestSigninTask guestSigninTask = new GuestSigninTask(context, parameter, serverIP,progress_signin, this);
+                GuestSigninTask guestSigninTask = new GuestSigninTask(context, parameter, serverIP, progress_signin, this);
                 guestSigninTask.execute();
-                PrefHelper.storeString(context,PrefHelper.PREF_FILE_NAME, PrefHelper.LOGIN_EMAIL_ID,
+                PrefHelper.storeString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.LOGIN_EMAIL_ID,
                         editTextEmail.getText().toString());
-                PrefHelper.storeString(context,PrefHelper.PREF_FILE_NAME, PrefHelper.LOGIN_PASSWORD,
+                PrefHelper.storeString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.LOGIN_PASSWORD,
                         editTextPassword.getText().toString());
             }
 
@@ -259,19 +288,19 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
                 PrefHelper.storeString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.SERVER_IP, UserInfo.ServerIP);
                 PrefHelper.storeString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.GUEST_ID, editTextEmail.getText().toString());
                 PrefHelper.storeString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.GUEST_NAME, guest_name);
-                setUserType(editTextEmail.getText().toString(),jsonArray);
+                setUserType(editTextEmail.getText().toString(), jsonArray);
 
-            }else if (error_msg.contains("invalid_email"))
+            } else if (error_msg.contains("invalid_email"))
                 showFailureDialog("Please enter valid Email ID/ Mobile #");
             else if (error_msg.equals("invalid_pass"))
                 showFailureDialog("Please enter valid Password");
-            else if (error_msg.contains("invalid_pass#")){
-                if (forgotPassword){
+            else if (error_msg.contains("invalid_pass#")) {
+                if (forgotPassword) {
                     String[] data = error_msg.split("#");
                     sendOrderViaMail(data[1], data[2]);
                     showFailureDialog("We have sent you an email. Please check your inbox.");
                     forgotPassword = false;
-                }else
+                } else
                     showFailureDialog("Please enter valid Password");
             }
 
@@ -281,11 +310,11 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    public void sendOrderViaMail(String GuestName, String password){
+    public void sendOrderViaMail(String GuestName, String password) {
 
         String email = editTextEmail.getText().toString();
         String subject = "Cheeky Monkey";
-        String message = "Hi "+GuestName+", "
+        String message = "Hi " + GuestName + ", "
                 + "\nLooks like you forget your password. Nothing to worry."
                 + "\nEmail : " + email
                 + "\nPassword : " + password
@@ -295,7 +324,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
 
     }
 
-    public void showFailureDialog(String message){
+    public void showFailureDialog(String message) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -364,20 +393,20 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
                     .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                     .build();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void onPostCreate(){
+    public void onPostCreate() {
 
         float fbIconScale = 1.45F;
         Drawable drawable = getResources().getDrawable(
                 com.facebook.R.drawable.com_facebook_button_icon);
 
-        if (drawable != null){
-            drawable.setBounds(0, 0, (int)(drawable.getIntrinsicWidth()*fbIconScale),
-                    (int)(drawable.getIntrinsicHeight()*fbIconScale));
+        if (drawable != null) {
+            drawable.setBounds(0, 0, (int) (drawable.getIntrinsicWidth() * fbIconScale),
+                    (int) (drawable.getIntrinsicHeight() * fbIconScale));
             loginButton.setCompoundDrawables(drawable, null, null, null);
             loginButton.setCompoundDrawablePadding(getResources().
                     getDimensionPixelSize(R.dimen.fb_margin_override_textpadding));
@@ -443,7 +472,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
     }
 
     // login using FBLoginButton
-    public void onFBLogin(View view){
+    public void onFBLogin(View view) {
 
         loginButton = (LoginButton) view.findViewById(R.id.login_button);
         loginButton.setText("");
@@ -513,38 +542,38 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
             if (requestCode == RC_SIGN_IN) {
                 GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
                 handleSignInResult(result);
-            }else
+            } else
                 callbackManager.onActivityResult(requestCode, resultCode, data);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Logger.w("Exception", e.getClass().toString());
         }
     }
 
-    public void signUpUsingFB(JSONObject jsonObject){
+    public void signUpUsingFB(JSONObject jsonObject) {
 
         Log.v("FBLoginResponse", jsonObject.toString());
 
         try {
             guest_name = jsonObject.getString("name");
-            guest_id = jsonObject.getString("id") == null ? "": jsonObject.getString("id").substring(0, 12);
+            guest_id = jsonObject.getString("id") == null ? "" : jsonObject.getString("id").substring(0, 12);
             //guest_id = jsonObject.getString("email");
             email = jsonObject.getString("email");
-            gender = jsonObject.getString("gender") == null || jsonObject.getString("gender").equalsIgnoreCase("male") ? "M":"F";
+            gender = jsonObject.getString("gender") == null || jsonObject.getString("gender").equalsIgnoreCase("male") ? "M" : "F";
             //birthday = jsonObject.getString("birthday");
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
 
-            String password = Long.toHexString(Double.doubleToLongBits(Math.random())).substring(0,7);
+            String password = Long.toHexString(Double.doubleToLongBits(Math.random())).substring(0, 7);
             String parameter = UtilToCreateJSON.createGuestParamter(
-                    guest_name, guest_id , email, birthday,"", gender, "","", password, "", "", true);
+                    guest_name, guest_id, email, birthday, "", gender, "", "", password, "", "", true);
 
-            GuestProfileTask guestProfileTask = new GuestProfileTask(context, parameter, UserInfo.ServerIP,progress_fb, this);
+            GuestProfileTask guestProfileTask = new GuestProfileTask(context, parameter, UserInfo.ServerIP, progress_fb, this);
             guestProfileTask.execute();
 
         } catch (Exception e) {
@@ -552,7 +581,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    public void showCancelDialog(String message){
+    public void showCancelDialog(String message) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -630,7 +659,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
 
     private void signOut() {
 
-        if (mGoogleApiClient.isConnected()){
+        if (mGoogleApiClient.isConnected()) {
             Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
                     new ResultCallback<Status>() {
                         @Override
@@ -654,24 +683,24 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
             showCancelDialog(getResources().getString(R.string.ggl_cancel_string));
     }
 
-    private void signUpUsingGooglePlus( GoogleSignInAccount acct){
+    private void signUpUsingGooglePlus(GoogleSignInAccount acct) {
 
         String name = acct.getDisplayName();
         String given = acct.getGivenName();
         String family = acct.getFamilyName();
         email = acct.getEmail();
-        String photoUrl = acct.getPhotoUrl() == null ? "": acct.getPhotoUrl().toString();
-        String id = acct.getId() == null ? "": acct.getId().substring(0,12);
+        String photoUrl = acct.getPhotoUrl() == null ? "" : acct.getPhotoUrl().toString();
+        String id = acct.getId() == null ? "" : acct.getId().substring(0, 12);
         String token = acct.getIdToken();
         String authCode = acct.getServerAuthCode();
 
         try {
             guest_id = id;
             guest_name = name;
-            String password = Long.toHexString(Double.doubleToLongBits(Math.random())).substring(0,7);
+            String password = Long.toHexString(Double.doubleToLongBits(Math.random())).substring(0, 7);
             String parameter = UtilToCreateJSON.createGuestParamter(name, id, email, "", "", "M", "", "", password, "", "", true);
 
-            GuestProfileTask guestProfileTask = new GuestProfileTask(context, parameter, UserInfo.ServerIP,progress_ggl, this);
+            GuestProfileTask guestProfileTask = new GuestProfileTask(context, parameter, UserInfo.ServerIP, progress_ggl, this);
             guestProfileTask.execute();
 
         } catch (Exception e) {
@@ -692,9 +721,9 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
             JSONArray jsonArray = jsonObject1.getJSONArray("ListSaveGuest");
             JSONArray jsonArray2 = jsonObject1.getJSONArray("ListGuestOrders");
 
-            if (jsonArray.length() > 0){
+            if (jsonArray.length() > 0) {
 
-                JSONObject jsonObject2= (JSONObject) jsonArray.get(0);
+                JSONObject jsonObject2 = (JSONObject) jsonArray.get(0);
                 String errorMsg = jsonObject2.getString("Code");
 
                 if (errorMsg.contains("This email Id is already in use"))
@@ -703,14 +732,13 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
                 else {
                     PrefHelper.storeString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.SERVER_IP, UserInfo.ServerIP);
                     PrefHelper.storeString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.GUEST_ID, email);
-                    PrefHelper.storeString(context,PrefHelper.PREF_FILE_NAME,PrefHelper.GUEST_NAME, guest_name);
+                    PrefHelper.storeString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.GUEST_NAME, guest_name);
 
                     setUserType(email, jsonArray2);
                     signOut();
                 }
 
-            }
-            else
+            } else
                 Toast.makeText(context, "Please try again", Toast.LENGTH_LONG).show();
 
         } catch (JSONException e) {
@@ -726,7 +754,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
         try {
 
             mdb.beginTransaction();
-            mdb.delete(DBConstants.KEY_GUEST_ORDERS_TABLE, null,null);
+            mdb.delete(DBConstants.KEY_GUEST_ORDERS_TABLE, null, null);
 
             for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -736,15 +764,15 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
                 itemName = itemName.isEmpty() ? UserInfo.getMixerName(jsonObject.getString("Code")) : itemName;
 
                 cv.put(DBConstants.KEY_ORDER_NUMBER, jsonObject.getString("OrderNo"));
-                cv.put(DBConstants.KEY_TABLE_NUMBER,  jsonObject.getString("Table"));
+                cv.put(DBConstants.KEY_TABLE_NUMBER, jsonObject.getString("Table"));
                 cv.put(DBConstants.KEY_ITEM_CODE, jsonObject.getString("Code"));
-                cv.put(DBConstants.KEY_ITEM_NAME,  itemName);
+                cv.put(DBConstants.KEY_ITEM_NAME, itemName);
                 cv.put(DBConstants.KEY_ITEM_PRICE, jsonObject.getString("Rate"));
-                cv.put(DBConstants.KEY_ITEM_QTY,  jsonObject.getString("Qty"));
+                cv.put(DBConstants.KEY_ITEM_QTY, jsonObject.getString("Qty"));
                 cv.put(DBConstants.KEY_ORDER_TAX, jsonObject.getString("Tax"));
-                cv.put(DBConstants.KEY_ORDER_AMOUNT,  jsonObject.getString("Amount"));
+                cv.put(DBConstants.KEY_ORDER_AMOUNT, jsonObject.getString("Amount"));
                 cv.put(DBConstants.KEY_ORDER_STATUS, jsonObject.getString("Status"));
-                cv.put(DBConstants.KEY_ORDER_DATE,  jsonObject.getString("Date"));
+                cv.put(DBConstants.KEY_ORDER_DATE, jsonObject.getString("Date"));
                 cv.put(DBConstants.KEY_ORDER_TIME, jsonObject.getString("Time"));
                 mdb.insert(DBConstants.KEY_GUEST_ORDERS_TABLE, null, cv);
             }
@@ -753,16 +781,16 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
 
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             mdb.endTransaction();
         }
 
     }
 
 
-    public void setUserType(String email, JSONArray jsonArray){
+    public void setUserType(String email, JSONArray jsonArray) {
 
-        if (email.contains("admin@gmail.com")){ // Admin will also see accepted & rejected orders by tab at bottom.
+        if (email.contains("admin@gmail.com")) { // Admin will also see accepted & rejected orders by tab at bottom.
 
            /* FragmentManager manager = getChildFragmentManager();
             NotificationFragment fragment = NotificationFragment.newInstance(
@@ -793,10 +821,10 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
             startActivity(intent);
             getActivity().finish();
 
-        } else{
+        } else {
 
             if (arrayListEmail.contains(email))         // if Steward, else Guest
-                PrefHelper.storeBoolean(context,PrefHelper.PREF_FILE_NAME,PrefHelper.STEWARD_LOGIN, true);
+                PrefHelper.storeBoolean(context, PrefHelper.PREF_FILE_NAME, PrefHelper.STEWARD_LOGIN, true);
             else {
                 PrefHelper.storeBoolean(context, PrefHelper.PREF_FILE_NAME, PrefHelper.STEWARD_LOGIN, false);
                 saveGuestOrders(jsonArray);
@@ -806,9 +834,9 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    public void requestLoginFromServer(){
+    public void requestLoginFromServer() {
 
-        if (!getActivity().isFinishing()){
+        if (!getActivity().isFinishing()) {
             layout_main.setVisibility(View.GONE);
             frameLayout.setVisibility(View.VISIBLE);
             frameLayout.removeAllViews();
@@ -830,7 +858,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.sign_in_button:
                 progress_ggl.setVisibility(View.VISIBLE);
@@ -899,12 +927,10 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
     @Override
     public boolean onBackPress() {
 
-        if (currentBackListener != null && currentBackListener.onBackPress()){
+        if (currentBackListener != null && currentBackListener.onBackPress()) {
             currentBackListener = null;
             return true;
-        }
-
-        else if (frameLayout.getVisibility() == View.VISIBLE){
+        } else if (frameLayout.getVisibility() == View.VISIBLE) {
             frameLayout.setVisibility(View.GONE);
             layout_main.setVisibility(View.VISIBLE);
             return true;

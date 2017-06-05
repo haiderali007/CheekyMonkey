@@ -167,10 +167,10 @@
     <LinearLayout
         android:id="@+id/ll_bill_cancel_options"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/item_row_height"
+        android:layout_height="@dimen/header3_height"
         android:layout_alignParentBottom="true"
         android:background="@color/Black"
-        android:visibility="gone">
+        android:visibility="visible">
 
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
@@ -179,12 +179,11 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1.1"
+            android:layout_margin="2sp"
             android:background="@drawable/border_unpressed"
             android:gravity="center"
             android:text="Complimentary"
-            android:textSize="18sp"
-
-            />
+            android:textSize="@dimen/large" />
 
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
@@ -192,13 +191,14 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginLeft="2sp"
-            android:layout_marginRight="2sp"
+            android:layout_marginLeft="1sp"
+            android:layout_marginRight="1sp"
             android:layout_weight="1"
+            android:layout_margin="2sp"
             android:background="@drawable/border_unpressed"
             android:gravity="center"
             android:text="Full Discount"
-            android:textSize="18sp" />
+            android:textSize="@dimen/large" />
 
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
@@ -207,10 +207,11 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="0.7"
+            android:layout_margin="2sp"
             android:background="@drawable/border_unpressed"
             android:gravity="center"
             android:text="@string/cancel_string"
-            android:textSize="18sp" />
+            android:textSize="@dimen/large" />
 
     </LinearLayout>
 

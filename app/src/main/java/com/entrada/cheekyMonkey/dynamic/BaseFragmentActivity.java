@@ -125,7 +125,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     CustomTextview txtGuestNotify, tv_no_order;
     public OnBackPressInterface currentBackListener;
     public TakeOrderFragment takeOrderFragment;
-    StewardOrderFragment stewardOrderFragment;
+    public StewardOrderFragment stewardOrderFragment;
     NetworkChangeReceiver receiver;
     public RelativeLayout layout_retry;
     String errorMsg = "";
@@ -294,10 +294,10 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         FragmentManager fmOther = getSupportFragmentManager();
         FragmentTransaction transaction = fmOther.beginTransaction();
         //if (stewardOrderFragment == null)
-        if(position==18 || position==8 || position==9 ||position==10)
-        {
+
+        if(position == 8 || position==9 || position==10)
             layout_Left.setVisibility(View.INVISIBLE);
-        }
+
         stewardOrderFragment = StewardOrderFragment.newInstance(position);
         transaction.replace(R.id.container, stewardOrderFragment);
         transaction.commit();
@@ -327,10 +327,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
                 takeOrderFragment.showHome();
                 FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().
-                        replace(R.id.container, takeOrderFragment)
-                        //.setCustomAnimations(FragmentTransaction.TRANSIT_ENTER_MASK,FragmentTransaction.TRANSIT_EXIT_MASK)
-                        .commit();
+                fragmentManager.beginTransaction().replace(R.id.container, takeOrderFragment).commit();
                 currentBackListener = takeOrderFragment;
             }
 
@@ -342,16 +339,12 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
         else {
 
-            /*if (stewardOrderFragment == null) {
-                showStewardHome(position);
-            } else {
+            if (position == 6)
+                onCreateBillGenerate("", "");
+            else if (position == 7)
                 stewardOrderFragment.onLeftListItemClick(position);
-            }
-
-            currentBackListener = stewardOrderFragment;
-            layout_retry.setVisibility(View.GONE);*/
-
-            showStewardHome(position);
+            else
+                showStewardHome(position);
             slide_me.closeLeftSide();
         }
     }
@@ -1310,7 +1303,10 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         } /*else if (!(currentBackListener instanceof TakeOrderFragment))
             removeFragmentFromStack();*/
 
-        else if (currentBackListener != null && !currentBackListener.onBackPress()) {
+         else if (currentBackListener instanceof BillGenerateFragment)
+            showStewardHome(0);
+
+        else if (!currentBackListener.onBackPress()) {
             ExitDialog exitDialog = new ExitDialog(this, this);
             exitDialog.show();
         }

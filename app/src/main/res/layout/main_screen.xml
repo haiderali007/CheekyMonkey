@@ -41,7 +41,6 @@
             android:orientation="vertical"
             android:padding="@dimen/header_padding">
 
-
             <EditText
                 android:id="@+id/et_email_no"
                 android:layout_width="match_parent"
@@ -52,19 +51,48 @@
                 android:textColorHint="@color/menu_item_color1"
                 android:textSize="@dimen/pos_text_size1" />
 
-
-            <EditText
-                android:id="@+id/editTextPass"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="@string/password_hint_string"
-                android:inputType="textPassword"
-                android:textColor="@color/White"
-                android:textColorHint="@color/menu_item_color1"
-                android:textSize="@dimen/pos_text_size1" />
+                android:orientation="horizontal">
 
+                <EditText
+                    android:id="@+id/editTextPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.7"
+                    android:hint="@string/password_hint_string"
+                    android:inputType="textPassword"
+                    android:textColor="@color/White"
+                    android:textColorHint="@color/menu_item_color1"
+                    android:textSize="@dimen/pos_text_size1" />
 
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_showpassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="0"
+                        android:text="show"
+                        android:textSize="16dp"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/tv_hidepassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="0"
+                        android:text="hide"
+                        android:textSize="16dp"
+                        android:visibility="invisible" />
+                </RelativeLayout>
+            </LinearLayout>
 
             <!--<CheckBox-->
             <!--android:layout_width="wrap_content"-->
@@ -276,44 +304,43 @@
                     style="@style/FacebookLoginButton"
                     android:layout_width="@dimen/grid_row_width"
                     android:layout_height="@dimen/grid_row_width"
-                    facebook:login_text=""
-                    facebook:logout_text=""
-                    android:layout_marginStart="10sp"
                     android:layout_marginEnd="10sp"
                     android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp" />
+                    android:layout_marginRight="10sp"
+                    android:layout_marginStart="10sp"
+                    facebook:login_text=""
+                    facebook:logout_text="" />
 
                 <ProgressBar
                     android:id="@+id/progress_fb"
                     android:layout_width="20sp"
                     android:layout_height="20sp"
-                    android:visibility="gone"
+                    android:layout_gravity="top"
                     android:layout_marginTop="20dp"
-                    android:layout_gravity="top"/>
+                    android:visibility="gone" />
 
                 <Button
                     android:id="@+id/sign_in_button"
                     style="@style/GoogleLoginButton"
                     android:layout_width="@dimen/grid_row_width"
                     android:layout_height="@dimen/grid_row_width"
-                    android:layout_marginStart="10sp"
                     android:layout_marginEnd="10sp"
                     android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"/>
+                    android:layout_marginRight="10sp"
+                    android:layout_marginStart="10sp" />
 
                 <ProgressBar
                     android:id="@+id/progress_ggl"
                     android:layout_width="20sp"
                     android:layout_height="20sp"
-                    android:layout_marginTop="20dp"
                     android:layout_gravity="top"
-                    android:visibility="gone"/>
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
 
-
-            </LinearLayout>
+        </LinearLayout>
 
         <Button
             android:id="@+id/button_signup"

@@ -20,15 +20,15 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 /**
- * Created by CSET on 31/08/2016.
+ * Created by Rahul on 24/06/2017.
  */
 public class SendSmtpMail {
 
 
     public static void sendMessage(String recipient, String subject, String body){
 
-        final String username = "rgrahulgupta001@gmail.com";
-        final String password = ",123anisha.1";
+        final String username = "cheekymonkeyentrada@gmail.com";
+        final String password = "Entrada123";
         //final String recipient = "rgrahulgupta001@gmail.com";
 
         Properties props = new Properties();
@@ -80,8 +80,8 @@ public class SendSmtpMail {
     public static void sendMessageWithAttachment(String recipient, String subject, String data,
                                                  String attachedFilePath){
 
-        final String username = "88csat@gmail.com";
-        final String password = "1988#2016";
+        final String username = "cheekymonkeyentrada@gmail.com";
+        final String password = "Entrada123";
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
