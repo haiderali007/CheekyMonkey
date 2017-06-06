@@ -134,8 +134,8 @@ public class NotificationFragment extends Fragment implements
         }
         //for order accept
         else  if (orderStatus.equals(TYPE_ACCEPTED)){
-            txtRejectOrder.setVisibility(View.GONE);
-            txtAcceptOrder.setVisibility(View.VISIBLE);
+            txtRejectOrder.setVisibility(View.VISIBLE);
+            txtAcceptOrder.setVisibility(View.GONE);
             txtAcceptOrder.setText(R.string.accept_string);
 
 //            txtRejectOrder.setVisibility(employeeType.equals(EMPLOYEE_TYPE1)? View.VISIBLE : View.GONE);
@@ -143,8 +143,8 @@ public class NotificationFragment extends Fragment implements
 
 
         }else  if (orderStatus.equals(TYPE_REJECTED)){
-            txtAcceptOrder.setVisibility(View.GONE);
-            txtRejectOrder.setVisibility(View.VISIBLE);
+            txtAcceptOrder.setVisibility(View.VISIBLE);
+            txtRejectOrder.setVisibility(View.GONE);
             txtRejectOrder.setText(R.string.reject_string);
         }
         
@@ -420,6 +420,7 @@ public class NotificationFragment extends Fragment implements
     }
 
     @SuppressWarnings("unchecked")
+    //reject method
     public void onRejectMethod() {
 
         if(txtOrderNumber.getTag() ==null)

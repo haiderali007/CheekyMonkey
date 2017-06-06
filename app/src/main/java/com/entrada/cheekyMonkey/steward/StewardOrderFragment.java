@@ -603,9 +603,11 @@ public class StewardOrderFragment extends Fragment implements
 
     public void onLeftListItemClick(int position) {
 
-        if (position > 12) {
+        if (position == 3 || position == 4 || position == 5 || position > 12) {
             layout_order.setVisibility(View.VISIBLE);
         }
+
+        textView_back.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
         showDefault();
 
         switch (position) {
@@ -1463,12 +1465,13 @@ public class StewardOrderFragment extends Fragment implements
 
 
     public void showOrderReview() {
+        textView_back.setVisibility(View.VISIBLE);
         layout_menu.setVisibility(View.GONE);
         layout_order.setVisibility(View.VISIBLE);
     }
 
     public void hideOrderReview() {
-
+        textView_back.setVisibility(View.GONE);
         layout_menu.setVisibility(View.VISIBLE);
         layout_order.setVisibility(View.GONE);
     }
@@ -2151,6 +2154,7 @@ public class StewardOrderFragment extends Fragment implements
             takeOrderAdapter.clearDataSet();
             takeOrderAdapter.notifyDataSetChanged();
             showDefault();
+            hideOrderReview();
 
             return true;
 
@@ -2257,8 +2261,8 @@ public class StewardOrderFragment extends Fragment implements
                 if (orderItem.getO_code().equals(menuItem.getMenu_code())) {
                     takeOrderAdapter.updateQty(i, menuItem.getQuantity());
                     //showMixer();
-                    //getAddOn(menuItem.getMenu_code(), menuItem.getMenu_name(), menuItem.getMenu_group_code());
-                    //addView(addonPopup.addView(), StaticConstants.ADDON_POPUP_TAG);
+                    getAddOn(menuItem.getMenu_code(), menuItem.getMenu_name(), menuItem.getMenu_group_code());
+                    addView(addonPopup.addView(), StaticConstants.ADDON_POPUP_TAG);
                     break;
                 }
 

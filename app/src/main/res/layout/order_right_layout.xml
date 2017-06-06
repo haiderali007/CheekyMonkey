@@ -89,7 +89,8 @@
                     android:orientation="horizontal"
                     android:layout_marginTop="2sp"
                     android:layout_marginBottom="2sp"
-                    android:minHeight="@dimen/item_row_height">
+                    android:minHeight="@dimen/item_row_height"
+                    android:visibility="gone">
 
                     <RadioButton
                         android:id="@+id/rb_tbl_order"
@@ -116,7 +117,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="@dimen/item_row_height"
-                    android:layout_marginBottom="2sp">
+                    android:layout_marginBottom="2sp"
+                    android:visibility="gone">
 
                     <com.entrada.cheekyMonkey.ui.CustomButton
                         android:id="@+id/tv_order_cancel"

@@ -5,13 +5,12 @@
     android:layout_height="fill_parent"
     android:background="@color/Black"
     android:orientation="vertical"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp"
+    android:paddingLeft="@dimen/padding"
+    android:paddingRight="@dimen/padding"
     tools:ignore="ButtonOrder,ObsoleteLayoutParam,ButtonStyle,UselessParent,HardcodedText">
 
     <RelativeLayout
         android:layout_width="match_parent"
-
         android:layout_height="match_parent">
 
         <ProgressBar
