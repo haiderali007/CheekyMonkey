@@ -2255,6 +2255,7 @@ public class StewardOrderFragment extends Fragment implements
             //takeOrderAdapter.addQty(codeList.indexOf(menuCode));
             //takeOrderAdapter.addMultiQty(menuItem, codeList.indexOf(menuCode));
 
+
             ArrayList<OrderItem> itemArrayList = takeOrderAdapter.dataSet;
             for (int i = 0; i < itemArrayList.size(); i++) {
                 OrderItem orderItem = itemArrayList.get(i);
