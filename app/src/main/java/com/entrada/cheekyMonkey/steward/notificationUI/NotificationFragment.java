@@ -85,6 +85,7 @@ public class NotificationFragment extends Fragment implements
     public static String ORDER_PREPARATION_STARTED = "P";
     public static String ORDER_READY_TO_SERVE = "R";
 
+    public static String ORDER_SUBMITTED = "K";
 
 
     public static NotificationFragment newInstance(String empType, String status) {
@@ -406,11 +407,13 @@ public class NotificationFragment extends Fragment implements
             Toast.makeText(context, "Select an Order", Toast.LENGTH_SHORT).show();
         }
         else {
+
             String parameter = UtilToCreateJSON.createTOAcceptOrder(context, detailAdp,
-                    orderStatus.equals(TYPE_UNDER_PROCESS) ? "K" : ORDER_DELIVERED);
+                    orderStatus.equals(TYPE_UNDER_PROCESS)||orderStatus.equals(TYPE_REJECTED) ? ORDER_SUBMITTED : ORDER_DELIVERED);
+
             GuestCommonTask<String, ResultMessage> commonTask = new GuestCommonTask<String, ResultMessage>(
                     context, NotificationFragment.this,
-                    orderStatus.equals(TYPE_UNDER_PROCESS) ? BaseNetwork.KEY_ECABS_PushOrderGuest :
+                    orderStatus.equals(TYPE_UNDER_PROCESS)||orderStatus.equals(TYPE_REJECTED) ? BaseNetwork.KEY_ECABS_PushOrderGuest :
                             BaseNetwork.KEY_ECABS_PushOrderGuestStatus, parameter, pbDetail);
             AsyncTaskTools.execute(commonTask);
 
