@@ -62,7 +62,7 @@ public class BillGenerateFragment extends Fragment implements OnBackPressInterfa
         ICallBackSavdBillResponse, ICallDiscList, ICallPaidAmount, ICallSettleResponse,
         ICallBillGenerate {
 
-    public static FrameLayout frameLayout_discount;
+    public FrameLayout frameLayout_discount;
     private static android.os.Handler mHandler = null;
     private static String TAG = "PlainTextActivity";
     public CustomTextview textviewForBIllno, textviewForDiscount, textviewForSubtotal, textviewForTax,

@@ -161,7 +161,7 @@ public class StewardOrderFragment extends Fragment implements
 
     public CustomTextview textviewForBIllno, textviewForDiscount, textviewForSubtotal, textviewForTax,
             textviewForTotal, textViewTAmt, textViewChange, textViewStlMode, textviewTop,
-            textViewGuestName, tv_OrderNo, tv_Discount, tv_Subtotal, tv_Tax, tv_Total, textView_back;
+            textViewGuestName, tv_OrderNo, tv_Discount, tv_Subtotal, tv_Tax, tv_Total;
 
     public CustomButton txtOrderClear, txtOrderSubmit, textHoldOrder, txtOrderCancel, txtorderOk, txtCash, txtCredit,
             selectTable, selectRoom, selectGuest, selectDelBoy, newOrder, tv_order_cancel, tv_change_to_comp,
@@ -188,8 +188,6 @@ public class StewardOrderFragment extends Fragment implements
     RoomItem roomItem;
     HomeItem homeItem;
     AutoDiscount autoDiscount;
-    boolean generateBill = false;
-
 
     OrderNumberLayout orderNumberLayout;
     LinearLayout layout_List_Item, layoutShowBillDetail, layoutShowHoldOrderDetail;
@@ -197,7 +195,6 @@ public class StewardOrderFragment extends Fragment implements
     GridView gridViewCurrency;
     ArrayList<String> currencyList = new ArrayList<>();
     ArrayAdapter<String> currencyAdapter;
-    String[] currencyArray = {"? 1", "? 2", "? 5", "? 10", "? 20", "? 50", "? 100", "? 500", "? 1000", "? 2000"};
 
     ScheduledExecutorService statusScheduler;
     ArrayList<String> orderList;
@@ -430,8 +427,6 @@ public class StewardOrderFragment extends Fragment implements
 
         adapter.notifyDataSetChanged();
 
-        textView_back = (CustomTextview) v.findViewById(R.id.tv_back);
-        textView_back.setOnClickListener(this);
         selectTable = (CustomButton) v.findViewById(R.id.selectTable);
         selectTable.setOnClickListener(this);
         newOrder = (CustomButton) v.findViewById(R.id.newOrder);
@@ -603,11 +598,6 @@ public class StewardOrderFragment extends Fragment implements
 
     public void onLeftListItemClick(int position) {
 
-        if (position == 3 || position == 4 || position == 5 || position > 12) {
-            layout_order.setVisibility(View.VISIBLE);
-        }
-
-        textView_back.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
         showDefault();
 
         switch (position) {
@@ -632,7 +622,6 @@ public class StewardOrderFragment extends Fragment implements
                 break;
             case 8:
                 ((BaseFragmentActivity) context).showNotificationFor(NotificationFragment.TYPE_UNDER_PROCESS);
-
                 break;
             case 9:
                 ((BaseFragmentActivity) context).showNotificationFor(NotificationFragment.TYPE_ACCEPTED);
@@ -1464,18 +1453,6 @@ public class StewardOrderFragment extends Fragment implements
     }
 
 
-    public void showOrderReview() {
-        textView_back.setVisibility(View.VISIBLE);
-        layout_menu.setVisibility(View.GONE);
-        layout_order.setVisibility(View.VISIBLE);
-    }
-
-    public void hideOrderReview() {
-        textView_back.setVisibility(View.GONE);
-        layout_menu.setVisibility(View.VISIBLE);
-        layout_order.setVisibility(View.GONE);
-    }
-
     @Override
     public boolean getPosVisibility() {
 
@@ -1490,10 +1467,6 @@ public class StewardOrderFragment extends Fragment implements
         takeOrderAdapter.setOrderDetail(detail);
 
         switch (v.getId()) {
-
-            case R.id.tv_back:
-                hideOrderReview();
-                break;
 
             case R.id.ll_bottomHeader:
                 showSlidingPanel();
@@ -2154,7 +2127,6 @@ public class StewardOrderFragment extends Fragment implements
             takeOrderAdapter.clearDataSet();
             takeOrderAdapter.notifyDataSetChanged();
             showDefault();
-            hideOrderReview();
 
             return true;
 
@@ -2197,11 +2169,7 @@ public class StewardOrderFragment extends Fragment implements
             radioGroupVegNonveg.setVisibility(View.GONE);
             return true;
 
-        }else if (layout_menu.getVisibility() != View.VISIBLE){
-            hideOrderReview();
-            return true;
-
-        }else if (!takeOrderAdapter.isEmpty() || tv_show_bill.getVisibility() == View.VISIBLE) {
+        } else if (!takeOrderAdapter.isEmpty() || tv_show_bill.getVisibility() == View.VISIBLE) {
 
             codeList.clear();
             discountLayout.clearDiscList();
@@ -2261,7 +2229,6 @@ public class StewardOrderFragment extends Fragment implements
                 OrderItem orderItem = itemArrayList.get(i);
                 if (orderItem.getO_code().equals(menuItem.getMenu_code())) {
                     takeOrderAdapter.updateQty(i, menuItem.getQuantity());
-                    //showMixer();
                     getAddOn(menuItem.getMenu_code(), menuItem.getMenu_name(), menuItem.getMenu_group_code());
                     addView(addonPopup.addView(), StaticConstants.ADDON_POPUP_TAG);
                     break;
@@ -2280,11 +2247,11 @@ public class StewardOrderFragment extends Fragment implements
 
     AddonPopup addonPopup;
 
-    public AddonPopup getAddOn(String menu_code, String menu_name, String menu_group_code) {
+    public void getAddOn(String menu_code, String menu_name, String menu_group_code) {
 
         if (addonPopup == null) {
 
-            return addonPopup = new AddonPopup(context, menu_code, menu_name,
+            addonPopup = new AddonPopup(context, menu_code, menu_name,
                     menu_group_code, new AddonPopup.IcallBackAddon() {
 
                 @Override
@@ -2302,8 +2269,6 @@ public class StewardOrderFragment extends Fragment implements
                 }
             }, takeOrderAdapter, discountLayout);
         }
-
-        return addonPopup;
     }
 
     @Override

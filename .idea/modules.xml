@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Cheeky Monkey.iml" filepath="$PROJECT_DIR$/Cheeky Monkey.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CheekyMonkey.iml" filepath="$PROJECT_DIR$/CheekyMonkey.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

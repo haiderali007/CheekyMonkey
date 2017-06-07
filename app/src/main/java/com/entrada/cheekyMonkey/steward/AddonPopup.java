@@ -186,22 +186,12 @@ public class AddonPopup implements View.OnClickListener, OnItemClickListener {
                     TakeOrderFragment takeOrderFragment = ((BaseFragmentActivity) context).takeOrderFragment;
                     if (takeOrderFragment != null && takeOrderFragment.isAdded())
                         takeOrderFragment.showTotalAmount();
-                    else {
-                        StewardOrderFragment stewardOrderFragment = ((BaseFragmentActivity) context).stewardOrderFragment;
-                        if (stewardOrderFragment != null && stewardOrderFragment.isAdded())
-                            stewardOrderFragment.showOrderReview();
-                    }
                 }
 
                 break;
 
             case R.id.txt_skip:
-                if (PrefHelper.getStoredBoolean(context, PrefHelper.PREF_FILE_NAME, PrefHelper.STEWARD_LOGIN)) {
-                    StewardOrderFragment stewardOrderFragment = ((BaseFragmentActivity) context).stewardOrderFragment;
-                    if (stewardOrderFragment != null && stewardOrderFragment.isAdded())
-                        stewardOrderFragment.showOrderReview();
-                } else
-                    backAddon.removeView(StaticConstants.ADDON_POPUP_TAG);
+                backAddon.removeView(StaticConstants.ADDON_POPUP_TAG);
                 break;
         }
 

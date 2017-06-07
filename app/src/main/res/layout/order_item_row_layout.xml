@@ -27,7 +27,7 @@
             android:gravity="center_vertical|left"
             android:text="fbfbf"
             android:textColor="@color/menu_item_color"
-            android:textSize="@dimen/large" />
+            android:textSize="@dimen/extra_large" />
 
         <ImageView
             android:id="@+id/minus_order"
@@ -65,16 +65,24 @@
         android:paddingEnd="12sp"
         android:paddingBottom="2sp">
 
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/itemQuantityTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:src="@drawable/img35"
+            android:textColor="@color/home_color"
+            android:textSize="@dimen/extra_extra_large"/>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:orientation="vertical">
-
+            android:orientation="vertical"
+            android:gravity="center_vertical">
 
             <LinearLayout
-                android:id="@+id/layout_qty"
+                android:id="@+id/layout_qty_bottom1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="asdf"
@@ -85,26 +93,15 @@
                 android:orientation="horizontal"/>
 
             <LinearLayout
-                android:id="@+id/layout_qty_bottom"
+                android:id="@+id/layout_qty_bottom2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="asdf"
                 android:src="@drawable/img35"
                 android:textColor="@color/menu_item_color"
                 android:textSize="@dimen/large"
-                android:visibility="visible"
                 android:orientation="horizontal"/>
 
-            <com.entrada.cheekyMonkey.ui.CustomTextview
-                android:id="@+id/itemQuantityTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1"
-                android:src="@drawable/img35"
-                android:textColor="@color/menu_item_color"
-                android:textSize="@dimen/large"
-                android:visibility="gone"/>
-            
         </LinearLayout>
 
 

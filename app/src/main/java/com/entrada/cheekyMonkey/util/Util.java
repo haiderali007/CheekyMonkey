@@ -143,8 +143,8 @@ public class Util {
 
                 dialog.dismiss();
                 if (obj instanceof TakeOrderFragment)
-                    //((TakeOrderFragment) obj).showHome();
-                    ((BaseFragmentActivity) context).showHome();
+                    ((TakeOrderFragment) obj).showHome();
+                    //((BaseFragmentActivity) context).showHome();
 
                /* if (obj instanceof StewardOrderFragment)
                     ((StewardOrderFragment) obj).getAllTables();*/

@@ -16,6 +16,7 @@ public class OrderItem {
     public String o_subunit = "";
     public String o_disc = "";
     public String o_grp_code = "";
+    public String o_categ_code = "";
     public String o_sub_item = "";
     public String o_cover_item = "";
     public String o_meal_cors_item = "";
@@ -32,6 +33,14 @@ public class OrderItem {
 
     public void setO_grp_code(String o_grp_code) {
         this.o_grp_code = o_grp_code;
+    }
+
+    public String getO_categ_code() {
+        return o_categ_code;
+    }
+
+    public void setO_categ_code(String o_categ_code) {
+        this.o_categ_code = o_categ_code;
     }
 
     public String getO_code() {

@@ -53,7 +53,7 @@ public class UserInfo {
     public String PERMISSION = "";
     //public static String ServerIP = "192.168.43.93/tb";
     //public static String ServerIP = "entradasoft.ga";
-//    public static String ServerIP = "192.168.2.101/tb";
+    //public static String ServerIP = "192.168.2.106/tb";
     //public static String ServerIP = "iamrohit-001-site1.ftempurl.com";
     public static String ServerIP ="entradasoft-001-site1.htempurl.com";
 
@@ -528,58 +528,58 @@ public class UserInfo {
             dialog.show();
     }
 
-    public static String getMixerName(String mixerCode) {
+    public static String getMixerName(String addonCode) {
 
-        String mixer = "";
+        String addon = "";
 
-        switch (mixerCode) {
+        switch (addonCode) {
 
             case "A01":
-                mixer = "SODA";
+                addon = "SODA";
                 break;
 
             case "A02":
-                mixer = "Packed Water";
+                addon = "Packed Water";
                 break;
 
             case "A03":
-                mixer = "Red Bull";
+                addon = "Red Bull";
                 break;
 
             case "A04":
-                mixer = "Aerated Drinks";
+                addon = "Aerated Drinks";
                 break;
 
             case "A05":
-                mixer = "Diet Coke";
+                addon = "Diet Coke";
                 break;
 
             case "A06":
-                mixer = "Refer to ice";
+                addon = "Refer to ice";
                 break;
 
             case "A07":
-                mixer = "Tonic Water";
+                addon = "Tonic Water";
                 break;
 
             case "A08":
-                mixer = "Coke Can";
+                addon = "Coke Can";
                 break;
 
             case "A09":
-                mixer = "Juice";
+                addon = "Juice";
                 break;
 
             case "A10":
-                mixer = "Hot Water";
+                addon = "Hot Water";
                 break;
 
             case "A11":
-                mixer = "Chicken Tikka";
+                addon = "Chicken Tikka";
                 break;
         }
 
-        return mixer;
+        return addon;
     }
 
 }

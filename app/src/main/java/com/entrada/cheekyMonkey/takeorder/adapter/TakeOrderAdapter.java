@@ -12,15 +12,17 @@ import com.entrada.cheekyMonkey.R;
 import com.entrada.cheekyMonkey.adapter.POSListAdapter;
 import com.entrada.cheekyMonkey.dynamic.TakeOrderFragment;
 import com.entrada.cheekyMonkey.entity.MenuItem;
+import com.entrada.cheekyMonkey.entity.UserInfo;
 import com.entrada.cheekyMonkey.steward.discount.DiscountLayout;
 import com.entrada.cheekyMonkey.takeorder.entity.OrderDetail;
 import com.entrada.cheekyMonkey.takeorder.entity.OrderItem;
 import com.entrada.cheekyMonkey.takeorder.entity.TableItem;
 import com.entrada.cheekyMonkey.takeorder.popup.CustomKeypad;
 import com.entrada.cheekyMonkey.takeorder.popup.ICallOrder;
-
 import com.entrada.cheekyMonkey.ui.CustomTextview;
 import com.entrada.cheekyMonkey.util.Util;
+
+import java.util.Locale;
 
 /**
  * Created by ${kamal} on 07/03/2015.
@@ -59,10 +61,10 @@ public class TakeOrderAdapter extends POSListAdapter<OrderItem> {
             holder.remove_order = (ImageView) convertView
                     .findViewById(R.id.remove_order);
 
-            holder.layoutItemQty = (LinearLayout) convertView
-                    .findViewById(R.id.layout_qty);
-            holder.layoutItemQtyBottom= (LinearLayout) convertView
-                    .findViewById(R.id.layout_qty_bottom);
+            holder.layoutItemQtyBottom1 = (LinearLayout) convertView
+                    .findViewById(R.id.layout_qty_bottom1);
+            holder.layoutItemQtyBottom2 = (LinearLayout) convertView
+                    .findViewById(R.id.layout_qty_bottom2);
             holder.tv_ItemRemark = (TextView) convertView
                     .findViewById(R.id.tv_ItemRemark);
             holder.t_v_i_meal_for_o_s_l = (TextView) convertView
@@ -102,23 +104,28 @@ public class TakeOrderAdapter extends POSListAdapter<OrderItem> {
 
             holder.itemNameTxt.setText(holder.orderItem.getO_name());
 
+            if (holder.orderItem.getO_name().isEmpty()){
+                holder.itemNameTxt.setText(UserInfo.getMixerName(holder.orderItem.o_code));
+            }
+
             //holder.itemAmountTxt.setText(String.format("%.2f", holder.orderItem.getO_amount()));
 
             //holder.itemAmountTxt.setText("" + holder.orderItem.getO_amount());
 
 
             String qty = "" + holder.orderItem.getO_quantity();
-           /* if (qty.contains(".0") || holder.orderItem.getO_price() == 0)
-                holder.itemQuantityTxt.setText("" + (int) holder.orderItem.getO_quantity());
+            if (qty.contains(".0") || holder.orderItem.getO_price() == 0)
+                holder.itemQuantityTxt.setText(String.format(Locale.US, "%.0f",holder.orderItem.getO_quantity()));
             else
-                holder.itemQuantityTxt.setText("" + holder.orderItem.getO_quantity());*/
-            showQtyByImage(holder,  (int) holder.orderItem.getO_quantity());
+                holder.itemQuantityTxt.setText(String.format(Locale.US, "%.2f",holder.orderItem.getO_quantity()));
+
+            showQtyByImage(holder, (int) holder.orderItem.getO_quantity());
 
 
             // holder.itemAmountTxt.setText("" + holder.orderItem.getO_amount());
             // holder.itemAmountTxt.setText(String.format("%.2f", holder.orderItem.getO_amount()));
-		 /*	NumberFormat nf = NumberFormat.getNumberInstance(Locale.ENGLISH);
-			DecimalFormat decFormat = (DecimalFormat) nf;
+         /*	NumberFormat nf = NumberFormat.getNumberInstance(Locale.ENGLISH);
+            DecimalFormat decFormat = (DecimalFormat) nf;
 			decFormat.applyPattern("0.00");
 			Logger.i("tag", "toatal price  " + holder.orderItem.getO_amount());*/
             String amount = context.getString(R.string.rupees, "\u20B9",
@@ -245,8 +252,8 @@ public class TakeOrderAdapter extends POSListAdapter<OrderItem> {
                     dataSet.set(position, orderItem);
                     notifyDataSetChanged();
 
-                    if (iCallOrder instanceof TakeOrderFragment){
-                        TakeOrderFragment takeOrderFragment = (TakeOrderFragment)iCallOrder;
+                    if (iCallOrder instanceof TakeOrderFragment) {
+                        TakeOrderFragment takeOrderFragment = (TakeOrderFragment) iCallOrder;
                         takeOrderFragment.showTotalAmount();
                     }
                 }
@@ -303,8 +310,8 @@ public class TakeOrderAdapter extends POSListAdapter<OrderItem> {
             dataSet.set(position, orderItem);
             notifyDataSetChanged();
 
-            if (iCallOrder instanceof TakeOrderFragment){
-                TakeOrderFragment takeOrderFragment = (TakeOrderFragment)iCallOrder;
+            if (iCallOrder instanceof TakeOrderFragment) {
+                TakeOrderFragment takeOrderFragment = (TakeOrderFragment) iCallOrder;
                 takeOrderFragment.showTotalAmount();
             }
         }
@@ -343,8 +350,8 @@ public class TakeOrderAdapter extends POSListAdapter<OrderItem> {
             dataSet.set(position, orderItem);
             notifyDataSetChanged();
 
-            if (iCallOrder instanceof TakeOrderFragment){
-                TakeOrderFragment takeOrderFragment = (TakeOrderFragment)iCallOrder;
+            if (iCallOrder instanceof TakeOrderFragment) {
+                TakeOrderFragment takeOrderFragment = (TakeOrderFragment) iCallOrder;
                 takeOrderFragment.showTotalAmount();
             }
         }
@@ -389,8 +396,8 @@ public class TakeOrderAdapter extends POSListAdapter<OrderItem> {
             dataSet.set(position, orderItem);
             notifyDataSetChanged();
 
-            if (iCallOrder instanceof TakeOrderFragment){
-                TakeOrderFragment takeOrderFragment = (TakeOrderFragment)iCallOrder;
+            if (iCallOrder instanceof TakeOrderFragment) {
+                TakeOrderFragment takeOrderFragment = (TakeOrderFragment) iCallOrder;
                 takeOrderFragment.showTotalAmount();
             }
         }
@@ -451,8 +458,8 @@ public class TakeOrderAdapter extends POSListAdapter<OrderItem> {
                     }
 
                     notifyDataSetChanged();
-                    if (iCallOrder instanceof TakeOrderFragment){
-                        TakeOrderFragment takeOrderFragment = (TakeOrderFragment)iCallOrder;
+                    if (iCallOrder instanceof TakeOrderFragment) {
+                        TakeOrderFragment takeOrderFragment = (TakeOrderFragment) iCallOrder;
                         takeOrderFragment.showTotalAmount();
                     }
                 }
@@ -460,20 +467,25 @@ public class TakeOrderAdapter extends POSListAdapter<OrderItem> {
         };
     }
 
-    private void showQtyByImage(OrderViewHolder holder, int qty){
+    private void showQtyByImage(OrderViewHolder holder, int qty) {
 
-        holder.layoutItemQty.removeAllViews();
-        holder.layoutItemQtyBottom.removeAllViews();
+        holder.layoutItemQtyBottom1.removeAllViews();
+        holder.layoutItemQtyBottom2.removeAllViews();
+        ViewGroup.LayoutParams param = new ViewGroup.LayoutParams(40, 40);
 
-        ViewGroup.LayoutParams param= new ViewGroup.LayoutParams(40,40);
-        for (int i=0; i<qty; i++){
+        String mDrawableName = "img" + holder.orderItem.o_categ_code;
+        int resID = context.getResources().getIdentifier(mDrawableName,
+                "drawable", context.getPackageName());
+
+        for (int i = 0; i < qty; i++) {
             ImageView imageView = new ImageView(context);
-            imageView.setImageResource(R.drawable.img35);
+            imageView.setImageResource(resID);
             imageView.setLayoutParams(param);
+
             if (i < 8)
-                holder.layoutItemQty.addView(imageView);
+                holder.layoutItemQtyBottom1.addView(imageView);
             else
-                holder.layoutItemQtyBottom.addView(imageView);
+                holder.layoutItemQtyBottom2.addView(imageView);
         }
     }
 
@@ -482,7 +494,7 @@ public class TakeOrderAdapter extends POSListAdapter<OrderItem> {
         private CustomTextview itemNameTxt, itemQuantityTxt, itemAmountTxt;
         private ImageView minus_order, plus_order, remove_order;
         private TextView tv_ItemRemark, t_v_i_meal_for_o_s_l, t_v_i_cvr_for_o_s_l;
-        LinearLayout layoutItemQty, layoutItemQtyBottom;
+        LinearLayout layoutItemQtyBottom1, layoutItemQtyBottom2;
         OrderItem orderItem;
     }
 }

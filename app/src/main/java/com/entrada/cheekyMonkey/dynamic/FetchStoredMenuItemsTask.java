@@ -81,6 +81,7 @@ public class FetchStoredMenuItemsTask extends AsyncTask<String, ArrayList<Items>
                         MenuItem menuItem = new MenuItem();
                         menuItem.setMenu_code(c.getString(c.getColumnIndex("item_code")));
                         menuItem.setMenu_name(c.getString(c.getColumnIndex("item_desc")));
+                        menuItem.setMenu_categ_code(c.getString(c.getColumnIndex("cat_code")));
                         menuItem.setInc_Rate(Float.parseFloat(c.getString(c.getColumnIndex("inc_rate"))));
                         menuItem.setMenu_price(Float.parseFloat(c.getString(c.getColumnIndex("cur_rate"))));
                         menuItem.setMax_Price(Float.parseFloat(c.getString(c.getColumnIndex("max_price"))));
@@ -96,6 +97,7 @@ public class FetchStoredMenuItemsTask extends AsyncTask<String, ArrayList<Items>
                         MenuItem menuItem = new MenuItem();
                         menuItem.setMenu_code(c.getString(c.getColumnIndex("item_code")));
                         menuItem.setMenu_name(c.getString(c.getColumnIndex("item_desc")));
+                        menuItem.setMenu_categ_code(c.getString(c.getColumnIndex("cat_code")));
                         menuItem.setInc_Rate(c.getFloat(c.getColumnIndex("inc_rate")));
                         menuItem.setMenu_price(c.getFloat(c.getColumnIndex("cur_rate")));
                         menuItem.setMax_Price(c.getFloat(c.getColumnIndex("max_price")));

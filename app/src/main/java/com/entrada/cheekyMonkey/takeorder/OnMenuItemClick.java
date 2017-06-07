@@ -39,19 +39,23 @@ public class OnMenuItemClick {
         OrderItem obj_order = new OrderItem();
 
 
-            obj_order.o_code = menuItem.getMenu_code();
-            obj_order.o_name = menuItem.getMenu_name();
-            obj_order.o_amount = menuItem.getMenuAmount();
-            obj_order.o_price =  menuItem.getMenu_price();
-            obj_order.o_subunit = menuItem.getMenu_sub_unit();
-            obj_order.o_grp_code = menuItem.getMenu_group_code();
-            obj_order.o_quantity = menuItem.getQuantity();
+        obj_order.o_code = menuItem.getMenu_code();
+        obj_order.o_name = menuItem.getMenu_name();
+        obj_order.o_amount = menuItem.getMenuAmount();
+        obj_order.o_price = menuItem.getMenu_price();
+        obj_order.o_subunit = menuItem.getMenu_sub_unit();
+        obj_order.o_grp_code = menuItem.getMenu_group_code();
+        obj_order.o_categ_code = menuItem.getMenu_categ_code();
+        obj_order.o_quantity = menuItem.getQuantity();
 
-            takeOrderAdapter.addDataSetItem(obj_order);
+        takeOrderAdapter.addDataSetItem(obj_order);
 
         obj_order.o_addon_code_new = "Y";
         show_addon_popup_new(menuItem.getMenu_code(), menuItem.getMenu_name(),
                 menuItem.getMenu_group_code());
+
+        if (!autoDiscount.isAppliedOn(obj_order, null))
+            discountLayout.createDiscList("0", menuItem.getMenu_group_code(), menuItem.getMenu_price());
 
     }
 

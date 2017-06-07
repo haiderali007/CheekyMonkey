@@ -268,6 +268,9 @@
     <string name="ready_string">Ready</string>
 
 
+    <string name="show_string">Show</string>
+    <string name="hide_string">Hide</string>
+
     <string name="notification_string">Notifications</string>
     <string name="news_string">No News Available</string>
     <string name="noti_string">No Active Notifications</string>
@@ -277,6 +280,8 @@
     <string name="order_restriction">Sorry! you are not allowed to place order.</string>
     <string name="hit_later">Hit us back later!</string>
     <string name="drinks_roll">Drinks start Rolling</string>
+
+
 
     <string name="no_perm_string">Permission denied</string>
     <string name="msg_string">Message</string>

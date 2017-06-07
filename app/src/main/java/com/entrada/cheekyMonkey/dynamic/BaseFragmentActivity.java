@@ -112,7 +112,6 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
     Context context;
     private SimpleSideDrawer slide_me;
-    LinearLayout layout_Left;
     ListView listview_left, listview_right;
     ImageView home_icon_button, right_button, img_user_pic, img_camera, img_lock, img_unlock, img_refresh;
     ImageButton image_back, img_srch;
@@ -257,7 +256,6 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
 
     public void showOrderSplit() {
-        layout_Left.setVisibility(View.VISIBLE);
         FragmentManager fmOther = getSupportFragmentManager();
         FragmentTransaction transaction = fmOther.beginTransaction();
 
@@ -265,47 +263,44 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         transaction.replace(R.id.container, orderSplitFragment);
         transaction.commit();
         currentBackListener = orderSplitFragment;
-        layout_Left.setVisibility(View.INVISIBLE);
+
     }
 
     public void showHome() {
 
         if (NetworkUtil.getConnectivityStatus(this) != 0 && errorMsg.isEmpty()) {
 
-            if (PrefHelper.getStoredBoolean(context, PrefHelper.PREF_FILE_NAME, PrefHelper.STEWARD_LOGIN)) {
+            showGuestHome();
+            showPendingNotificationOnStart();   // Set unread notifications so far.
+            setupActionBar();
+            updateUserStatus("A");  // To send Price change notification only to Active Users, User status is maintained.
 
-                showStewardHome(0);
-                showPendingNotificationOnStart();   // Set unread notifications so far.
-                setupActionBar();
-                updateUserStatus("A");  // To send Price change notification only to Active Users, User status is maintained.
-
-            }else {
-
-                showGuestHome();
-                showPendingNotificationOnStart();   // Set unread notifications so far.
-                setupActionBar();
-                updateUserStatus("A");  // To send Price change notification only to Active Users, User status is maintained.
-            }
         }
     }
 
-    public void showStewardHome(int position){
+    public void showStewardHome(int position) {
 
-        FragmentManager fmOther = getSupportFragmentManager();
-        FragmentTransaction transaction = fmOther.beginTransaction();
-        //if (stewardOrderFragment == null)
+        if (position == 0)
+            showGuestHome();
 
-        if(position == 8 || position==9 || position==10)
-            layout_Left.setVisibility(View.INVISIBLE);
+        else {
 
-        stewardOrderFragment = StewardOrderFragment.newInstance(position);
-        transaction.replace(R.id.container, stewardOrderFragment);
-        transaction.commit();
-        currentBackListener = stewardOrderFragment;
-        layout_retry.setVisibility(View.GONE);
+            slide_me.closeLeftSide();
+            FragmentManager fmOther = getSupportFragmentManager();
+            FragmentTransaction transaction = fmOther.beginTransaction();
+            stewardOrderFragment = StewardOrderFragment.newInstance(position);
+            transaction.replace(R.id.container, stewardOrderFragment);
+            transaction.commit();
+            currentBackListener = stewardOrderFragment;
+            layout_retry.setVisibility(View.GONE);
+        }
     }
 
-    public void showGuestHome(){
+    public void showGuestHome() {
+
+        slide_me.closeLeftSide();
+        img_srch.setVisibility(View.VISIBLE);
+        layout_noti.setVisibility(View.VISIBLE);
 
         FragmentManager fmOther = getSupportFragmentManager();
         FragmentTransaction transaction = fmOther.beginTransaction();
@@ -316,36 +311,19 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         layout_retry.setVisibility(View.GONE);
     }
 
-    private void onLeftListItemClick(int position) {
+    private void onExpandableListItemClick(int position) {
 
-        if (position == 0) {
+        if (!slide_me.isClosed()) {
 
-            if (PrefHelper.getStoredBoolean(context, PrefHelper.PREF_FILE_NAME, PrefHelper.STEWARD_LOGIN))
-                showStewardHome(0);
+            if (position == 7){
+                slide_me.closeLeftSide();
+                takeOrderFragment.showDiscountList();
 
-            else{
+            } else if (position == 12)
+                UserInfo.showLogoutDialog(context);
 
-                takeOrderFragment.showHome();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.container, takeOrderFragment).commit();
-                currentBackListener = takeOrderFragment;
-            }
-
-            slide_me.closeLeftSide();
-        }
-
-        else if (position == 12)
-            UserInfo.showLogoutDialog(context);
-
-        else {
-
-            if (position == 6)
-                onCreateBillGenerate("", "");
-            else if (position == 7)
-                stewardOrderFragment.onLeftListItemClick(position);
             else
                 showStewardHome(position);
-            slide_me.closeLeftSide();
         }
     }
 
@@ -396,7 +374,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                     lastExpandedPosition = groupPosition;
 
                 } else
-                    onLeftListItemClick(groupPosition);
+                    onExpandableListItemClick(groupPosition);
             }
         });
 
@@ -409,7 +387,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                         Toast.LENGTH_SHORT).show();*/
 
                 if (groupPosition != 1 && groupPosition != 2)
-                    onLeftListItemClick(groupPosition);
+                    onExpandableListItemClick(groupPosition);
             }
         });
 
@@ -419,10 +397,6 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
 
-//for cancel and extendable list
-
-
-//                layout_noti.setVisibility(position == 0 || position == 1 || position == 2  ? View.GONE : View.VISIBLE);
 
                 // TODO Auto-generated method stub
                 /*Toast.makeText(
@@ -435,7 +409,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
                 expListView.collapseGroup(groupPosition);
                 int position = groupPosition == 1 ? 15 + childPosition : 18 + childPosition;
-                onLeftListItemClick(position);
+                onExpandableListItemClick(position);
 
                 return false;
             }
@@ -460,7 +434,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         List<String> bill = new ArrayList<>();
         bill.add("Cancel");
         bill.add("Modify");
-        
+
         bill.add("Split");
         bill.add("Transfer");
 
@@ -519,7 +493,6 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         slide_me.setAnimationDurationRight(100);
         slide_me.setLeftBehindContentView(R.layout.left_menu);
         slide_me.setRightBehindContentView(R.layout.right_menu);
-        layout_Left = (LinearLayout) findViewById(R.id.ll_left_layout);
         listview_left = (ListView) findViewById(R.id.listView_left);
 
         if (PrefHelper.getStoredBoolean(context, PrefHelper.PREF_FILE_NAME, PrefHelper.STEWARD_LOGIN)) {
@@ -576,8 +549,8 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         edit_search.setIconifiedByDefault(false);
 
         /* ***************** Logic to hide search hint icon ****************************/
-        int imagId = getResources().getIdentifier("android:id/search_mag_icon", null, null);
-        ImageView magImage = (ImageView) edit_search.findViewById(imagId);
+        int imageId = getResources().getIdentifier("android:id/search_mag_icon", null, null);
+        ImageView magImage = (ImageView) edit_search.findViewById(imageId);
         magImage.setLayoutParams(new LinearLayout.LayoutParams(0, 0));
         /* *****************************************************************************/
 
@@ -653,7 +626,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
             if (cursor.moveToFirst()) {
 
                 do {
-                    if (! prvsOdr.equals(cursor.getString(1))){
+                    if (!prvsOdr.equals(cursor.getString(1))) {
                         GuestOrders guestOrders = new GuestOrders();
                         guestOrders.setOrderNo(cursor.getString(1));
                         guestOrders.setTableNo(cursor.getString(2));
@@ -665,8 +638,8 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                         guestOrders.setOrder_date(cursor.getString(10));
                         ordersList.add(guestOrders);
 
-                    }else {
-                        GuestOrders guestOrders = ordersList.get(ordersList.size()-1);
+                    } else {
+                        GuestOrders guestOrders = ordersList.get(ordersList.size() - 1);
                         float amount = Float.parseFloat(guestOrders.getAmount()) + cursor.getFloat(8);
                         guestOrders.setAmount(String.valueOf(amount));
                     }
@@ -753,7 +726,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
                 cursor.close();
             }
-            tv_ttl_amt.setText(String.format(Locale.US, "₹ %.2f", amount)+"\n*Taxes Applicable");
+            tv_ttl_amt.setText(String.format(Locale.US, "₹ %.2f", amount) + "\n*Taxes Applicable");
             tv_ttl_amt.setTextSize(14);
             tv_ttl_amt.setGravity(Gravity.RIGHT);
 //**//
@@ -777,40 +750,29 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-//for hide search view
-                img_srch.setVisibility(position == 3 || position == 5 || position == 8
-                        || position == 9 || position == 10 ? View.GONE : View.VISIBLE);
-                layout_noti.setVisibility(position == 3 || position == 5 || position == 8
-                        || position == 9 || position == 10 ? View.GONE : View.VISIBLE);
+                if (!slide_me.isClosed()) {
 
-                switch (position) {
+                    if (position != 1 && position != 11)
+                        slide_me.closeLeftSide();
 
-                    case 0:
-                        takeOrderFragment.showHome();
-                        if (currentBackListener instanceof TakeOrderFragment)
-                            slide_me.closeLeftSide();
+                    //for hiding search view
+                    img_srch.setVisibility(position == 3 || position == 5 || position == 8
+                            || position == 9 || position == 10 ? View.GONE : View.VISIBLE);
+                    layout_noti.setVisibility(position == 3 || position == 5 || position == 8
+                            || position == 9 || position == 10 ? View.GONE : View.VISIBLE);
 
-                        else {
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    layout_Left.setVisibility(View.INVISIBLE);
-                                    takeOrderFragment.showHome();
-                                    FragmentManager fragmentManager = getSupportFragmentManager();
-                                    fragmentManager.beginTransaction().replace(R.id.container, takeOrderFragment).commit();
-                                    currentBackListener = takeOrderFragment;
-                                    slide_me.closeLeftSide();
-                                }
-                            }, 200);
-                        }
-                        break;
+                    switch (position) {
 
-                    case 1:
-                        break;
+                        case 0:
+                            takeOrderFragment.showHome();
+                            break;
 
-                    case 2:
+                        case 1:
+                            break;
 
-                        try {
+                        case 2:
+
+                            try {
 
 /*                            // Pin Pointing address on Map
                             String uri = String.format(Locale.ENGLISH, "geo:%f,%f", 28.66, 77.228);
@@ -827,10 +789,10 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                                     Uri.parse("http://maps.google.com/maps?daddr=20.5666,45.345"));
                             startActivity(intent3);*/
 
-                            String address = "SCO 395 Sector 8, Panchkula, India";
-                            Uri uri = Uri.parse("https://www.google.com/maps/place/" + address);
-                            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
+                                String address = "SCO 395 Sector 8, Panchkula, India";
+                                Uri uri = Uri.parse("https://www.google.com/maps/place/" + address);
+                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                startActivity(intent);
 
                            /* // Showing Map for Address
                             Intent intent4 = new Intent(android.content.Intent.ACTION_VIEW,
@@ -843,136 +805,131 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                                     Uri.parse("geo:0,0?q=37.423156,-122.084917 (" + name + ")"));
                             startActivity(intent5);*/
 
-                        } catch (ActivityNotFoundException e) {
-                            e.printStackTrace();
-                        }
-
-                        break;
-
-                    case 3:
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                layout_Left.setVisibility(View.INVISIBLE);
-                                FragmentManager fragmentManager = getSupportFragmentManager();
-                                NewsFragment newsFragment = new NewsFragment();
-                                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                                transaction.replace(R.id.container, newsFragment).commit();
-                                currentBackListener = newsFragment;;
-                                slide_me.closeLeftSide();
-                                layout_Left.setVisibility(View.VISIBLE);
-
+                            } catch (ActivityNotFoundException e) {
+                                e.printStackTrace();
                             }
-                        }, 200);
-                        break;
 
-                    case 4:
-                        Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
-                        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
-                        // To count with Play market backstack, After pressing back button,
-                        // to taken back to our application, we need to add following flags to intent.
-                        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
-                                Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
-                                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                        try {
-                            startActivity(goToMarket);
-                        } catch (ActivityNotFoundException e) {
-                            startActivity(new Intent(Intent.ACTION_VIEW,
-                                    Uri.parse("http://play.google.com/store/apps/details?id=" + context.getPackageName())));
-                        }
-                        break;
+                            break;
+
+                        case 3:
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    FragmentManager fragmentManager = getSupportFragmentManager();
+                                    NewsFragment newsFragment = new NewsFragment();
+                                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+                                    transaction.replace(R.id.container, newsFragment).commit();
+                                    currentBackListener = newsFragment;
 
 
-                    case 5:
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                layout_Left.setVisibility(View.INVISIBLE);
-                                FragmentManager fragmentManager = getSupportFragmentManager();
-                                AboutUsFragment aboutUsFragment = new AboutUsFragment();
-                                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                                transaction.replace(R.id.container, aboutUsFragment).commit();
-                                currentBackListener = aboutUsFragment;
-                                slide_me.closeLeftSide();
-                                layout_Left.setVisibility(View.VISIBLE);
+                                }
+                            }, 200);
+                            break;
 
+                        case 4:
+                            Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
+                            Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+                            // To count with Play market backstack, After pressing back button,
+                            // to taken back to our application, we need to add following flags to intent.
+                            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                                    Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
+                                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                            try {
+                                startActivity(goToMarket);
+                            } catch (ActivityNotFoundException e) {
+                                startActivity(new Intent(Intent.ACTION_VIEW,
+                                        Uri.parse("http://play.google.com/store/apps/details?id=" + context.getPackageName())));
                             }
-                        }, 200);
-                        break;
+                            break;
 
 
-                    case 6:
-                        Uri uri2 = Uri.parse("https://www.facebook.com/cheekymonkeypkl/");
-                        Intent intent = new Intent(Intent.ACTION_VIEW, uri2);
-                        startActivity(intent);
-                        break;
+                        case 5:
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    FragmentManager fragmentManager = getSupportFragmentManager();
+                                    AboutUsFragment aboutUsFragment = new AboutUsFragment();
+                                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+                                    transaction.replace(R.id.container, aboutUsFragment).commit();
+                                    currentBackListener = aboutUsFragment;
+
+                                }
+                            }, 200);
+                            break;
 
 
-                    case 7:
-                        Uri uri1 = Uri.parse("https://www.instagram.com/cheekymonkeychd/");
-                        Intent intent1 = new Intent(Intent.ACTION_VIEW, uri1);
-                        startActivity(intent1);
-                        break;
-
-                    case 8:
-
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                layout_Left.setVisibility(View.INVISIBLE);
-                                FragmentManager fragmentManager = getSupportFragmentManager();
-                                DocsFragment docsFragment = new DocsFragment();
-                                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                                transaction.replace(R.id.container, docsFragment).commit();
-                                currentBackListener = docsFragment;
-                                slide_me.closeLeftSide();
-                                layout_Left.setVisibility(View.VISIBLE);
-
-                            }
-                        }, 200);
-                        break;
+                        case 6:
+                            Uri uri2 = Uri.parse("https://www.facebook.com/cheekymonkeypkl/");
+                            Intent intent = new Intent(Intent.ACTION_VIEW, uri2);
+                            startActivity(intent);
+                            break;
 
 
-                    case 9:
+                        case 7:
+                            Uri uri1 = Uri.parse("https://www.instagram.com/cheekymonkeychd/");
+                            Intent intent1 = new Intent(Intent.ACTION_VIEW, uri1);
+                            startActivity(intent1);
+                            break;
 
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                layout_Left.setVisibility(View.INVISIBLE);
-                                FragmentManager fragmentManager = getSupportFragmentManager();
-                                Help_Layout help_layout = new Help_Layout();
-                                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                                transaction.replace(R.id.container, help_layout).commit();
-                                currentBackListener = help_layout;
-                                slide_me.closeLeftSide();
-                                layout_Left.setVisibility(View.VISIBLE);
+                        case 8:
 
-                            }
-                        }, 200);
-                        break;
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
 
-
-                    case 10:
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                layout_Left.setVisibility(View.INVISIBLE);
-                                FragmentManager fragmentManager = getSupportFragmentManager();
-                                AboutDeveloperFragment devFragment = new AboutDeveloperFragment();
-                                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                                transaction.replace(R.id.container, devFragment).commit();
-                                currentBackListener = devFragment;
-                                slide_me.closeLeftSide();
-                                layout_Left.setVisibility(View.VISIBLE);
-
-                            }
-                        }, 200);
-                        break;
+                                    FragmentManager fragmentManager = getSupportFragmentManager();
+                                    DocsFragment docsFragment = new DocsFragment();
+                                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+                                    transaction.replace(R.id.container, docsFragment).commit();
+                                    currentBackListener = docsFragment;
 
 
-                    case 11:
-                        UserInfo.showLogoutDialog(context);
-                        break;
+                                }
+                            }, 200);
+                            break;
+
+
+                        case 9:
+
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    FragmentManager fragmentManager = getSupportFragmentManager();
+                                    Help_Layout help_layout = new Help_Layout();
+                                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+                                    transaction.replace(R.id.container, help_layout).commit();
+                                    currentBackListener = help_layout;
+
+
+                                }
+                            }, 200);
+                            break;
+
+
+                        case 10:
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    FragmentManager fragmentManager = getSupportFragmentManager();
+                                    AboutDeveloperFragment devFragment = new AboutDeveloperFragment();
+                                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+                                    transaction.replace(R.id.container, devFragment).commit();
+                                    currentBackListener = devFragment;
+
+
+                                }
+                            }, 200);
+                            break;
+
+
+                        case 11:
+                            UserInfo.showLogoutDialog(context);
+                            break;
+                    }
                 }
             }
         };
@@ -989,7 +946,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
             lv_gstorders.setAdapter(itemsAdapter);
 
         } else
-            onLeftListItemClick(position);
+            onExpandableListItemClick(position);
     }
 
     public boolean collapseToolbar() {
@@ -1009,7 +966,6 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         switch (v.getId()) {
 
             case R.id.left_button:
-                layout_Left.setVisibility(View.VISIBLE);
                 slide_me.toggleLeftDrawer();
                 break;
 
@@ -1077,10 +1033,16 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     }
 
     public void myOrders() {
-        listview_right.setAdapter(getRightListAdapter());
-        listview_right.setOnItemClickListener(this);
-        slide_me.toggleRightDrawer();
-        tv_no_order.setVisibility(getRightListAdapter().getCount() == 0 ? View.VISIBLE : View.GONE);
+
+        if (PrefHelper.getStoredBoolean(context, PrefHelper.PREF_FILE_NAME, PrefHelper.STEWARD_LOGIN))
+            showNotificationFor(NotificationFragment.TYPE_UNDER_PROCESS);
+
+        else {
+            listview_right.setAdapter(getRightListAdapter());
+            listview_right.setOnItemClickListener(this);
+            slide_me.toggleRightDrawer();
+            tv_no_order.setVisibility(getRightListAdapter().getCount() == 0 ? View.VISIBLE : View.GONE);
+        }
     }
 
 
@@ -1088,12 +1050,13 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
         slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
         slidingUpPanelLayout.clearFocus();
-//**search back crash problem//
+
 //        takeOrderFragment.adapter_menu_search.clear();
 //        takeOrderFragment.listViewSearchItem.setVisibility(View.GONE);
         image_back.setVisibility(View.GONE);
         edit_search.setQuery("", false);
         edit_search.clearFocus();
+        hideSoftKeyboard(this);
     }
 
     private void showInputMethod() {
@@ -1103,6 +1066,19 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         edit_search.requestFocus();
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
+    }
+
+    public void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(
+                        Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(
+                activity.getCurrentFocus().getWindowToken(), 0);
+    }
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     public void onCreateBillGenerate(final String table, final String tableCode) {
@@ -1119,7 +1095,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                 transaction.replace(R.id.container, billGenerateFragment);
                 transaction.commit();
                 currentBackListener = billGenerateFragment;
-                layout_Left.setVisibility(View.INVISIBLE);
+
             }
         }, 200);
 
@@ -1280,11 +1256,6 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     @Override
     public void onBackPressed() {
 
-//        img_srch.setVisibility(View.VISIBLE);
-
-        if (layout_Left.getVisibility() != View.VISIBLE)
-            layout_Left.setVisibility(View.VISIBLE);
-
         if (layout_gst_ord_detail.getVisibility() == View.VISIBLE)
             layout_gst_ord_detail.setVisibility(View.GONE);
 
@@ -1300,25 +1271,15 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                 slide_me.closeRightSide();
                 edit_search.clearFocus();
             }
-        } /*else if (!(currentBackListener instanceof TakeOrderFragment))
-            removeFragmentFromStack();*/
+        } else if (!(currentBackListener instanceof TakeOrderFragment
+                || currentBackListener instanceof StewardOrderFragment))
 
-         else if (currentBackListener instanceof BillGenerateFragment)
-            showStewardHome(0);
+            showGuestHome();
 
         else if (!currentBackListener.onBackPress()) {
             ExitDialog exitDialog = new ExitDialog(this, this);
             exitDialog.show();
         }
-    }
-
-    public void removeFragmentFromStack() {
-
-        FragmentManager fmOther = getSupportFragmentManager();
-        FragmentTransaction transaction = fmOther.beginTransaction();
-        takeOrderFragment = new TakeOrderFragment();
-        transaction.replace(R.id.container, takeOrderFragment).commit();
-        currentBackListener = takeOrderFragment;
     }
 
     @Override

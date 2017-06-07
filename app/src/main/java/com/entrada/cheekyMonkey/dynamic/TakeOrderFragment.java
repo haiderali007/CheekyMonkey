@@ -2,7 +2,6 @@ package com.entrada.cheekyMonkey.dynamic;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.job.JobInfo;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,7 +17,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -92,8 +90,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import static com.entrada.cheekyMonkey.steward.bill.BillGenerateFragment.frameLayout_discount;
-
 /**
  * Created by Rahul on 17/05/2016.
  */
@@ -107,7 +103,7 @@ public class TakeOrderFragment extends Fragment implements
     public TakeOrderAdapter takeOrderAdapter;
     public TableNumberLayout tableNumberLayout;
     public ListView listViewOrderItem, listViewSearchItem;
-    public FrameLayout frameLayout_container;
+    public FrameLayout frameLayout_container, frameLayout_discount;
     public LinearLayout layoutBanner;
     public ArrayList<String> codeList = new ArrayList<>();
     TableItem tableItem;
@@ -189,6 +185,7 @@ public class TakeOrderFragment extends Fragment implements
         discountLayout = new DiscountLayout(context, this);
         takeOrderAdapter = new TakeOrderAdapter(context, this, discountLayout);
         listViewOrderItem.setAdapter(takeOrderAdapter);
+        autoDiscount = new AutoDiscount(context, discountLayout, takeOrderAdapter);
 
         tabs = (PagerSlidingTabStrip) v.findViewById(R.id.tabs);
         pager = (ViewPager) v.findViewById(R.id.pager);
@@ -199,6 +196,7 @@ public class TakeOrderFragment extends Fragment implements
         pager.setPageMargin(pageMargin);
 
 
+        frameLayout_discount = (FrameLayout) v.findViewById(R.id.frameLayout_discount);
         frameLayout_container = (FrameLayout) v.findViewById(R.id.frameLayout_container);
         tableNumberLayout = new TableNumberLayout(context, frameLayout_container.getWidth(), this);
 
@@ -512,7 +510,7 @@ public class TakeOrderFragment extends Fragment implements
 
             case R.id.tv_home:
                 //showHome();
-                showCartOrder();
+                showOrderReview();
                 break;
 
 
@@ -531,11 +529,12 @@ public class TakeOrderFragment extends Fragment implements
         frameLayout_container.setVisibility(View.GONE);
     }
 
-    public void showCartOrder() {
+    public void showOrderReview() {
 
         sliding_pane_layout.openPane();
         layoutHeader.setVisibility(View.VISIBLE);
         frameLayout_container.setVisibility(View.GONE);
+        frameLayout_discount.setVisibility(View.GONE);
     }
 
     public void showMixer() {
@@ -543,6 +542,7 @@ public class TakeOrderFragment extends Fragment implements
         sliding_pane_layout.openPane();
         layoutHeader.setVisibility(View.GONE);
         frameLayout_container.setVisibility(View.VISIBLE);
+        frameLayout_discount.setVisibility(View.GONE);
     }
 
     public void submitOrder() {
@@ -670,7 +670,7 @@ public class TakeOrderFragment extends Fragment implements
 
             if (isSuccess) {
 
-                selectTable.setText(getResources().getString(R.string.table_string));
+                //selectTable.setText(getResources().getString(R.string.table_string));
                 discountLayout.clearDiscList();
                 takeOrderAdapter.clearDataSet();
                 takeOrderAdapter.notifyDataSetChanged();
@@ -762,8 +762,10 @@ public class TakeOrderFragment extends Fragment implements
 
             if (discountLayout.listViewShowDiscount != null &&
                     discountLayout.listViewShowDiscount.getVisibility() == View.VISIBLE) {
+
                 discountLayout.listViewShowDiscount.setVisibility(View.GONE);
-                listViewOrderItem.setVisibility(View.VISIBLE);
+
+                showOrderReview();
 
             } else
                 showDiscountList();
@@ -772,9 +774,11 @@ public class TakeOrderFragment extends Fragment implements
     }
 
     public void showDiscountList() {
+
         frameLayout_discount.addView(discountLayout.addDiscLayout());
+
         if (discountLayout.showList) {
-            listViewOrderItem.setVisibility(View.GONE);
+            frameLayout_container.setVisibility(View.GONE);
             frameLayout_discount.setVisibility(View.VISIBLE);
         }
     }
@@ -946,6 +950,7 @@ public class TakeOrderFragment extends Fragment implements
     @Override
     public void showOrderVisibility() {
 
+        showOrderReview();
     }
 
     public class MyPagerAdapter extends FragmentPagerAdapter {
@@ -1082,6 +1087,7 @@ public class TakeOrderFragment extends Fragment implements
                         com.entrada.cheekyMonkey.entity.MenuItem menuItem = new com.entrada.cheekyMonkey.entity.MenuItem();
                         menuItem.setMenu_code(c.getString(c.getColumnIndex("item_code")));
                         menuItem.setMenu_name(c.getString(c.getColumnIndex("item_desc")));
+                        menuItem.setMenu_categ_code(c.getString(c.getColumnIndex("cat_code")));
                         menuItem.setInc_Rate(Float.parseFloat(c.getString(c.getColumnIndex("inc_rate"))));
                         menuItem.setMenu_price(Float.parseFloat(c.getString(c.getColumnIndex("cur_rate"))));
                         menuItem.setMax_Price(Float.parseFloat(c.getString(c.getColumnIndex("max_price"))));
@@ -1097,6 +1103,7 @@ public class TakeOrderFragment extends Fragment implements
                         com.entrada.cheekyMonkey.entity.MenuItem menuItem = new com.entrada.cheekyMonkey.entity.MenuItem();
                         menuItem.setMenu_code(c.getString(c.getColumnIndex("item_code")));
                         menuItem.setMenu_name(c.getString(c.getColumnIndex("item_desc")));
+                        menuItem.setMenu_categ_code(c.getString(c.getColumnIndex("cat_code")));
                         menuItem.setInc_Rate(c.getFloat(c.getColumnIndex("inc_rate")));
                         menuItem.setMenu_price(c.getFloat(c.getColumnIndex("cur_rate")));
                         menuItem.setMax_Price(c.getFloat(c.getColumnIndex("max_price")));

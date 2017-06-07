@@ -2,6 +2,7 @@ package com.entrada.cheekyMonkey.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.StrictMode;
 
 public class MenuItem implements Parcelable {
 
@@ -12,6 +13,7 @@ public class MenuItem implements Parcelable {
     public String menu_addon = "";
     public String menu_mod = "";
     public String menu_group_code = "";
+    public String menu_categ_code = "";
     public String menu_item_url = "";
     public String menu_sub_item = "";
     public String menu_open_item = "";
@@ -43,6 +45,7 @@ public class MenuItem implements Parcelable {
             menuItem.menu_addon = source.readString();
             menuItem.menu_mod = source.readString();
             menuItem.menu_group_code = source.readString();
+            menuItem.menu_categ_code = source.readString();
             menuItem.menu_item_url = source.readString();
             menuItem.menu_sub_item = source.readString();
             menuItem.menu_open_item = source.readString();
@@ -124,6 +127,14 @@ public class MenuItem implements Parcelable {
 
     public void setMenu_group_code(String menu_group_code) {
         this.menu_group_code = menu_group_code;
+    }
+
+    public String getMenu_categ_code() {
+        return menu_categ_code;
+    }
+
+    public void setMenu_categ_code(String menu_categ_code) {
+        this.menu_categ_code = menu_categ_code;
     }
 
     public String getMenu_item_url() {
@@ -251,6 +262,7 @@ public class MenuItem implements Parcelable {
         dest.writeString(menu_addon);
         dest.writeString(menu_mod);
         dest.writeString(menu_group_code);
+        dest.writeString(menu_categ_code);
         dest.writeString(menu_item_url);
         dest.writeString(menu_sub_item);
         dest.writeString(menu_open_item);

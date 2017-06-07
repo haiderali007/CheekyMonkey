@@ -57,6 +57,7 @@ public class OnMenuItemClick {
             obj_order.o_price = menuItem.getMenu_price();
             obj_order.o_subunit = menuItem.getMenu_sub_unit();
             obj_order.o_grp_code = menuItem.getMenu_group_code();
+            obj_order.o_categ_code = menuItem.getMenu_categ_code();
             Logger.i("Combo Code", "::" + menuItem.getMenu_code());
             takeOrderAdapter.addDataSetItem(obj_order);
 
@@ -74,6 +75,7 @@ public class OnMenuItemClick {
             obj_order.o_price = menuItem.getMenu_price();
             obj_order.o_subunit = menuItem.getMenu_sub_unit();
             obj_order.o_grp_code = menuItem.getMenu_group_code();
+            obj_order.o_categ_code = menuItem.getMenu_categ_code();
 
             Logger.i("Combo Code", "::" + menuItem.getMenu_code());
             takeOrderAdapter.addDataSetItem(obj_order);
@@ -89,6 +91,7 @@ public class OnMenuItemClick {
             obj_order.o_amount = menuItem.getQuantity() * menuItem.getMenu_price();
             obj_order.o_subunit = menuItem.getMenu_sub_unit();
             obj_order.o_grp_code = menuItem.getMenu_group_code();
+            obj_order.o_categ_code = menuItem.getMenu_categ_code();
 
             takeOrderAdapter.addDataSetItem(obj_order);
 
