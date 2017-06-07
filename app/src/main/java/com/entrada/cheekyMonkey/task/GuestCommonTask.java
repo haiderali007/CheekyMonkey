@@ -121,6 +121,8 @@ public class GuestCommonTask<Params, Result> extends
                                 .getString(StaticConstants.JSON_TAG_GUEST_GUEST_NAME);
                         item.TABLE = jsonValue
                                 .getString(StaticConstants.JSON_TAG_GUEST_GUEST);
+                        item.Status = jsonValue
+                                .getString(StaticConstants.JSON_TAG_GUEST_ORDER_STATUS);
                         publishProgress(item);
 
                     }

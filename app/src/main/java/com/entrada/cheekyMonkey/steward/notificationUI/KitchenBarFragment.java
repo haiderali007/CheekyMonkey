@@ -194,6 +194,14 @@ public class KitchenBarFragment extends Fragment implements
         }
     }
 
+    public void showBottom(String orderStatus){
+
+        txtPreparingOrder.setVisibility(orderStatus.equals(NotificationFragment.ORDER_ACCEPTED) ?
+                View.VISIBLE : View.GONE);
+        txtReadyOrder.setVisibility(orderStatus.equals(NotificationFragment.ORDER_PREPARATION_STARTED) ?
+                View.VISIBLE : View.GONE);
+
+    }
 
     private OnItemClickListener onItemClickListener() {
         return new OnItemClickListener() {
@@ -241,6 +249,8 @@ public class KitchenBarFragment extends Fragment implements
     @SuppressWarnings("unchecked")
     public void GuestOrderDetail(GuestOrderItem item) {
 
+        showBottom(item.Status);
+
         detailAdp.clearDataSetALL();
         detailAdp.notifyDataSetChanged();
         detailAdp.setItem(item);
@@ -253,7 +263,6 @@ public class KitchenBarFragment extends Fragment implements
 
         tv_guest_name.setText(item.Guest_Name);
         tv_guest_name.setTag(item.Guest_Name);
-
 
         String paramter = UtilToCreateJSON.createParamToFetchOrderDetail(
                 context, item);
@@ -288,6 +297,14 @@ public class KitchenBarFragment extends Fragment implements
             } else if (message.TYPE
                     .equalsIgnoreCase(BaseNetwork.KEY_ECABS_CancelGuestOrder)) {
                 FetchGuestOrder();
+
+            }else if (message.TYPE
+                    .equalsIgnoreCase(BaseNetwork.KEY_ECABS_DispalyGuestOrder)) {
+
+                if (adapter.getCount() > 0 && adapter.getIsSelectedPosition() != -1){
+                    GuestOrderItem item = (GuestOrderItem) adapter.getItem(adapter.getIsSelectedPosition());
+                    showBottom(item.Status);
+                }
             }
 
             if (context instanceof BaseFragmentActivity)
@@ -315,12 +332,12 @@ public class KitchenBarFragment extends Fragment implements
                 tv_order_sts.setText(getStatus(orderDetail.Order_sts));
                 tv_order_sts.setTag(getStatus(orderDetail.Order_sts));
 
-                if (!orderDetail.Order_sts.equals("B"))
+                /*if (!orderDetail.Order_sts.equals("B"))
                     txtPreparingOrder.setVisibility(View.VISIBLE);
                 if (orderDetail.Order_sts.equals("R")) {
                     txtReadyOrder.setText(R.string.serve_string);
                     txtReadyOrder.setEnabled(false);
-                }
+                }*/
             }
 
         } catch (Exception e) {
@@ -343,13 +360,15 @@ public class KitchenBarFragment extends Fragment implements
     public void onClick(View id) {
 
         switch (id.getId()) {
-            case R.id.txtRejectOrder:
 
+            case R.id.txtRejectOrder:
                 onStartPreparingMethod();
                 break;
+
             case R.id.txtAcceptOrder:
                 onReadyToServeMethod();
                 break;
+
             default:
                 break;
         }

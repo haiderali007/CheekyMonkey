@@ -76,8 +76,8 @@
                     android:background="@color/home_color"
                     android:gravity="center"
                     android:text="@string/order_review"
-                    android:textStyle="bold"
-                    android:textColor="@color/White"
+                    android:textStyle="normal"
+                    android:textColor="@color/grey_dark"
                     android:textSize="@dimen/extra_extra_large" />
 
 

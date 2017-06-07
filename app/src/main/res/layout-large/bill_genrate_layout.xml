@@ -43,7 +43,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="@dimen/large"
-                        android:textColor="@color/White"
+                        android:textColor="@color/grey_dark"
                         android:layout_gravity="center"
                         android:text="SubTotal:"/>
 
@@ -54,7 +54,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="@dimen/large"
-                        android:textColor="@color/White"
+                        android:textColor="@color/grey_dark"
                         android:layout_gravity="center"
                         android:text="Discount: " />
 
@@ -64,7 +64,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="@dimen/large"
-                        android:textColor="@color/White"
+                        android:textColor="@color/grey_dark"
                         android:layout_gravity="center"
                         android:text="Tax:" />
 
@@ -74,7 +74,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="@dimen/large"
-                        android:textColor="@color/White"
+                        android:textColor="@color/grey_dark"
                         android:layout_gravity="center"
                         android:text="Total:" />
 

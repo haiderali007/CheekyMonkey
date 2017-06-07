@@ -51,6 +51,11 @@ public class GuestOrderAdapter<T> extends POSListAdapter<T> {
                 holder.llRowSelector.setSelected(true);
             else
                 holder.llRowSelector.setSelected(false);
+
+            if (item.Status.equals(NotificationFragment.ORDER_PREPARATION_STARTED))
+                holder.llRowSelector.setBackgroundResource(R.color.Yellow);
+            if (item.Status.equals(NotificationFragment.ORDER_READY_TO_SERVE))
+                holder.llRowSelector.setBackgroundResource(R.color.Green);
         }
 
         return v;

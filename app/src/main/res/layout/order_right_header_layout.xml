@@ -43,7 +43,7 @@
                     android:layout_weight="1"
                     android:layout_margin="5dp"
                     android:padding="5sp"
-                    android:textColor="@color/White"
+                    android:textColor="@color/grey_dark"
                     android:background="@drawable/header"
                     android:gravity="center"
                     android:text="@string/select_table_string"
@@ -74,7 +74,8 @@
                     android:gravity="center"
                     android:layout_margin="5dp"
                     android:padding="5sp"
-                    android:text="@string/select_order_string" />
+                    android:text="@string/select_order_string"
+                    android:textColor="@color/grey_dark"/>
 
                 <ImageView
                     android:id="@+id/imgGuestSearch1"

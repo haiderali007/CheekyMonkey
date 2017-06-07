@@ -27,7 +27,8 @@
     <color name="curr_price_color">#AC1E1C</color>
     <color name="next_price_color">#24AC30</color>
     <!--<color name="home_color">#ffd879</color>-->
-    <color name="home_color">#FFC107</color>
+    <color name="home_color">#fff212</color>
+    <color name="home_color1">#FFC107</color>
     <color name="order_background">#101010</color>
     <color name="my_order_background">#2C2828</color>
 

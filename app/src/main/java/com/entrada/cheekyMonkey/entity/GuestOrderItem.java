@@ -10,5 +10,6 @@ public class GuestOrderItem {
     public String Guest_Code = "";
     public String Guest_Name = "";
     public String Item_Rate = "";
+    public String Status = "";
 
 }

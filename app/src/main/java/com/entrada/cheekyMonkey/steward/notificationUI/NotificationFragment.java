@@ -135,18 +135,18 @@ public class NotificationFragment extends Fragment implements
         }
         //for order accept
         else  if (orderStatus.equals(TYPE_ACCEPTED)){
-            txtRejectOrder.setVisibility(View.VISIBLE);
             txtAcceptOrder.setVisibility(View.GONE);
-            txtAcceptOrder.setText(R.string.accept_string);
+            txtRejectOrder.setVisibility(View.VISIBLE);
+            txtRejectOrder.setText(R.string.reject_string);
 
 //            txtRejectOrder.setVisibility(employeeType.equals(EMPLOYEE_TYPE1)? View.VISIBLE : View.GONE);
 
 
 
         }else  if (orderStatus.equals(TYPE_REJECTED)){
-            txtAcceptOrder.setVisibility(View.VISIBLE);
             txtRejectOrder.setVisibility(View.GONE);
-            txtRejectOrder.setText(R.string.reject_string);
+            txtAcceptOrder.setVisibility(View.VISIBLE);
+            txtAcceptOrder.setText(R.string.accept_string);
         }
         
         txtOrderNumber = (CustomTextview) view
@@ -407,13 +407,13 @@ public class NotificationFragment extends Fragment implements
             Toast.makeText(context, "Select an Order", Toast.LENGTH_SHORT).show();
         }
         else {
-
             String parameter = UtilToCreateJSON.createTOAcceptOrder(context, detailAdp,
-                    orderStatus.equals(TYPE_UNDER_PROCESS)||orderStatus.equals(TYPE_REJECTED) ? ORDER_SUBMITTED : ORDER_DELIVERED);
-
+                    orderStatus.equals(TYPE_UNDER_PROCESS) || orderStatus.equals(TYPE_REJECTED)
+                            ? ORDER_SUBMITTED : ORDER_DELIVERED);
             GuestCommonTask<String, ResultMessage> commonTask = new GuestCommonTask<String, ResultMessage>(
                     context, NotificationFragment.this,
-                    orderStatus.equals(TYPE_UNDER_PROCESS)||orderStatus.equals(TYPE_REJECTED) ? BaseNetwork.KEY_ECABS_PushOrderGuest :
+                    orderStatus.equals(TYPE_UNDER_PROCESS) || orderStatus.equals(TYPE_REJECTED)
+                            ? BaseNetwork.KEY_ECABS_PushOrderGuest :
                             BaseNetwork.KEY_ECABS_PushOrderGuestStatus, parameter, pbDetail);
             AsyncTaskTools.execute(commonTask);
 
@@ -423,7 +423,6 @@ public class NotificationFragment extends Fragment implements
     }
 
     @SuppressWarnings("unchecked")
-    //reject method
     public void onRejectMethod() {
 
         if(txtOrderNumber.getTag() ==null)

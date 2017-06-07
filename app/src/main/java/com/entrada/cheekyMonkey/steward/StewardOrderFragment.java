@@ -489,8 +489,8 @@ public class StewardOrderFragment extends Fragment implements
         //ll_bottomOrder.setBackgroundColor(userInfo.getNaviBackground());
 
         int color = userInfo.getNaviFontColor();
-        selectTable.setTextColor(color);
-        newOrder.setTextColor(color);
+//        selectTable.setTextColor(color);
+//        newOrder.setTextColor(color);
         txtOrderSubmit.setTextColor(color);
         txtOrderClear.setTextColor(color);
 
