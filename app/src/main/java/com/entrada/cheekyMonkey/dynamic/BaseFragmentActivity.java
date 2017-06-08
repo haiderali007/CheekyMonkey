@@ -299,8 +299,10 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     public void showGuestHome() {
 
         slide_me.closeLeftSide();
-        img_srch.setVisibility(View.VISIBLE);
-        layout_noti.setVisibility(View.VISIBLE);
+        if (img_srch != null && layout_noti != null) {
+            img_srch.setVisibility(View.VISIBLE);
+            layout_noti.setVisibility(View.VISIBLE);
+        }
 
         FragmentManager fmOther = getSupportFragmentManager();
         FragmentTransaction transaction = fmOther.beginTransaction();
@@ -315,7 +317,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
         if (!slide_me.isClosed()) {
 
-            if (position == 7){
+            if (position == 7) {
                 slide_me.closeLeftSide();
                 takeOrderFragment.showDiscountList();
 
@@ -1077,7 +1079,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     }
 
     public void hideKeyboard(View view) {
-        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 

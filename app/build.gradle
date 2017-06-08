@@ -12,7 +12,7 @@ apply plugin: 'io.fabric'
 
 // Create a variable called keystorePropertiesFile, and initialize it to your
 // keystore.properties file, in the rootProject folder.
-def keystorePropertiesFile = rootProject.file("E:\\Rahul\\Docs\\keystoresCheeky\\keystore.properties")
+def keystorePropertiesFile = rootProject.file("D:\\Haiderali\\Docs\\keystoresCheeky\\keystore.properties")
 
 
 
@@ -35,7 +35,7 @@ android {
         }
     }
     compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    buildToolsVersion '25.0.3'
     defaultConfig {
         applicationId "com.entrada.cheekyMonkey"
         minSdkVersion 16
