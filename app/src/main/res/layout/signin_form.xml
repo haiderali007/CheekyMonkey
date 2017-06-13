@@ -25,7 +25,7 @@
             android:paddingEnd="20sp"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/arrow_left"
+            android:src="@drawable/arrow_left_blue"
             android:contentDescription="@string/back_string"/>
 
 

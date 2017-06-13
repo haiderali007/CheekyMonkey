@@ -97,9 +97,10 @@ public class FetchAndStoreMenuItemsTask extends AsyncTask<Void,  Void,  String>
 
 
                 ContentValues cv1 = new ContentValues();
-                cv1.put(DBConstants.KEY_MENU_CODE,jsonObject1.getString(StaticConstants.JSON_TAG_Item_Code));
-                cv1.put(DBConstants.KEY_MENU_NAME,jsonObject1.getString(StaticConstants.JSON_TAG_Item_Desc));
-                cv1.put(DBConstants.KEY_MENU_PRICE, jsonObject1.getString(StaticConstants.JSON_TAG_Current_Rate));
+                cv1.put(KEY_MENU_CODE,jsonObject1.getString(StaticConstants.JSON_TAG_Item_Code));
+                cv1.put(KEY_MENU_NAME,jsonObject1.getString(StaticConstants.JSON_TAG_Item_Desc));
+                cv1.put(KEY_MENU_PRICE, jsonObject1.getString(StaticConstants.JSON_TAG_Current_Rate));
+                cv1.put(KEY_MENU_CAT_CODE, jsonObject1.getString(StaticConstants.JSON_TAG_Cat_Code));
 
                 mdb.insert(DBConstants.KEY_MENU_ITEM_FTS_TABLE, null, cv1);
             }

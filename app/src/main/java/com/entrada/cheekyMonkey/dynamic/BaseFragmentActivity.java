@@ -554,6 +554,13 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         int imageId = getResources().getIdentifier("android:id/search_mag_icon", null, null);
         ImageView magImage = (ImageView) edit_search.findViewById(imageId);
         magImage.setLayoutParams(new LinearLayout.LayoutParams(0, 0));
+
+        /* ***************** Logic to Set Search view text color ***************************/
+        int id = edit_search.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        TextView textView = (TextView) edit_search.findViewById(id);
+        textView.setTextColor(Color.BLACK);
+        textView.setHintTextColor(getResources().getColor(R.color.grey_dark));
+
         /* *****************************************************************************/
 
         SearchItemListener searchListener = new SearchItemListener(context, takeOrderFragment, edit_search, img_srch);
@@ -1056,6 +1063,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 //        takeOrderFragment.adapter_menu_search.clear();
 //        takeOrderFragment.listViewSearchItem.setVisibility(View.GONE);
         image_back.setVisibility(View.GONE);
+        takeOrderFragment.listViewSearchItem.setVisibility(View.GONE);
         edit_search.setQuery("", false);
         edit_search.clearFocus();
         hideSoftKeyboard(this);

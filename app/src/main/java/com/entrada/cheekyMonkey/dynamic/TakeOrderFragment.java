@@ -846,7 +846,7 @@ public class TakeOrderFragment extends Fragment implements
         SQLiteDatabase mdb = POSDatabase.getInstanceLogin(context).getWritableDatabase();
         mdb.beginTransaction();
 
-        String queryPermission = "Select * from " + DBConstants.KEY_OUTLET_TABLE;
+        String queryPermission = "Select * from " + DBConstants.KEY_OUTLET_TABLE +  " order by Table_Code asc";
         Cursor c = mdb.rawQuery(queryPermission, null);
         TableItem obj_list;
 

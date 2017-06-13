@@ -101,7 +101,12 @@ public class BillTransferLayout implements View.OnClickListener,
         posCodeList.add("");
         posTypeList.add("");
 
-        SQLiteDatabase mdb = POSDatabase.getInstanceLogin(context)
+        posCodeList.add("REST");
+        pos_adapter.add("RESTAURANT");
+        posTypeList.add("R");
+
+
+        /*SQLiteDatabase mdb = POSDatabase.getInstanceLogin(context)
                 .getWritableDatabase();
         mdb.beginTransaction();
         try {
@@ -128,7 +133,7 @@ public class BillTransferLayout implements View.OnClickListener,
             ex.printStackTrace();
         } finally {
             mdb.endTransaction();
-        }
+        }*/
     }
 
     private AdapterView.OnItemSelectedListener onPosSelectedListener() {

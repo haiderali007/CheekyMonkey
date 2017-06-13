@@ -41,7 +41,7 @@
     <string name="create_act_string">Create An Account</string>
     <string name="exist_act_string">With Existing Account</string>
     <string name="msg_scl_media">We do not post to your social media without your permission</string>
-    <string name="net_failure_string">No Internet&#8230;</string>
+    <string name="net_failure_string">No Internet connection &#8230;</string>
     <string name="retry_string">Retry</string>
     <string name="odr_quickly_string">Order Quick! Prices @ Cheeky Monkey change based on Demand and Supply</string>
     <string name="no_order">You have no active orders.</string>
@@ -220,9 +220,9 @@
 
 
     <string name="lock_drawer">Lock Drawer</string>
-    <string name="home_footer">HOME</string>
+    <string name="home_footer">Home</string>
     <string name="order_review">Order Review</string>
-    <string name="order_header">MY ORDERS</string>
+    <string name="order_header">My Orders</string>
     <string name="ttl_amt">Your Total Amount</string>
     <string name="amt">0</string>
     <string name="taxes">*Taxes applicable</string>

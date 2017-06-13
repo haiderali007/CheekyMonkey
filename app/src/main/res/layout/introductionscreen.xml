@@ -1,7 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical">
+              android:orientation="vertical"
+    android:background="@color/Yellow">
 
 
 
@@ -18,7 +19,7 @@
             android:layout_height="150sp"
             android:layout_gravity="center"
             android:scaleType="center"
-            android:src="@drawable/app_icon"
+            android:src="@drawable/app_icon1"
             android:contentDescription="@string/app_name"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"/>
@@ -77,9 +78,8 @@
         <RelativeLayout
             android:id="@+id/layout_retry"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/userID_height"
             android:background="@color/Black"
-            android:visibility="visible"
             android:layout_gravity="center_horizontal|bottom">
 
 
@@ -91,14 +91,13 @@
                 android:paddingRight="30sp"
                 android:paddingStart="30sp"
                 android:paddingEnd="30sp"
-                android:enabled="false"
+                android:enabled="true"
                 android:background="@drawable/theme_button"
                 android:text="@string/retry_string"
                 android:gravity="center"
                 android:layout_gravity="center"
-                android:layout_marginTop="52dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
 
             <ProgressBar
                 android:id="@+id/progress_failure"
@@ -119,14 +118,13 @@
             android:id="@+id/tv_loader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imageView3"
             android:layout_gravity="center"
             android:layout_marginTop="60dp"
             android:padding="5sp"
             android:paddingEnd="20sp"
             android:paddingStart="20sp"
             android:text="@string/net_failure_string"
-            android:textColor="@color/WhiteSmoke"
+            android:textColor="@color/grey_dark"
             android:textSize="14sp"
             android:visibility="visible"/>
 
@@ -135,7 +133,7 @@
             android:layout_width="150sp"
             android:layout_height="150sp"
             android:layout_gravity="center"
-            android:background="@drawable/app_icon_black"
+            android:background="@drawable/app_icon1"
             android:contentDescription="@string/app_name"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/White"

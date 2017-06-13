@@ -121,8 +121,10 @@ public class BillSplitLayout implements View.OnClickListener,
 
         posCodeList = new ArrayList<>();
         posCodeList.add("");
+        posCodeList.add("REST");
+        pos_adapter.add("RESTAURANT");
 
-        SQLiteDatabase mdb = POSDatabase.getInstanceLogin(context)
+        /*SQLiteDatabase mdb = POSDatabase.getInstanceLogin(context)
                 .getWritableDatabase();
         mdb.beginTransaction();
         try {
@@ -149,7 +151,7 @@ public class BillSplitLayout implements View.OnClickListener,
             ex.printStackTrace();
         } finally {
             mdb.endTransaction();
-        }
+        }*/
     }
 
 

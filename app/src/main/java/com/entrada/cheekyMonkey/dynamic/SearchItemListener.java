@@ -108,6 +108,8 @@ public class SearchItemListener implements SearchView.OnQueryTextListener, Searc
                                 .getColumnIndex(DBConstants.KEY_MENU_PRICE)));
                         menuItem.setMenuAmount(cursor.getFloat(cursor
                                 .getColumnIndex(DBConstants.KEY_MENU_PRICE)));
+                        menuItem.setMenu_categ_code(cursor.getString(cursor
+                                .getColumnIndex(DBConstants.KEY_MENU_CAT_CODE)));
 
                         menu_search_list.add(new Items(new GroupItems(), new CategoryItem(), menuItem));
 

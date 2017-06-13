@@ -10,10 +10,10 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/cheeky_logo"
+        android:src="@drawable/app_icon1"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="@dimen/padding_medium"
         android:contentDescription="@string/app_name"/>
 
     <com.digits.sdk.android.DigitsAuthButton
@@ -22,6 +22,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="80dp" />
+        android:layout_marginBottom="@dimen/header3_height" />
 
 </RelativeLayout>

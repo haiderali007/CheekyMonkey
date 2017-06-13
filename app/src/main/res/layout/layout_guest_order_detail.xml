@@ -123,6 +123,7 @@
             android:textStyle="bold" />
 
         <LinearLayout
+            android:id="@+id/tv_lay_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
@@ -130,6 +131,7 @@
             android:layout_gravity="left">
 
             <TextView
+                android:id="@+id/tv_label_total"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

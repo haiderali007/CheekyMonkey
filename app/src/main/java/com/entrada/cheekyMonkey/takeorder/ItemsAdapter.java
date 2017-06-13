@@ -7,8 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-
-import java.util.ArrayList;
+import android.widget.ImageView;
 
 import com.entrada.cheekyMonkey.POSApplication;
 import com.entrada.cheekyMonkey.R;
@@ -16,6 +15,9 @@ import com.entrada.cheekyMonkey.entity.Items;
 import com.entrada.cheekyMonkey.entity.UserInfo;
 import com.entrada.cheekyMonkey.ui.CustomTextview;
 import com.entrada.cheekyMonkey.util.Logger;
+
+import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by Tanuj.Sareen on 1/30/2015.
@@ -42,7 +44,9 @@ public class ItemsAdapter extends ArrayAdapter<Items> {
         if (convertView == null) {
             viewHolder = new ItemsViewHolder();
             convertView = LayoutInflater.from(context).inflate(resourceID, null);
+            viewHolder.imgItemCategory = (ImageView) convertView.findViewById(R.id.img_item_categ);
             viewHolder.itemNameText = (CustomTextview) convertView.findViewById(R.id.itemNameText);
+            viewHolder.itemPriceText = (CustomTextview) convertView.findViewById(R.id.tv_item_price);
             convertView.setTag(viewHolder);
 
         } else
@@ -54,7 +58,16 @@ public class ItemsAdapter extends ArrayAdapter<Items> {
 
             Logger.i("Search Item", "::" + items.getMenuItem().getMenu_name());
 
+            String mDrawableName = "img" + items.getMenuItem().getMenu_categ_code();
+            int resID = context.getResources().getIdentifier(mDrawableName, "drawable", context.getPackageName());
+            viewHolder.imgItemCategory.setImageResource(resID);
+
             viewHolder.itemNameText.setText(items.getMenuItem().getMenu_name());
+
+            String price = context.getResources().getString(R.string.rupees, "₹",
+                    String.valueOf(items.getMenuItem().getMenu_price()));
+            viewHolder.itemPriceText.setText(price);
+
             if (!TextUtils.isEmpty(items.getMenuItem().getMenu_color())) {
                 viewHolder.itemNameText.setBackgroundColor(Color.parseColor(items.getMenuItem().getMenu_color()));
                 //viewHolder.itemNameText.setTextColor(userInfo.getFontColor());
@@ -74,9 +87,10 @@ public class ItemsAdapter extends ArrayAdapter<Items> {
         return convertView;
     }
 
-    public class ItemsViewHolder {
+    private class ItemsViewHolder {
 
-        public CustomTextview itemNameText;
+        ImageView imgItemCategory;
+        CustomTextview itemNameText, itemPriceText;
     }
 
 }

@@ -1,22 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="5dp">
 
-    <com.entrada.cheekyMonkey.ui.CustomTextview
-        android:id="@+id/itemNameText"
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/header_height"
+    card_view:cardCornerRadius="6dp"
+    card_view:cardElevation="6dp"
+    card_view:contentPadding="7dp"
+    card_view:cardBackgroundColor="@color/White">
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:background="@color/LightGrey"
-        android:gravity="center"
-        android:minHeight="@dimen/userID_height"
-        android:minWidth="@dimen/userID_height"
-        android:textColor="@color/Black"
-        android:textSize="18sp"
-        app:fontName="Roboto_Thin" />
+        android:padding="2dp">
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/img_item_categ"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/img12"
+            android:contentDescription="@string/app_name"/>
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/itemNameText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:background="@color/Beige"
+            android:gravity="center"
+            android:minHeight="@dimen/userID_height"
+            android:minWidth="@dimen/userID_height"
+            android:text="@string/item_string"
+            android:textColor="@color/grey_dark"
+            android:textSize="18sp"
+            app:fontName="Roboto_Thin" />
+
+        <com.entrada.cheekyMonkey.ui.CustomTextview
+            android:id="@+id/tv_item_price"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:text="₹ 120"
+            android:gravity="center"
+            android:textColor="@color/grey_light"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    </android.support.v7.widget.CardView>
