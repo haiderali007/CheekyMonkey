@@ -47,7 +47,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
     LinearLayout layout_continue, layout_signup;
     ProgressBar progress_signup;
 
-    boolean MOBILE_VERIFICATION_DONE = false;
+    boolean MOBILE_VERIFICATION_DONE = true;
     int REQUEST_CODE = 48;
     int SUCCESS = 50;
 

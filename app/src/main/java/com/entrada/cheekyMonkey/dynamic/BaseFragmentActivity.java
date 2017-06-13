@@ -699,21 +699,21 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                 if (odrStatus.equals(NotificationFragment.ORDER_REJECTED_BY_GUEST) ||
                         odrStatus.equals(NotificationFragment.ORDER_REJECTED_BY_STEWARD) ||
                         odrStatus.equals(NotificationFragment.ORDER_REJECTED_BY_ADMIN)) {
-                    tv_ord_status.setText(getString(R.string.sts_string, "REJECTED"));
+                    tv_ord_status.setText(getString(R.string.sts_string, "Rejected"));
                     tv_ord_status.setBackgroundColor(0xFFFF3000);
 
                 } else if (odrStatus.equals(NotificationFragment.ORDER_ACCEPTED) ||
                         odrStatus.equals(NotificationFragment.ORDER_PREPARATION_STARTED) ||
                         odrStatus.equals(NotificationFragment.ORDER_READY_TO_SERVE)) {
-                    tv_ord_status.setText(getString(R.string.sts_string, "APPROVED"));
+                    tv_ord_status.setText(getString(R.string.sts_string, "Approved"));
                     tv_ord_status.setBackgroundColor(0xFF00D938);
 
                 } else if (odrStatus.equals(NotificationFragment.ORDER_UNDER_PROCESS)) {
-                    tv_ord_status.setText(getString(R.string.sts_string, "WAITING FOR APPROVAL"));
+                    tv_ord_status.setText(getString(R.string.sts_string, "Waiting for approval"));
                     tv_ord_status.setBackgroundColor(0xFFFFB400);
 
                 } else if (odrStatus.equals(NotificationFragment.ORDER_DELIVERED)) {
-                    tv_ord_status.setText(getString(R.string.sts_string, "DELIVERED"));
+                    tv_ord_status.setText(getString(R.string.sts_string, "Delivered"));
                     tv_ord_status.setBackgroundColor(0xFF00FFFF);
                 }
 

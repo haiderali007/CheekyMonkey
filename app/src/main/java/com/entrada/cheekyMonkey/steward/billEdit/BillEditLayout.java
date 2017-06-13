@@ -124,6 +124,9 @@ public class BillEditLayout implements OnItemClickListener, View.OnClickListener
 
         cancelFlag = cancelType.equalsIgnoreCase("Complimentary") ? "CO" :
                 cancelType.equalsIgnoreCase("Full Discount") ? "F" :  "C";
+
+        tv_cancel_type.setBackgroundResource(cancelFlag.equals("CO") ? R.color.home_color :
+        cancelType.equals("F") ? R.color.Red : R.color.Green);
     }
 
     @Override

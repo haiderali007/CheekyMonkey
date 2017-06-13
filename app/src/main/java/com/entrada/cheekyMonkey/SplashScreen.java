@@ -2,6 +2,8 @@ package com.entrada.cheekyMonkey;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,9 +28,9 @@ import com.entrada.cheekyMonkey.util.TimeHandler;
 public class SplashScreen extends Activity {
 
     private boolean mTimerExpired = false;
-    private long delayMilliSec = 500;
+    private long delayMilliSec = 1000;
 
-    private LinearLayout relativeLayout;
+    private RelativeLayout relativeLayout;
     private CustomTextview txtAppTitle, txtVersion;
     private ImageView image_app;
     private Runnable mCloseSplashScreen = new Runnable() {
@@ -61,10 +63,24 @@ public class SplashScreen extends Activity {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
-        relativeLayout = (LinearLayout) findViewById(R.id.relativeLayout);
+        relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
         image_app = (ImageView) findViewById(R.id.imageView2);
         txtAppTitle = (CustomTextview) findViewById(R.id.txtAppTitle);
         txtVersion = (CustomTextview) findViewById(R.id.txtVersion);
+
+        try {
+            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            String version = pInfo.versionName;
+            int verCode = pInfo.versionCode;
+            txtVersion.setText(version);
+
+            /*String versionName = BuildConfig.VERSION_NAME;
+            int versionCode = BuildConfig.VERSION_CODE;
+            txtVersion.setText(versionName);*/
+
+        }catch (PackageManager.NameNotFoundException e){
+            e.printStackTrace();
+        }
 
         /*UserInfo userInfo = POSApplication.getSingleton().getmDataModel().getUserInfo();
         String backgrnd = PrefHelper.getStoredString(this,

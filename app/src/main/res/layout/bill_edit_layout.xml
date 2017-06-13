@@ -170,7 +170,8 @@
         android:layout_height="@dimen/header3_height"
         android:layout_alignParentBottom="true"
         android:background="@color/Black"
-        android:visibility="visible">
+        android:visibility="gone"
+        >
 
 
         <com.entrada.cheekyMonkey.ui.CustomTextview

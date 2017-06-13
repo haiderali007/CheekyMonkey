@@ -53,9 +53,9 @@ public class UserInfo {
     public String PERMISSION = "";
     //public static String ServerIP = "192.168.43.93/tb";
     //public static String ServerIP = "entradasoft.ga";
-    //public static String ServerIP = "192.168.2.106/tb";
+    public static String ServerIP = "192.168.2.104/tb";
     //public static String ServerIP = "iamrohit-001-site1.ftempurl.com";
-    public static String ServerIP ="entradasoft-001-site1.htempurl.com";
+    //public static String ServerIP ="entradasoft-001-site1.htempurl.com";
 
     public String Theme_Background_Color = "#ff010101";
     public String Theme_Font_Color = "#FFFFFF";
