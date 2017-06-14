@@ -376,6 +376,8 @@ public class TakeOrderFragment extends Fragment implements
 
     public void onclickEvent(MenuItem menuItem) {
 
+        startTimer();
+
         if (listViewOrderItem.getVisibility() != View.VISIBLE)
             showDefault();
 
@@ -521,6 +523,29 @@ public class TakeOrderFragment extends Fragment implements
         }
     }
 
+
+    Timer timer;
+    boolean timeExpired = false;
+
+    public void startTimer(){
+
+        Toast.makeText(context, "You have 30 seconds to place order", Toast.LENGTH_LONG).show();
+
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+
+                if (timeExpired)
+                    timer.cancel();
+
+                else {
+                    UserInfo.showMessageDialog(context);
+                    timeExpired = true;
+                }
+            }
+        },15000, 15000);
+    }
 
     public void showHomeScreen() {
 

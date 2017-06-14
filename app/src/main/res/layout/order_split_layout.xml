@@ -76,7 +76,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5sp"
                 android:layout_marginRight="15sp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                />
 
 
             <TextView
@@ -87,7 +88,7 @@
                 android:text="Order "
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/DeepSkyBlue"
-                android:textSize="@dimen/extra_medium" />
+                android:textSize="@dimen/medium" />
 
             <Spinner
                 android:id="@+id/spinner_order_num_for_order_split"
@@ -105,7 +106,7 @@
                 android:gravity="center_vertical|center_horizontal"
                 android:text="New Table"
                 android:textColor="@color/DeepSkyBlue"
-                android:textSize="@dimen/extra_medium" />
+                android:textSize="@dimen/medium" />
 
             <Spinner
                 android:id="@+id/spinner_tableList"
@@ -219,7 +220,7 @@
                             android:layout_weight="1.2"
                             android:gravity="start"
                             android:text="Order"
-                            android:textSize="@dimen/large" />
+                            android:textSize="@dimen/medium" />
 
 
                         <TextView
@@ -230,7 +231,7 @@
                             android:gravity="start"
                             android:text="Code"
 
-                            android:textSize="@dimen/large" />
+                            android:textSize="@dimen/medium" />
 
 
                         <TextView
@@ -239,7 +240,7 @@
                             android:layout_weight="0.8"
                             android:gravity="start"
                             android:text="Qty"
-                            android:textSize="@dimen/large" />
+                            android:textSize="@dimen/medium" />
 
 
                         <TextView
@@ -247,7 +248,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Item"
-                            android:textSize="@dimen/large" />
+                            android:textSize="@dimen/medium" />
 
                     </TableRow>
 

@@ -123,10 +123,22 @@ public class BillEditLayout implements OnItemClickListener, View.OnClickListener
         tv_cancel_type.setText(cancelType);
 
         cancelFlag = cancelType.equalsIgnoreCase("Complimentary") ? "CO" :
-                cancelType.equalsIgnoreCase("Full Discount") ? "F" :  "C";
+                cancelType.equalsIgnoreCase("Full Discount") ? "F" : "C";
 
-        tv_cancel_type.setBackgroundResource(cancelFlag.equals("CO") ? R.color.home_color :
-        cancelType.equals("F") ? R.color.Red : R.color.Green);
+        if (cancelFlag.equals("CO")) {
+
+            tv_cancel_type.setBackgroundResource(R.color.background_tab_pressed);
+        } else if (cancelFlag.equals("F")) {
+            tv_cancel_type.setBackgroundResource(R.color.PeachPuff);
+
+        } else if (cancelFlag.equals("C")) {
+            tv_cancel_type.setBackgroundResource(R.color.DarkGray);
+
+        }
+//        tv_cancel_type.setBackgroundResource(cancelFlag.equals("CO") ? R.color.home_color :
+//                cancelType.equals("F") ? R.color.Red : R.color.Green);
+
+
     }
 
     @Override
@@ -141,7 +153,7 @@ public class BillEditLayout implements OnItemClickListener, View.OnClickListener
         else if (flag.equals("U"))
             iCallBillDetail.onClickBillNoToUnSettle(homeItem);
 
-        else if (flag.equals("L")){
+        else if (flag.equals("L")) {
             iCallBillDetail.onClickBillNoToSettle(homeItem);
             index = position;
         }
@@ -167,7 +179,7 @@ public class BillEditLayout implements OnItemClickListener, View.OnClickListener
         textviewForTotal.setText("");
     }
 
-    public void refreshDetail(){
+    public void refreshDetail() {
 
         billsAdapter.removeDataSetItem(index);
         clearDetail();

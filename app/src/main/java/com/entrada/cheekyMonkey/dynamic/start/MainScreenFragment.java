@@ -726,7 +726,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
                 JSONObject jsonObject2 = (JSONObject) jsonArray.get(0);
                 String errorMsg = jsonObject2.getString("Code");
 
-                if (errorMsg.contains("This email Id is already in use"))
+                if (errorMsg.contains("already in use"))
                     Toast.makeText(context, errorMsg, Toast.LENGTH_LONG).show();
 
                 else {
