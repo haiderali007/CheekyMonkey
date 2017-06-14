@@ -16,6 +16,8 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.location.Location;
@@ -66,6 +68,7 @@ import com.entrada.cheekyMonkey.dynamic.about.DocsFragment;
 import com.entrada.cheekyMonkey.dynamic.about.GridTitleAdapter;
 import com.entrada.cheekyMonkey.dynamic.about.GridTitleAdapterSteward;
 import com.entrada.cheekyMonkey.dynamic.about.NewsFragment;
+import com.entrada.cheekyMonkey.dynamic.start.MainScreenFragment;
 import com.entrada.cheekyMonkey.dynamic.start.MoreOptionsLayout;
 import com.entrada.cheekyMonkey.dynamic.syncData.FetchAndStoreMenuItemsTask;
 import com.entrada.cheekyMonkey.dynamic.syncData.ICallResponse;
@@ -93,6 +96,8 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.navdrawer.SimpleSideDrawer;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -101,6 +106,8 @@ import java.util.Locale;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Rahul on 16/05/2016.
@@ -120,6 +127,8 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     LinearLayout layout_gst_ord_detail;
     ListView lv_gstorders;
     TextView tv_ord_status, tv_ord_no, tv_table_no, tv_odr_date, tv_ttl_amt;
+    CircleImageView ci;
+
 
     CustomTextview txtGuestNotify, tv_no_order;
     public OnBackPressInterface currentBackListener;
@@ -160,6 +169,10 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
         initLocationAPI();
         //scheduleExecutors();
+
+        ci = (CircleImageView) findViewById(R.id.profile_image);
+
+        new LoadImage().execute();
     }
 
 
@@ -515,6 +528,8 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         UserInfo.guest_id = PrefHelper.getStoredString(getApplicationContext(), PrefHelper.PREF_FILE_NAME, PrefHelper.GUEST_ID);
 
         TextView tvGuest = (TextView) findViewById(R.id.tv_guest);
+
+
         tvGuest.setOnClickListener(this);
         if (!UserInfo.guest_name.isEmpty())
             tvGuest.setText(UserInfo.guest_name);
@@ -1573,6 +1588,32 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
         layout_retry.setVisibility(response.equals("success1") ? View.GONE : View.VISIBLE);
         errorMsg = response.equals("success1") ? "" : response;
+    }
+
+    public class LoadImage extends io.fabric.sdk.android.services.concurrency.AsyncTask<Void, Void, Bitmap> {
+
+
+        @Override
+        protected Bitmap doInBackground(Void... voids) {
+            Bitmap bitmap = null;
+            try {
+                bitmap = BitmapFactory.decodeStream((InputStream) new URL("http://www.ruralagriventures.com/wp-content/uploads/2017/05/man-team.jpg").getContent());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+
+            if (bitmap != null) {
+                ci.setImageBitmap(bitmap);
+            }
+
+        }
+
     }
 
     /* ************************************************************************** */

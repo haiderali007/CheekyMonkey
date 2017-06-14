@@ -12,7 +12,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/billing_tab_height"
-        android:background="@color/grey_light">
+        android:background="@color/grey_light"
+        android:weightSum="3">
 
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
@@ -68,16 +69,16 @@
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:text="S.Total:"
             android:textSize="@dimen/small" />
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/tview_Subtotal"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:layout_weight="1"
             android:paddingLeft="2sp"
             android:textColor="@color/DeepSkyBlue"
@@ -86,16 +87,16 @@
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:text="Disc:"
             android:textSize="@dimen/small" />
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/tview_discount"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:layout_weight=".9"
             android:paddingLeft="2sp"
             android:textColor="@color/DeepSkyBlue"
@@ -104,16 +105,16 @@
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/textView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:text="Tax:"
             android:textSize="@dimen/small" />
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/tview_Tax"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:layout_weight=".9"
             android:paddingLeft="2sp"
             android:textColor="@color/DeepSkyBlue"
@@ -123,16 +124,16 @@
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:text="Total:"
             android:textSize="@dimen/small" />
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/tview_Total"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:layout_weight="1"
             android:paddingLeft="2sp"
             android:paddingStart="2sp"

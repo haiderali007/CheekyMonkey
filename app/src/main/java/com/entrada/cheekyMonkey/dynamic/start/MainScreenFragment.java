@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -71,8 +73,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+import io.fabric.sdk.android.services.concurrency.AsyncTask;
 
 /**
  * Created by Rahul on 14/05/2016.
@@ -87,7 +95,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
     Button customFB;
     LoginButton loginButton;
     CallbackManager callbackManager;
-    String guest_name = "", guest_id = "", email = "", birthday = "", gender = "M";
+    String guest_name = "", guest_id = "", email = "", birthday = "", gender = "M", picture="";
     ProgressBar progress_ggl, progress_fb;
 
     TextView tvShowPassword, tvHidePassword;
@@ -111,10 +119,15 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
         //signInButton.setColorScheme(Button.COLOR_AUTO);
 
 
+
+
+
         tvShowPassword = (TextView) view.findViewById(R.id.tv_showpassword);
         tvHidePassword = (TextView) view.findViewById(R.id.tv_hidepassword);
         tvHidePassword.setOnClickListener(this);
         tvHidePassword.setOnClickListener(this);
+
+
         tvHidePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -501,7 +514,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
                             }
                         });
                 Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,name,email,gender,birthday,hometown,location");
+                parameters.putString("fields", "id,name,email,gender,birthday,hometown,location,picture");
                 request.setParameters(parameters);
                 request.executeAsync();
 
@@ -562,6 +575,9 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
             email = jsonObject.getString("email");
             gender = jsonObject.getString("gender") == null || jsonObject.getString("gender").equalsIgnoreCase("male") ? "M" : "F";
             //birthday = jsonObject.getString("birthday");
+            picture=jsonObject.getString("picture");
+
+            //**//
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -938,6 +954,8 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
 
         return false;
     }
+
+
 
 }
 

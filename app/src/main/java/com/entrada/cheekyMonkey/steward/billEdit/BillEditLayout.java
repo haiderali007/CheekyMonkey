@@ -96,6 +96,7 @@ public class BillEditLayout implements OnItemClickListener, View.OnClickListener
 
                 case "M":
                     textviewHeader.setText(resources.getString(R.string.bill_modi));
+
                     break;
 
                 case "U":
@@ -148,6 +149,7 @@ public class BillEditLayout implements OnItemClickListener, View.OnClickListener
 
         if (flag.equals("C"))
             iCallBillDetail.onClickBillNoToCancel(homeItem);
+
         else if (flag.equals("M"))
             iCallBillDetail.onClickBillNoToModify(homeItem);
         else if (flag.equals("U"))
