@@ -53,7 +53,7 @@ public class UserInfo {
     public String PERMISSION = "";
     //public static String ServerIP = "192.168.43.93/tb";
     //public static String ServerIP = "entradasoft.ga";
-//    public static String ServerIP = "192.168.2.104/tb";
+    //public static String ServerIP = "192.168.2.104/tb";
     //public static String ServerIP = "iamrohit-001-site1.ftempurl.com";
     public static String ServerIP ="entradasoft-001-site1.htempurl.com";
 
@@ -526,6 +526,52 @@ public class UserInfo {
 
         if (!((Activity) context).isFinishing())
             dialog.show();
+    }
+
+    public static void showMessageDialog(Context context) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
+
+        View view = inflater.inflate(R.layout.msg_layout, null);
+        CustomTextview yes = (CustomTextview) view.findViewById(R.id.tv_yes);
+        CustomTextview no = (CustomTextview) view.findViewById(R.id.tv_cancel);
+
+        builder.setView(view);
+        final AlertDialog dialog = builder.create();
+
+        yes.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+
+        });
+
+        no.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+
+            }
+        });
+
+        dialog.setCancelable(false);
+        dialog.setOnKeyListener(new Dialog.OnKeyListener() {
+
+            @Override
+            public boolean onKey(DialogInterface arg0, int keyCode,
+                                 KeyEvent event) {
+                // TODO Auto-generated method stub
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    dialog.dismiss();
+                }
+                return true;
+            }
+        });
+        dialog.show();
     }
 
     public static String getMixerName(String addonCode) {

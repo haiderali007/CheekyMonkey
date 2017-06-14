@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/fb_cancel_background"
+    android:padding="@dimen/padding_action_bar">
+
+    <TextView
+        android:id="@+id/ctv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/take_order_tab_height"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/time_epire"
+        android:gravity="center_vertical"
+        android:textColor="@color/White"
+        android:textSize="@dimen/extra_extra_large"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/tv_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/cat_text_height"
+        android:text="@string/msg_epire"
+        android:textColor="@color/DarkGray"
+        android:textSize="@dimen/extra_large"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+        android:layout_below="@+id/ctv_title"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <com.entrada.cheekyMonkey.ui.CustomTextview
+        style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+        android:id="@+id/tv_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        android:padding="10dp"
+        android:textColor="@color/fb_cancel_color"
+        android:textSize="@dimen/large"
+        android:layout_below="@+id/tv_msg"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+
+
+    <com.entrada.cheekyMonkey.ui.CustomTextview
+        style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+        android:id="@+id/tv_yes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/yes_string"
+        android:padding="10dp"
+        android:textColor="@color/fb_cancel_color"
+        android:textSize="@dimen/large"
+        android:layout_gravity="end"
+        android:layout_below="@+id/tv_msg"
+        android:layout_alignRight="@+id/tv_msg"
+        android:layout_alignEnd="@+id/tv_msg" />
+
+
+</RelativeLayout>

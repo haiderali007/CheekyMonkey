@@ -19,6 +19,8 @@
     <string name="fb_cancel_string">Facebook Login was cancelled. Please try to login again.</string>
     <string name="ggl_cancel_string">Google Login was cancelled. Please try to login again.</string>
 
+    <string name="time_epire">Your order is about to expire</string>
+    <string name="msg_epire">You have 15 seconds more to place order</string>
 
     <string name="signed_in_fmt">Signed in as: %s</string>
     <string name="sign_out_string">Sign out</string>
