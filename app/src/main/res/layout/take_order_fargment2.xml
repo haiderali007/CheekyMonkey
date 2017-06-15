@@ -226,7 +226,6 @@
                     android:background="@drawable/button_state"/>
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
-
                     android:id="@+id/tv_item_guest"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
