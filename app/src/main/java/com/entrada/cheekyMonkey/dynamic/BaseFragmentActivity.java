@@ -1299,6 +1299,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
             showGuestHome();
 
+
         else if (!currentBackListener.onBackPress()) {
             ExitDialog exitDialog = new ExitDialog(this, this);
             exitDialog.show();
