@@ -68,6 +68,9 @@
                 android:visibility="gone">
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/tv_odr_cancel_type"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/item_row_height"
@@ -123,6 +126,9 @@
                     android:visibility="gone">
 
                     <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                         android:id="@+id/tv_order_cancel"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -132,6 +138,9 @@
                         android:background="@drawable/button_state"/>
 
                     <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                         android:id="@+id/tv_chngeToComp"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -143,6 +152,9 @@
                 </LinearLayout>
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/cancel_operation"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/item_row_height"
@@ -425,6 +437,9 @@
                 android:layout_marginBottom="2sp">
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/tv_cash"
                     android:layout_width="0dp"
                     android:layout_height="50sp"
@@ -435,6 +450,9 @@
                     android:textColor="@color/White" />
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/tv_credit"
                     android:layout_width="0dp"
                     android:layout_height="50sp"
@@ -616,6 +634,9 @@
                 android:background="@color/Black1">
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/textview_cash"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -627,6 +648,9 @@
                     android:background="@drawable/button_state"/>
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/textview_credit"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -649,6 +673,9 @@
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
 
+                    android:textAllCaps="false"
+
+
                     android:id="@+id/txtOrderClear"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -667,6 +694,9 @@
 
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/txtOrderSubmit"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -678,6 +708,9 @@
 
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/tvHoldOrder"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -687,6 +720,9 @@
                     android:visibility="gone"/>
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/txtOrderOk"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"

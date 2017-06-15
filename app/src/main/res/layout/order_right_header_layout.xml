@@ -22,6 +22,9 @@
                 android:orientation="horizontal">
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/selectTable"
                     style="@style/take_order_header_style"
                     android:textSize="@dimen/item_qty_font_size"
@@ -38,6 +41,9 @@
                     android:visibility="visible" />
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/selectRoom"
                     style="@style/take_order_header_style"
                     fontName="Roboto-Black"
@@ -52,6 +58,9 @@
                     android:visibility="gone" />
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/newOrder"
                     style="@style/take_order_header_style"
                     fontName="Roboto-Black"
@@ -84,6 +93,9 @@
                 android:visibility="gone">
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/selectGuest"
                     fontName="Roboto-Black"
                     android:layout_width="0dp"
@@ -101,6 +113,9 @@
                     android:background="@color/White"/>
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
 
                     android:id="@+id/selectDelBoy"
                     fontName="Roboto-Black"

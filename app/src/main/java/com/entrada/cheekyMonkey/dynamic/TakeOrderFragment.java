@@ -544,17 +544,23 @@ public class TakeOrderFragment extends Fragment implements
                 @Override
                 public void run() {
 
-                    if (orderSubmitted){
-                        stopTimer();
+                    try {
 
-                    } else if (timeExpired) {
-                        getActivity().runOnUiThread(goToItemsScreen);
-                        stopTimer();
+                        if (getActivity() == null || orderSubmitted){
+                            stopTimer();
 
-                    } else {
-                        getActivity().runOnUiThread(msgShowTimeExpireWarning);
-                        timeExpired = true;
-                        alertDialogIsShown = true;
+                        } else if (timeExpired) {
+                            getActivity().runOnUiThread(goToItemsScreen);
+                            stopTimer();
+
+                        } else {
+                            getActivity().runOnUiThread(msgShowTimeExpireWarning);
+                            timeExpired = true;
+                            alertDialogIsShown = true;
+                        }
+
+                    }catch (Exception e){
+                        e.printStackTrace();
                     }
                 }
             },15000, 15000);

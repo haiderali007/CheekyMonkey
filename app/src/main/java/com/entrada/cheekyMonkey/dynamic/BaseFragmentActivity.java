@@ -1295,8 +1295,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                 slide_me.closeRightSide();
                 edit_search.clearFocus();
             }
-        } else if (!(currentBackListener instanceof TakeOrderFragment
-                || currentBackListener instanceof StewardOrderFragment))
+        } else if (!(currentBackListener instanceof TakeOrderFragment))
 
             showGuestHome();
 

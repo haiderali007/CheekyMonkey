@@ -161,6 +161,9 @@
 
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/tv_add_item"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -172,6 +175,9 @@
                     android:visibility="gone" />
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/tv_show_bill"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -183,6 +189,9 @@
                     android:visibility="gone" />
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/tv_generate_bill"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -193,6 +202,9 @@
                     android:textSize="@dimen/small" />
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/tv_item_discount"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -203,6 +215,9 @@
                     android:textSize="@dimen/small" />
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/tv_item_cover"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -213,6 +228,9 @@
                     android:textSize="@dimen/small" />
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/tv_item_steward"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -224,6 +242,9 @@
                     android:visibility="gone" />
 
                 <com.entrada.cheekyMonkey.ui.CustomButton
+
+                    android:textAllCaps="false"
+
                     android:id="@+id/tv_item_guest"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
