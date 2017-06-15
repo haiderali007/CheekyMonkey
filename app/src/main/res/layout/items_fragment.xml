@@ -55,6 +55,7 @@
                 android:layout_weight="0.8"
                 android:text="High"
                 android:textStyle="bold"
+
                 android:gravity="center"
                 android:textSize="@dimen/medium"
                 android:textColor="@color/Yellow"/>
