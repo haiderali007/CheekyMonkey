@@ -92,7 +92,7 @@
                 android:paddingStart="30sp"
                 android:paddingEnd="30sp"
                 android:enabled="true"
-                android:background="@drawable/theme_button"
+                android:background="@drawable/button_state"
                 android:text="@string/retry_string"
                 android:gravity="center"
                 android:layout_gravity="center"

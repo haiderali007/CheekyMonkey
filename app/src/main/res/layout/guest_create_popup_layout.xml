@@ -364,22 +364,21 @@
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/textViewGuestClear"
-            style="@style/take_order_header_style"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/grey_light"
+            android:background="@drawable/button_state"
             android:layout_marginRight="2sp"
             android:gravity="center"
             android:text="@string/clear_string" />
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/textViewGuestSave"
-            style="@style/take_order_header_style"
+
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/grey_light"
+            android:background="@drawable/button_state"
             android:gravity="center"
             android:text="@string/save_string" />
 

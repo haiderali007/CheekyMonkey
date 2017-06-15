@@ -15,12 +15,13 @@
     // if your App ID is 1234567, you should use fb1234567
     <string name="fb_login_protocol_scheme">fb434553970233032</string>
     <string name="alert_string">Alert</string>
-    <string name="fb_string">FACEBook</string>
+    <string name="fb_string">Facebook</string>
     <string name="fb_cancel_string">Facebook Login was cancelled. Please try to login again.</string>
     <string name="ggl_cancel_string">Google Login was cancelled. Please try to login again.</string>
 
-    <string name="time_epire">Your order is about to expire</string>
-    <string name="msg_epire">You have 15 seconds more to place order</string>
+    <string name="expire_string">You have 30seconds to place order.</string>
+    <string name="expire_title">Your order is about to expire</string>
+    <string name="expire_msg">You have 15 seconds more to place order</string>
 
     <string name="signed_in_fmt">Signed in as: %s</string>
     <string name="sign_out_string">Sign out</string>
@@ -33,7 +34,7 @@
 
     <string name="proceed">Proceed</string>
     <string name="skip">Skip</string>
-    <string name="add_mixer">ADD MIXER</string>
+    <string name="add_mixer">Add Mixer</string>
     <string name="sign_in_msg">You need to sign in to place an Order. Do you want to proceed ?</string>
     <string name="bar_msg">Drink safe. Drive Safe. Words from Cheeky Monkey</string>
 
@@ -54,7 +55,7 @@
         and try again later.
     </string>
     <string name="error_dialog_error">Guest not found </string>
-    <string name="error_net_failure">ERROR_NETWORK_FAILURE</string>
+    <string name="error_net_failure">Error_Network_Failure</string>
     <string name="error_dialog_no_results">No results found. Try changing your criteria.</string>
     <string name="error_dialog_server_error">A problem occurred retrieving results. Please try again later.</string>
     <string name="error_dialog_error_unknown">An unknown error has occurred. Please try again.</string>
@@ -70,9 +71,9 @@
 
     <!-- Exit Dialog -->
     <string name="exitFromApp">Are you sure to exit?</string>
-    <string name="yes_string">YES</string>
-    <string name="no_string">NO</string>
-    <string name="ok_string">OK</string>
+    <string name="yes_string">Yes</string>
+    <string name="no_string">No</string>
+    <string name="ok_string">Ok</string>
     <string name="Search_Guest_string">Search Guest </string>
     <string name="cancel_string">Cancel</string>
     <string name="create_guest">Create Guest</string>
@@ -87,7 +88,7 @@
     <string name="qty_string">Quantity -</string>
     <string name="subUnit_string">Sub Quantity </string>
     <string name="subqty_string"> Enter Sub Qty. here </string>
-    <string name="home_order_review">ORDER REVIEW</string>
+    <string name="home_order_review">Order Review</string>
 
     <!-- Modifier Popup -->
     <string name="modifier_popup_string">Select Modifier for</string>
@@ -128,8 +129,8 @@
     <string name="select_order_detil">Order Detail</string>
     <string name="select_order_split_string">Order Split</string>
     <string name="SelectOption_string">Selected Option</string>
-    <string name="in_string">IN</string>
-    <string name="out_string">OUT</string>
+    <string name="in_string">In</string>
+    <string name="out_string">Out</string>
     <string name="home_del">Home Delivery</string>
     <string name="home_log">Home Delivery Log</string>
     <string name="pending_bills">Pending Bills</string>
@@ -181,7 +182,7 @@
 
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
-    <string name="ok">OK</string>
+    <string name="ok">Ok</string>
 
 
     <string name="GPSAlertDialogTitle">Location Services Disabled</string>
@@ -232,9 +233,9 @@
     <string name="zero_rupee">\u20B9 0</string>
     <string name="slct_tbl_string">Select Table \t</string>
 
-    <string name="On_Off">ON/OFF</string>
-    <string name="status_string">STATUS</string>
-    <string name="sts_string">STATUS : %1$s</string>
+    <string name="On_Off">On/Off</string>
+    <string name="status_string">Status</string>
+    <string name="sts_string">Status : %1$s</string>
     <string name="odr_string">Order No. %1$s</string>
     <string name="tbl_string">Table No. %1$s</string>
     <string name="date_string">Date : %1$s</string>
@@ -295,7 +296,7 @@ This End User License Agreement ("Agreement") is between you and Cheeky Monkey a
  In order to ensure Cheeky Monkey provides the best experience possible for everyone, we strongly enforce a no tolerance policy for objectionable content. If you see inappropriate content, please use the "Report as offensive" feature found under each post.\n
  1. Parties This Agreement is between you and Cheeky Monkey only. Not withstanding the foregoing, you acknowledge that Google and its subsidiaries are third party beneficiaries of this Agreement and Google has the right to enforce this Agreement against you. Cheeky Monkey, not Google, is solely responsible for the Cheeky Monkey App and its content.\n
  2. Privacy Cheeky Monkey may collect and use information about your usage of the Cheeky Monkey App, including certain types of information from and about your device. Cheeky Monkey may use this information, as long as it is in a form that does not personally identify you, to measure the use and performance of the Cheeky Monkey App.\n
- 3. Limited License Cheeky Monkey grants you a limited, non-exclusive, non-transferable, revocable license to use the Cheeky Monkey App for your personal, non-commercial purposes. You may only use theBARter App on Google devices that you own or control and as permitted by the App Store Terms of Service.\n
+ 3. Limited License Cheeky Monkey grants you a limited, non-exclusive, non-transferable, revocable license to use the Cheeky Monkey App for your personal, non-commercial purposes. You may only use the BARter App on Google devices that you own or control and as permitted by the App Store Terms of Service.\n
  4. Age Restrictions By using the Cheeky Monkey App, you represent and warrant that (a) you are 25 years of age or older and you agree to be bound by this Agreement; (b) if you are under 25 years of age, you have obtained verifiable consent from a parent or legal guardian; and © your use of the Cheeky Monkey App does not violate any applicable law or regulation. Your access to the Cheeky Monkey App may be terminated without warning if Cheeky Monkey believes, in its sole discretion, that you are under the age of 25 years and have not obtained verifiable consent from a parent or legal guardian. If you are a parent or legal guardian and you provide your consent to your child's use of the Cheeky Monkey App, you agree to be bound by this Agreement in respect to your child's use of the Cheeky Monkey App.\n
  5. Objectionable Content Policy Content may not be submitted to Cheeky Monkey, who will moderate all content and ultimately decide whether or not to post a submission to the extent such content includes, is in conjunction with, or alongside any, Objectionable Content. Objectionable Content includes, but is not limited to: (i) sexually explicit materials; (ii) obscene, defamatory, libelous, slanderous, violent and/or unlawful content or profanity; (iii) content that infringes upon the rights of any third party, including copyright, trademark, privacy, publicity or other personal or proprietary right, or that is deceptive or fraudulent; (iv) content that promotes the use or sale of illegal or regulated substances, tobacco products, ammunition and/or firearms; and (v) gambling, including without limitation, any online casino, sports books, bingo or poker.\n
  6. Warranty Cheeky Monkey disclaims all warranties about the Cheeky Monkey App to the fullest extent permitted by law. To the extent any warranty exists under law that cannot be disclaimed, Cheeky Monkey, not Google, shall be solely responsible for such warranty.\n

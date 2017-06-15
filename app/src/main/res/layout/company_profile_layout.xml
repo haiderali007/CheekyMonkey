@@ -367,27 +367,25 @@
         android:id="@+id/ll_bottomOrder"
         android:layout_width="match_parent"
         android:layout_height="@dimen/header_height"
-        android:background="@color/Black">
+        >
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/textViewCompClear"
-            style="@style/take_order_header_style"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_marginRight="2sp"
-            android:background="@color/grey_light"
+            android:background="@drawable/button_state"
             android:text="@string/clear_string" />
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/tevCompSave"
-            style="@style/take_order_header_style"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:background="@color/grey_light"
+            android:background="@drawable/button_state"
             android:text="@string/save_string" />
 
     </LinearLayout>

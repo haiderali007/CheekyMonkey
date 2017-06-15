@@ -182,10 +182,10 @@
             android:layout_gravity="center"
             android:layout_weight="1.1"
             android:layout_margin="2sp"
-            android:background="@drawable/border_unpressed"
+            android:background="@drawable/button_state"
             android:gravity="center"
             android:text="Complimentary"
-            android:textSize="@dimen/large" />
+            android:textSize="@dimen/medium" />
 
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
@@ -197,10 +197,10 @@
             android:layout_marginRight="1sp"
             android:layout_weight="1"
             android:layout_margin="2sp"
-            android:background="@drawable/border_unpressed"
+            android:background="@drawable/button_state"
             android:gravity="center"
             android:text="Full Discount"
-            android:textSize="@dimen/large" />
+            android:textSize="@dimen/medium" />
 
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
@@ -210,10 +210,10 @@
             android:layout_gravity="center"
             android:layout_weight="0.7"
             android:layout_margin="2sp"
-            android:background="@drawable/border_unpressed"
+            android:background="@drawable/button_state"
             android:gravity="center"
             android:text="@string/cancel_string"
-            android:textSize="@dimen/large" />
+            android:textSize="@dimen/medium" />
 
     </LinearLayout>
 

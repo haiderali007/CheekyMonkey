@@ -44,6 +44,7 @@ public class PrefHelper {
     public static final String GUEST_ID = "GUEST_CODE";
     public static final String GUEST_NAME = "GUEST_NAME";
     public static final String GUEST_PHONE = "GUEST_PHONE";
+    public static final String GUEST_PICTURE = "GUEST_PICTURE";
     public static final String MIN_LATITUDE = "min_lati";
     public static final String MAX_LATITUDE = "max_lati";
     public static final String MIN_LONGITUDE = "min_longi";

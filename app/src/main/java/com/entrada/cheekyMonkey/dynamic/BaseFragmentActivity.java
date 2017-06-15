@@ -68,7 +68,6 @@ import com.entrada.cheekyMonkey.dynamic.about.DocsFragment;
 import com.entrada.cheekyMonkey.dynamic.about.GridTitleAdapter;
 import com.entrada.cheekyMonkey.dynamic.about.GridTitleAdapterSteward;
 import com.entrada.cheekyMonkey.dynamic.about.NewsFragment;
-import com.entrada.cheekyMonkey.dynamic.start.MainScreenFragment;
 import com.entrada.cheekyMonkey.dynamic.start.MoreOptionsLayout;
 import com.entrada.cheekyMonkey.dynamic.syncData.FetchAndStoreMenuItemsTask;
 import com.entrada.cheekyMonkey.dynamic.syncData.ICallResponse;
@@ -127,7 +126,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     LinearLayout layout_gst_ord_detail;
     ListView lv_gstorders;
     TextView tv_ord_status, tv_ord_no, tv_table_no, tv_odr_date, tv_ttl_amt;
-    CircleImageView ci;
+    CircleImageView img_picture;
 
 
     CustomTextview txtGuestNotify, tv_no_order;
@@ -170,10 +169,10 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         initLocationAPI();
         //scheduleExecutors();
 
-        ci = (CircleImageView) findViewById(R.id.profile_image);
-
+        img_picture = (CircleImageView) findViewById(R.id.profile_image);
         new LoadImage().execute();
     }
+
 
 
     public boolean UserPermission(String menu_id) {
@@ -1590,14 +1589,15 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         errorMsg = response.equals("success1") ? "" : response;
     }
 
-    public class LoadImage extends io.fabric.sdk.android.services.concurrency.AsyncTask<Void, Void, Bitmap> {
-
+    private class LoadImage extends io.fabric.sdk.android.services.concurrency.AsyncTask<Void, Void, Bitmap> {
 
         @Override
         protected Bitmap doInBackground(Void... voids) {
             Bitmap bitmap = null;
             try {
-                bitmap = BitmapFactory.decodeStream((InputStream) new URL("http://www.ruralagriventures.com/wp-content/uploads/2017/05/man-team.jpg").getContent());
+                String url = PrefHelper.getStoredString(context,PrefHelper.PREF_FILE_NAME,PrefHelper.GUEST_PICTURE);
+                if (! url.isEmpty())
+                bitmap = BitmapFactory.decodeStream((InputStream) new URL(url).getContent());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -1609,7 +1609,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         protected void onPostExecute(Bitmap bitmap) {
 
             if (bitmap != null) {
-                ci.setImageBitmap(bitmap);
+                img_picture.setImageBitmap(bitmap);
             }
 
         }

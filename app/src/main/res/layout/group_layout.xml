@@ -23,6 +23,6 @@
         android:minHeight="40dp"
         android:paddingRight="10dp"
         android:textIsSelectable="false"
-        android:textSize="20sp"></TextView>
+        android:textSize="20sp"/>
 
 </LinearLayout>

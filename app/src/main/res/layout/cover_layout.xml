@@ -64,7 +64,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/cancel_string"
-            android:textSize="@dimen/order_font_size_dimen" />
+            android:textSize="@dimen/order_font_size_dimen"
+            android:background="@drawable/button_state"/>
 
         <com.entrada.cheekyMonkey.ui.CustomButton
             android:id="@+id/txtOkCover"
@@ -73,7 +74,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/save_string"
-            android:textSize="@dimen/order_font_size_dimen" />
+            android:textSize="@dimen/order_font_size_dimen"
+            android:background="@drawable/button_state"/>
     </LinearLayout>
 
 

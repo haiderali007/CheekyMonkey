@@ -377,6 +377,7 @@ public class TakeOrderFragment extends Fragment implements
     public void onclickEvent(MenuItem menuItem) {
 
         startTimer();
+        //scheduleTimer();
 
         if (listViewOrderItem.getVisibility() != View.VISIBLE)
             showDefault();
@@ -496,15 +497,17 @@ public class TakeOrderFragment extends Fragment implements
                         getAllTables();
                     }
                     //**//
-                    else if (!takeOrderAdapter.isEmpty())
+                    else if (!takeOrderAdapter.isEmpty()){
                         submitStewardOrder();
-                    else
+                        orderSubmitted = true;
+                    } else
                         Toast.makeText(context, "Add any item", Toast.LENGTH_SHORT).show();
 
                 } else {
                     //UserInfo.showAccessDeniedDialog(context, getString(R.string.order_restriction));
                     //submitOrder();
                     submitOrderWithoutValidation();
+                    orderSubmitted = true;
                 }
 
                 break;
@@ -524,28 +527,75 @@ public class TakeOrderFragment extends Fragment implements
     }
 
 
+    /* ******************* Logic To Restrict order placing within 30 seconds. ******************/
+
     Timer timer;
-    boolean timeExpired = false;
+    boolean alertDialogIsShown = false, timeExpired = false, orderSubmitted = false;;
 
     public void startTimer(){
 
-        Toast.makeText(context, "You have 30 seconds to place order", Toast.LENGTH_LONG).show();
+        if (! alertDialogIsShown){
 
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
+            Toast.makeText(context, R.string.expire_string, Toast.LENGTH_LONG).show();
+            alertDialogIsShown = true;
 
-                if (timeExpired)
-                    timer.cancel();
+            timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
 
-                else {
-                    UserInfo.showMessageDialog(context);
-                    timeExpired = true;
+                    if (orderSubmitted){
+                        stopTimer();
+
+                    } else if (timeExpired) {
+                        getActivity().runOnUiThread(goToItemsScreen);
+                        stopTimer();
+
+                    } else {
+                        getActivity().runOnUiThread(msgShowTimeExpireWarning);
+                        timeExpired = true;
+                        alertDialogIsShown = true;
+                    }
                 }
-            }
-        },15000, 15000);
+            },15000, 15000);
+        }
+
     }
+
+    public void stopTimer(){
+
+        timer.cancel();
+        orderSubmitted = false;
+        alertDialogIsShown = false;
+        timeExpired = false;
+    }
+
+    public void stopAll(){
+
+        stopTimer();
+        clearData();
+        showHomeScreen();
+    }
+
+    private Runnable msgShowTimeExpireWarning = new Runnable() {
+        @Override
+        public void run() {
+
+            UserInfo.showMessageDialog(context, TakeOrderFragment.this);
+        }
+    };
+
+    private Runnable goToItemsScreen = new Runnable() {
+        @Override
+        public void run() {
+
+            clearData();
+            showHomeScreen();
+        }
+    };
+
+
+    /* *************************************************************************************/
 
     public void showHomeScreen() {
 
@@ -694,14 +744,7 @@ public class TakeOrderFragment extends Fragment implements
                         context, tableItem.getName(), tableItem.getCode(), response, this);
 
             if (isSuccess) {
-
-                //selectTable.setText(getResources().getString(R.string.table_string));
-                discountLayout.clearDiscList();
-                takeOrderAdapter.clearDataSet();
-                takeOrderAdapter.notifyDataSetChanged();
-                codeList.clear();
-                cover = "";
-                order_type = "";
+                clearData();
             }
 
         } else
@@ -951,10 +994,13 @@ public class TakeOrderFragment extends Fragment implements
 
     public void clearData() {
 
-        //selectTable.setText(getResources().getString(R.string.select_table_string));
+        //selectTable.setText(getResources().getString(R.string.table_string));
+        discountLayout.clearDiscList();
         takeOrderAdapter.clearDataSet();
         takeOrderAdapter.notifyDataSetChanged();
         codeList.clear();
+        cover = "";
+        order_type = "";
 
         String amount = getString(R.string.rupees, "0", "\u20B9");
         tv_total_amt.setText(amount);
@@ -1503,13 +1549,13 @@ public class TakeOrderFragment extends Fragment implements
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                //process();
-                adapter.notifyDataSetChanged();
-                Logger.w("Timer scheduled >>>>>>>>>>>", "Yeppy !...");
+
+                Logger.w("Yeppie", "Scheduler started" );
             }
         };
 
         Timer mTimer = new Timer();
-        mTimer.schedule(timerTask, 20, 20 * 1000);
+        mTimer.schedule(timerTask, 0, 15000);
     }
+
 }

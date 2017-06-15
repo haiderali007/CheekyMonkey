@@ -60,7 +60,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/cancel_string"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:background="@drawable/button_state"/>
 
         <com.entrada.cheekyMonkey.ui.CustomButton
             android:id="@+id/txtOkSubUnit"
@@ -69,7 +70,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/ok_string"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:background="@drawable/button_state"/>
 
     </LinearLayout>
 

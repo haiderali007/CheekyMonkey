@@ -71,15 +71,16 @@
             android:minHeight="@dimen/header"
             android:gravity="center"
             android:layout_alignParentBottom="true"
-            android:background="@color/BurlyWood"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#edda87"
+            >
 
             <com.entrada.cheekyMonkey.ui.CustomTextview
                 android:id="@+id/txtRejectOrder"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/border_unpressed"
+                android:background="@drawable/button_state3"
                 android:gravity="center"
                 android:text="@string/reject_string"
                 android:textColor="@color/Black"
@@ -91,7 +92,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/border_unpressed"
+                android:background="@drawable/button_state3"
                 android:gravity="center"
                 android:text="@string/accept_string"
                 android:textColor="@color/Black"

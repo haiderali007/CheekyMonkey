@@ -299,7 +299,8 @@
             android:paddingRight="10sp"
             android:text="@string/clear_string"
             android:textColor="@color/White"
-            android:textSize="16sp" />
+            android:textSize="12sp"
+            android:background="@drawable/button_state"/>
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/save_bill_split"
@@ -314,7 +315,8 @@
             android:paddingRight="10sp"
             android:text="@string/save_string"
             android:textColor="@color/White"
-            android:textSize="16sp" />
+            android:textSize="12sp"
+            android:background="@drawable/button_state"/>
 
 
     </RelativeLayout>

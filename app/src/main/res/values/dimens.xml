@@ -79,6 +79,7 @@
     <dimen name="item_qty_height">30sp</dimen>
     <dimen name="dialog_height">200sp</dimen>
 
+    <dimen name="small1">8sp</dimen>
     <dimen name="small">10sp</dimen>
     <dimen name="medium">11sp</dimen>
     <dimen name="extra_medium">12sp</dimen>

@@ -301,6 +301,8 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
                 PrefHelper.storeString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.SERVER_IP, UserInfo.ServerIP);
                 PrefHelper.storeString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.GUEST_ID, editTextEmail.getText().toString());
                 PrefHelper.storeString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.GUEST_NAME, guest_name);
+                PrefHelper.storeString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.GUEST_PICTURE, picture);
+
                 setUserType(editTextEmail.getText().toString(), jsonArray);
 
             } else if (error_msg.contains("invalid_email"))
@@ -575,7 +577,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
             email = jsonObject.getString("email");
             gender = jsonObject.getString("gender") == null || jsonObject.getString("gender").equalsIgnoreCase("male") ? "M" : "F";
             //birthday = jsonObject.getString("birthday");
-            picture=jsonObject.getString("picture");
+            picture = jsonObject.getJSONObject("picture").getJSONObject("data").getString("url");
 
             //**//
 
@@ -705,7 +707,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
         String given = acct.getGivenName();
         String family = acct.getFamilyName();
         email = acct.getEmail();
-        String photoUrl = acct.getPhotoUrl() == null ? "" : acct.getPhotoUrl().toString();
+        picture = acct.getPhotoUrl() == null ? "" : acct.getPhotoUrl().toString();
         String id = acct.getId() == null ? "" : acct.getId().substring(0, 12);
         String token = acct.getIdToken();
         String authCode = acct.getServerAuthCode();
@@ -749,6 +751,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
                     PrefHelper.storeString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.SERVER_IP, UserInfo.ServerIP);
                     PrefHelper.storeString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.GUEST_ID, email);
                     PrefHelper.storeString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.GUEST_NAME, guest_name);
+                    PrefHelper.storeString(context, PrefHelper.PREF_FILE_NAME, PrefHelper.GUEST_PICTURE, picture);
 
                     setUserType(email, jsonArray2);
                     signOut();

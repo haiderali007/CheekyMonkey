@@ -15,7 +15,7 @@
         android:paddingEnd="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="@string/time_epire"
+        android:text="@string/expire_title"
         android:gravity="center_vertical"
         android:textColor="@color/White"
         android:textSize="@dimen/extra_extra_large"
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="@dimen/cat_text_height"
-        android:text="@string/msg_epire"
+        android:text="@string/expire_msg"
         android:textColor="@color/DarkGray"
         android:textSize="@dimen/extra_large"
         android:paddingStart="10dp"
@@ -40,6 +40,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
 
+
     <com.entrada.cheekyMonkey.ui.CustomTextview
         style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
         android:id="@+id/tv_cancel"
@@ -47,23 +48,26 @@
         android:layout_height="wrap_content"
         android:text="@string/cancel"
         android:padding="10dp"
-        android:textColor="@color/fb_cancel_color"
+        android:layout_marginRight="80sp"
+        android:layout_marginEnd="80sp"
+        android:textColor="@color/SkyBlue"
         android:textSize="@dimen/large"
+        android:textStyle="bold"
+        android:layout_gravity="end"
         android:layout_below="@+id/tv_msg"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
-
-
+        android:layout_alignRight="@+id/tv_msg"
+        android:layout_alignEnd="@+id/tv_msg" />
 
     <com.entrada.cheekyMonkey.ui.CustomTextview
         style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
-        android:id="@+id/tv_yes"
+        android:id="@+id/tv_proceed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/yes_string"
+        android:text="@string/proceed"
         android:padding="10dp"
-        android:textColor="@color/fb_cancel_color"
+        android:textColor="@color/SkyBlue"
         android:textSize="@dimen/large"
+        android:textStyle="bold"
         android:layout_gravity="end"
         android:layout_below="@+id/tv_msg"
         android:layout_alignRight="@+id/tv_msg"

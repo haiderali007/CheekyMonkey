@@ -254,7 +254,7 @@
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/clr_trns_detail"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginEnd="35dp"
             android:layout_marginRight="35dp"
@@ -265,13 +265,14 @@
             android:paddingRight="10sp"
             android:text="@string/clear_string"
             android:textColor="@color/White"
-            android:textSize="@dimen/large" />
+            android:textSize="@dimen/medium"
+            android:background="@drawable/button_state"/>
 
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/send_bill_trnsfr"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
@@ -282,7 +283,8 @@
             android:paddingRight="10sp"
             android:text="@string/trnsfr"
             android:textColor="@color/White"
-            android:textSize="@dimen/large" />
+            android:textSize="@dimen/medium"
+            android:background="@drawable/button_state"/>
 
     </RelativeLayout>
 

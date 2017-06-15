@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -19,6 +20,7 @@ import java.util.Locale;
 
 import com.entrada.cheekyMonkey.R;
 import com.entrada.cheekyMonkey.dynamic.BaseFragmentActivity;
+import com.entrada.cheekyMonkey.dynamic.TakeOrderFragment;
 import com.entrada.cheekyMonkey.staticData.StaticConstants;
 import com.entrada.cheekyMonkey.steward.notificationUI.AdminActivity;
 import com.entrada.cheekyMonkey.steward.notificationUI.KitchenActivity;
@@ -528,13 +530,13 @@ public class UserInfo {
             dialog.show();
     }
 
-    public static void showMessageDialog(Context context) {
+    public static void showMessageDialog(Context context,final TakeOrderFragment takeOrderFragment) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
 
         View view = inflater.inflate(R.layout.msg_layout, null);
-        CustomTextview yes = (CustomTextview) view.findViewById(R.id.tv_yes);
+        CustomTextview yes = (CustomTextview) view.findViewById(R.id.tv_proceed);
         CustomTextview no = (CustomTextview) view.findViewById(R.id.tv_cancel);
 
         builder.setView(view);
@@ -554,7 +556,7 @@ public class UserInfo {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-
+                takeOrderFragment.stopAll();
             }
         });
 
@@ -572,6 +574,26 @@ public class UserInfo {
             }
         });
         dialog.show();
+
+        // Hide after some seconds
+        final Handler handler  = new Handler();
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
+        };
+
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                handler.removeCallbacks(runnable);
+            }
+        });
+
+        handler.postDelayed(runnable, 15000);
     }
 
     public static String getMixerName(String addonCode) {

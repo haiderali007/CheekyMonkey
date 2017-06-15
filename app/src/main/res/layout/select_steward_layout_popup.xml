@@ -38,7 +38,8 @@
         android:id="@+id/llBottomLaoutOrder"
         android:layout_width="match_parent"
         android:layout_height="@dimen/header_height"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
         <com.entrada.cheekyMonkey.ui.CustomButton
             android:id="@+id/txtCancelSelectSteward"
@@ -47,7 +48,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/cancel_string"
-            android:textSize="@dimen/order_font_size_dimen" />
+            android:textSize="@dimen/order_font_size_dimen"
+            android:background="@drawable/button_state"/>
 
         <com.entrada.cheekyMonkey.ui.CustomButton
             android:id="@+id/txtSaveSelectSteward"
@@ -56,7 +58,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/save_string"
-            android:textSize="@dimen/order_font_size_dimen" />
+            android:textSize="@dimen/order_font_size_dimen"
+            android:background="@drawable/button_state"/>
     </LinearLayout>
 
 

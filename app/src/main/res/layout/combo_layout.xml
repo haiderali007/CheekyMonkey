@@ -25,7 +25,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textSize="@dimen/order_font_size_dimen"
-            android:text="@string/cancel_string" />
+            android:text="@string/cancel_string"
+            android:background="@drawable/button_state"/>
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/txtOkCombo"
@@ -35,7 +36,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textSize="@dimen/order_font_size_dimen"
-            android:text="@string/ok_string" />
+            android:text="@string/ok_string"
+            android:background="@drawable/button_state"/>
     </LinearLayout>
 
 </RelativeLayout>
