@@ -29,7 +29,7 @@
             android:background="@android:color/transparent"
             android:gravity="center"
             android:textColor="@color/White"
-            android:textSize="@dimen/medium" />
+            android:textSize="@dimen/large" />
 
     </LinearLayout>
 

@@ -15,6 +15,7 @@ import android.location.Geocoder;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
@@ -99,6 +100,7 @@ public class TakeOrderFragment extends Fragment implements
         ICallTable, ICallDiscList, ICallBackSendOrderResponse, OnBackPressInterface {
 
     public Context context;
+    BaseFragmentActivity activity;
     public ArrayList<Items> TITLES = new ArrayList<>();
     public TakeOrderAdapter takeOrderAdapter;
     public TableNumberLayout tableNumberLayout;
@@ -136,6 +138,7 @@ public class TakeOrderFragment extends Fragment implements
 
             SelectPOS(new POSItem());
             getMenuItems();
+            //initCountDown();
         }
 
         return view;
@@ -232,7 +235,7 @@ public class TakeOrderFragment extends Fragment implements
                 Items items = (Items) parent.getItemAtPosition(position);
                 //onclickEvent(items.getMenuItem());
                 showQtyPopup(items.getMenuItem());
-                ((BaseFragmentActivity) context).showHomeItemList();
+                activity.showHomeItemList();
 
             }
         });
@@ -376,8 +379,7 @@ public class TakeOrderFragment extends Fragment implements
 
     public void onclickEvent(MenuItem menuItem) {
 
-        startTimer();
-        //scheduleTimer();
+        activity.startCountDown();
 
         if (listViewOrderItem.getVisibility() != View.VISIBLE)
             showDefault();
@@ -469,6 +471,7 @@ public class TakeOrderFragment extends Fragment implements
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
+        activity = (BaseFragmentActivity) context;
     }
 
     @Override
@@ -497,17 +500,17 @@ public class TakeOrderFragment extends Fragment implements
                         getAllTables();
                     }
                     //**//
-                    else if (!takeOrderAdapter.isEmpty()){
+                    else if (!takeOrderAdapter.isEmpty()) {
                         submitStewardOrder();
-                        orderSubmitted = true;
+                        activity.stopCountDown();
                     } else
                         Toast.makeText(context, "Add any item", Toast.LENGTH_SHORT).show();
 
                 } else {
                     //UserInfo.showAccessDeniedDialog(context, getString(R.string.order_restriction));
-                    //submitOrder();
-                    submitOrderWithoutValidation();
-                    orderSubmitted = true;
+                    submitOrder();
+                    //submitOrderWithoutValidation();
+                    activity.stopCountDown();
                 }
 
                 break;
@@ -521,85 +524,19 @@ public class TakeOrderFragment extends Fragment implements
 
             case R.id.tv_myOrders:
                 //showOrderItemList();
-                ((BaseFragmentActivity) context).myOrders();
+                activity.myOrders();
                 break;
         }
     }
 
 
-    /* ******************* Logic To Restrict order placing within 30 seconds. ******************/
+    /* ******************* Logic To Restrict order placing within 30 seconds. *****************/
 
-    Timer timer;
-    boolean alertDialogIsShown = false, timeExpired = false, orderSubmitted = false;;
-
-    public void startTimer(){
-
-        if (! alertDialogIsShown){
-
-            Toast.makeText(context, R.string.expire_string, Toast.LENGTH_LONG).show();
-            alertDialogIsShown = true;
-
-            timer = new Timer();
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-
-                    try {
-
-                        if (getActivity() == null || orderSubmitted){
-                            stopTimer();
-
-                        } else if (timeExpired) {
-                            getActivity().runOnUiThread(goToItemsScreen);
-                            stopTimer();
-
-                        } else {
-                            getActivity().runOnUiThread(msgShowTimeExpireWarning);
-                            timeExpired = true;
-                            alertDialogIsShown = true;
-                        }
-
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }
-            },15000, 15000);
-        }
-
-    }
-
-    public void stopTimer(){
-
-        timer.cancel();
-        orderSubmitted = false;
-        alertDialogIsShown = false;
-        timeExpired = false;
-    }
-
-    public void stopAll(){
-
-        stopTimer();
+    public void stopAll() {
+        activity.stopCountDown();
         clearData();
         showHomeScreen();
     }
-
-    private Runnable msgShowTimeExpireWarning = new Runnable() {
-        @Override
-        public void run() {
-
-            UserInfo.showMessageDialog(context, TakeOrderFragment.this);
-        }
-    };
-
-    private Runnable goToItemsScreen = new Runnable() {
-        @Override
-        public void run() {
-
-            clearData();
-            showHomeScreen();
-        }
-    };
-
 
     /* *************************************************************************************/
 
@@ -638,8 +575,8 @@ public class TakeOrderFragment extends Fragment implements
         else if (selectTable.getText().equals(getString(R.string.slct_tbl_string)))
             getAllTables();
 
-        else if ((28.45 <= latitude && latitude <= 28.46) &&
-                (77.06 <= longitude && longitude <= 77.07)) {
+        else if ((30.7009618 <= latitude && latitude <= 30.7009619) &&
+                (76.8451675 <= longitude && longitude <= 76.8451676)) {
 
             if (!takeOrderAdapter.isEmpty())
 
@@ -920,7 +857,7 @@ public class TakeOrderFragment extends Fragment implements
         SQLiteDatabase mdb = POSDatabase.getInstanceLogin(context).getWritableDatabase();
         mdb.beginTransaction();
 
-        String queryPermission = "Select * from " + DBConstants.KEY_OUTLET_TABLE +  " order by Table_Code asc";
+        String queryPermission = "Select * from " + DBConstants.KEY_OUTLET_TABLE + " order by Table_Code asc";
         Cursor c = mdb.rawQuery(queryPermission, null);
         TableItem obj_list;
 
@@ -947,7 +884,7 @@ public class TakeOrderFragment extends Fragment implements
 
     public boolean UserPermission(String menu_id) {
 
-        return ((BaseFragmentActivity) context).UserPermission(menu_id);
+        return activity.UserPermission(menu_id);
     }
 
 
@@ -1008,8 +945,10 @@ public class TakeOrderFragment extends Fragment implements
         cover = "";
         order_type = "";
 
-        String amount = getString(R.string.rupees, "0", "\u20B9");
-        tv_total_amt.setText(amount);
+        if (isAdded()){
+            String amount = getString(R.string.rupees, "0", "\u20B9");
+            tv_total_amt.setText(amount);
+        }
     }
 
     public void showDefault() {
@@ -1256,9 +1195,9 @@ public class TakeOrderFragment extends Fragment implements
                 showHome();
 
                 saveOrderStatus(orderNum, "A");
-                ((BaseFragmentActivity) context).sendNotification(getString(R.string.process_noti, UserInfo.guest_name, orderNum));
+                activity.sendNotification(getString(R.string.process_noti, UserInfo.guest_name, orderNum));
 
-                ((BaseFragmentActivity) context).myOrders();
+                activity.myOrders();
                 showOrderConfirmedMsg(orderNum);
                 //Toast.makeText(context, orderNum, Toast.LENGTH_LONG).show();
                 //clearData();
@@ -1360,14 +1299,14 @@ public class TakeOrderFragment extends Fragment implements
         if (!orderList.contains(orderNum) || status.isEmpty())
             return;
 
-        if (getActivity() != null && isAdded()) {
+        if (isAdded()) {
 
             if (status.equals("B") || status.equals("C") || status.equals("D") || status.equals("E")) {
 
                 if (status.equals("B"))
-                    ((BaseFragmentActivity) context).sendNotification(getString(R.string.accepted_noti, UserInfo.guest_name, orderNum));
+                    activity.sendNotification(getString(R.string.accepted_noti, UserInfo.guest_name, orderNum));
                 else
-                    ((BaseFragmentActivity) context).sendNotification(getString(R.string.rejected_noti, UserInfo.guest_name, orderNum));
+                    activity.sendNotification(getString(R.string.rejected_noti, UserInfo.guest_name, orderNum));
 
                 orderList.remove(orderList.indexOf(orderNum));
                 updateOrderStatus(orderNum, status);
@@ -1440,7 +1379,8 @@ public class TakeOrderFragment extends Fragment implements
 
 
     /* *** Handling Guest Location in terms of latitude & longitude ****** */
-    class GeoPoint {
+
+    private class GeoPoint {
 
         int lattitue = 0;
         int longitutde = 0;
@@ -1556,7 +1496,7 @@ public class TakeOrderFragment extends Fragment implements
             @Override
             public void run() {
 
-                Logger.w("Yeppie", "Scheduler started" );
+                Logger.w("Yeppie", "Scheduler started");
             }
         };
 

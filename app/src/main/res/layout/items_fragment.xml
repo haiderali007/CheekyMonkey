@@ -33,7 +33,7 @@
                 android:paddingStart="10sp"
                 android:paddingLeft="10sp"
                 android:text="Alcohol Name"
-                android:textSize="@dimen/medium"
+                android:textSize="@dimen/large"
                 android:textStyle="bold"
                 android:textColor="@color/Yellow"/>
 
@@ -45,7 +45,7 @@
                 android:text="Low"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:textSize="@dimen/medium"
+                android:textSize="@dimen/large"
                 android:textColor="@color/Yellow"/>
 
 
@@ -55,9 +55,8 @@
                 android:layout_weight="0.8"
                 android:text="High"
                 android:textStyle="bold"
-
                 android:gravity="center"
-                android:textSize="@dimen/medium"
+                android:textSize="@dimen/large"
                 android:textColor="@color/Yellow"/>
 
             <com.entrada.cheekyMonkey.ui.CustomTextview
@@ -67,7 +66,7 @@
                 android:text="Price (Rs.)"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:textSize="@dimen/medium"
+                android:textSize="@dimen/large"
                 android:textColor="@color/Yellow" />
 
             <!--            <ImageView

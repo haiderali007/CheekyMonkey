@@ -26,6 +26,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -122,6 +123,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     ImageView home_icon_button, right_button, img_user_pic, img_camera, img_lock, img_unlock, img_refresh;
     ImageButton image_back, img_srch;
     SearchView edit_search;
+    TextView  mTextField;
     RelativeLayout layout_noti;
     LinearLayout layout_gst_ord_detail;
     ListView lv_gstorders;
@@ -550,7 +552,6 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
     }
 
-
     public void setupActionBar() {
 
         slidingUpPanelLayout = (SlidingUpPanelLayout) findViewById(R.id.slidingUpPanelLayout);
@@ -560,6 +561,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         img_srch = (ImageButton) findViewById(R.id.img_srch);
         img_srch.setOnClickListener(this);
 
+        mTextField = (TextView) findViewById(R.id.tv_countdown);
         edit_search = (SearchView) findViewById(R.id.edit_search);
         edit_search.setQueryHint("Search");
         edit_search.setIconifiedByDefault(false);
@@ -582,6 +584,54 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         edit_search.setOnQueryTextListener(searchListener);
         edit_search.clearFocus();
     }
+
+
+    CountDownTimer countDownTimer;
+
+    public void initCountDown(){
+
+        countDownTimer = new CountDownTimer(31000, 1000) {
+
+            public void onTick(final long millisUntilFinished) {
+
+                int remainingSec = (int) millisUntilFinished / 1000;
+                mTextField.setText(getString(R.string.remain_time, String.valueOf(remainingSec)));
+
+                if (remainingSec == 15 && takeOrderFragment.isAdded()){
+                    UserInfo.showMessageDialog(context, takeOrderFragment);
+                }
+            }
+
+            public void onFinish() {
+
+                mTextField.setText("");
+
+                if (takeOrderFragment.isAdded()){
+                    takeOrderFragment.clearData();
+                    takeOrderFragment.showHomeScreen();
+                }
+            }
+        };
+    }
+
+    public void startCountDown(){
+
+        if (countDownTimer == null)
+            initCountDown();
+
+        if (mTextField.getText().toString().isEmpty()){
+            Toast.makeText(context, R.string.expire_string, Toast.LENGTH_LONG).show();
+            countDownTimer.start();
+        }
+    }
+
+    public void stopCountDown(){
+
+        countDownTimer.cancel();
+        mTextField.setText("");
+    }
+
+
 
     public void setRightListItem() {
 
@@ -809,13 +859,18 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
                             // Direction for Current location to Destination
                             Intent intent3 = new Intent(android.content.Intent.ACTION_VIEW,
-                                    Uri.parse("http://maps.google.com/maps?daddr=20.5666,45.345"));
+                                    Uri.parse("http://maps.google.com/maps?daddr=30.7006666,76.8492015"));
                             startActivity(intent3);*/
 
-                                String address = "SCO 395 Sector 8, Panchkula, India";
+                               /* String address = "Cheeky Monkey, Basement, SCO 395, Sector 8, Panchkula, Haryana, 134109";
                                 Uri uri = Uri.parse("https://www.google.com/maps/place/" + address);
                                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                                startActivity(intent);
+                                startActivity(intent);*/
+
+                                String url = "https://www.google.co.in/maps/place/Cheeky+Monkey/@30.7009618,76.8451675,15z/data=!4m12!1m6!3m5!1s0x0:0x25b76e65999a104f!2sCheeky+Monkey!8m2!3d30.7006666!4d76.8492015!3m4!1s0x0:0x25b76e65999a104f!8m2!3d30.7006666!4d76.8492015";
+                                Intent i = new Intent(Intent.ACTION_VIEW);
+                                i.setData(Uri.parse(url));
+                                startActivity(i);
 
                            /* // Showing Map for Address
                             Intent intent4 = new Intent(android.content.Intent.ACTION_VIEW,
@@ -1125,6 +1180,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
 
     }
+
 
     /* ********************************** Google Location API ********************************* */
 

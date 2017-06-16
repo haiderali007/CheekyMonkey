@@ -113,29 +113,18 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
                 break;
 
             case R.id.img_validate_phone:
-
-                phone = et_phone.getText().toString();
-
-                if (Patterns.PHONE.matcher(phone).matches()){
-                    Intent intent = new Intent(context, DigitsMainActivityNew.class);
-                    intent.putExtra("phone", phone);
-                    startActivityForResult(intent, REQUEST_CODE);
-
-                }else
-                    et_phone.setError("Please enter valid Mobile Number");
-
                 break;
 
             case R.id.tv_continue:
 
                 if (formData.isValid()){
-
-                    if (MOBILE_VERIFICATION_DONE){
-                        layout_continue.setVisibility(View.GONE);
-                        layout_signup.setVisibility(View.VISIBLE);
-                        ((MainScreenFragment)getParentFragment()).currentBackListener = this;
+                    phone = et_phone.getText().toString();
+                    if (Patterns.PHONE.matcher(phone).matches()){
+                        Intent intent = new Intent(context, DigitsMainActivityNew.class);
+                        intent.putExtra("phone", phone);
+                        startActivityForResult(intent, REQUEST_CODE);
                     }else
-                        et_phone.setError("Mobile no. validation pending");
+                        et_phone.setError("Please enter valid Mobile Number");
                 }
                 break;
 
@@ -195,6 +184,11 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
             img_validate_phone.setImageResource(R.drawable.remember_icon);
             et_phone.setError(null);
             MOBILE_VERIFICATION_DONE = true;
+
+
+            layout_continue.setVisibility(View.GONE);
+            layout_signup.setVisibility(View.VISIBLE);
+            ((MainScreenFragment)getParentFragment()).currentBackListener = this;
         }
     }
 

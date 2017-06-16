@@ -22,6 +22,8 @@
     <string name="expire_string">You have 30seconds to place order.</string>
     <string name="expire_title">Your order is about to expire</string>
     <string name="expire_msg">You have 15 seconds more to place order</string>
+    <string name="remain_time">%1$s:00</string>
+    <string name="time_out_string">Time out</string>
 
     <string name="signed_in_fmt">Signed in as: %s</string>
     <string name="sign_out_string">Sign out</string>
