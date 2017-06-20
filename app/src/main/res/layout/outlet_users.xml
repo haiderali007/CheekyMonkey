@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_outlet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/large"
+        android:gravity="center"
+        android:text="@string/select_outlet"
+        android:textColor="@color/AliceBlue"
+        android:textSize="@dimen/large" />
+
+    <ListView
+        android:id="@+id/listViewOutlet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:divider="@color/White"
+        android:dividerHeight="1dp" />
+
+    <Button
+        android:id="@+id/btn_submit_outlet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/button_state"
+        android:gravity="center"
+        android:text="@string/submit_string"
+        android:textAllCaps="false" />
+</LinearLayout>

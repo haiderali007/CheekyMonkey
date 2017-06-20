@@ -607,8 +607,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
                 mTextField.setText("");
 
                 if (takeOrderFragment.isAdded()){
-                    takeOrderFragment.clearData();
-                    takeOrderFragment.showHomeScreen();
+                    takeOrderFragment.stopAll();
                 }
             }
         };

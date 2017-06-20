@@ -508,9 +508,8 @@ public class TakeOrderFragment extends Fragment implements
 
                 } else {
                     //UserInfo.showAccessDeniedDialog(context, getString(R.string.order_restriction));
-                    submitOrder();
-                    //submitOrderWithoutValidation();
-                    activity.stopCountDown();
+                    //submitOrder();
+                    submitOrderWithoutValidation();
                 }
 
                 break;
@@ -532,7 +531,16 @@ public class TakeOrderFragment extends Fragment implements
 
     /* ******************* Logic To Restrict order placing within 30 seconds. *****************/
 
+    AlertDialog dialogConfirmOrder, dialogShowTables;
+
     public void stopAll() {
+
+        if (dialogConfirmOrder != null && dialogConfirmOrder.isShowing())
+            dialogConfirmOrder.dismiss();
+
+        if (dialogShowTables != null && dialogShowTables.isShowing())
+            dialogShowTables.dismiss();
+
         activity.stopCountDown();
         clearData();
         showHomeScreen();
@@ -616,7 +624,7 @@ public class TakeOrderFragment extends Fragment implements
         ctv_message.setText(context.getString(R.string.confirm_order_msg));
 
         builder.setView(view);
-        final AlertDialog dialog = builder.create();
+        dialogConfirmOrder = builder.create();
 
 
         yes.setOnClickListener(new View.OnClickListener() {
@@ -624,7 +632,8 @@ public class TakeOrderFragment extends Fragment implements
             @Override
             public void onClick(View v) {
                 placeGuestOrderMethod(UserInfo.guest_id, UserInfo.guest_name);
-                dialog.dismiss();
+                dialogConfirmOrder.dismiss();
+                activity.stopCountDown();
             }
 
         });
@@ -633,25 +642,25 @@ public class TakeOrderFragment extends Fragment implements
 
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
+                dialogConfirmOrder.dismiss();
 
             }
         });
 
-        dialog.setCancelable(false);
-        dialog.setOnKeyListener(new Dialog.OnKeyListener() {
+        dialogConfirmOrder.setCancelable(false);
+        dialogConfirmOrder.setOnKeyListener(new Dialog.OnKeyListener() {
 
             @Override
             public boolean onKey(DialogInterface arg0, int keyCode,
                                  KeyEvent event) {
                 // TODO Auto-generated method stub
                 if (keyCode == KeyEvent.KEYCODE_BACK) {
-                    dialog.dismiss();
+                    dialogConfirmOrder.dismiss();
                 }
                 return true;
             }
         });
-        dialog.show();
+        dialogConfirmOrder.show();
     }
 
 
@@ -816,24 +825,24 @@ public class TakeOrderFragment extends Fragment implements
         listViewTable.setAdapter(adapter_qty);
         builder.setView(view);
 
-        final AlertDialog dialog = builder.create();
-        dialog.setCancelable(false);
+        dialogShowTables = builder.create();
+        dialogShowTables.setCancelable(false);
 
 
-        dialog.setOnKeyListener(new Dialog.OnKeyListener() {
+        dialogShowTables.setOnKeyListener(new Dialog.OnKeyListener() {
 
             @Override
             public boolean onKey(DialogInterface arg0, int keyCode,
                                  KeyEvent event) {
                 // TODO Auto-generated method stub
                 if (keyCode == KeyEvent.KEYCODE_BACK) {
-                    dialog.dismiss();
+                    dialogShowTables.dismiss();
                 }
                 return true;
             }
         });
 
-        dialog.show();
+        dialogShowTables.show();
 
         listViewTable.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -846,7 +855,7 @@ public class TakeOrderFragment extends Fragment implements
                 txtOrderSubmit.setBackgroundResource(R.drawable.button_state1);
                 txtOrderSubmit.setTextColor(Color.BLUE);
                 //**//
-                dialog.dismiss();
+                dialogShowTables.dismiss();
             }
         });
     }

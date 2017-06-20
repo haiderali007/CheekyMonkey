@@ -423,7 +423,7 @@ public class TakeOrderAdapter extends POSListAdapter<OrderItem> {
 
                         if (orderItem.getO_addon_code_new().equalsIgnoreCase("Y")) { // Check to see if deleted item is of add-on type
 
-                            do {
+                            /*do {
                                 if (!dataSet.get(position).getO_addon_code().isEmpty()) //Remove it's add on items
                                 {
                                     dataSet.remove(position);
@@ -431,7 +431,8 @@ public class TakeOrderAdapter extends POSListAdapter<OrderItem> {
                                 } else
                                     break;
 
-                            } while (getCount() > position);
+                            } while (getCount() > position);*/
+
                         } else if (orderItem.getO_combo_code().equals("Y")) // Check to see if deleted item is of combo type
                         {
                             do {

@@ -134,6 +134,7 @@ public class IntroductionScreen extends FragmentActivity implements ICallBackFin
         FragmentTransaction transaction;
         transaction = getSupportFragmentManager().beginTransaction();
         MainScreenFragment manageFrag = new MainScreenFragment();
+//        Add_Outlet manageFrag = new Add_Outlet();
         transaction.replace(R.id.introductionScreenFrameLayout, manageFrag,
                 StaticConstants.LOGIN_FRAGMENT_TAG);
 

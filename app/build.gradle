@@ -40,8 +40,8 @@ android {
         applicationId "com.entrada.cheekyMonkey"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 15
-        versionName "1.14"
+        versionCode 18
+        versionName "1.17"
         multiDexEnabled = true
     }
     buildTypes {
