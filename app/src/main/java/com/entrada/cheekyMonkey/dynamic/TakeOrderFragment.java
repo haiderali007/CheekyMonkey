@@ -508,8 +508,8 @@ public class TakeOrderFragment extends Fragment implements
 
                 } else {
                     //UserInfo.showAccessDeniedDialog(context, getString(R.string.order_restriction));
-                    //submitOrder();
-                    submitOrderWithoutValidation();
+                    submitOrder();
+//                    submitOrderWithoutValidation();
                 }
 
                 break;
