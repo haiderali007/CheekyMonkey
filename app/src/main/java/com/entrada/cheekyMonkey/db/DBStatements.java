@@ -14,6 +14,20 @@ public class DBStatements implements DBConstants {
             + TEXT + COMMA + KEY_USR_THEME_FONT_COLOR + TEXT + COMMA
             + KEY_COMP_CODE + TEXT + COMMA + KEY_RUNNING_DATE + TEXT + FINISH_COLUMN;
 
+
+    /**
+     * Create Statement for RMS_Outlet_Table ******************
+     */
+
+    public static final String CREATE_RMS_OUTLET_TABLE = CREATE_TABLE_BASE
+            + KEY_OUTLET_TABLE_NAME + START_COLUMN + _ID + INTEGER + PRIMARY_KEY
+            + AUTO_ICNREMENT + COMMA + KEY_OUTLET_TABLE_OUTLET_NAME + TEXT + COMMA
+            + KEY_OUTLET_TABLE_ADDRESS + TEXT + COMMA
+            + KEY_OUTLET_TABLE_CITY + TEXT + COMMA + KEY_OUTLET_TABLE_PIN
+            + TEXT + FINISH_COLUMN;
+
+
+
     /**
      * Create Statement for Outlet_Pos Table ******************
      */

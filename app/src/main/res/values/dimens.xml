@@ -6,6 +6,7 @@
     <dimen name="navigation_drawer_width">240sp</dimen>
 
     <!--*************************************************************************************-->
+    <dimen name="card_margin">4dp</dimen>
 
     <dimen name="activity_margin">8sp</dimen>
 

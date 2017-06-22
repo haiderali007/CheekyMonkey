@@ -1,30 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:background="@color/LightGrey"
+    android:orientation="horizontal"
 
-    <TextView
-        android:id="@+id/add_out_text_view"
-        android:layout_width="wrap_content"
+    >
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:padding="@dimen/small"
-        android:text="Outlet Name" />
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        app:cardBackgroundColor="@color/White"
+        app:cardCornerRadius="7dp"
+        app:cardElevation="8dp"
+        app:cardMaxElevation="40dp">
 
-    <ImageView
-        android:id="@+id/add_out_edit_image"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_weight="0.1"
-        android:src="@drawable/add_outlet" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_gravity="center">
 
-    <ImageView
-        android:id="@+id/add_out_delete_image"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_weight="0.2"
-        android:src="@drawable/delelete_outlet" />
+            <TextView
+                android:id="@+id/add_outlet_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:padding="@dimen/small"
+                android:text="Outlet Name"
+                android:textColor="@color/grey_dark" />
+
+            <ImageView
+                android:id="@+id/add_out_edit_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="0.1"
+                android:src="@drawable/edit_24" />
+
+            <ImageView
+                android:id="@+id/add_out_delete_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="0.2"
+                android:src="@drawable/out_delete" />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
 
 
 </LinearLayout>

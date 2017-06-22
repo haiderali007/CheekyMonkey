@@ -8,6 +8,9 @@ public class TableItem {
     public String code = "", name = "", status = "", cvr = "", stwrd = "",
             gst_name = "", gst_code = "", odr_type = "";
 
+
+
+
     public int no_pax = 0;
 
     public double tbl_font = 8, tbl_w, tbl_h;

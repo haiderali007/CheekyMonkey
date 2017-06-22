@@ -52,6 +52,17 @@ public interface DBConstants {
     String KEY_OUTLET_POS_HEADER = "Pos_Header";
     String KEY_OUTLET_POS_FOOTER = "Pos_Footer";
 
+
+    /**
+     * OUTLET DETAILS TABLE(FILL / VACANT / RESERVE )**** [CONSTANT] **
+     */
+    String KEY_OUTLET_TABLE_NAME = "RMS_OUTLETS";
+    String KEY_OUTLET_TABLE_OUTLET_NAME = "Outlet_Name";
+    String KEY_OUTLET_TABLE_ADDRESS = "Outlet_Address";
+    String KEY_OUTLET_TABLE_CITY = "Outlet_City";
+    String KEY_OUTLET_TABLE_PIN = "Outlet_Pin";
+
+
     /**
      * OUTLET TABLE(FILL / VACANT / RESERVE )**** [CONSTANT] **
      */

@@ -1,61 +1,99 @@
 package com.entrada.cheekyMonkey;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.entrada.cheekyMonkey.db.DBConstants;
+import com.entrada.cheekyMonkey.db.POSDatabase;
+import com.entrada.cheekyMonkey.takeorder.entity.TableItem;
+
+import java.util.ArrayList;
 
 /**
  * Created by Administrator on 6/20/2017.
  */
 
-public class Add_Outlet extends Fragment {
+public class Add_Outlet extends Activity {
     TextView textViewEditOutlet;
     ListView listViewEditOutlet;
     Button buttonEditOutlet;
-    String outlet[]={"Outlet 1", "Outlet 2", "Outlet 3", "Outlet 4"};
+    ImageView imageViewAddOutlet;
+    ArrayList<String> arrayList = new ArrayList<>();
+    Adapter_outlet adapter_outlet;
 
-    @Nullable
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.adit_outlet, container, false);
-        textViewEditOutlet = (TextView) view.findViewById(R.id.tv_edit_outlet);
-        listViewEditOutlet = (ListView) view.findViewById(R.id.listView_edit_outlet);
-        buttonEditOutlet = (Button) view.findViewById(R.id.btn_submit_edit_outlet);
-        Adapter_outlet adapter_outlet = new Adapter_outlet(getContext(), outlet);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.adit_outlet);
+
+
+        textViewEditOutlet = (TextView) findViewById(R.id.tv_edit_outlet);
+        listViewEditOutlet = (ListView) findViewById(R.id.listView_edit_outlet);
+        buttonEditOutlet = (Button) findViewById(R.id.btn_submit_edit_outlet);
+        imageViewAddOutlet = (ImageView) findViewById(R.id.add_out_image);
+
+//        arrayList.add("Cheeky Monkey, Panchkula");
+//        arrayList.add("Cheeky Monkey, Ambala");
+//        arrayList.add("Cheeky Monkey, Gurgaon");
+        adapter_outlet = new Adapter_outlet(this, arrayList);
         listViewEditOutlet.setAdapter(adapter_outlet);
-        listViewEditOutlet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+        imageViewAddOutlet.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), outlet[position], Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                Intent intent = new Intent(Add_Outlet.this, Edit_Outlet_Details.class);
+                startActivity(intent);
             }
         });
 
-        return view;
+        fetchOutlets();
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_main, menu);
+    public void fetchOutlets()
+    {
 
-    }
+        SQLiteDatabase mdb = POSDatabase.getInstanceLogin(this).getWritableDatabase();
+        mdb.beginTransaction();
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.add_item:
-                Toast.makeText(getContext(), "ADD Outlet", Toast.LENGTH_SHORT).show();
+        String queryPermission = "Select * from " + DBConstants.KEY_OUTLET_TABLE_NAME;
+        Cursor c = mdb.rawQuery(queryPermission, null);
+        OutletDetails outletDetails;
+
+        try {
+            if (c.moveToFirst()) {
+
+                do {
+                    outletDetails = new OutletDetails();
+                    outletDetails.name= c.getString(c.getColumnIndex(DBConstants.KEY_OUTLET_TABLE_OUTLET_NAME));
+//                    outletDetails.address= c.getString(c.getColumnIndex(DBConstants.KEY_OUTLET_TABLE_ADDRESS));
+//                    outletDetails.city= c.getString(c.getColumnIndex(DBConstants.KEY_OUTLET_TABLE_CITY));
+//                    outletDetails.pin= c.getString(c.getColumnIndex(DBConstants.KEY_OUTLET_TABLE_PIN));
+                    arrayList.add(outletDetails.name);
+                } while (c.moveToNext());
+            }
+            c.close();
+
+            mdb.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            mdb.endTransaction();
         }
-        return super.onOptionsItemSelected(item);
+
+        adapter_outlet.notifyDataSetChanged();
     }
+
+
+
 }

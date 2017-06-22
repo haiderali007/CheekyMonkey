@@ -126,6 +126,17 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".Add_Outlet"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name=".Edit_Outlet_Details"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".fabric.digits.DigitsMainActivity"

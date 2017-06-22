@@ -131,15 +131,16 @@ public class IntroductionScreen extends FragmentActivity implements ICallBackFin
 
     public void showLoginScreen() {
 
-        FragmentTransaction transaction;
-        transaction = getSupportFragmentManager().beginTransaction();
-        MainScreenFragment manageFrag = new MainScreenFragment();
-//        Add_Outlet manageFrag = new Add_Outlet();
-        transaction.replace(R.id.introductionScreenFrameLayout, manageFrag,
-                StaticConstants.LOGIN_FRAGMENT_TAG);
-
-        transaction.commit();
-        backPressInterface = manageFrag;
+//        FragmentTransaction transaction;
+//        transaction = getSupportFragmentManager().beginTransaction();
+//        MainScreenFragment manageFrag = new MainScreenFragment();
+//        transaction.replace(R.id.introductionScreenFrameLayout, manageFrag,
+//                StaticConstants.LOGIN_FRAGMENT_TAG);
+//
+//        transaction.commit();
+//        backPressInterface = manageFrag;
+        Intent intent = new Intent(IntroductionScreen.this, Add_Outlet.class);
+        startActivity(intent);
 
     }
 
