@@ -78,7 +78,7 @@ public class GuestCommonTask<Params, Result> extends
         resultMessage.TYPE = urlString;
         jsonParser = new UtilToCreateJSON();
 
-        jsonString = BaseNetwork.obj().postMethodWay(info.getServerIP(), null,
+        jsonString = BaseNetwork.obj().postMethodWay(info.getServerIP(), "",
                 urlString, paramter);
 
         Logger.d("AuthLoginTask", "::" + jsonString);

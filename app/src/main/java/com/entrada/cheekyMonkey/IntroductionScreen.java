@@ -25,6 +25,8 @@ import com.entrada.cheekyMonkey.dynamic.Network_Info.NetworkUtil;
 import com.entrada.cheekyMonkey.dynamic.start.MainScreenFragment;
 import com.entrada.cheekyMonkey.dynamic.syncData.FetchAndStoreMenuItemsTask;
 import com.entrada.cheekyMonkey.dynamic.syncData.ICallResponse;
+import com.entrada.cheekyMonkey.entity.UserInfo;
+import com.entrada.cheekyMonkey.multiTenancy.AddOutletActivity;
 import com.entrada.cheekyMonkey.staticData.PrefHelper;
 import com.entrada.cheekyMonkey.staticData.StaticConstants;
 import com.entrada.cheekyMonkey.steward.notificationUI.AdminActivity;
@@ -76,6 +78,8 @@ public class IntroductionScreen extends FragmentActivity implements ICallBackFin
         if (! tempURl.isEmpty())
             UserInfo.ServerIP = tempURl ;*/
 
+        UserInfo.OutletID = PrefHelper.getStoredString(this, PrefHelper.PREF_FILE_NAME, PrefHelper.OUTLET_ID);
+
         setNetStatusController();
         goToMainScreen();
     }
@@ -104,8 +108,10 @@ public class IntroductionScreen extends FragmentActivity implements ICallBackFin
                     .equalsIgnoreCase(PrefHelper.FIRST_TIME_LUNCHAPP_DONE)) {
 
                 //fetchCurrentPrice();
-                Intent intent = new Intent(IntroductionScreen.this, BaseFragmentActivity.class);
+                Intent intent = new Intent(IntroductionScreen.this, Admin_Rights.class);
                 startActivity(intent);
+//                Intent intent = new Intent(IntroductionScreen.this, BaseFragmentActivity.class);
+//                startActivity(intent);
                 finish();
 
             } else if (PrefHelper.getStoredString(IntroductionScreen.this,
@@ -131,16 +137,14 @@ public class IntroductionScreen extends FragmentActivity implements ICallBackFin
 
     public void showLoginScreen() {
 
-//        FragmentTransaction transaction;
-//        transaction = getSupportFragmentManager().beginTransaction();
-//        MainScreenFragment manageFrag = new MainScreenFragment();
-//        transaction.replace(R.id.introductionScreenFrameLayout, manageFrag,
-//                StaticConstants.LOGIN_FRAGMENT_TAG);
-//
-//        transaction.commit();
-//        backPressInterface = manageFrag;
-        Intent intent = new Intent(IntroductionScreen.this, Add_Outlet.class);
-        startActivity(intent);
+        FragmentTransaction transaction;
+        transaction = getSupportFragmentManager().beginTransaction();
+        MainScreenFragment manageFrag = new MainScreenFragment();
+        transaction.replace(R.id.introductionScreenFrameLayout, manageFrag,
+                StaticConstants.LOGIN_FRAGMENT_TAG);
+
+        transaction.commit();
+        backPressInterface = manageFrag;
 
     }
 

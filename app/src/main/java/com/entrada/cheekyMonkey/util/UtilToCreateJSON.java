@@ -46,8 +46,76 @@ import java.util.ArrayList;
  */
 public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
+    private static String clientID = "";
 
-    static String clientID = "";
+
+    public static String createOrderTokenJSON(String email_id, String seller_id) {
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+
+            jsonObject.put("email_id", email_id);
+            jsonObject.put("seller_id", seller_id);
+
+            return jsonObject.toString();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return "";
+        }
+    }
+
+
+    public static String createSaveItemJSON(String token, String seller_id, String device_token,
+                                            String table_id, String table_number,
+                                            String item_id, String item_name,
+                                            String category_id, String category_name,
+                                            String item_qty, String item_price) {
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+
+            jsonObject.put("token", token);
+            jsonObject.put("seller_id", "1");
+            jsonObject.put("device_token", "123lenovo");
+            jsonObject.put("table_id", table_id);
+            jsonObject.put("table_number", table_number);
+            jsonObject.put("category_id", category_id);
+            jsonObject.put("category_name", category_name);
+            jsonObject.put("item_id", item_id);
+            jsonObject.put("item_name", item_name);
+            jsonObject.put("item_qty", item_qty);
+            jsonObject.put("item_price", item_price);
+
+            return jsonObject.toString();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return "";
+        }
+    }
+
+    public static String createSaveOutletJSON(String outletID, String outletName, String location,
+                                              String city, String flag) {
+
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, outletID);
+            jsonObject.put(JSON_TAG_OUTLETNAME, outletName);
+            jsonObject.put(JSON_TAG_OUTLETLOCATION, location);
+            jsonObject.put(JSON_TAG_OUTLETCITY, city);
+            jsonObject.put(JSON_TAG_OPERATION_FLAG, flag);
+
+            return jsonObject.toString();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return "";
+        }
+
+    }
+
 
     public static String createLoginJSON(String userID, String password,
                                          String wifi, String serverIP) {
@@ -60,6 +128,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put(JSON_TAG_WIFI, wifi);
             jsonObject.put(JSON_TAG_VENDOR, JSON_TAG_VENDOR_VALUE);
             jsonObject.put(JSON_TAG_LOGIN_SERVER_IP, serverIP);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
         } catch (JSONException e) {
 
@@ -75,8 +144,8 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
         JSONObject jsonObject = new JSONObject();
 
         try {
-
             jsonObject.put("clientID", clientID);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             return jsonObject.toString();
 
         } catch (Exception ex) {
@@ -93,6 +162,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put(JSON_TAG_POS_TOKEN, PrefHelper.getStoredString(
                     context, PrefHelper.PREF_FILE_NAME, PrefHelper.TOKEN));
             jsonObject.put(JSON_TAG_POS_MAC, Util.getWifiMACAddress(context));
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             return jsonObject.toString();
 
         } catch (JSONException e) {
@@ -133,16 +203,18 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             else if (!token.isEmpty())
                 message.isSuccess = true;
 
-        } catch (Exception ex) {ex.printStackTrace();}
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
         return message;
     }
 
 
-    public static String createGuestParamter(String name, String phone, String email_id,
-                                             String dob, String m_day, String sex, String address,
-                                             String address1, String spl_remark, String validdate,
-                                             String discount, boolean updateGuest) {
+    public static String createGuestParameter(String name, String phone, String email_id,
+                                              String dob, String m_day, String sex, String address,
+                                              String address1, String spl_remark, String validdate,
+                                              String discount, boolean updateGuest) {
 
         String parameter = "";
         JSONObject jsonParam = new JSONObject();
@@ -163,6 +235,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonParam.put("deviceid", UserInfo.deviceid);
             jsonParam.put("updateGuest", updateGuest);
             jsonParam.put("clientID", clientID);
+            jsonParam.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             Logger.i("input", jsonParam.toString());
             parameter = jsonParam.toString();
@@ -175,7 +248,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
 
     public static String createGstSigninParameter(String email, String password) {
-        String parameter ;
+        String parameter;
 
         JSONObject jsonParam = new JSONObject();
         try {
@@ -183,6 +256,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonParam.put("email", email);
             jsonParam.put("pass", password);
             jsonParam.put("deviceid", UserInfo.deviceid);
+            jsonParam.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             Logger.i("input", jsonParam.toString());
             parameter = jsonParam.toString();
@@ -201,6 +275,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
         try {
             jsonObject.put("clientID", clientID);
             jsonObject.put("Ord_No", odrNo);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             return jsonObject.toString();
 
@@ -220,6 +295,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put("clientID", clientID);
             jsonObject.put("Email", email);
             jsonObject.put("Status", status);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             return jsonObject.toString();
 
@@ -242,6 +318,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put("clientID", clientID);
             jsonObject.put(JSON_TAG_TABLE_TAG, "");
             jsonObject.put(JSON_TAG_DATA_SYNC_TOKEN, token);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             return jsonObject.toString();
 
         } catch (Exception ex) {
@@ -303,7 +380,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
         JSONObject jsonParam = null;
         JSONArray jarray_code, jarray_StrQty, jarray_ItemRemark, jarray_strAddon, jarray_strModi,
-                jarray_strCombo, jarray_strHappy, jarry_disc, jarray_sub_item, jarray_meal, jarray_cover, jarray_price, jarray_surcharge ;
+                jarray_strCombo, jarray_strHappy, jarry_disc, jarray_sub_item, jarray_meal, jarray_cover, jarray_price, jarray_surcharge;
 
         try {
             jsonParam = new JSONObject();
@@ -396,6 +473,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonParam.put(JSON_TAG_GOP_ORDER_TYPE, ordertype);
             jsonParam.put(JSON_TAG_SERVER_API_KEY, UserInfo.apikey);
             jsonParam.put(JSON_TAG_DEVICE_ID, UserInfo.deviceid);
+            jsonParam.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -458,7 +536,6 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
     }
 
 
-
     public static String createBillTransferJSON(Context context, String newPos,
                                                 String posType, String billNo, String reason) {
 
@@ -474,6 +551,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put(JSON_TAG_POS_TOKEN, PrefHelper.getStoredString(
                     context, PrefHelper.PREF_FILE_NAME, PrefHelper.TOKEN));
             jsonObject.put(JSON_TAG_WIFI, Util.getWifiMACAddress(context));
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             return jsonObject.toString();
 
@@ -528,6 +606,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put(JSON_TAG_POS_TOKEN, PrefHelper.getStoredString(
                     context, PrefHelper.PREF_FILE_NAME, PrefHelper.TOKEN));
             jsonObject.put(JSON_TAG_WIFI, Util.getWifiMACAddress(context));
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             return jsonObject.toString();
 
@@ -596,6 +675,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put(JSON_TAG_POS_TOKEN, PrefHelper.getStoredString(
                     context, PrefHelper.PREF_FILE_NAME, PrefHelper.TOKEN));
             jsonObject.put(JSON_TAG_WIFI, Util.getWifiMACAddress(context));
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             return jsonObject.toString();
 
@@ -613,6 +693,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
         try {
 
             jsonObject.put(JSON_TAG_DATA_SYNC_POS, pos);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             return jsonObject.toString();
 
         } catch (Exception ex) {
@@ -629,7 +710,8 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
             jsonObject.put(JSON_TAG_DATA_SYNC_POS_CODE, pos);
             jsonObject.put("flag", flag);
-            jsonObject.put("tbl",table);
+            jsonObject.put("tbl", table);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             return jsonObject.toString();
 
         } catch (Exception ex) {
@@ -652,6 +734,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put(JSON_TAG_ORDER_NO_POS, pos);
             jsonObject.put(JSON_TAG_ORDER_NO_TABLE, table);
             jsonObject.put(JSON_TAG_ORDER_NO_TOKEN, token);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             return jsonObject.toString();
 
         } catch (Exception ex) {
@@ -670,9 +753,9 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
                     PrefHelper.PREF_FILE_NAME, PrefHelper.POINT_OF_SALE);
 
             jsonObject.put("pos", pos);
-            jsonObject.put("dat", UserInfo.getRunningDate() );
+            jsonObject.put("dat", UserInfo.getRunningDate());
             jsonObject.put("tbl", selectedTable);
-
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             return jsonObject.toString();
 
@@ -686,7 +769,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
     public static boolean parseTakeOrderResponse(Context context, String table, String tableCode,
                                                  String response, Object obj) {
-        JSONObject jsonObject ;
+        JSONObject jsonObject;
         try {
             jsonObject = new JSONObject(response);
             JSONArray jsonArray = new JSONArray(jsonObject.getString("ECABS_PushOrderAndroid_separatorResult"));
@@ -724,11 +807,10 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
     }
 
 
-
     public static boolean parseTakeOrderResponse1(Context context, String room, String roomCode,
                                                   String response, Object obj) {
 
-        JSONObject jsonObject ;
+        JSONObject jsonObject;
 
 
         try {
@@ -742,8 +824,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
             } else {
 
-                for (int i = 0; i < jsonArray.length(); i++)
-                {
+                for (int i = 0; i < jsonArray.length(); i++) {
                     jsonObject = jsonArray.getJSONObject(i);
                     String result = jsonObject.getString("OrderNo");
                     UserInfo.Format_no = jsonObject.getString("OrdFormat");
@@ -769,7 +850,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
     public static boolean parseTakeOrderResponseNew(Context context, String table, String tableCode,
                                                     String response, Object obj) {
-        JSONObject jsonObject ;
+        JSONObject jsonObject;
         try {
             jsonObject = new JSONObject(response);
             JSONArray jsonArray = new JSONArray(jsonObject.getString("ECABS_PushOrderAndroid_separatorResult"));
@@ -814,6 +895,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
             jsonObject.put(JSON_TAG_DATA_SYNC_POS, pos);
             jsonObject.put("date", UserInfo.getRunningDate());
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -823,13 +905,12 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
     }
 
 
+    public static boolean parseHomeDeliveryOrderResponse(Context context, String response, CustomTextview textviewForBIllno,
+                                                         CustomTextview textviewForDiscount, CustomTextview textviewForSubtotal,
+                                                         CustomTextview textviewForTax, CustomTextview textviewForTotal,
+                                                         CustomTextview textviewChange) {
 
-    public static boolean parseHomeDelevryOrderResponse(Context context, String response, CustomTextview textviewForBIllno,
-                                                        CustomTextview textviewForDiscount, CustomTextview textviewForSubtotal,
-                                                        CustomTextview textviewForTax, CustomTextview textviewForTotal,
-                                                        CustomTextview textviewChange) {
-
-        JSONObject jsonObject ;
+        JSONObject jsonObject;
 
         try {
             jsonObject = new JSONObject(response);
@@ -917,8 +998,8 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             } else {
                 /*String result = jsonObject
                         .getString("ECABS_OrderModiAndroid_newResult");*/
-                if (! table.isEmpty())
-                    Util.show_popup_success(context, table,tableCode, result, false, obj);
+                if (!table.isEmpty())
+                    Util.show_popup_success(context, table, tableCode, result, false, obj);
                 return true;
             }
 
@@ -965,11 +1046,10 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
             if (jsonObject.getString("guest_ratingResult").equals("Data Saved")) {
 
-                Toast.makeText(context,"detail saved",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "detail saved", Toast.LENGTH_SHORT).show();
                 return true;
-            }
-            else {
-                Toast.makeText(context,response,Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
                 return false;
             }
 
@@ -1054,6 +1134,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put(StaticConstants.JSON_TAG_ORDER_DETAIL_TOKEN, token);
             jsonObject.put(StaticConstants.JSON_TAG_ORDER_DETAIL_TABLE, table);
             jsonObject.put(StaticConstants.JSON_TAG_ORDER_DETAIL_NO, orderNumber);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             Logger.i("input", jsonObject.toString());
 
             return jsonObject.toString();
@@ -1127,6 +1208,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
         jsonParam.put("strCombo", jarray_strCombo);
         jsonParam.put("strdisc", jarry_disc);
         jsonParam.put("WIFI", Util.getWifiMACAddress(context));
+        jsonParam.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
         return jsonParam.toString();
     }
@@ -1154,6 +1236,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put("remark", orderRemarkReason);
             jsonObject.put("userid", UserInfo.guest_id);
             jsonObject.put("order", orderNumber);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             return jsonObject.toString();
 
@@ -1187,6 +1270,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put("userid", steward);
             jsonObject.put("tbl", detail.getTableItem().getCode());
             jsonObject.put("flag", flag);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
 
             return jsonObject.toString();
@@ -1209,6 +1293,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject = new JSONObject();
             jsonObject.put("remark", reason);
             jsonObject.put("billno", billNumber);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             if (!flag.isEmpty())
                 jsonObject.put("flag", flag);
@@ -1290,6 +1375,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put(JSON_TAG_GUEST_PHONE, guestPhone);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             return jsonObject.toString();
 
         } catch (JSONException e) {
@@ -1310,7 +1396,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
                 PrefHelper.PREF_FILE_NAME, PrefHelper.TOKEN);
 
         JSONObject jsonParam = null;
-        JSONArray jarray_code , jarray_StrQty, jarray_ItemRemark, jarray_strAddon, jarray_strModi, jarray_strCombo, jarray_strHappy, jarry_disc, jarray_sub_item, jarray_meal, jarray_cover, jarray_price, jarray_surcharge;
+        JSONArray jarray_code, jarray_StrQty, jarray_ItemRemark, jarray_strAddon, jarray_strModi, jarray_strCombo, jarray_strHappy, jarry_disc, jarray_sub_item, jarray_meal, jarray_cover, jarray_price, jarray_surcharge;
 
         try {
             jsonParam = new JSONObject();
@@ -1401,6 +1487,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonParam.put(JSON_TAG_GOP_ORDER_TYPE, ordertype);
             jsonParam.put(JSON_TAG_SERVER_API_KEY, "");
             jsonParam.put(JSON_TAG_DEVICE_ID, "");
+            jsonParam.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -1416,7 +1503,6 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
     }
 
 
-
     public static String createGuestOrderNew(Context context, String guestID, String guestName,
                                              String cover, String steward, ArrayList<OrderItem> orderItemsList,
                                              String table, String orderRemark) {
@@ -1427,7 +1513,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
                 PrefHelper.PREF_FILE_NAME, PrefHelper.TOKEN);
 
         JSONObject jsonParam = null;
-        JSONArray jarray_code , jarray_StrQty, jarray_ItemRemark, jarray_strAddon,
+        JSONArray jarray_code, jarray_StrQty, jarray_ItemRemark, jarray_strAddon,
                 jarray_strModi, jarray_strCombo, jarray_strHappy, jarry_disc, jarray_sub_item,
                 jarray_meal, jarray_cover, jarray_price, jarray_surcharge;
 
@@ -1519,6 +1605,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonParam.put(JSON_TAG_GOP_ORDER_TYPE, "");
             jsonParam.put(JSON_TAG_SERVER_API_KEY, "");
             jsonParam.put(JSON_TAG_DEVICE_ID, "");
+            jsonParam.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -1545,6 +1632,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             try {
                 jsonObject.put(JSON_TAG_GUEST_POS_CODE, pos);
                 jsonObject.put(JSON_TAG_GUEST_ORDER_STATUS, status);
+                jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
                 return jsonObject.toString();
 
@@ -1566,6 +1654,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
             jsonObject.put(JSON_TAG_GUEST_POS_CODE, pos);
             jsonObject.put(JSON_TAG_GUEST_ORDER_ID, item.ORDER_NUM);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -1630,7 +1719,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
                     jarray_price.put("");
 
 					/*
-					 * if (!list_obj.getO_sub_item().equals("")) {
+                     * if (!list_obj.getO_sub_item().equals("")) {
 					 *
 					 * jarray_strModi.put("");
 					 * jarray_sub_item.put(list_obj.getO_sub_item());
@@ -1683,6 +1772,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonParam.put(JSON_TAG_GST_ODTYPE, "");
             jsonParam.put(JSON_TAG_GST_ORDERNUM, detail.ORDER_NUM);
             jsonParam.put(JSON_TAG_GUEST_ORDER_STATUS, status);
+            jsonParam.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -1703,6 +1793,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put(JSON_TAG_GST_TABLE, tbl);
             jsonObject.put(JSON_TAG_GUEST_ORDER_ID, ORDER_NUM);
             jsonObject.put(JSON_TAG_GUEST_ORDER_STATUS, status);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -1720,6 +1811,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
             jsonObject.put("pos", pos);
             jsonObject.put("tbl", table);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             return jsonObject.toString();
 
         } catch (Exception ex) {
@@ -1732,8 +1824,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
         return parameter;
     }
 
-    public static String createTableItemsJson(Context context,
-                                              String table) {
+    public static String createTableItemsJson(Context context, String table) {
         String parameter = "";
         JSONObject jsonObject = new JSONObject();
         try {
@@ -1743,6 +1834,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
             jsonObject.put("pos", pos);
             jsonObject.put("tbl", table);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             return jsonObject.toString();
 
         } catch (Exception ex) {
@@ -1770,6 +1862,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put("Disc_code", Util.checkStringIsEmpty(dis_code_bill));
             jsonObject.put("Disc_per", Util.checkStringIsEmpty(dis_per_bill));
             jsonObject.put("OrderNo1", Util.checkStringIsEmpty(UserInfo.Orderno));
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             return jsonObject.toString();
 
@@ -1783,7 +1876,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
         return parameter;
     }
 
-    public static String createBillPrintReciptJson(Context context) {
+    public static String createBillPrintReceiptJson(Context context) {
         String parameter = "";
         JSONObject jsonObject = new JSONObject();
         try {
@@ -1795,7 +1888,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
             jsonObject.put("pos", pos);
             jsonObject.put("billno", UserInfo.Bill_no);
-
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             return jsonObject.toString();
 
         } catch (Exception ex) {
@@ -1825,6 +1918,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put("OrderNo", Util.checkStringIsEmpty(UserInfo.Order_no));
             jsonObject.put("rem", Util.checkStringIsEmpty(bill_rem));
             jsonObject.put("billno", billno);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             return jsonObject.toString();
 
@@ -1855,7 +1949,9 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
                 return true;
             }
 
-        } catch (Exception ex) {ex.printStackTrace();}
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
         return false;
     }
@@ -1865,13 +1961,14 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
         String pos = POSApplication.getSingleton().getmDataModel().getUserInfo().posItem.posCode;
         String parameter = "";
-        JSONObject jsonParam ;
+        JSONObject jsonParam;
 
         try {
 
             jsonParam = new JSONObject();
             jsonParam.put("tbl", table);
             jsonParam.put("POS", pos);
+            jsonParam.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             parameter = jsonParam.toString();
 
         } catch (Exception ex) {
@@ -1896,6 +1993,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
             jsonObject.put("pos", pos);
             jsonObject.put("tbl", table);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             parameter = jsonObject.toString();
 
 
@@ -1906,9 +2004,9 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
         return parameter;
     }
 
-    public static boolean parseTableAwayRespnse(Context context, String response) {
+    public static boolean parseTableAwayResponse(Context context, String response) {
 
-        JSONObject jsonObject ;
+        JSONObject jsonObject;
 
         try {
             jsonObject = new JSONObject(response);
@@ -1940,6 +2038,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
             jsonObject.put(JSON_TAG_DATA_SYNC_POS, pos);
             jsonObject.put(KEY_TABLE_STATUS_ORDER, KEY_TAG_ORDER_TYPE);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             return jsonObject.toString();
 
         } catch (Exception ex) {
@@ -1950,7 +2049,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
     }
 
-    public static boolean parseTabalStatusresonse(Context context, String response) {
+    public static boolean parseTabalStatusResponse(Context context, String response) {
 
         JSONObject jsonObject = null;
 
@@ -1987,6 +2086,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
             jsonObject.put("code", del_id);
             jsonObject.put("dates", date);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             return jsonObject.toString();
 
@@ -2003,6 +2103,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
             jsonObject.put("del)", del_id);
             jsonObject.put("dates", UserInfo.getRunningDate());
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             return jsonObject.toString();
 
@@ -2030,6 +2131,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put("ramt", ret_amt);
             jsonObject.put("flag", flag);
             jsonObject.put("date", date);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             return jsonObject.toString();
 
@@ -2063,6 +2165,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put("billno", billno);
             jsonObject.put("uid", user_id);
             jsonObject.put("sett", jsonArray);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             Log.i("input", jsonObject.toString());
 
@@ -2089,6 +2192,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put("pos", pos);
             jsonObject.put("MainTbl", textViewMain.getText().toString());
             jsonObject.put("ToTbl", textViewToJoin.getText().toString());
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             return jsonObject.toString();
 
         } catch (Exception ex) {
@@ -2126,6 +2230,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put("DOB", textViewDateofBrith.getText().toString());
             jsonObject.put("Sex", Sex_String);
             jsonObject.put("Ansv", textViewAnniversary.getText().toString());
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             return jsonObject.toString();
 
@@ -2153,6 +2258,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put("pos", pos);
             jsonObject.put("Billno", UserInfo.editText);
             jsonObject.put("date", UserInfo.getRunningDate());
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             return jsonObject.toString();
 
@@ -2166,7 +2272,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
         return parameter;
     }
 
-    public static boolean parseTabalJoinResonse(Context context, String response) {
+    public static boolean parseTableJoinResponse(Context context, String response) {
 
         JSONObject jsonObject;
 
@@ -2230,12 +2336,13 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
         return false;
     }
 
-    public static String createTableOrderFatchJson(Context context, TextView textViewMainTable) {
+    public static String createTableOrderFetchJson(Context context, TextView textViewMainTable) {
 
         JSONObject jsonObject = new JSONObject();
         try {
 
             jsonObject.put("tbl", textViewMainTable.getText().toString());
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             return jsonObject.toString();
 
@@ -2264,6 +2371,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put("pos", pos);
             jsonObject.put("oldTbl", textViewMainTable.getText());
             jsonObject.put("Newtbl", textViewTransferTable.getText());
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
 
             return jsonObject.toString();
@@ -2275,7 +2383,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
     }
 
 
-    public static String createUpcomingEventJson(Context context, String date, String msgType, String message){
+    public static String createUpcomingEventJson(Context context, String date, String msgType, String message) {
 
         try {
             JSONObject jsonObject = new JSONObject();
@@ -2284,12 +2392,13 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
                     PrefHelper.PREF_FILE_NAME, PrefHelper.POINT_OF_SALE);
 
             jsonObject.put(JSON_TAG_DATA_SYNC_POS, pos);
-            jsonObject.put(JSON_TAG_EVENT_DATE,date);
-            jsonObject.put(JSON_TAG_MESSAGE_TYPE,msgType);
-            jsonObject.put(JSON_TAG_EVENT_MESSAGE,message);
+            jsonObject.put(JSON_TAG_EVENT_DATE, date);
+            jsonObject.put(JSON_TAG_MESSAGE_TYPE, msgType);
+            jsonObject.put(JSON_TAG_EVENT_MESSAGE, message);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             return jsonObject.toString();
 
-        }catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
             return "";
         }
@@ -2309,6 +2418,8 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put(JSON_TAG_TABLE_TAG, "");
             jsonObject.put(JSON_TAG_DATA_SYNC_POS, pos);
             jsonObject.put(JSON_TAG_DATA_SYNC_TOKEN, token);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
+
             return jsonObject.toString();
 
         } catch (Exception ex) {
@@ -2331,6 +2442,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put("pos", pos);
             jsonObject.put("tbl", selectedTable);
             jsonObject.put("token", token);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             return jsonObject.toString();
 
@@ -2359,6 +2471,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put("tbl", selectedTable);
             jsonObject.put("pos", pos);
             jsonObject.put("token", token);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             Log.i("input", jsonObject.toString());
 
@@ -2434,6 +2547,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put("cvr", "0");
             jsonObject.put("mod", jsonArray1);
             jsonObject.put("transfer", jsonArray2);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             jsonObject.put(JSON_TAG_POS_TOKEN, PrefHelper.getStoredString(
                     context, PrefHelper.PREF_FILE_NAME, PrefHelper.TOKEN));
@@ -2454,6 +2568,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
         JSONObject jsonParam = new JSONObject();
         try {
             jsonParam.put("Phone", mobile);
+            jsonParam.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             Logger.i("input", jsonParam.toString());
             parameter = jsonParam.toString();
@@ -2471,7 +2586,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
         JSONObject jsonParam = new JSONObject();
         try {
             jsonParam.put("Code", mobile);
-
+            jsonParam.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             Logger.i("input", jsonParam.toString());
             parameter = jsonParam.toString();
         } catch (Exception ex) {
@@ -2482,12 +2597,12 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
     }
 
-    public static String CreateCompanyDisountJson(Context context, CustomEditView editTextCompCode,
-                                                  CustomEditView editTextCompName, CustomEditView editTextAddress1,
-                                                  CustomEditView editTextAddress2, CustomEditView editTextCompCity,
-                                                  CustomEditView editTextCompPin, CustomEditView edittTextPhone,
-                                                  TextView textViewCompanyInfoDate, CustomTextview testViewLoyaltyEffDate,
-                                                  Spinner spinnerStatusComp, String validdate, String discount) throws JSONException {
+    public static String CreateCompanyDiscountJson(Context context, CustomEditView editTextCompCode,
+                                                   CustomEditView editTextCompName, CustomEditView editTextAddress1,
+                                                   CustomEditView editTextAddress2, CustomEditView editTextCompCity,
+                                                   CustomEditView editTextCompPin, CustomEditView edittTextPhone,
+                                                   TextView textViewCompanyInfoDate, CustomTextview testViewLoyaltyEffDate,
+                                                   Spinner spinnerStatusComp, String validdate, String discount) throws JSONException {
 
 
         String parameter = "";
@@ -2513,6 +2628,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonObject.put("validdate", validdate);
             jsonObject.put("discount", discount);
             jsonObject.put("token", token);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             Log.i("input", jsonObject.toString());
 
@@ -2644,8 +2760,10 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
                 jsonParam.put("surchr", jarray_surcharge);
                 jsonParam.put("price", jarray_price);
                 jsonParam.put("Comp_D", companyCode);
+                jsonParam.put("OutletID", UserInfo.OutletID);
+                jsonParam.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
-            } else if ((posItem.posType.equalsIgnoreCase(StaticConstants.KEY_TAG_POS_TYPE_R))){
+            } else if ((posItem.posType.equalsIgnoreCase(StaticConstants.KEY_TAG_POS_TYPE_R))) {
 
                 jsonParam.put("Tbl", detail.getTableItem().getCode());
                 jsonParam.put("Stw", "#" + steward);
@@ -2669,6 +2787,8 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
                 jsonParam.put("surchr", jarray_surcharge);
                 jsonParam.put("price", jarray_price);
                 jsonParam.put("Comp_D", companyCode);
+                jsonParam.put("OutletID", UserInfo.OutletID);
+                jsonParam.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             }
 
             parameter = jsonParam.toString();
@@ -2797,10 +2917,11 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
                 jsonParam.put("surchr", jarray_surcharge);
                 jsonParam.put("price", jarray_price);
                 jsonParam.put("Comp_D", "");
+                jsonParam.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
-            } else if ((posItem.posType.equalsIgnoreCase(StaticConstants.KEY_TAG_POS_TYPE_R))){
+            } else if ((posItem.posType.equalsIgnoreCase(StaticConstants.KEY_TAG_POS_TYPE_R))) {
 
-                jsonParam.put("Tbl",table);
+                jsonParam.put("Tbl", table);
                 jsonParam.put("Stw", "#" + steward);
                 jsonParam.put("ItemCode", jarray_code);
                 jsonParam.put("StrQty", jarray_StrQty);
@@ -2822,6 +2943,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
                 jsonParam.put("surchr", jarray_surcharge);
                 jsonParam.put("price", jarray_price);
                 jsonParam.put("Comp_D", "");
+                jsonParam.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             }
 
             parameter = jsonParam.toString();
@@ -2844,6 +2966,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
             jsonObject.put("pos", pos);
             jsonObject.put("token", token);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
 
             return jsonObject.toString();
 
@@ -2856,10 +2979,10 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
     }
 
 
-    public static String createSendHomeDelevryJSON(Context context, TakeOrderAdapter takeOrderAdapter,
-                                                   String table, DiscountLayout discountLayout, String companyCode,
-                                                   String orderType, String orderRemark, String guest,
-                                                   String steward, String cover, String flag) throws JSONException {
+    public static String createSendHomeDeliveryJSON(Context context, TakeOrderAdapter takeOrderAdapter,
+                                                    String table, DiscountLayout discountLayout, String companyCode,
+                                                    String orderType, String orderRemark, String guest,
+                                                    String steward, String cover, String flag) throws JSONException {
 
         OrderDetail detail = takeOrderAdapter.getOrderDetail();
 
@@ -2965,6 +3088,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             jsonParam.put("meal_item", jarray_meal);
             jsonParam.put("Comp_D", companyCode);
             jsonParam.put("flag", flag);
+            jsonParam.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             //jsonParam.put("Disc_code", Util.checkStringIsEmpty(dis_code));
             // jsonParam.put("Disc_per", Util.checkStringIsEmpty(dis_per));
 
@@ -2994,6 +3118,7 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
             //    jsonObject.put(JSON_TAG_TABLE_TAG, "");
             jsonObject.put(JSON_TAG_DATA_SYNC_POS, pos);
             jsonObject.put(JSON_TAG_DATA_TOKEN, token);
+            jsonObject.put(JSON_TAG_GOP_OUTLET_ID, UserInfo.OutletID);
             return jsonObject.toString();
 
         } catch (Exception ex) {

@@ -127,13 +127,13 @@
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Add_Outlet"
+            android:name=".multiTenancy.AddOutletActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name=".Edit_Outlet_Details"
+            android:name=".multiTenancy.EditOutletActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustPan" />
@@ -195,6 +195,17 @@
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustPan"/>
 
+        <activity
+            android:name=".Admin_Rights"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan"/>
+
+        <activity
+            android:name=".AdminPermissionList"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan"/>
 
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"

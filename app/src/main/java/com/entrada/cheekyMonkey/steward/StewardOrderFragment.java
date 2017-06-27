@@ -1994,7 +1994,7 @@ public class StewardOrderFragment extends Fragment implements
                     String orderNO = layout_bill_operation.getVisibility() == View.VISIBLE ?
                             holdOrdersLayout.textviewForOrderno.getText().toString() : "";
 
-                    String parameter = UtilToCreateJSON.createSendHomeDelevryJSON(
+                    String parameter = UtilToCreateJSON.createSendHomeDeliveryJSON(
                             context, takeOrderAdapter, orderNO, discountLayout, companyCode, order_type,
                             orderRemark, guest_code, steward, cover, flag);
                     String serverIP = POSApplication.getSingleton()
@@ -2470,7 +2470,7 @@ public class StewardOrderFragment extends Fragment implements
 
         if (!TextUtils.isEmpty(response)) {
 
-            boolean isSuccess = UtilToCreateJSON.parseHomeDelevryOrderResponse(
+            boolean isSuccess = UtilToCreateJSON.parseHomeDeliveryOrderResponse(
                     context, response, textviewForBIllno, textviewForDiscount,
                     textviewForSubtotal, textviewForTax, textviewForTotal, textViewChange);
 

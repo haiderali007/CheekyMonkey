@@ -52,6 +52,7 @@ public class PrefHelper {
     public static final String DRAWER_LOCK_MODE = "drawer_lock";
     public static final String DRAWER_LOCK_INDEX = "drawer_lock_index";
     public static final String EVENT_MESSAGE = "message";
+    public static final String OUTLET_ID = "OutletID";
 
     public static final String TEMP_URL = "url";
     public  static final String GCM_TOKEN = "gcmtoken";

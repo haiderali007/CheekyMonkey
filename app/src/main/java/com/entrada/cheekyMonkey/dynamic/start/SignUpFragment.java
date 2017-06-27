@@ -1,6 +1,5 @@
 package com.entrada.cheekyMonkey.dynamic.start;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -140,7 +139,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
                             phone = et_phone.getText().toString();
                             email = et_email.getText().toString();
 
-                            String parameter = UtilToCreateJSON.createGuestParamter(
+                            String parameter = UtilToCreateJSON.createGuestParameter(
                                     guest_name, phone, email, "",
                                     "", "M", "", "", et_password.getText().toString(),
                                     "", "", false);

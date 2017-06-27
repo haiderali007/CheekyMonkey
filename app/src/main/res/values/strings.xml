@@ -19,6 +19,8 @@
     <string name="fb_cancel_string">Facebook Login was cancelled. Please try to login again.</string>
     <string name="ggl_cancel_string">Google Login was cancelled. Please try to login again.</string>
 
+    <string name="expire_date">Expire Date</string>
+    <string name="permission">Permission</string>
     <string name="expire_string">You have 30seconds to place order.</string>
     <string name="expire_title">Your order is about to expire</string>
     <string name="expire_msg">You have 15 seconds more to place order</string>
@@ -182,6 +184,7 @@
     <string name="update_string">Update</string>
     <string name="Cancel_string">Cancel</string>
 
+    <string name="active">Active</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
@@ -285,6 +288,14 @@
     <string name="order_restriction">Sorry! you are not allowed to place order.</string>
     <string name="hit_later">Hit us back later!</string>
     <string name="drinks_roll">Drinks start Rolling</string>
+
+    <string name="admin">Admin</string>
+    <string name="adm_outletid">Outlet ID</string>
+    <string name="outlet_detail">Outlet Detail</string>
+    <string name="outletid">ID</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="city">City</string>
 
 
 

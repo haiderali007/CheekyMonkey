@@ -146,6 +146,17 @@ public class StaticConstants {
     public static final String JSON_TAG_POS_HEADER = "Header";
     public static final String JSON_TAG_POS_FOOTER = "Footer";
 
+    public static final String JSON_TAG_OUTLET_RESULT = "ECABS_PullOutletResult";
+    public static final String JSON_TAG_OUTLET_CODE = "Code";
+    public static final String JSON_TAG_OUTLET_NAME = "Name";
+    public static final String JSON_TAG_OUTLET_LOCATION = "Header";
+    public static final String JSON_TAG_OUTLET_CITY = "Footer";
+
+
+    public static final String JSON_TAG_OUTLETNAME = "OutletName";
+    public static final String JSON_TAG_OUTLETLOCATION = "Location";
+    public static final String JSON_TAG_OUTLETCITY = "City";
+    public static final String JSON_TAG_OPERATION_FLAG = "flag";
 
     /**
      * Guest Login via-PhoneNumber
@@ -173,6 +184,7 @@ public class StaticConstants {
     public static final String JSON_TAG_GOP_ORDER_TYPE = "odtype";
     public static final String JSON_TAG_SERVER_API_KEY = "apikey";
     public static final String JSON_TAG_DEVICE_ID = "deviceid";
+    public static final String JSON_TAG_GOP_OUTLET_ID = "OutletID";
 
     /**
      * GuestOrderResponse---> {"ECABS_GuestOrderResult":"OB000001"}

@@ -275,7 +275,7 @@ public class GuestDiscountLayout implements View.OnClickListener, ICallBackGuest
                             jsonObject.put(itemGroupList.get(i).getGroup_Code(), editText.getText().toString());
                         }
 
-                        String parameter = UtilToCreateJSON.createGuestParamter(
+                        String parameter = UtilToCreateJSON.createGuestParameter(
                                 ed_name.getText().toString(),
                                 ed_mobile.getText().toString(),
                                 ed_emailId.getText().toString(),

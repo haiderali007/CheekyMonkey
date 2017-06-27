@@ -26,6 +26,8 @@ public class BaseNetwork {
     public static final String HOST_URL = "http://localhost/TabletService/Service.svc/";
     public static final String KEY_USER_LOGIN = "/login";
     public static final String ECABS_PullOutletPos = "/ECABS_PullOutletPos";
+    public static final String ECABS_PULL_OUTLET = "/ECABS_PullOutlet";
+    public static final String ECABS_SAVE_OUTLET = "/ECABS_SaveOutlet";
     public static final String SRC_ECABS_CHECK_FORM_TYPE = "/ECABS_CheckFromType";
     public static final String KEY_ECABS_MULTI_CHECK = "/ECABS_CheckQuantity";
     public static final String KEY_ECABS_CHECK_GST_MANDATE = "/gst_mandat";
@@ -161,7 +163,7 @@ public class BaseNetwork {
 
         try {
 
-            if (  TextUtils.isEmpty(hostName)) {
+            if (TextUtils.isEmpty(hostName)) {
                 urlString = new URL(defaultUrlMethod(serverIP) + keyword);
                 Logger.i(Logger.LOGGER_TAG,
                         Logger.LOGGER_OP + urlString.toString());
@@ -173,7 +175,8 @@ public class BaseNetwork {
             urlConnect.setReadTimeout(READ_TIMEOUT_MILLIS);
             urlConnect.setRequestMethod(REQUEST_METHOD_POST);
             urlConnect.setRequestProperty(REQUEST_PROPERTY_FIELD,
-                    REQUEST_PROPERTY_VALUE);
+                    hostName == null || hostName.isEmpty() ?
+                            REQUEST_PROPERTY_VALUE : "application/x-www-form-urlencoded");
 
             if (!TextUtils.isEmpty(parameter))
                 urlConnect.setDoInput(true);

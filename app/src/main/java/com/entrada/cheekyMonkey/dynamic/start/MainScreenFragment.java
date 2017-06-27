@@ -7,8 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -39,8 +37,9 @@ import com.entrada.cheekyMonkey.appInterface.OnBackPressInterface;
 import com.entrada.cheekyMonkey.db.DBConstants;
 import com.entrada.cheekyMonkey.db.POSDatabase;
 import com.entrada.cheekyMonkey.dynamic.google.gmail.SendSmtpMail;
-import com.entrada.cheekyMonkey.dynamic.syncData.SyncFragment;
 import com.entrada.cheekyMonkey.entity.UserInfo;
+import com.entrada.cheekyMonkey.multiTenancy.AddOutletFragment;
+import com.entrada.cheekyMonkey.multiTenancy.pos_integration.FetchTokenTask;
 import com.entrada.cheekyMonkey.staticData.PrefHelper;
 import com.entrada.cheekyMonkey.steward.notificationUI.AdminActivity;
 import com.entrada.cheekyMonkey.steward.notificationUI.KitchenActivity;
@@ -73,14 +72,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import de.hdodenhof.circleimageview.CircleImageView;
-import io.fabric.sdk.android.services.concurrency.AsyncTask;
 
 /**
  * Created by Rahul on 14/05/2016.
@@ -97,7 +90,6 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
     CallbackManager callbackManager;
     String guest_name = "", guest_id = "", email = "", birthday = "", gender = "M", picture="";
     ProgressBar progress_ggl, progress_fb;
-
     TextView tvShowPassword, tvHidePassword;
 
 
@@ -588,7 +580,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
         try {
 
             String password = Long.toHexString(Double.doubleToLongBits(Math.random())).substring(0, 7);
-            String parameter = UtilToCreateJSON.createGuestParamter(
+            String parameter = UtilToCreateJSON.createGuestParameter(
                     guest_name, guest_id, email, birthday, "", gender, "", "", password, "", "", true);
 
             GuestProfileTask guestProfileTask = new GuestProfileTask(context, parameter, UserInfo.ServerIP, progress_fb, this);
@@ -716,7 +708,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
             guest_id = id;
             guest_name = name;
             String password = Long.toHexString(Double.doubleToLongBits(Math.random())).substring(0, 7);
-            String parameter = UtilToCreateJSON.createGuestParamter(name, id, email, "", "", "M", "", "", password, "", "", true);
+            String parameter = UtilToCreateJSON.createGuestParameter(name, id, email, "", "", "M", "", "", password, "", "", true);
 
             GuestProfileTask guestProfileTask = new GuestProfileTask(context, parameter, UserInfo.ServerIP, progress_ggl, this);
             guestProfileTask.execute();
@@ -861,8 +853,10 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
             frameLayout.removeAllViews();
             FragmentManager fmOther1 = getChildFragmentManager();
             FragmentTransaction transaction = fmOther1.beginTransaction();
-            SyncFragment syncFragment = new SyncFragment();
-            transaction.replace(R.id.container, syncFragment).commitAllowingStateLoss();
+            //SyncFragment syncFragment = new SyncFragment();
+            AddOutletFragment addOutletFragment= new AddOutletFragment();
+            transaction.replace(R.id.container, addOutletFragment).commitAllowingStateLoss();
+            currentBackListener = addOutletFragment;
         }
 
     }
@@ -949,6 +943,7 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
         if (currentBackListener != null && currentBackListener.onBackPress()) {
             currentBackListener = null;
             return true;
+
         } else if (frameLayout.getVisibility() == View.VISIBLE) {
             frameLayout.setVisibility(View.GONE);
             layout_main.setVisibility(View.VISIBLE);
@@ -957,8 +952,6 @@ public class MainScreenFragment extends Fragment implements View.OnClickListener
 
         return false;
     }
-
-
 
 }
 

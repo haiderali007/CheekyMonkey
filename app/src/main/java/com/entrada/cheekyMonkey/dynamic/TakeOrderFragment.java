@@ -15,7 +15,6 @@ import android.location.Geocoder;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
@@ -54,6 +53,7 @@ import com.entrada.cheekyMonkey.entity.Items;
 import com.entrada.cheekyMonkey.entity.MenuItem;
 import com.entrada.cheekyMonkey.entity.POSItem;
 import com.entrada.cheekyMonkey.entity.UserInfo;
+import com.entrada.cheekyMonkey.multiTenancy.pos_integration.PosIntegration;
 import com.entrada.cheekyMonkey.network.BaseNetwork;
 import com.entrada.cheekyMonkey.staticData.PrefHelper;
 import com.entrada.cheekyMonkey.staticData.ResultMessage;
@@ -508,8 +508,8 @@ public class TakeOrderFragment extends Fragment implements
 
                 } else {
                     //UserInfo.showAccessDeniedDialog(context, getString(R.string.order_restriction));
-                    submitOrder();
-//                    submitOrderWithoutValidation();
+                    //submitOrder();
+                    submitOrderWithoutValidation();
                 }
 
                 break;
@@ -696,6 +696,27 @@ public class TakeOrderFragment extends Fragment implements
                         context, tableItem.getName(), tableItem.getCode(), response, this);
 
             if (isSuccess) {
+
+                ArrayList<OrderItem> orderitemList = takeOrderAdapter.getDataSet();
+                OrderItem orderItem = orderitemList.get(0);
+
+                String email_id = "indianmesh@gmail.com";
+                String seller_id = "1";
+                String device_token = "123lenovo";
+                String table_id = tableItem.code;
+                String table_number = tableItem.name;
+                String category_id = orderItem.getO_categ_code();
+                String category_name = orderItem.getO_categ_code();
+                String item_id =  orderItem.getO_code();
+                String item_name = orderItem.getO_name();
+                String item_qty = String.valueOf(orderItem.getO_quantity());
+                String item_price = String.valueOf(orderItem.getO_price());
+
+                PosIntegration posIntegration = new PosIntegration();
+                posIntegration.savePosOrder(context, email_id, seller_id,device_token,
+                        table_id,table_number, category_id, category_name,
+                        item_id, item_name, item_qty, item_price);
+
                 clearData();
             }
 

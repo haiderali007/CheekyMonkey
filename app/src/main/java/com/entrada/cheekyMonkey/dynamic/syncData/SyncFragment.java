@@ -56,8 +56,7 @@ public class SyncFragment extends Fragment implements ICallResponse{
     public void syncPOS(){
 
         String parameter = UtilToCreateJSON.createPOSJSON(context);
-        String serverIP = POSApplication.getSingleton().getmDataModel()
-                .getUserInfo().getServerIP();
+        String serverIP = POSApplication.getSingleton().getmDataModel().getUserInfo().getServerIP();
 
         AsyncPosTask posTask = new AsyncPosTask(context, serverIP, parameter);
         AsyncTaskTools.execute(posTask);

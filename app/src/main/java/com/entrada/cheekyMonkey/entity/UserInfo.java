@@ -31,7 +31,7 @@ import com.entrada.cheekyMonkey.ui.CustomTextview;
  */
 public class UserInfo {
 
-
+    public static String OutletID = "";
     public static String USER_ID = "";
     public static String editText = "";
     public static String guest_id = "";
@@ -53,9 +53,8 @@ public class UserInfo {
     public String User_Password = "";
     public String POS = "";
     public String PERMISSION = "";
-    //public static String ServerIP = "192.168.43.93/tb";
     //public static String ServerIP = "entradasoft.ga";
-    //public static String ServerIP = "192.168.2.104/tb";
+    //public static String ServerIP = "192.168.2.108/tb";
     //public static String ServerIP = "iamrohit-001-site1.ftempurl.com";
     public static String ServerIP ="entradasoft-001-site1.htempurl.com";
 

@@ -13,7 +13,8 @@
         android:layout_gravity="center"
         android:src="@drawable/app_icon1"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/app_name"/>
 
     <LinearLayout
         android:layout_width="wrap_content"

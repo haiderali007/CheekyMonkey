@@ -244,7 +244,7 @@ public class CompanyDiscountLayout implements View.OnClickListener, ICallBackCom
                             jsonDiscount.put(list.get(i).getGroup_Code(), textDiscount.getText().toString());
                         }
 
-                        String parameter = UtilToCreateJSON.CreateCompanyDisountJson(
+                        String parameter = UtilToCreateJSON.CreateCompanyDiscountJson(
                                 context, editTextCompCode, editTextCompName, editTextAddress1,
                                 editTextAddress2, editTextCompCity, editTextCompPin, edittTextPhone,
                                 textViewCompanyInfoDate, textViewLoyaltyEffDate, spinnerStatusComp,
