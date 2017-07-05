@@ -280,9 +280,9 @@ public class NotificationFragment extends Fragment implements
             detailAdp.clearDataSetALL();
             detailAdp.notifyDataSetChanged();
 
-            String paramter = UtilToCreateJSON.createParamToFetchOrder(context, orderStatus);
+            String parameter = UtilToCreateJSON.createParamToFetchOrder(context, orderStatus);
             GuestCommonTask<String, ResultMessage> commomTask = new GuestCommonTask<>(
-                    context, this, BaseNetwork.KEY_ECABS_DispalyGuestOrder, paramter, pb);
+                    context, this, BaseNetwork.KEY_ECABS_DispalyGuestOrder, parameter, pb);
             AsyncTaskTools.execute(commomTask);
 
         }catch (Exception e){

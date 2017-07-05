@@ -186,6 +186,7 @@
 
     <string name="active">Active</string>
     <string name="save">Save</string>
+    <string name="update">Update</string>
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
 
@@ -294,6 +295,8 @@
     <string name="outlet_detail">Outlet Detail</string>
     <string name="outletid">ID</string>
     <string name="name">Name</string>
+    <string name="userType">User Type</string>
+    <string name="userID">User ID</string>
     <string name="address">Address</string>
     <string name="city">City</string>
 

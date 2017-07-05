@@ -482,6 +482,7 @@ public class BillGenerateFragment extends Fragment implements OnBackPressInterfa
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+                txtOrderDiscount.setClickable(true);
                 TableItem item = (TableItem) adapter_bill_gen.getItem(i);
                 table = item.getName().isEmpty() ? item.getCode() : item.getName();
                 tableCode = item.getCode();

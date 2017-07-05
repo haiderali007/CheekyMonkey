@@ -13,6 +13,7 @@ import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,6 +48,7 @@ import com.entrada.cheekyMonkey.appInterface.OnBackPressInterface;
 import com.entrada.cheekyMonkey.db.DBConstants;
 import com.entrada.cheekyMonkey.db.POSDatabase;
 import com.entrada.cheekyMonkey.dynamic.gpsTracker.GPSTracker;
+import com.entrada.cheekyMonkey.dynamic.syncData.FetchAndStoreMenuItemsTask;
 import com.entrada.cheekyMonkey.entity.CategoryItem;
 import com.entrada.cheekyMonkey.entity.GroupItems;
 import com.entrada.cheekyMonkey.entity.Items;
@@ -61,6 +63,7 @@ import com.entrada.cheekyMonkey.staticData.StaticConstants;
 import com.entrada.cheekyMonkey.steward.discount.AutoDiscount;
 import com.entrada.cheekyMonkey.steward.discount.DiscountLayout;
 import com.entrada.cheekyMonkey.steward.discount.ICallDiscList;
+import com.entrada.cheekyMonkey.steward.notificationUI.NotificationFragment;
 import com.entrada.cheekyMonkey.steward.order.ICallBackSendOrderResponse;
 import com.entrada.cheekyMonkey.steward.order.SendOrderTask;
 import com.entrada.cheekyMonkey.takeorder.ICallTable;
@@ -354,7 +357,8 @@ public class TakeOrderFragment extends Fragment implements
 
         try {
             Cursor cursor = mdb.rawQuery("Select * from " + DBConstants.KEY_GUEST_ORDERS_TABLE +
-                    " where " + DBConstants.KEY_GUEST_ORDER_STATUS + "= 'K' ", null);
+                    " where " + DBConstants.KEY_GUEST_ORDER_STATUS +
+                    "= '"+ NotificationFragment.ORDER_UNDER_PROCESS+"' ", null);
 
             if (cursor.moveToFirst()) {
 
@@ -706,7 +710,7 @@ public class TakeOrderFragment extends Fragment implements
                 String table_id = tableItem.code;
                 String table_number = tableItem.name;
                 String category_id = orderItem.getO_categ_code();
-                String category_name = orderItem.getO_categ_code();
+                String category_name = "Scotch & Blend";
                 String item_id =  orderItem.getO_code();
                 String item_name = orderItem.getO_name();
                 String item_qty = String.valueOf(orderItem.getO_quantity());
@@ -717,6 +721,7 @@ public class TakeOrderFragment extends Fragment implements
                         table_id,table_number, category_id, category_name,
                         item_id, item_name, item_qty, item_price);
 
+                refreshItemPrice();
                 clearData();
             }
 
@@ -725,6 +730,14 @@ public class TakeOrderFragment extends Fragment implements
 
     }
 
+    public void refreshItemPrice(){
+
+        String parameter = UtilToCreateJSON.createToken();
+        String serverIP = POSApplication.getSingleton().getmDataModel().getUserInfo().getServerIP();
+        FetchAndStoreMenuItemsTask menuItemsTask = new FetchAndStoreMenuItemsTask(
+                context, parameter, serverIP, null, null);
+        menuItemsTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
 
     @Override
     public boolean onBackPress() {

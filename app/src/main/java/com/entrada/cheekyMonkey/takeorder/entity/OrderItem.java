@@ -21,7 +21,7 @@ public class OrderItem {
     public String o_cover_item = "";
     public String o_meal_cors_item = "";
     public String o_meal_name = "";
-    public String o_surcharge = "";
+    public String o_surcharge = "0";
     public String multicheck = "";
     public String orderNo = "";
 

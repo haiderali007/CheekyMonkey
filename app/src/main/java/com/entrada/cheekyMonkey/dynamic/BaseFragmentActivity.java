@@ -56,6 +56,7 @@ import com.entrada.cheekyMonkey.Help_Layout;
 import com.entrada.cheekyMonkey.IntroductionScreen;
 import com.entrada.cheekyMonkey.POSApplication;
 import com.entrada.cheekyMonkey.R;
+import com.entrada.cheekyMonkey.appInterface.IAsyncTaskRunner;
 import com.entrada.cheekyMonkey.appInterface.ICallBackFinish;
 import com.entrada.cheekyMonkey.appInterface.OnBackPressInterface;
 import com.entrada.cheekyMonkey.db.DBConstants;
@@ -74,7 +75,9 @@ import com.entrada.cheekyMonkey.dynamic.syncData.FetchAndStoreMenuItemsTask;
 import com.entrada.cheekyMonkey.dynamic.syncData.ICallResponse;
 import com.entrada.cheekyMonkey.entity.TitleHeader;
 import com.entrada.cheekyMonkey.entity.UserInfo;
+import com.entrada.cheekyMonkey.network.BaseNetwork;
 import com.entrada.cheekyMonkey.staticData.PrefHelper;
+import com.entrada.cheekyMonkey.staticData.ResultMessage;
 import com.entrada.cheekyMonkey.staticData.StaticConstants;
 import com.entrada.cheekyMonkey.steward.ExpandableListAdapter;
 import com.entrada.cheekyMonkey.steward.StewardOrderFragment;
@@ -82,9 +85,11 @@ import com.entrada.cheekyMonkey.steward.bill.BillGenerateFragment;
 import com.entrada.cheekyMonkey.steward.notificationUI.NotificationFragment;
 import com.entrada.cheekyMonkey.steward.ordersplit.OrderSplitFragment;
 import com.entrada.cheekyMonkey.steward.other.CustomLoginPopup;
+import com.entrada.cheekyMonkey.task.GuestCommonTask;
 import com.entrada.cheekyMonkey.ui.CustomTextview;
 import com.entrada.cheekyMonkey.ui.SlidingUpPanelLayout;
 import com.entrada.cheekyMonkey.uiDialog.ExitDialog;
+import com.entrada.cheekyMonkey.util.AsyncTaskTools;
 import com.entrada.cheekyMonkey.util.Logger;
 import com.entrada.cheekyMonkey.util.UtilToCreateJSON;
 import com.google.android.gms.common.ConnectionResult;
@@ -142,7 +147,7 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
     private static int RESULT_LOAD_IMG = 1;
     String imgDecodableString;
     protected SlidingUpPanelLayout slidingUpPanelLayout;
-    ScheduledExecutorService statusScheduler;
+    ScheduledExecutorService statusScheduler, ordersScheduler;
 
 
     //Define a request code to send to Google Play services
@@ -169,7 +174,8 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
         showHome();
 
         initLocationAPI();
-        //scheduleExecutors();
+        scheduleExecutors();
+        //schedulePendingOrdersExecutors();
 
         img_picture = (CircleImageView) findViewById(R.id.profile_image);
         new LoadImage().execute();
@@ -1379,6 +1385,9 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
             if (statusScheduler != null && !statusScheduler.isShutdown())
                 statusScheduler.shutdownNow();
 
+            if (ordersScheduler != null && !ordersScheduler.isShutdown())
+                ordersScheduler.shutdownNow();
+
             if (receiver != null) {
                 unregisterReceiver(receiver);
                 receiver = null;
@@ -1622,11 +1631,41 @@ public class BaseFragmentActivity extends FragmentActivity implements View.OnCli
 
                 Logger.i("FetchCurrentPrice >>>>>>>>>>>", " Running");
                 refreshItemPrice();
+                //refreshPendingOrders();
 
             }
         }, 30, 20, TimeUnit.SECONDS);
     }
 
+    public void schedulePendingOrdersExecutors() {
+
+        ordersScheduler = Executors.newSingleThreadScheduledExecutor();
+        ordersScheduler.scheduleWithFixedDelay(new Runnable() {
+
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                // Hit WebService
+
+                Logger.i("Pending Orders >>>>>>>>>>>", " Running");
+                refreshPendingOrders();
+
+            }
+        }, 0, 10, TimeUnit.SECONDS);
+    }
+
+    public void refreshPendingOrders(){
+
+        String parameter = UtilToCreateJSON.createParamToFetchOrder(context, "");
+        String serverIP = POSApplication.getSingleton().getmDataModel().getUserInfo().getServerIP();
+        FetchPendingOrdersTask pendingOrdersTask = new FetchPendingOrdersTask(context, parameter, serverIP, this);
+        pendingOrdersTask.execute();
+    }
+
+    public void getResponsePendingOrders(String response){
+
+        Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
+    }
 
     public void refreshItemPrice() {
 

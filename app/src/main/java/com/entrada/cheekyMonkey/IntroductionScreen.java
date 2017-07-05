@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.entrada.cheekyMonkey.admin.ShowEmployeeActivity;
 import com.entrada.cheekyMonkey.appInterface.ICallBackFinish;
 import com.entrada.cheekyMonkey.appInterface.OnBackPressInterface;
 import com.entrada.cheekyMonkey.dynamic.BaseFragmentActivity;
@@ -26,7 +27,6 @@ import com.entrada.cheekyMonkey.dynamic.start.MainScreenFragment;
 import com.entrada.cheekyMonkey.dynamic.syncData.FetchAndStoreMenuItemsTask;
 import com.entrada.cheekyMonkey.dynamic.syncData.ICallResponse;
 import com.entrada.cheekyMonkey.entity.UserInfo;
-import com.entrada.cheekyMonkey.multiTenancy.AddOutletActivity;
 import com.entrada.cheekyMonkey.staticData.PrefHelper;
 import com.entrada.cheekyMonkey.staticData.StaticConstants;
 import com.entrada.cheekyMonkey.steward.notificationUI.AdminActivity;
@@ -52,7 +52,7 @@ public class IntroductionScreen extends FragmentActivity implements ICallBackFin
         setContentView(R.layout.introductionscreen);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        loadingScreen = (RelativeLayout)findViewById(R.id.layout_loading);
+        loadingScreen = (RelativeLayout) findViewById(R.id.layout_loading);
         //comp_logo = (ImageView) findViewById(R.id.image_csat_logo);
 
         ProgressBar progress_loading = (ProgressBar) findViewById(R.id.progress_loading);
@@ -68,7 +68,7 @@ public class IntroductionScreen extends FragmentActivity implements ICallBackFin
             }
         });
 
-        if (Build.VERSION.SDK_INT >= 19){
+        if (Build.VERSION.SDK_INT >= 19) {
             Window window = getWindow();
             window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -85,7 +85,7 @@ public class IntroductionScreen extends FragmentActivity implements ICallBackFin
     }
 
 
-    public void setNetStatusController(){
+    public void setNetStatusController() {
 
         IntentFilter filter = new IntentFilter();
         filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
@@ -95,7 +95,7 @@ public class IntroductionScreen extends FragmentActivity implements ICallBackFin
         registerReceiver(receiver, filter);
     }
 
-    public void goToMainScreen(){
+    public void goToMainScreen() {
 
         if (NetworkUtil.getConnectivityStatus(this) != 0) {
 
@@ -108,10 +108,8 @@ public class IntroductionScreen extends FragmentActivity implements ICallBackFin
                     .equalsIgnoreCase(PrefHelper.FIRST_TIME_LUNCHAPP_DONE)) {
 
                 //fetchCurrentPrice();
-                Intent intent = new Intent(IntroductionScreen.this, Admin_Rights.class);
+                Intent intent = new Intent(IntroductionScreen.this, BaseFragmentActivity.class);
                 startActivity(intent);
-//                Intent intent = new Intent(IntroductionScreen.this, BaseFragmentActivity.class);
-//                startActivity(intent);
                 finish();
 
             } else if (PrefHelper.getStoredString(IntroductionScreen.this,
@@ -130,7 +128,7 @@ public class IntroductionScreen extends FragmentActivity implements ICallBackFin
                 startActivity(intent);
                 finish();
 
-            }else
+            } else
                 showLoginScreen();
         }
     }
@@ -149,9 +147,9 @@ public class IntroductionScreen extends FragmentActivity implements ICallBackFin
     }
 
 
-    public void fetchCurrentPrice(){
+    public void fetchCurrentPrice() {
 
-        if (NetworkUtil.getConnectivityStatus(this) != 0){
+        if (NetworkUtil.getConnectivityStatus(this) != 0) {
 
             loadingScreen.setVisibility(View.VISIBLE);
 
@@ -193,7 +191,7 @@ public class IntroductionScreen extends FragmentActivity implements ICallBackFin
         if (backPressInterface == null)
             super.onBackPressed();
 
-        else if (! backPressInterface.onBackPress()) {
+        else if (!backPressInterface.onBackPress()) {
             ExitDialog exitDialog = new ExitDialog(this, this);
             exitDialog.show();
         }

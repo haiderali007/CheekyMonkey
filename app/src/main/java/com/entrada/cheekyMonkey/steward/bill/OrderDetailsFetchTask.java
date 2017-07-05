@@ -101,10 +101,8 @@ public class OrderDetailsFetchTask extends AsyncTask<String, OrderTable, OrderTa
 
                     obj_order = new OrderTable();
 
-                    UserInfo.Orderno = obj_order.order_no = jsonObject
-                            .getString("Order");
-                    obj_order.item_name = jsonObject
-                            .getString("Name");
+                    UserInfo.Orderno = obj_order.order_no = jsonObject.getString("Order");
+                    obj_order.item_name = jsonObject.getString("Name");
                     obj_order.item_qty = jsonObject.getString("Qty");
                     int q1 = Integer.parseInt(obj_order.item_qty);
                     obj_order.item_price = jsonObject.getString("Itemprice");

@@ -5,6 +5,11 @@
     android:background="@drawable/back4"
     android:orientation="vertical">
 
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -58,8 +63,7 @@
             android:hint="@string/adm_outletid"
             android:padding="10dp"
             android:textColor="@color/Black"
-            android:textColorHint="@color/Grey"
-             />
+            android:textColorHint="@color/Grey" />
 
         <EditText
             android:id="@+id/edt_adm_outlet_name"
@@ -170,8 +174,23 @@
             android:minHeight="@dimen/take_order_tab_height"
             android:text="@string/save"
             android:textAllCaps="false"
-            android:textSize="@dimen/extra_large" />
+            android:textSize="@dimen/extra_large"
+            android:visibility="visible" />
 
+        <Button
+            android:id="@+id/btn_adm_outlet_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/button_state"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:minHeight="@dimen/take_order_tab_height"
+            android:text="@string/update"
+            android:textAllCaps="false"
+            android:textSize="@dimen/extra_large"
+            android:visibility="gone" />
     </LinearLayout>
 
     <Button

@@ -168,11 +168,10 @@
     <LinearLayout
         android:id="@+id/ll_bill_cancel_options"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/header3_height"
+        android:layout_height="@dimen/header2_height"
         android:layout_alignParentBottom="true"
         android:background="@color/Black"
-        android:visibility="gone"
-        >
+        android:visibility="gone">
 
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
@@ -187,7 +186,6 @@
             android:text="Complimentary"
             android:textSize="@dimen/medium" />
 
-
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/tv_full_discount"
             android:layout_width="0dp"
@@ -201,7 +199,6 @@
             android:gravity="center"
             android:text="Full Discount"
             android:textSize="@dimen/medium" />
-
 
         <com.entrada.cheekyMonkey.ui.CustomTextview
             android:id="@+id/tv_bill_cancel"

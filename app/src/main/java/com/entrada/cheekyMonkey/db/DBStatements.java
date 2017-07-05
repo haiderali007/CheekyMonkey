@@ -27,6 +27,32 @@ public class DBStatements implements DBConstants {
             + TEXT + FINISH_COLUMN;
 
 
+    /**
+     * Create Statement for RMS_ADMIN_Table ******************
+     */
+
+    public static final String CREATE_RMS_ADMIN_TABLE = CREATE_TABLE_BASE
+            + KEY_ADMIN_TABLE_NAME + START_COLUMN + _ID + INTEGER + PRIMARY_KEY
+            + AUTO_ICNREMENT + COMMA + KEY_ADMIN_TABLE_OUTLET_ID + TEXT + COMMA
+            + KEY_ADMIN_TABLE_ADMIN_NAME + TEXT + COMMA
+            + KEY_ADMIN_TABLE_USER_ID + TEXT + COMMA
+            + KEY_ADMIN_TABLE_USER_PASSWORD + TEXT + COMMA
+            + KEY_ADMIN_TABLE_USER_TYPE + TEXT + COMMA
+            + KEY_ADMIN_TABLE_ACTIVE + TEXT + COMMA
+            + KEY_ADMIN_TABLE_EXPIRE_DATE + TEXT + COMMA
+            + KEY_ADMIN_TABLE_PERMISSION + TEXT + FINISH_COLUMN;
+
+
+    /**
+     * Create RMS_ADMIN_PERMISSION_Table ******************
+     */
+
+    public static final String CREATE_RMS_PERMISSION_TABLE = CREATE_TABLE_BASE
+            + KEY_ADMIN_TABLE_PERRMISSION + START_COLUMN + _ID + INTEGER + PRIMARY_KEY
+            + AUTO_ICNREMENT + COMMA + KEY_ADMIN_TABLE_PERMISSION_OUTLET_ID + TEXT + COMMA
+            + KEY_ADMIN_TABLE_PERMISSION_USER_ID + TEXT + COMMA
+            + KEY_ADMIN_TABLE_PERMISSION_TYPE + TEXT + FINISH_COLUMN;
+
 
     /**
      * Create Statement for Outlet_Pos Table ******************
@@ -283,14 +309,14 @@ public class DBStatements implements DBConstants {
             + KEY_GUEST_ORDER_TABLE_NO + TEXT + COMMA + KEY_GUEST_ORDER_STATUS + TEXT + FINISH_COLUMN;
 
 
-        public static final String CREATE_GUEST_ORDERS_TABLE = CREATE_TABLE_BASE
-                + KEY_GUEST_ORDERS_TABLE + START_COLUMN + _ID + INTEGER + PRIMARY_KEY
-                + AUTO_ICNREMENT + COMMA + KEY_ORDER_NUMBER + TEXT + COMMA
-                + KEY_TABLE_NUMBER + TEXT + COMMA + KEY_ITEM_CODE + TEXT + COMMA
-                + KEY_ITEM_NAME + TEXT + COMMA + KEY_ITEM_PRICE + TEXT + COMMA
-                + KEY_ITEM_QTY + TEXT + COMMA + KEY_ORDER_TAX + TEXT + COMMA + KEY_ORDER_AMOUNT + TEXT
-                + COMMA + KEY_ORDER_STATUS + TEXT + COMMA + KEY_ORDER_DATE + TEXT + COMMA
-                + KEY_ORDER_TIME + TEXT + FINISH_COLUMN;
+    public static final String CREATE_GUEST_ORDERS_TABLE = CREATE_TABLE_BASE
+            + KEY_GUEST_ORDERS_TABLE + START_COLUMN + _ID + INTEGER + PRIMARY_KEY
+            + AUTO_ICNREMENT + COMMA + KEY_ORDER_NUMBER + TEXT + COMMA
+            + KEY_TABLE_NUMBER + TEXT + COMMA + KEY_ITEM_CODE + TEXT + COMMA
+            + KEY_ITEM_NAME + TEXT + COMMA + KEY_ITEM_PRICE + TEXT + COMMA
+            + KEY_ITEM_QTY + TEXT + COMMA + KEY_ORDER_TAX + TEXT + COMMA + KEY_ORDER_AMOUNT + TEXT
+            + COMMA + KEY_ORDER_STATUS + TEXT + COMMA + KEY_ORDER_DATE + TEXT + COMMA
+            + KEY_ORDER_TIME + TEXT + FINISH_COLUMN;
 
 
     public static final String CREATE_MENU_FTS = "CREATE VIRTUAL TABLE  Menu_Item_Table_fts USING fts3("
@@ -432,7 +458,7 @@ public class DBStatements implements DBConstants {
 
 
     public static final String CREATE_TABLE_IMAGE = CREATE_TABLE_BASE
-            + IMAGE_TABLE + START_COLUMN + IMAGE_NAME  + TEXT + COMMA + IMAGE_DATA + " BLOB" + FINISH_COLUMN;
+            + IMAGE_TABLE + START_COLUMN + IMAGE_NAME + TEXT + COMMA + IMAGE_DATA + " BLOB" + FINISH_COLUMN;
 
     public static final String CREATE_CURRENCY_TABLE = CREATE_TABLE_BASE
             + KEY_CURRENCY_TABLE + START_COLUMN + _ID + INTEGER + PRIMARY_KEY
@@ -442,7 +468,7 @@ public class DBStatements implements DBConstants {
             + FINISH_COLUMN;
 
 
-        public static final String CREATE_ITEMS_TABLE = CREATE_TABLE_BASE
+    public static final String CREATE_ITEMS_TABLE = CREATE_TABLE_BASE
             + ITEMS_DETAIL_TABLE + START_COLUMN + _ID + INTEGER + PRIMARY_KEY
             + AUTO_ICNREMENT + COMMA + Current_Rate + TEXT + COMMA
             + Inc_Qty + TEXT + COMMA + Inc_Rate + TEXT + COMMA

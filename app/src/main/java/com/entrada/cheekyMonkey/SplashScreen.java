@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.entrada.cheekyMonkey.admin.ShowEmployeeActivity;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
 
@@ -39,7 +40,9 @@ public class SplashScreen extends Activity {
 
             if (mTimerExpired) {
 
-                Intent intent = new Intent(SplashScreen.this, IntroductionScreen.class);
+                /*Intent intent = new Intent(SplashScreen.this, IntroductionScreen.class);
+                startActivity(intent);*/
+                Intent intent = new Intent(SplashScreen.this, ShowEmployeeActivity.class);
                 startActivity(intent);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

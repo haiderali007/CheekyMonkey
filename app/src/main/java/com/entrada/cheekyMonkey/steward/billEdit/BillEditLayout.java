@@ -58,7 +58,6 @@ public class BillEditLayout implements OnItemClickListener, View.OnClickListener
         textviewForTotal = (CustomTextview) tableView.findViewById(R.id.tview_Total);
 
         layoutCancel = (LinearLayout) tableView.findViewById(R.id.ll_bill_cancel_options);
-
         tv_cancel_type = (CustomTextview) tableView.findViewById(R.id.tv_cancel_type);
         tv_comp = (CustomTextview) tableView.findViewById(R.id.tv_comp);
         tv_full_disc = (CustomTextview) tableView.findViewById(R.id.tv_full_discount);
@@ -90,7 +89,6 @@ public class BillEditLayout implements OnItemClickListener, View.OnClickListener
 
                 case "C":
                     textviewHeader.setText(resources.getString(R.string.bill_cancel));
-                    layoutCancel.setVisibility(View.VISIBLE);
                     tv_cancel_type.setVisibility(View.VISIBLE);
                     break;
 

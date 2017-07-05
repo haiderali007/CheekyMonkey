@@ -64,6 +64,29 @@ public interface DBConstants {
 
 
     /**
+     * ADMIN TABLE (CREATE USER TYPE / PERMISSION ETC)**** [CONSTANT] **
+     */
+    String KEY_ADMIN_TABLE_NAME = "RMS_ADMIN";
+    String KEY_ADMIN_TABLE_OUTLET_ID = "Admin_OutletID";
+    String KEY_ADMIN_TABLE_ADMIN_NAME = "Admin_Name";
+    String KEY_ADMIN_TABLE_USER_ID = "Admin_UserID";
+    String KEY_ADMIN_TABLE_USER_PASSWORD = "Admin_Password";
+    String KEY_ADMIN_TABLE_USER_TYPE = "Admin_User_Type";
+    String KEY_ADMIN_TABLE_ACTIVE = "Admin_Active_Deactive";
+    String KEY_ADMIN_TABLE_EXPIRE_DATE = "Admin_Expire_Date";
+    String KEY_ADMIN_TABLE_PERMISSION = "Admin_Permission";
+
+    /**
+     * ADMIN TABLE PERMISSION(PERMISSION ONLY)**** [CONSTANT] **
+     */
+    String KEY_ADMIN_TABLE_PERRMISSION = "RMS_ADMIN_PERMISSION";
+    String KEY_ADMIN_TABLE_PERMISSION_OUTLET_ID = "Admin_OutletID";
+    String KEY_ADMIN_TABLE_PERMISSION_USER_ID = "Admin_UserID";
+    String KEY_ADMIN_TABLE_PERMISSION_TYPE = "Permission";
+
+
+
+    /**
      * OUTLET TABLE(FILL / VACANT / RESERVE )**** [CONSTANT] **
      */
     String KEY_OUTLET_TABLE = "Outlet_Table";

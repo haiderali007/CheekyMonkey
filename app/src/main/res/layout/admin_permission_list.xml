@@ -4,11 +4,62 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:id="@+id/layout11"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header3_height"
+        android:background="@color/Yellow"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/image_back"
+            style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+            android:layout_width="20sp"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/back_string"
+            android:src="@drawable/arrow_left" />
+
+        <ImageView
+            android:layout_width="@dimen/header2_height"
+            android:layout_height="@dimen/header2_height"
+            android:layout_gravity="center"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp"
+            android:src="@drawable/app_icon1" />
+
+        <TextView
+            android:id="@+id/tv_outlet_details"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/admin"
+            android:textColor="@color/grey_dark"
+            android:textSize="@dimen/extra_extra_large" />
+
+        <TextView
+            android:id="@+id/tv_outlet_save"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="0.3"
+            android:gravity="center"
+            android:text="@string/save"
+            android:textColor="@color/Green"
+            android:textSize="@dimen/extra_medium" />
+        <CheckBox
+            android:id="@+id/admin_chk_checkall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/Green"
+            android:checked="false" />
+    </LinearLayout>
+
 
     <ListView
         android:id="@+id/lv_admin_custom"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" />
 
-    </ListView>
 </LinearLayout>

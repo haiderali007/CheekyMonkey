@@ -2,6 +2,8 @@ package com.entrada.cheekyMonkey.takeorder.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -10,9 +12,12 @@ import android.widget.TextView;
 
 import com.entrada.cheekyMonkey.R;
 import com.entrada.cheekyMonkey.adapter.POSListAdapter;
+import com.entrada.cheekyMonkey.db.DBConstants;
+import com.entrada.cheekyMonkey.db.POSDatabase;
 import com.entrada.cheekyMonkey.dynamic.TakeOrderFragment;
 import com.entrada.cheekyMonkey.entity.MenuItem;
 import com.entrada.cheekyMonkey.entity.UserInfo;
+import com.entrada.cheekyMonkey.steward.AddonItems;
 import com.entrada.cheekyMonkey.steward.discount.DiscountLayout;
 import com.entrada.cheekyMonkey.takeorder.entity.OrderDetail;
 import com.entrada.cheekyMonkey.takeorder.entity.OrderItem;
@@ -474,6 +479,9 @@ public class TakeOrderAdapter extends POSListAdapter<OrderItem> {
         holder.layoutItemQtyBottom2.removeAllViews();
         ViewGroup.LayoutParams param = new ViewGroup.LayoutParams(40, 40);
 
+        if (holder.orderItem.o_categ_code.isEmpty())
+            holder.orderItem.o_categ_code = getCategoryCode(holder.orderItem.o_code);
+
         String mDrawableName = "img" + holder.orderItem.o_categ_code;
         int resID = context.getResources().getIdentifier(mDrawableName,
                 "drawable", context.getPackageName());
@@ -490,6 +498,32 @@ public class TakeOrderAdapter extends POSListAdapter<OrderItem> {
         }
     }
 
+    private String getCategoryCode(String itemCode){
+
+        String categCode = "";
+        SQLiteDatabase mdb = POSDatabase.getMenuItem(context).getWritableDatabase();
+        mdb.beginTransaction();
+
+        try {
+
+            Cursor cursor = mdb.rawQuery("SELECT "+DBConstants.Cat_Code+" FROM " + DBConstants.ITEMS_DETAIL_TABLE +
+                    " where " + DBConstants.Item_Code + "='"+itemCode+"'", null);
+
+            if (cursor.moveToFirst())
+                categCode = cursor.getString(0);
+
+            cursor.close();
+
+            mdb.setTransactionSuccessful();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            mdb.endTransaction();
+        }
+
+        return categCode;
+    }
+
     public class OrderViewHolder {
 
         private CustomTextview itemNameTxt, itemQuantityTxt, itemAmountTxt;
@@ -498,4 +532,5 @@ public class TakeOrderAdapter extends POSListAdapter<OrderItem> {
         LinearLayout layoutItemQtyBottom1, layoutItemQtyBottom2;
         OrderItem orderItem;
     }
+
 }

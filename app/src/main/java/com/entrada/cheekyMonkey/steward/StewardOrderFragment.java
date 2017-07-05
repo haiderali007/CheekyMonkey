@@ -161,7 +161,10 @@ public class StewardOrderFragment extends Fragment implements
 
     public CustomTextview textviewForBIllno, textviewForDiscount, textviewForSubtotal, textviewForTax,
             textviewForTotal, textViewTAmt, textViewChange, textViewStlMode, textviewTop,
-            textViewGuestName, tv_OrderNo, tv_Discount, tv_Subtotal, tv_Tax, tv_Total;
+            textViewGuestName, tv_OrderNo, tv_Discount, tv_Subtotal, tv_Tax, tv_Total,
+            tv_comp, tv_full_disc, tv_cancel;
+
+    LinearLayout layoutCancel;
 
     public CustomButton txtOrderClear, txtOrderSubmit, textHoldOrder, txtOrderCancel, txtorderOk, txtCash, txtCredit,
             selectTable, selectRoom, selectGuest, selectDelBoy, newOrder, tv_order_cancel, tv_change_to_comp,
@@ -395,6 +398,16 @@ public class StewardOrderFragment extends Fragment implements
         textView_credit = (CustomButton) v.findViewById(R.id.textview_credit);
         textView_cash.setOnClickListener(this);
         textView_credit.setOnClickListener(this);
+
+        /* ******************* Added on 27-06-2017 *******************************/
+
+        layoutCancel = (LinearLayout) v.findViewById(R.id.ll_bill_cancel_options);
+        tv_comp = (CustomTextview) v.findViewById(R.id.tv_comp);
+        tv_full_disc = (CustomTextview) v.findViewById(R.id.tv_full_discount);
+        tv_cancel = (CustomTextview) v.findViewById(R.id.tv_bill_cancel);
+        tv_comp.setOnClickListener(this);
+        tv_full_disc.setOnClickListener(this);
+        tv_cancel.setOnClickListener(this);
 
         // POS Layout
         posLayoutContainer = (LinearLayout) v.findViewById(R.id.posLayoutContainer);
@@ -894,7 +907,8 @@ public class StewardOrderFragment extends Fragment implements
 
         try {
             Cursor cursor = mdb.rawQuery("Select * from " + DBConstants.KEY_GUEST_ORDERS_TABLE +
-                    " where " + DBConstants.KEY_GUEST_ORDER_STATUS + "= 'K' ", null);
+                    " where " + DBConstants.KEY_GUEST_ORDER_STATUS +
+                    "= '"+NotificationFragment.ORDER_UNDER_PROCESS+"' ", null);
 
             if (cursor.moveToFirst()) {
 
@@ -1803,7 +1817,27 @@ public class StewardOrderFragment extends Fragment implements
                 layout_order_cancel.setVisibility(View.GONE);
                 showDefault();
                 break;
+
+            case R.id.tv_comp:
+                cancelBill("CO");
+                break;
+
+            case R.id.tv_full_discount:
+                cancelBill("F");
+                break;
+
+            case R.id.tv_bill_cancel:
+                cancelBill("C");
+                break;
         }
+    }
+
+    public void cancelBill(String flag){
+
+        if (takeOrderAdapter.getCount() > 0)
+            Util.show_Bill_edit_popup(context, StewardOrderFragment.this, false, flag);
+        else
+            Toast.makeText(context, "Select Bill No.", Toast.LENGTH_SHORT).show();
     }
 
     public void showDiscount() {
@@ -3149,8 +3183,12 @@ public class StewardOrderFragment extends Fragment implements
 
         if (flag.equals("M"))
             txtOrderSubmit.setText(getResources().getString(R.string.update_bill));
-        else
+        else{
+            ll_bottomOrder.setVisibility(View.GONE);
+            layoutCancel.setVisibility(View.VISIBLE);
             txtOrderSubmit.setText(getResources().getString(R.string.save_string));
+
+        }
 
         String table = tableItem == null ? "" : tableItem.code;
         takeOrderAdapter.clearDataSet();

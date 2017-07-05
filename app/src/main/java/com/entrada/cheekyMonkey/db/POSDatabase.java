@@ -119,7 +119,7 @@ public class POSDatabase extends SQLiteOpenHelper {
 
     private String[] getCreateTableStatement() {
 
-        String[] createDBStatements = new String[48];
+        String[] createDBStatements = new String[50];
         createDBStatements[0] = DBStatements.CREATE_USR_TABLE;
         createDBStatements[1] = DBStatements.CREATE_OUTLET_POS_TABLE;
         createDBStatements[2] = DBStatements.CREATE_OUTLET_TABLE;
@@ -168,6 +168,8 @@ public class POSDatabase extends SQLiteOpenHelper {
         createDBStatements[45] = DBStatements.CREATE_ITEMS_TABLE;
         createDBStatements[46] = DBStatements.CREATE_CURRENCY_TABLE;
         createDBStatements[47] = DBStatements.CREATE_RMS_OUTLET_TABLE;
+        createDBStatements[48] = DBStatements.CREATE_RMS_ADMIN_TABLE;
+        createDBStatements[49] = DBStatements.CREATE_RMS_PERMISSION_TABLE;
 
         return createDBStatements;
 

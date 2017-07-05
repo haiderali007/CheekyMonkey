@@ -2709,7 +2709,9 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
 
                         jarray_sub_item.put(list_obj.getO_sub_item());
                     }
+
                     jarray_strCombo.put(list_obj.getO_combo_code());
+
                 } else {
 
                     jarray_code.put("");
@@ -2717,12 +2719,10 @@ public class UtilToCreateJSON extends StaticConstants implements DBConstants {
                     jarray_ItemRemark.put("");
                     jarray_strAddon.put("");
                     jarray_strHappy.put("");
-
                     jarray_strModi.put(String.valueOf((char) 1));
                     jarray_strCombo.put("");
                     jarry_disc.put("0");
                     jarray_sub_item.put("");
-
                     jarray_cover.put("");
                     jarray_meal.put("");
                     jarray_surcharge.put("");

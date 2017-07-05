@@ -31,7 +31,7 @@ import com.entrada.cheekyMonkey.ui.CustomTextview;
  */
 public class UserInfo {
 
-    public static String OutletID = "";
+    public static String OutletID = "C000001";
     public static String USER_ID = "";
     public static String editText = "";
     public static String guest_id = "";
@@ -54,7 +54,7 @@ public class UserInfo {
     public String POS = "";
     public String PERMISSION = "";
     //public static String ServerIP = "entradasoft.ga";
-    //public static String ServerIP = "192.168.2.108/tb";
+    //public static String ServerIP = "192.168.2.104/tb";
     //public static String ServerIP = "iamrohit-001-site1.ftempurl.com";
     public static String ServerIP ="entradasoft-001-site1.htempurl.com";
 
@@ -75,8 +75,8 @@ public class UserInfo {
     public static boolean appIsRunning = false;
 
     // Get both these google sign in detail from start integrating google sign in with android app
-    public static String SenderID = "555927586239";
-    public static String apikey = "AIzaSyDBPGQLo7MQ5S_ab_WH93pUMV2b55XxMyI";
+    public static String SenderID = "546049894416";
+    public static String apikey = "AIzaSyDQ9nBXmWOmdYstVvK_0ClAGv9WFd2jcks";
     public static String deviceid = "";
 
     public static String getRunningDate() {
